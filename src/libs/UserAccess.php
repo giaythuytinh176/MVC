@@ -15,6 +15,17 @@ class UserAccess extends UserModels
         }
     }
 
+    public static function isUserDeleteFromDB()
+    {
+        if (!empty($_SESSION['username']) || !empty($_COOKIE['username'])) {
+            $username = !empty($_SESSION['username']) ? $_SESSION['username'] : $_COOKIE['username'];
+            $PwdHash = (new self)->getPasswordHashFromUsername($username);
+            if (!empty($PwdHash['errors'])) {
+                Session::destroy();
+            }
+        }
+    }
+
     public static function isLogin()
     {
         $isLogined = Session::get('loggedIn');

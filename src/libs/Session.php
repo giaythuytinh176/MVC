@@ -10,6 +10,7 @@ class Session
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         \MVC\libs\UserAccess::isLogin();
         \MVC\libs\UserAccess::reSetSession();
+        \MVC\libs\UserAccess::isUserDeleteFromDB();
     }
 
     public static function set($key, $value)
