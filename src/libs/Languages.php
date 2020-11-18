@@ -15,8 +15,7 @@ class Languages
 
     public static function getLangData($lang)
     {
-        $data =  (new \MVC\models\LangModels())->getLangDB($lang);
-        return $data;
+        return (new \MVC\models\LangModels())->getLangDB($lang);
     }
 
     /**

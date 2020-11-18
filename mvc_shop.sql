@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 18, 2020 at 05:30 PM
--- Server version: 8.0.22
--- PHP Version: 7.4.12
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th10 18, 2020 lúc 08:59 PM
+-- Phiên bản máy phục vụ: 8.0.22
+-- Phiên bản PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mvc_shop`
+-- Cơ sở dữ liệu: `mvc_shop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languages`
+-- Cấu trúc bảng cho bảng `languages`
 --
 
 CREATE TABLE `languages` (
@@ -35,7 +35,7 @@ CREATE TABLE `languages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `languages`
+-- Đang đổ dữ liệu cho bảng `languages`
 --
 
 INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`) VALUES
@@ -51,12 +51,84 @@ INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`)
 (10, 'Remember me', 'Lưu', 'Souviens-toi de moi'),
 (11, 'Login', 'Đăng nhập', 'S\'identifier'),
 (12, 'Forgot Password?', 'Quên mật khẩu?', 'Mot de passe oublié?'),
-(13, 'Register', 'Đăng ký', 'S\'inscrire');
+(13, 'Register', 'Đăng ký', 'S\'inscrire'),
+(14, 'Accessories', 'Phụ kiện', 'Accessoires'),
+(15, 'Latest Fashion<br>Collections', 'Bộ sưu tập <br> Thời trang Mới nhất', 'Dernières collections de mode <br>');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `order`
+--
+
+CREATE TABLE `order` (
+  `transaction_id` int NOT NULL,
+  `id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `qty` int DEFAULT NULL,
+  `amount` decimal(15,4) DEFAULT NULL,
+  `data` text,
+  `status` int DEFAULT NULL,
+  `public_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int NOT NULL,
+  `category_id` int DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `price` decimal(15,4) DEFAULT NULL,
+  `discount` int DEFAULT NULL,
+  `description` text,
+  `sort_order` int DEFAULT NULL,
+  `is_disabled` tinyint DEFAULT NULL,
+  `cart_description` text,
+  `img_link` int DEFAULT NULL,
+  `img_list` text,
+  `created` int DEFAULT NULL,
+  `view` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_category`
+--
+
+CREATE TABLE `product_category` (
+  `category_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `sort_order` int NOT NULL,
+  `parent_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `transaction_id` bigint NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `public_id` int DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `amount` decimal(15,4) DEFAULT NULL,
+  `payment` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `payment_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `created` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
@@ -76,43 +148,84 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `phone`, `remote_addr`, `reg_date`, `last_login`, `last_ip`, `last_session`, `user_agent`, `last_user_agent`) VALUES
-(13, 'giaythuytinh176', '$2y$10$reJLb0xNXJK7I37m/ghDRu.ZE2d8Z5Atvm1Np3bkegTEpeeH.kQWu', 'giaythuytinh176@gmail.com', 'LE DUC TAM', 'giaythuytinh176', '::1', '2020-11-18 04:17:11', NULL, '::1', NULL, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL);
-
---
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `languages`
+-- Chỉ mục cho bảng `languages`
 --
 ALTER TABLE `languages`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Chỉ mục cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Chỉ mục cho bảng `product_category`
+--
+ALTER TABLE `product_category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Chỉ mục cho bảng `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `languages`
+-- AUTO_INCREMENT cho bảng `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT cho bảng `order`
+--
+ALTER TABLE `order`
+  MODIFY `transaction_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `product_category`
+--
+ALTER TABLE `product_category`
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `transaction_id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

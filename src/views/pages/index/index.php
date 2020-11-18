@@ -152,7 +152,8 @@
                                                         name="login-form-submit"
                                                         value="login"><?php echo \MVC\libs\Languages::getLangData("Login"); ?>
                                                 </button>
-                                                <a href="" class="float-right"><?php echo \MVC\libs\Languages::getLangData("Forgot Password?"); ?></a><br><br>
+                                                <a href=""
+                                                   class="float-right"><?php echo \MVC\libs\Languages::getLangData("Forgot Password?"); ?></a><br><br>
                                                 <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/login"); ?>"
                                                    class="float-right"><?php echo \MVC\libs\Languages::getLangData("Register"); ?></a></a>
                                             </div>
@@ -309,117 +310,6 @@
                                                 </a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-blog.html">
-                                            <div>Home - Blog</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="index-blog.html">
-                                                    <div>Blog - Layout 1</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-blog-2.html">
-                                                    <div>Blog - Layout 2</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-blog-3.html">
-                                                    <div>Blog - Layout 3</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-shop.html">
-                                            <div>Home - Shop</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="index-shop.html">
-                                                    <div>Shop - Layout 1</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-shop-2.html">
-                                                    <div>Shop - Layout 2</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-magazine.html">
-                                            <div>Home - Magazine</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="index-magazine.html">
-                                                    <div>Magazine - Layout 1</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-magazine-2.html">
-                                                    <div>Magazine - Layout 2</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-magazine-3.html">
-                                                    <div>Magazine - Layout 3</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="landing.html">
-                                            <div>Home - Landing Page</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="landing.html">
-                                                    <div>Landing Page - Layout 1</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="landing-2.html">
-                                                    <div>Landing Page - Layout 2</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="landing-3.html">
-                                                    <div>Landing Page - Layout 3</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="landing-4.html">
-                                                    <div>Landing Page - Layout 4</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="landing-5.html">
-                                                    <div>Landing Page - Layout 5</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-fullscreen-image.html">
-                                            <div>Home - Full Screen</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link"
-                                                                     href="index-fullscreen-image.html">
-                                                    <div>Full Screen - Image</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link"
-                                                                     href="index-fullscreen-slider.html">
-                                                    <div>Full Screen - Slider</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link"
-                                                                     href="index-fullscreen-video.html">
-                                                    <div>Full Screen - Video</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-onepage.html">
-                                            <div>Home - One Page</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="index-onepage.html">
-                                                    <div>One Page - Default</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-onepage-2.html">
-                                                    <div>One Page - Submenu</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-onepage-3.html">
-                                                    <div>One Page - Dots Style</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-wedding.html">
-                                            <div>Home - Wedding</div>
-                                        </a></li>
-                                    <li class="menu-item"><a class="menu-link" href="index-restaurant.html">
-                                            <div>Home - Restaurant</div>
-                                        </a></li>
-                                    <li class="menu-item"><a class="menu-link" href="index-events.html">
-                                            <div>Home - Events</div>
-                                        </a></li>
-                                    <li class="menu-item"><a class="menu-link" href="index-parallax.html">
-                                            <div>Home - Parallax</div>
-                                        </a></li>
-                                    <li class="menu-item"><a class="menu-link" href="index-app-showcase.html">
-                                            <div>Home - App Showcase</div>
-                                        </a></li>
                                 </ul>
                             </li>
                             <!-- Mega Menu
@@ -490,7 +380,7 @@
                                             </ul>
                                             <ul class="sub-menu-container mega-menu-column col-lg-3">
                                                 <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div>Accessories</div>
+                                                        <div><?php echo \MVC\libs\Languages::getLangData("Accessories"); ?></div>
                                                     </a>
                                                     <ul class="sub-menu-container">
                                                         <li class="menu-item"><a class="menu-link" href="#">
@@ -529,7 +419,7 @@
                                                                 <div>Formal Shoes</div>
                                                             </a></li>
                                                         <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Accessories</div>
+                                                                <div><?php echo \MVC\libs\Languages::getLangData("Accessories"); ?></div>
                                                             </a></li>
                                                         <li class="menu-item"><a class="menu-link" href="#">
                                                                 <div>Watches</div>
@@ -619,7 +509,7 @@
                                 </div>
                             </li><!-- .mega-menu end -->
                             <li class="menu-item"><a class="menu-link" href="#">
-                                    <div>Accessories</div>
+                                    <div><?php echo \MVC\libs\Languages::getLangData("Accessories"); ?></div>
                                     <span>Awesome Works</span></a></li>
                             <li class="menu-item"><a class="menu-link" href="#">
                                     <div>Sale</div>
@@ -630,6 +520,17 @@
                             <li class="menu-item"><a class="menu-link" href="#">
                                     <div>Videos</div>
                                     <span>Latest News</span></a></li>
+                            <li class="menu-item">
+                                <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url() ?>"><div>Shop</div></a>
+                                <ul class="sub-menu-container">
+                                    <li class="menu-item">
+                                        <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>"><div>Cart</div></a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>"><div>Checkout</div></a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="menu-item"><a class="menu-link" href="#">
                                     <div>Contact</div>
                                     <span>Get In Touch</span></a></li>
@@ -708,7 +609,7 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn" style=" color: #333; max-width: 430px; line-height: 1.15;">
-                            Latest Fashion<br>Collections
+                            <?php echo \MVC\libs\Languages::getLangData("Latest Fashion<br>Collections"); ?>
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-desc-text text-left"

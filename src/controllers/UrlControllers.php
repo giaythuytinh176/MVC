@@ -65,7 +65,17 @@ class UrlControllers
         switch ($this->action) {
             case "login":
                 if ($this->controllers == "shop") {
-                    $this->webcontrollers->loginControllers($this->params);
+                    (new LoginControllers())->loginControllers($this->params);
+                    break;
+                }
+            case "cart":
+                if ($this->controllers == "shop") {
+                    (new CartControllers())->cartView($this->params);
+                    break;
+                }
+            case "checkout":
+                if ($this->controllers == "shop") {
+                    (new CheckoutControllers())->checkoutView($this->params);
                     break;
                 }
             case "vietnamese":
@@ -83,6 +93,8 @@ class UrlControllers
                     (new \MVC\libs\Languages())->setLang("french");
                     break;
                 }
+
+
             default:
                 $this->webcontrollers->errorPage();
         }
