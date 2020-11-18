@@ -15,3 +15,5 @@ Các chứng năng đã hoàn thành:
 - Sử dụng autoload PSR-4 để load tất cả các file theo cài đặt
 - Namespace là MVC
 - Có thể thoát đăng nhập và xoá tất cả cookie, sesion cũ
+/* Hoàn thành date 18/11/2020 */
+
