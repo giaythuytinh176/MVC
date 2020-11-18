@@ -18,4 +18,23 @@ class Languages
         $data =  (new \MVC\models\LangModels())->getLangDB($lang);
         return $data;
     }
+
+    /**
+     * @return string
+     */
+    public static function CheckLang(): string
+    {
+        $checkLang = isset($_SESSION['lang']) ? $_SESSION['lang'] : "vietnamese";
+        switch ($checkLang) {
+            case "french":
+                $lang = "french";
+                break;
+            case "english":
+                $lang = "english";
+                break;
+            default:
+                $lang = "vietnamese";
+        }
+        return $lang;
+    }
 }

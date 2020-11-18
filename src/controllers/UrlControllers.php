@@ -41,7 +41,7 @@ class UrlControllers
             case "lang":
                 $this->parseAction();
                 break;
-            case "api":
+            //case "api":
 
 
             case "homepage":
@@ -64,17 +64,25 @@ class UrlControllers
     {
         switch ($this->action) {
             case "login":
-                $this->webcontrollers->loginControllers($this->params);
-                break;
+                if ($this->controllers == "shop") {
+                    $this->webcontrollers->loginControllers($this->params);
+                    break;
+                }
             case "vietnamese":
-                (new \MVC\libs\Languages())->setLang("vietnamese");
-                break;
+                if ($this->controllers == "lang") {
+                    (new \MVC\libs\Languages())->setLang("vietnamese");
+                    break;
+                }
             case "english":
-                (new \MVC\libs\Languages())->setLang("english");
-                break;
+                if ($this->controllers == "lang") {
+                    (new \MVC\libs\Languages())->setLang("english");
+                    break;
+                }
             case "french":
-                (new \MVC\libs\Languages())->setLang("french");
-                break;
+                if ($this->controllers == "lang") {
+                    (new \MVC\libs\Languages())->setLang("french");
+                    break;
+                }
             default:
                 $this->webcontrollers->errorPage();
         }

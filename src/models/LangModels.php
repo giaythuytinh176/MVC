@@ -8,17 +8,7 @@ class LangModels
 {
     public function getLangDB($langNeedTranslate = null)
     {
-        $checkLang = isset($_SESSION['lang']) ? $_SESSION['lang'] : "vietnamese";
-        switch ($checkLang) {
-            case "french":
-                $lang = "french";
-                break;
-            case "english":
-                $lang = "english";
-                break;
-            default:
-                $lang = "vietnamese";
-        }
+        $lang = \MVC\libs\Languages::CheckLang();
         if ($lang == "english") return $langNeedTranslate;
         $field = "{$lang}_lang";
         $sql = "SELECT * FROM languages WHERE english_lang LIKE '$langNeedTranslate'";
