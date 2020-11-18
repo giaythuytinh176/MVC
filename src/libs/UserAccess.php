@@ -34,6 +34,11 @@ class UserAccess extends UserModels
         }
     }
 
+    public static function saveSession()
+    {
+        // Save to Database
+    }
+
     public static function isLogin()
     {
         $isLogined = Session::get('loggedIn');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2020 at 09:18 PM
+-- Generation Time: Nov 18, 2020 at 05:30 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `mvc_shop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `languages`
+--
+
+CREATE TABLE `languages` (
+  `ID` int NOT NULL,
+  `english_Lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `vietnamese_lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `french_lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `languages`
+--
+
+INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`) VALUES
+(1, 'Headquarters', 'Trụ sở chính', 'Quartier général'),
+(2, 'Phone', 'Số điện thoại', 'Téléphone'),
+(3, 'RECENT POSTS', 'Bài viết gần đây', 'MESSAGES RÉCENTS'),
+(4, 'Home', 'Trang chủ', 'Page d\'accueil'),
+(5, 'We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp; <strong>Good price</strong>.', 'Chúng tôi tin rằng <strong>rẻ nhất</strong>, <strong>đẹp</strong> &amp; <strong>giá tốt</strong>.', 'Nous croyons au <strong>prix le moins</strong>, <strong>cher</strong> &amp; <strong>beau et bon</strong>.'),
+(6, 'Welcome', 'Xin chào', 'Bienvenue'),
+(7, 'Logout', 'Thoát', 'Se déconnecter'),
+(8, 'Username', 'Tài khoản', 'Nom d\'utilisateur'),
+(9, 'Password', 'Mật khẩu', 'Mot de passe'),
+(10, 'Remember me', 'Lưu', 'Souviens-toi de moi'),
+(11, 'Login', 'Đăng nhập', 'S\'identifier'),
+(12, 'Forgot Password?', 'Quên mật khẩu?', 'Mot de passe oublié?'),
+(13, 'Register', 'Đăng ký', 'S\'inscrire');
 
 -- --------------------------------------------------------
 
@@ -55,6 +87,12 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `pho
 --
 
 --
+-- Indexes for table `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -65,10 +103,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

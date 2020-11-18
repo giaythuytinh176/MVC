@@ -2,6 +2,8 @@
 
 namespace MVC\libs;
 
+use MVC\Models\UserModels;
+
 class LoginUser
 {
     public static function checkLoginUser()
@@ -19,7 +21,8 @@ class LoginUser
         }
         if (!empty($errors)) return ["errors" => $errors];
 
-        // check if $username not exist trong db
+        $isExistUser = (new UserModels())->isNotExistUser($username);
+        if (!empty($isExistUser['errors'])) return $isExistUser;
 
         if (strlen($password) < 6) {
             $errors[] = "Username is too short.";

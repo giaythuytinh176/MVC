@@ -41,10 +41,10 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="index.html" class="standard-logo"
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="standard-logo"
                            data-dark-logo="../src/views/pages/index/images/logo-dark.png"><img
                                     src="../src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
-                        <a href="index.html" class="retina-logo"
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"
                            data-dark-logo="../src/views/pages/index/images/logo-dark@2x.png"><img
                                     src="../src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
@@ -1255,7 +1255,6 @@
                             </div>
                             <?php
                         } else {
-
                             if (!empty($_POST['register-form-submit']) && $_POST['register-form-submit'] == "register") {
                                 ?>
                                 <div class="col-sm-16 col-lg-14">
@@ -1277,11 +1276,13 @@
                                 </div>
                                 <?php
                             } elseif (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] == "login") {
-                                //header("Location: " . \MVC\controllers\UrlControllers::url("homepage"));
-                                if (headers_sent()) {
-                                    die("Redirect failed. Please click on <a href='" . \MVC\controllers\UrlControllers::url("homepage") . "'>this link.</a> <meta http-equiv=\"Refresh\" content=\"1; url=" . \MVC\controllers\UrlControllers::url("homepage") . "\">" );
-                                } else {
-                                    exit(header("Location: " . \MVC\controllers\UrlControllers::url("homepage")));
+                                if (\MVC\libs\UserAccess::isLogin()) {
+                                    //header("Location: " . \MVC\controllers\UrlControllers::url("homepage"));
+                                    if (headers_sent()) {
+                                        die("Redirect failed. Please click on <a href='" . \MVC\controllers\UrlControllers::url("homepage") . "'>this link.</a> <meta http-equiv=\"Refresh\" content=\"1; url=" . \MVC\controllers\UrlControllers::url("homepage") . "\">");
+                                    } else {
+                                        exit(header("Location: " . \MVC\controllers\UrlControllers::url("homepage")));
+                                    }
                                 }
                             }
                         }
@@ -1458,16 +1459,19 @@
                                                 <i class="icon-facebook"></i>
                                                 <i class="icon-facebook"></i>
                                             </a>
-                                            <a href="https://www.facebook.com/giaythuytinh176"><small style="display: block; margin-top: 3px;"><strong>Like
+                                            <a href="https://www.facebook.com/giaythuytinh176"><small
+                                                        style="display: block; margin-top: 3px;"><strong>Like
                                                         us</strong><br>on Facebook</small></a>
                                         </div>
                                         <div class="col-6 col-md-12 col-lg-6 clearfix">
-                                            <a href="https://www.facebook.com/giaythuytinh176" class="social-icon si-dark si-colored si-rss mb-0"
+                                            <a href="https://www.facebook.com/giaythuytinh176"
+                                               class="social-icon si-dark si-colored si-rss mb-0"
                                                style="margin-right: 10px;">
                                                 <i class="icon-rss"></i>
                                                 <i class="icon-rss"></i>
                                             </a>
-                                            <a href=""><small style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to
+                                            <a href=""><small
+                                                        style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to
                                                     RSS Feeds</small></a>
                                         </div>
                                     </div>

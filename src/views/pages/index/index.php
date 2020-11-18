@@ -91,50 +91,92 @@
                     ============================================= -->
                     <div class="top-links on-click">
                         <ul class="top-links-container">
-                            <li class="top-links-item"><a href="#">USD</a>
+                            <li class="top-links-item"><a href="#">VND</a>
                                 <ul class="top-links-sub-menu">
+                                    <li class="top-links-item"><a href="#">USD</a></li>
                                     <li class="top-links-item"><a href="#">EUR</a></li>
                                     <li class="top-links-item"><a href="#">AUD</a></li>
                                     <li class="top-links-item"><a href="#">GBP</a></li>
                                 </ul>
                             </li>
-                            <li class="top-links-item"><a href="#">EN</a>
+                            <li class="top-links-item">
+                                <a href="<?php \MVC\controllers\UrlControllers::url("lang/{$_SESSION['lang']}") ?>">
+                                    <?php
+                                    echo $_SESSION['lang'];
+                                    ?>
+                                </a>
                                 <ul class="top-links-sub-menu">
-                                    <li class="top-links-item"><a href="#"><img
+                                    <li class="top-links-item"><a
+                                                href="<?php echo \MVC\controllers\UrlControllers::url("lang/french") ?>"><img
                                                     src="./src/views/pages/index/images/icons/flags/french.png"
                                                     alt="French"> FR</a></li>
-                                    <li class="top-links-item"><a href="#"><img
-                                                    src="./src/views/pages/index/images/icons/flags/italian.png"
-                                                    alt="Italian"> IT</a></li>
-                                    <li class="top-links-item"><a href="#"><img
-                                                    src="./src/views/pages/index/images/icons/flags/german.png"
-                                                    alt="German"> DE</a></li>
+                                    <li class="top-links-item"><a
+                                                href="<?php echo \MVC\controllers\UrlControllers::url("lang/vietnamese") ?>"><img
+                                                    src="./src/views/pages/index/images/icons/flags/vietnamese.png"
+                                                    alt="Vietnamese"> VI</a></li>
+                                    <li class="top-links-item"><a
+                                                href="<?php echo \MVC\controllers\UrlControllers::url("lang/english") ?>"><img
+                                                    src="./src/views/pages/index/images/icons/flags/english.png"
+                                                    alt="English"> EN</a></li>
                                 </ul>
                             </li>
-                            <li class="top-links-item"><a href="#">Login</a>
-                                <div class="top-links-section">
-                                    <form id="top-login" autocomplete="off">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="email" class="form-control" placeholder="Email address">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control" placeholder="Password"
-                                                   required="">
-                                        </div>
-                                        <div class="form-group form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                   id="top-login-checkbox">
-                                            <label class="form-check-label" for="top-login-checkbox">Remember Me</label>
-                                        </div>
-                                        <button class="btn btn-danger btn-block" type="submit">Sign in</button>
-                                    </form>
-                                </div>
-                            </li>
+                            <?php
+                            if (\MVC\libs\UserAccess::isLogin() === false) {
+                                ?>
+                                <li class="top-links-item"><a
+                                            href="<?php echo \MVC\controllers\UrlControllers::url("shop/login"); ?>"><?php echo \MVC\libs\Languages::getLangData("login"); ?></a>
+                                    <div class="top-links-section">
+                                        <form id="top-login" autocomplete="off"
+                                              action="<?php echo \MVC\controllers\UrlControllers::url("shop/login"); ?>"
+                                              method="post">
+                                            <div class="form-group">
+                                                <label><?php echo \MVC\libs\Languages::getLangData("Username"); ?></label>
+                                                <input type="text" class="form-control" name="login-form-username"
+                                                       placeholder="Username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label><?php echo \MVC\libs\Languages::getLangData("Password"); ?></label>
+                                                <input type="password" class="form-control" name="login-form-password"
+                                                       placeholder="Password"
+                                                       required="">
+                                            </div>
+                                            <div class="col-12 form-group">
+                                                <input type="checkbox" id="form-check-input" name="rememberme"
+                                                       class="float-center" checked>
+                                                <label class="form-check-label"
+                                                       id="form-check-input"><?php echo \MVC\libs\Languages::getLangData("Remember me"); ?></label>
+                                            </div>
+                                            <div class="col-12 form-group">
+                                                <br>
+                                                <button class="button button-3d button-black m-0" id="login-form-submit"
+                                                        name="login-form-submit"
+                                                        value="login"><?php echo \MVC\libs\Languages::getLangData("Login"); ?>
+                                                </button>
+                                                <a href="" class="float-right"><?php echo \MVC\libs\Languages::getLangData("Forgot Password?"); ?></a><br><br>
+                                                <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/login"); ?>"
+                                                   class="float-right"><?php echo \MVC\libs\Languages::getLangData("Register"); ?></a></a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            <?php } else {
+                                ?>
+                                <li class="top-links-item"><a
+                                            href=""><?php echo \MVC\libs\Languages::getLangData("Welcome"); ?> <?php echo $_SESSION['username']; ?>
+                                        ,</a>
+                                    <ul class="top-links-sub-menu">
+                                        <li class="top-links-item"><a href="">1</a></li>
+                                        <li class="top-links-item"><a href="">2</a></li>
+                                        <li class="top-links-item"><a
+                                                    href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/logout"); ?>"><?php echo \MVC\libs\Languages::getLangData("Logout"); ?></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div><!-- .top-links end -->
-
                 </div>
             </div>
 
@@ -151,10 +193,10 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="index.html" class="standard-logo"
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="standard-logo"
                            data-dark-logo="./src/views/pages/index/images/logo-dark.png"><img
                                     src="./src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
-                        <a href="index.html" class="retina-logo"
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"
                            data-dark-logo="./src/views/pages/index/images/logo-dark@2x.png"><img
                                     src="./src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
@@ -228,7 +270,7 @@
 
                         <ul class="menu-container">
                             <li class="menu-item current"><a class="menu-link" href="#">
-                                    <div>Home</div>
+                                    <div><?php echo \MVC\libs\Languages::getLangData("Home"); ?><</div>
                                 </a>
                                 <ul class="sub-menu-container">
                                     <li class="menu-item"><a class="menu-link" href="index-corporate.html">
@@ -1608,17 +1650,21 @@
                                     <img src="./src/views/pages/index/images/footer-widget-logo.png" alt="Image"
                                          class="footer-logo">
 
-                                    <p>We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp;
-                                        <strong>Good price</strong>.</p>
+                                    <p>
+                                        <?php echo \MVC\libs\Languages::getLangData("We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp; <strong>Good price</strong>."); ?>
+                                    </p>
 
                                     <div style="background: url('./src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
                                         <address>
-                                            <strong>Headquarters:</strong><br>
+                                            <strong><?php echo \MVC\libs\Languages::getLangData("Headquarters"); ?>
+                                                :</strong><br>
                                             Phú Thượng- Tây Hồ- Hà Nội 100000<br>
                                         </address>
-                                        <abbr title="Phone Number"><strong>Phone:</strong></abbr> (1) 8547 632521<br>
-                                        <abbr title="Fax"><strong>Fax:</strong></abbr> (1) 11 4752 1433<br>
-                                        <abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
+                                        <abbr title="Phone Number"><strong><?php echo \MVC\libs\Languages::getLangData("Phone"); ?>
+                                                :</strong></abbr> (84) 979 029 556<br>
+                                        <abbr title="Fax"><strong>Fax:</strong></abbr> (84) 979 029 556<br>
+                                        <abbr title="Email Address"><strong>Email:</strong></abbr>
+                                        giaythuytinh176@gmail.com
                                     </div>
 
                                 </div>
@@ -1646,7 +1692,7 @@
                             <div class="col-md-4">
 
                                 <div class="widget clearfix">
-                                    <h4>Recent Posts</h4>
+                                    <h4><?php echo \MVC\libs\Languages::getLangData("Recent Posts"); ?></h4>
 
                                     <div class="posts-sm row col-mb-30" id="post-list-footer">
 
@@ -1753,11 +1799,13 @@
                                                 <i class="icon-facebook"></i>
                                                 <i class="icon-facebook"></i>
                                             </a>
-                                            <a href="https://www.facebook.com/giaythuytinh176"><small style="display: block; margin-top: 3px;"><strong>Like
+                                            <a href="https://www.facebook.com/giaythuytinh176"><small
+                                                        style="display: block; margin-top: 3px;"><strong>Like
                                                         us</strong><br>on Facebook</small></a>
                                         </div>
                                         <div class="col-6 col-md-12 col-lg-6 clearfix">
-                                            <a href="https://www.facebook.com/giaythuytinh176" class="social-icon si-dark si-colored si-rss mb-0"
+                                            <a href="https://www.facebook.com/giaythuytinh176"
+                                               class="social-icon si-dark si-colored si-rss mb-0"
                                                style="margin-right: 10px;">
                                                 <i class="icon-rss"></i>
                                                 <i class="icon-rss"></i>
@@ -1836,9 +1884,9 @@
 
                         <div class="clear"></div>
 
-                        <i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i
-                                class="icon-headphones"></i> +1-11-6541-6369 <span class="middot">&middot;</span> <i
-                                class="icon-skype2"></i> CanvasOnSkype
+                        <i class="icon-envelope2"></i> giaythuytinh176@gmail.com <span class="middot">&middot;</span> <i
+                                class="icon-headphones"></i> +84-979-029-556 <span class="middot">&middot;</span> <i
+                                class="icon-skype2"></i> giaythuytinh176
                     </div>
 
                 </div>

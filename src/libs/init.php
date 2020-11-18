@@ -8,6 +8,7 @@ class init
     {
         //ob_start();
         date_default_timezone_set("Asia/Ho_Chi_Minh");
+        if (empty($_SESSION['lang'])) $_SESSION['lang'] = "vietnamese";
         \MVC\libs\UserAccess::isLogin();
         \MVC\libs\UserAccess::reSetSession();
         \MVC\libs\UserAccess::isUserDeleteFromDB();

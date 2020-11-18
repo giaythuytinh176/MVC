@@ -35,23 +35,14 @@ class UrlControllers
     public function parseController()
     {
         switch ($this->controllers) {
-            case "liststudent":
-                if (!empty($this->action) && $this->action !== "index") {
-                    $this->parseAction();
-                } else {
-                    $this->webcontrollers->getAllStudent();
-                }
-                break;
             case "shop":
                 $this->parseAction();
                 break;
-            case "api":
-                if (!empty($this->action)) {
-                    $this->apicontrollers->api($this->action, $this->params);
-                } else {
-                    $this->webcontrollers->errorPage("Api not found or invalid.");
-                }
+            case "lang":
+                $this->parseAction();
                 break;
+            case "api":
+
 
             case "homepage":
                 $this->webcontrollers->homepage();
@@ -72,19 +63,18 @@ class UrlControllers
     public function parseAction()
     {
         switch ($this->action) {
-            case "edit":
-                $this->webcontrollers->editStudent($this->params);
-                break;
-            case "delete":
-                $this->webcontrollers->deleteStudent($this->params);
-                break;
-            case "add":
-                $this->webcontrollers->addStudent();
-                break;
             case "login":
                 $this->webcontrollers->loginControllers($this->params);
                 break;
-
+            case "vietnamese":
+                (new \MVC\libs\Languages())->setLang("vietnamese");
+                break;
+            case "english":
+                (new \MVC\libs\Languages())->setLang("english");
+                break;
+            case "french":
+                (new \MVC\libs\Languages())->setLang("french");
+                break;
             default:
                 $this->webcontrollers->errorPage();
         }

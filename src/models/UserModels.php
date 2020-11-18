@@ -51,6 +51,16 @@ class UserModels
         }
     }
 
+    public function isNotExistUser($user)
+    {
+        $sql = "SELECT * FROM User WHERE username='" . $user . "' LIMIT 1";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => ["Username not found."]];
+        }
+    }
+
     public function checkUserExist($user)
     {
         $sql = "SELECT * FROM User WHERE username='" . $user . "' LIMIT 1";
