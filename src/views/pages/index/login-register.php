@@ -1116,7 +1116,6 @@
     <section id="content">
         <div class="content-wrap">
             <div class="container clearfix">
-
                 <div class="accordion accordion-lg mx-auto mb-0 clearfix" style="max-width: 550px;">
                     <?php if ((empty($_POST) == true) || (!empty($_POST['register-form-submit']) && $_POST['register-form-submit'] !== "register") || (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] !== "login")) { ?>
                         <?php if (\MVC\libs\UserAccess::isLogin() == true) { ?>
@@ -1131,101 +1130,109 @@
                                     } ?>
                                 </div>
                             </div>
+                            <div class="col-12 form-group">
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/logout"); ?>"
+                                   class="float-right"><i class="icon-line2-logout"></i> Logout</a>
+                            </div>
+
+                        <?php } else {
+                            ?>
+                            <div class="accordion-header">
+                                <div class="accordion-icon">
+                                    <i class="accordion-closed icon-lock3"></i>
+                                    <i class="accordion-open icon-unlock"></i>
+                                </div>
+                                <div class="accordion-title">
+                                    Login to your Account
+                                </div>
+                            </div>
+                            <div class="accordion-content clearfix">
+                                <form id="login-form" name="login-form" class="row mb-0" action="" method="post">
+                                    <div class="col-12 form-group">
+                                        <label for="login-form-username">Username:</label>
+                                        <input type="text" id="login-form-username" name="login-form-username" value=""
+                                               class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="login-form-password">Password:</label>
+                                        <input type="password" id="login-form-password" name="login-form-password"
+                                               value=""
+                                               class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <input type="checkbox" id="login-form-remember" name="rememberme"
+                                               class="float-center" checked>
+                                        <label class="form-check-label" id="login-form-remember">Remember me</label>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <button class="button button-3d button-black m-0" id="login-form-submit"
+                                                name="login-form-submit" value="login">Login
+                                        </button>
+                                        <a href="" class="float-right">Forgot Password?</a>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="accordion-header">
+                                <div class="accordion-icon">
+                                    <i class="accordion-closed icon-user4"></i>
+                                    <i class="accordion-open icon-ok-sign"></i>
+                                </div>
+                                <div class="accordion-title">
+                                    New Signup? Register for an Account
+                                </div>
+                            </div>
+                            <div class="accordion-content clearfix">
+                                <form id="register-form" name="register-form" class="row mb-0" action="" method="post">
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-name">Name:</label>
+                                        <input type="text" id="register-form-name" name="register-form-name" value=""
+                                               class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-email">Email Address:</label>
+                                        <input type="text" id="register-form-email" name="register-form-email" value=""
+                                               class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-username">Choose a Username:</label>
+                                        <input type="text" id="register-form-username" name="register-form-username"
+                                               value=""
+                                               class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-phone">Phone:</label>
+                                        <input type="text" id="register-form-phone" name="register-form-phone" value=""
+                                               class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-password">Choose Password:</label>
+                                        <input type="password" id="register-form-password" name="register-form-password"
+                                               value="" class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="register-form-repassword">Re-enter Password:</label>
+                                        <input type="password" id="register-form-repassword"
+                                               name="register-form-repassword"
+                                               value="" class="form-control"/>
+                                    </div>
+
+                                    <div class="col-12 form-group">
+                                        <button class="button button-3d button-black m-0" id="register-form-submit"
+                                                name="register-form-submit" value="register">Register Now
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         <?php } ?>
-
-                        <div class="accordion-header">
-                            <div class="accordion-icon">
-                                <i class="accordion-closed icon-lock3"></i>
-                                <i class="accordion-open icon-unlock"></i>
-                            </div>
-                            <div class="accordion-title">
-                                Login to your Account
-                            </div>
-                        </div>
-                        <div class="accordion-content clearfix">
-                            <form id="login-form" name="login-form" class="row mb-0" action="" method="post">
-                                <div class="col-12 form-group">
-                                    <label for="login-form-username">Username:</label>
-                                    <input type="text" id="login-form-username" name="login-form-username" value=""
-                                           class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <label for="login-form-password">Password:</label>
-                                    <input type="password" id="login-form-password" name="login-form-password" value=""
-                                           class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <input type="checkbox" id="login-form-remember" name="rememberme"
-                                           class="form-check-input" checked>
-                                    <label class="form-check-label" id="login-form-remember">Remember me</label>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <button class="button button-3d button-black m-0" id="login-form-submit"
-                                            name="login-form-submit" value="login">Login
-                                    </button>
-                                    <a href="#" class="float-right">Forgot Password?</a>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="accordion-header">
-                            <div class="accordion-icon">
-                                <i class="accordion-closed icon-user4"></i>
-                                <i class="accordion-open icon-ok-sign"></i>
-                            </div>
-                            <div class="accordion-title">
-                                New Signup? Register for an Account
-                            </div>
-                        </div>
-                        <div class="accordion-content clearfix">
-                            <form id="register-form" name="register-form" class="row mb-0" action="" method="post">
-                                <div class="col-12 form-group">
-                                    <label for="register-form-name">Name:</label>
-                                    <input type="text" id="register-form-name" name="register-form-name" value=""
-                                           class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <label for="register-form-email">Email Address:</label>
-                                    <input type="text" id="register-form-email" name="register-form-email" value=""
-                                           class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <label for="register-form-username">Choose a Username:</label>
-                                    <input type="text" id="register-form-username" name="register-form-username"
-                                           value=""
-                                           class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <label for="register-form-phone">Phone:</label>
-                                    <input type="text" id="register-form-phone" name="register-form-phone" value=""
-                                           class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <label for="register-form-password">Choose Password:</label>
-                                    <input type="password" id="register-form-password" name="register-form-password"
-                                           value="" class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <label for="register-form-repassword">Re-enter Password:</label>
-                                    <input type="password" id="register-form-repassword" name="register-form-repassword"
-                                           value="" class="form-control"/>
-                                </div>
-
-                                <div class="col-12 form-group">
-                                    <button class="button button-3d button-black m-0" id="register-form-submit"
-                                            name="register-form-submit" value="register">Register Now
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
                     <?php } else {
                         if (!empty($data[0]['errors'])) {
                             ?>
@@ -1270,9 +1277,12 @@
                                 </div>
                                 <?php
                             } elseif (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] == "login") {
-                                echo "xxxxxx";
-
-
+                                //header("Location: " . \MVC\controllers\UrlControllers::url("homepage"));
+                                if (headers_sent()) {
+                                    die("Redirect failed. Please click on <a href='" . \MVC\controllers\UrlControllers::url("homepage") . "'>this link.</a> <meta http-equiv=\"Refresh\" content=\"1; url=" . \MVC\controllers\UrlControllers::url("homepage") . "\">" );
+                                } else {
+                                    exit(header("Location: " . \MVC\controllers\UrlControllers::url("homepage")));
+                                }
                             }
                         }
 
@@ -1448,16 +1458,16 @@
                                                 <i class="icon-facebook"></i>
                                                 <i class="icon-facebook"></i>
                                             </a>
-                                            <a href="#"><small style="display: block; margin-top: 3px;"><strong>Like
+                                            <a href="https://www.facebook.com/giaythuytinh176"><small style="display: block; margin-top: 3px;"><strong>Like
                                                         us</strong><br>on Facebook</small></a>
                                         </div>
                                         <div class="col-6 col-md-12 col-lg-6 clearfix">
-                                            <a href="#" class="social-icon si-dark si-colored si-rss mb-0"
+                                            <a href="https://www.facebook.com/giaythuytinh176" class="social-icon si-dark si-colored si-rss mb-0"
                                                style="margin-right: 10px;">
                                                 <i class="icon-rss"></i>
                                                 <i class="icon-rss"></i>
                                             </a>
-                                            <a href="#"><small style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to
+                                            <a href=""><small style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to
                                                     RSS Feeds</small></a>
                                         </div>
                                     </div>

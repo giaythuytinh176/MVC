@@ -25,20 +25,6 @@ class UserModels
         return $arr;
     }
 
-    function getUserIpAddr()
-    {
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            //ip from share internet
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            //ip pass from proxy
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-        return $ip;
-    }
-
     public function getPasswordHashFromUsername($username)
     {
         $sql = "SELECT * FROM User WHERE username='" . $username . "' LIMIT 1";
@@ -65,6 +51,26 @@ class UserModels
         }
     }
 
+    public function checkUserExist($user)
+    {
+        $sql = "SELECT * FROM User WHERE username='" . $user . "' LIMIT 1";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (!empty($data)) {
+            return ["errors" => ["Username existed."]];
+        }
+    }
+
+    public function checkEmailExist($email)
+    {
+        $sql = "SELECT * FROM User WHERE email='" . $email . "' LIMIT 1";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (!empty($data)) {
+            return ["errors" => ["Email existed."]];
+        }
+    }
+
     public function addUser()
     {
         unset($_POST['url']);
@@ -78,24 +84,15 @@ class UserModels
         $arr['remote_addr'] = $_SERVER['REMOTE_ADDR'];
         $arr['reg_date'] = date("Y-m-d H:i:s");
         $arr['last_login'] = null;
-        $arr['last_ip'] = $this->getUserIpAddr();
+        $arr['last_ip'] = \MVC\libs\IP::getUserIpAddr();
         $arr['last_session'] = null;
         $arr['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         $arr['last_user_agent'] = null;
 
-        $sql = "SELECT * FROM User WHERE username='" . $arr['username'] . "' LIMIT 1";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetch($this->db::FETCH_ASSOC);
-        if (!empty($data)) {
-            return ["errors" => ["Username existed."]];
-        }
-
-        $sql = "SELECT * FROM User WHERE email='" . $arr['email'] . "' LIMIT 1";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetch($this->db::FETCH_ASSOC);
-        if (!empty($data)) {
-            return ["errors" => ["Email existed."]];
-        }
+        $userExist = $this->checkUserExist($arr['username']);
+        if (!empty($userExist['errors'])) return $userExist;
+        $emailExist = $this->checkEmailExist($arr['email']);
+        if (!empty($emailExist['errors'])) return $emailExist;
 
         $getColUser = $this->getUserColumModels();
         unset($getColUser[0]);
@@ -105,6 +102,4 @@ class UserModels
         $stmt->execute($arr);
         return ["Added successfully."];
     }
-
-
 }

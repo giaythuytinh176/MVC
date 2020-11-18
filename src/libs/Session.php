@@ -7,10 +7,6 @@ class Session
     public static function init()
     {
         @session_start();
-        date_default_timezone_set("Asia/Ho_Chi_Minh");
-        \MVC\libs\UserAccess::isLogin();
-        \MVC\libs\UserAccess::reSetSession();
-        \MVC\libs\UserAccess::isUserDeleteFromDB();
     }
 
     public static function set($key, $value)
@@ -39,12 +35,16 @@ class Session
 
     public static function destroy()
     {
-        session_destroy();
-        unset($_COOKIE['username']);
-        unset($_COOKIE['password']);
         unset($_SESSION["username"]);
         unset($_SESSION["password"]);
-        setcookie("username", "", time() - 3600);
-        setcookie("password", "", time() - 3600);
+        unset($_SESSION["loggedIn"]);
+
+        if (isset($_COOKIE['username'])) {
+            \MVC\libs\Cookie::unset_cookie("username");
+        }
+        if (isset($_COOKIE['password'])) {
+            \MVC\libs\Cookie::unset_cookie("password");
+        }
+        session_destroy();
     }
 }

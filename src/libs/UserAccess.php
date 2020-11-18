@@ -26,6 +26,14 @@ class UserAccess extends UserModels
         }
     }
 
+    public static function deleteAloneCookie()
+    {
+        if ((!empty($_COOKIE['username']) && empty($_COOKIE['password']))
+            || (empty($_COOKIE['username']) && !empty($_COOKIE['password']))) {
+            Session::destroy();
+        }
+    }
+
     public static function isLogin()
     {
         $isLogined = Session::get('loggedIn');
