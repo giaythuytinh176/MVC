@@ -2,7 +2,7 @@
 
 namespace MVC\controllers;
 
-class UrlControllers
+class UrlControllers extends CategoryControllers
 {
     protected $controllers = "homepage";
     protected $action = "index";
@@ -21,10 +21,6 @@ class UrlControllers
             $this->action = $parseurl[1];
         }
         if (!empty($parseurl[0]) && !empty($parseurl[1]) && !empty($parseurl[2])) {
-//            for ($i = 2; $i < count($parseurl); $i++) {
-//                $this->params[] = $parseurl[$i];
-//            }
-            // use 1 trong 2 cach deu duoc
             unset($parseurl[0]);
             unset($parseurl[1]);
             $this->params = array_values($parseurl);
@@ -47,7 +43,7 @@ class UrlControllers
                         (new CheckoutControllers())->checkoutView($this->params);
                         break;
                     default:
-                        (new WebControllers())->redirectPage();
+                        $this->webcontrollers->redirectPage();
                 }
             case "lang":
                 switch ($this->action) {
@@ -66,14 +62,18 @@ class UrlControllers
             case "category":
                 switch ($this->action) {
                     case "accessories":
+                    case "telephone":
+                    case "laptop":
+                    case "smarthome":
                         if (empty($this->params)) {
-                            (new CategoryControllers())->getAllCategoryWithoutPara($this->action);
+                            $this->getAllCategoryWithoutPara($this->action);
                         } else {
-                            (new CategoryControllers())->getCategory($this->action, $this->params);
+                            $this->getCategory($this->action, $this->params);
                         }
                         break;
+
                     default:
-                        (new WebControllers())->redirectPage();
+                        $this->webcontrollers->redirectPage();
                 }
             //case "api":
 
@@ -90,23 +90,12 @@ class UrlControllers
     public function parseURL()
     {
         if (!empty($_GET['url'])) {
-            return explode("/", filter_var(trim($_GET['url'], "/")));
-        }
-    }
-
-    public function parseAction()
-    {
-        switch ($this->action) {
-            //removed
-            default:
-                $this->webcontrollers->errorPage();
+            return explode("/", filter_var(trim(strtolower($_GET['url']), "/")));
         }
     }
 
     public static function url($q = "", $p = "MVC_shop_test")
     {
-//        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-//        return "$root$p/$q";
         return sprintf(
             "%s://%s/%s" . (($q == "") ? "" : "/%s"),
             isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',

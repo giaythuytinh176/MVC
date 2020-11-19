@@ -14,7 +14,7 @@ class LangModels
         $sql = "SELECT * FROM languages WHERE english_lang LIKE '$langNeedTranslate'";
         $stmt = Database::getInstance()->query($sql);
         $data = $stmt->fetch(Database::getInstance()::FETCH_ASSOC);
-        if (empty($data)) return "No data.";
+        if (empty($data)) return !empty($langNeedTranslate) ? $langNeedTranslate : "No data.";
         else return $data[$field];
     }
 }

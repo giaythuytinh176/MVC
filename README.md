@@ -20,4 +20,5 @@ Các chứng năng đã hoàn thành:
 
 - Co luu session_id vao db
 - Co the chuyen cac ngon ngu khac nhau. (chua hoan thien tat ca cac tu)
-
+- Cap nhat them category
+- 

@@ -184,9 +184,13 @@
                                     <ul class="top-links-sub-menu">
                                         <li class="top-links-item"><a href="">1</a></li>
                                         <li class="top-links-item"><a href="">2</a></li>
-                                        <li class="top-links-item"><a
-                                                    href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/logout"); ?>"><?php echo \MVC\libs\Languages::getLangData("Logout"); ?></a>
+                                        <li class="top-links-item">
+                                            <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/logout"); ?>"
+                                               class="list-group-item list-group-item-action d-flex justify-content-between">
+                                                <div><?php echo \MVC\libs\Languages::getLangData("Logout"); ?></div>
+                                                <i class="icon-line2-logout"></i></a>
                                         </li>
+
                                     </ul>
                                 </li>
                                 <?php
@@ -335,271 +339,35 @@
                             </li>
                             <!-- Mega Menu
                             ============================================= -->
-                            <li class="menu-item mega-menu"><a class="menu-link" href="#">
-                                    <div>Men</div>
-                                </a>
-                                <div class="mega-menu-content mega-menu-style-2">
-                                    <div class="container">
-                                        <div class="row">
-                                            <ul class="sub-menu-container mega-menu-column col-lg-3">
-                                                <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div>Footwear</div>
-                                                    </a>
-                                                    <ul class="sub-menu-container">
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Casual Shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Formal Shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sports shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Flip Flops</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Slippers</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sports Sandals</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Party Shoes</div>
-                                                            </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <ul class="sub-menu-container mega-menu-column col-lg-3">
-                                                <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div>Clothing</div>
-                                                    </a>
-                                                    <ul class="sub-menu-container">
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Casual Shirts</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>T-Shirts</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Collared Tees</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Pants / Trousers</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Ethnic Wear</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Jeans</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sweamwear</div>
-                                                            </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <ul class="sub-menu-container mega-menu-column col-lg-3">
-                                                <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div><?php echo \MVC\libs\Languages::getLangData("Accessories"); ?></div>
-                                                    </a>
-                                                    <ul class="sub-menu-container">
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Bags &amp; Backpacks</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Watches</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sunglasses</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Wallets</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Caps &amp; Hats</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Jewellery</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Belts, Ties</div>
-                                                            </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <ul class="sub-menu-container mega-menu-column col-lg-3">
-                                                <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div>New Arrivals</div>
-                                                    </a>
-                                                    <ul class="sub-menu-container">
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>T-Shirts</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Formal Shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div><?php echo \MVC\libs\Languages::getLangData("Accessories"); ?></div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Watches</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Perfumes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Belts, Ties</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Formal Shirts</div>
-                                                            </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li><!-- .mega-menu end -->
-                            <li class="menu-item mega-menu mega-menu-small"><a class="menu-link" href="#">
-                                    <div>Women</div>
-                                </a>
-                                <div class="mega-menu-content mega-menu-style-2">
-                                    <div class="container">
-                                        <div class="row">
-                                            <ul class="sub-menu-container mega-menu-column col-lg-6">
-                                                <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div>Footwear</div>
-                                                    </a>
-                                                    <ul class="sub-menu-container">
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Casual Shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Formal Shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sports shoes</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Flip Flops</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Slippers</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sports Sandals</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Party Shoes</div>
-                                                            </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <ul class="sub-menu-container mega-menu-column col-lg-6">
-                                                <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                        <div>Clothing</div>
-                                                    </a>
-                                                    <ul class="sub-menu-container">
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Casual Shirts</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>T-Shirts</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Collared Tees</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Pants / Trousers</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Ethnic Wear</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Jeans</div>
-                                                            </a></li>
-                                                        <li class="menu-item"><a class="menu-link" href="#">
-                                                                <div>Sweamwear</div>
-                                                            </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li><!-- .mega-menu end -->
+
+
                             <?php
+                            $sout = '';
+                            foreach ((new \MVC\controllers\CategoryControllers)->getAllListcategory() as $value) {
+                                $sout .= '<li class="menu-item">';
+                                $sout .= '<a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . '><div>' . \MVC\libs\Languages::getLangData($value['category_name']) . '</div></a>';
+                                $sout .= '<ul class="sub-menu-container">';
+                                foreach ((new \MVC\controllers\CategoryControllers())->getAllCategoryWithoutParaReturn($value['parent_id']) as $v) {
+                                    $sout .= '<li class="menu-item">';
+                                    $sout .= '<a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/{$value['category_name']}/{$v['code']}") . '><div>' . \MVC\libs\Languages::getLangData($v['title']) . '</div></a>';
+                                    if (empty((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code'])['errors'])) {
+                                        $sout .= '<ul class="sub-menu-container">';
+                                        foreach ((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code']) as $val) {
+                                            $sout .= ' <li class="menu-item"><a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . "/" . $val['codeSUB'] . '><div>' . $val['codeSUB'] . '</div></a></li>';
+                                        }
+                                        $sout .= '</ul>';
+                                    }
+                                    $sout .= '</li>';
 
-                            $getCategorybyID = (new \MVC\controllers\CategoryControllers())->getAllCategoryWithoutParaReturn("accessories");
-                            //\MVC\controllers\ToolControllers::PrettyShow($getCategorybyID);
-                            if (empty($getCategorybyID['errors'])) {
-                                echo '<li class="menu-item"><a class="menu-link" href='. \MVC\controllers\UrlControllers::url("category/accessories"). '><div>' . \MVC\libs\Languages::getLangData("Accessories") . '</div><span>Awesome Works</span></a>';
-                                echo '<ul class="sub-menu-container">';
-                                foreach ($getCategorybyID as $value) {
-                                    echo '<li class="menu-item"><a class="menu-link" href="' . \MVC\controllers\UrlControllers::url("category/{$value['parent_id']}/{$value['code']}") . '">';
-                                    echo ' <div>Home - ' . $value['title'] . '</div></a>';
-//                                        echo '<ul class="sub-menu-container">';
-//                                        echo '<li class="menu-item"><a class="menu-link" href="index-corporate.html">
-//                                            <div>Corporate - Layout 1</div>
-//                                        </a></li>';
-//                                        echo '</ul>';
-                                    echo '</li>';
+
                                 }
-                                echo '</ul>';
+                                $sout .= '</ul>';
+                                $sout .= '</li>';
                             }
+                            echo $sout;
                             ?>
-                            <!--                            <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
-                            <!--                                    <div>Home - Corporate</div>-->
-                            <!--                                </a>-->
-                            <!--                                <ul class="sub-menu-container">-->
-                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
-                            <!--                                            <div>Corporate - Layout 1</div>-->
-                            <!--                                        </a></li>-->
-                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-corporate-2.html">-->
-                            <!--                                            <div>Corporate - Layout 2</div>-->
-                            <!--                                        </a></li>-->
-                            <!--                                </ul>-->
-                            <!--                            </li>-->
 
 
-                            <!--                                <ul class="sub-menu-container">-->
-                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
-                            <!--                                            <div>Home - Corporate</div>-->
-                            <!--                                        </a>-->
-                            <!--                                        <ul class="sub-menu-container">-->
-                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
-                            <!--                                                    <div>Corporate - Layout 1</div>-->
-                            <!--                                                </a></li>-->
-                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-corporate-2.html">-->
-                            <!--                                                    <div>Corporate - Layout 2</div>-->
-                            <!--                                                </a></li>-->
-                            <!--                                        </ul>-->
-                            <!--                                    </li>-->
-                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-portfolio.html">-->
-                            <!--                                            <div>Home - Portfolio</div>-->
-                            <!--                                        </a>-->
-                            <!--                                        <ul class="sub-menu-container">-->
-                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-portfolio.html">-->
-                            <!--                                                    <div>Portfolio - Layout 1</div>-->
-                            <!--                                                </a></li>-->
-                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-portfolio-2.html">-->
-                            <!--                                                    <div>Portfolio - Layout 2</div>-->
-                            <!--                                                </a></li>-->
-                            <!--                                        </ul>-->
-                            <!--                                    </li>-->
-                            <!--                                </ul>-->
-                            </li>
-
-                            <li class="menu-item"><a class="menu-link" href="#">
-                                    <div>Sale</div>
-                                    <span>Awesome Works</span></a></li>
-                            <li class="menu-item"><a class="menu-link" href="#">
-                                    <div>Blog</div>
-                                    <span>Latest News</span></a></li>
-                            <li class="menu-item"><a class="menu-link" href="#">
-                                    <div>Videos</div>
-                                    <span>Latest News</span></a></li>
                             <li class="menu-item">
                                 <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url() ?>">
                                     <div>Shop</div>
