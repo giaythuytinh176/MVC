@@ -303,31 +303,11 @@
                             ============================================= -->
 
                             <?php
-                            $sout = '';
-                            foreach ((new \MVC\controllers\CategoryControllers)->getAllListcategory() as $value) {
-                                $sout .= '<li class="menu-item">';
-                                $sout .= '<a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . '><div>' . \MVC\libs\Languages::getLangData($value['category_name']) . '</div></a>';
-                                $sout .= '<ul class="sub-menu-container">';
-                                foreach ((new \MVC\controllers\CategoryControllers())->getAllCategoryWithoutParaReturn($value['parent_id']) as $v) {
-                                    $sout .= '<li class="menu-item">';
-                                    $sout .= '<a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/{$value['category_name']}/{$v['code']}") . '><div>' . \MVC\libs\Languages::getLangData($v['title']) . '</div></a>';
-                                    if (empty((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code'])['errors'])) {
-                                        $sout .= '<ul class="sub-menu-container">';
-                                        foreach ((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code']) as $val) {
-                                            $sout .= ' <li class="menu-item"><a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . "/" . $val['codeSUB'] . '><div>' . \MVC\libs\Languages::getLangData($val['title']) . '</div></a></li>';
-                                        }
-                                        $sout .= '</ul>';
-                                    }
-                                    $sout .= '</li>';
-                                }
-                                $sout .= '</ul>';
-                                $sout .= '</li>';
-                            }
-                            echo $sout;
+                            echo \MVC\controllers\CategoryControllers::printListCategory();
                             ?>
 
                             <li class="menu-item">
-                                <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url() ?>">
+                                <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop") ?>">
                                     <div>Shop</div>
                                 </a>
                                 <ul class="sub-menu-container">

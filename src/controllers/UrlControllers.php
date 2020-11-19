@@ -43,7 +43,7 @@ class UrlControllers extends CategoryControllers
                         (new CheckoutControllers())->checkoutView($this->params);
                         break;
                     default:
-                        $this->webcontrollers->redirectPage();
+                        $this->webcontrollers->view("index/shop");
                 }
             case "lang":
                 switch ($this->action) {

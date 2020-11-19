@@ -2,13 +2,15 @@
 
 namespace MVC\libs;
 
+use MVC\controllers\UrlControllers;
+
 class Languages
 {
     public function setLang($lang)
     {
         if (isset($lang)) {
             $_SESSION['lang'] = $lang;
-            header('Location:' . $_SERVER['PHP_SELF']);
+            header('Location:' . UrlControllers::url());
             exit();
         }
     }
