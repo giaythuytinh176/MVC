@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 19, 2020 at 08:16 PM
+-- Generation Time: Nov 19, 2020 at 11:40 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -131,11 +131,18 @@ CREATE TABLE `product` (
   `sort_order` int DEFAULT NULL,
   `is_disabled` tinyint DEFAULT NULL,
   `cart_description` text,
-  `img_link` int DEFAULT NULL,
+  `img_link` varchar(255) DEFAULT NULL,
   `img_list` text,
-  `created` int DEFAULT NULL,
+  `created` varchar(255) DEFAULT NULL,
   `view` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`product_id`, `category_id`, `title`, `price`, `discount`, `description`, `sort_order`, `is_disabled`, `cart_description`, `img_link`, `img_list`, `created`, `view`) VALUES
+(1, 27, 'Khoá cửa vân tay Samsung SHP-DH538', '5490000.0000', NULL, 'Khoá vân tay Samsung SHP-DH538 – Độ bảo mật cao giúp gia đình bạn luôn an toàn\r\nCùng với khóa cửa vân tay Samsung SHP-DP609 thì Samsung SHP-DH538 là dòng khóa điện tử thông minh của hãng Samsung sản xuất với nhiều tính năng thông minh. Nó cung cấp nhiều phương thức mở như: mở cửa bằng vân tay, mật khẩu và chìa khóa cơ. Khoá cửa vân tay Samsung SHP-DH538 phù hợp với các dòng cửa gỗ của những chung cư hay căn hộ cao cấp.\r\n\r\nĐa phương thức mở cửa: vân tay, mã số\r\nKhoá cửa vân tay Samsung SHP-DH538 sử dụng đa phương thức mở khóa, tiện lợi cho người dùng cho ngôi nhà thông minh. Đầu tiên là công nghệ vân tay bán dẫn FPC. Đây là công nghệ nhận dạng khóa vân tay mới nhất trên thế giới được nhiều hãng công nghệ ưa chuộng như khóa vân tay trên các dòng điện thoại cao cấp iPhone, Samsung. Số lượng mã số cũng được nâng lên đến 100 vân tay giúp khóa được bảo mật tốt hơn, quản lý lượng người ra vào được nhiều hơn.\r\n\r\ncông nghệ vân tay bán dẫn \r\n\r\nNgoài ra, Samsung SHP-DH538 còn bổ sung phương thức mở khóa bằng mã số. Trên màn hình của khóa cửa vân tay Samsung SHP-DH538 cung cấp đến 12 mã số cho người sử dụng. Đặc biệt rằng, trước khi bạn nhập mã số đã được cài đặt, bạn sẽ được hướng dẫn kích hoạt hai số ngẫu nhiên. Điều này nhằm ngăn chặn việc truy xét mã số thực dựa vào những dấu vân tay được lưu lại trên màn hình cảm ứng.\r\n\r\nmở khóa bằng mã số\r\n\r\nKhông những vậy, Samsung SHP-DH538 còn được thiết kế đèn LED cảm ứng. Thuận tiện cho việc mở khóa ban đêm với bàn phím cảm ứng có đèn nền màu cam.\r\n\r\nđèn LED cảm ứng\r\n\r\nKhả năng cảnh báo hỏa hoạn và đột nhập\r\nNếu xảy ra hỏa hoạn hay nhiệt độ quanh khóa tăng lên đến hơn 65 độ, khóa cửa vân tay Samsung SHP-DH538 sẽ tự động kích hoạt rơle nhiệt và phát ra tín hiệu sáng nhấp nháy để bạn có thể định hướng lối thoát an toàn. Đồng thời chốt khóa sẽ tự động bật để nhanh chóng thoát hiểm.\r\n\r\nKhả năng cảnh báo hỏa hoạn\r\n\r\nNếu có ai đó tác động vào cửa quá mạnh hoặc nhập xác thực bằng vân tay, mã số mà không chính xác trong năm lần liên tục thì khóa cửa vân tay Samsung SHP-DH538 sẽ phát ra tín hiệu cảnh báo và tiến hành vô hiệu hóa xác thực trong khoảng ba phút để đề phòng xâm nhập trái phép.\r\n\r\nphòng xâm nhập trái phép\r\n\r\nBáo hiệu pin yếu, điều chỉnh chế độ im lặng\r\nKhi pin sắp hết, khóa cửa vân tay Samsung SHP-DH538 sẽ thông báo trên màn hình LED và âm thanh khi đó bạn cần thay pin chất lượng tốt để tiếp tục sử dụng. Trong trường hợp khóa cạn kiệt nguồn pin mà bạn lại không mang theo chìa khóa cơ thì bạn hãy có thể đi mua một cục pin 9V tại bất kì cửa hàng tiện lợi nào để để cấp nguồn cho khóa từ bên ngoài và sau đó thay pin như bình thường.\r\n\r\nBáo hiệu pin yếu\r\n\r\nNếu trong nhà bạn có một đứa con nhỏ hoặc thường xuyên ra/ vào khỏi nhà giữa đêm khuya thì bạn có thể điều chỉnh âm lượng hoặc tắt tiếng âm thanh mở cửa. Điều này nhằm mục đích giúp cho gia đình hoặc khu phố của bạn có được một giấc ngủ ngon mà không bị quấy rầy.\r\n\r\nChế độ im lặng\r\n\r\nMua khoá cửa vân tay Samsung SHP-DH538 chính hãng, giá rẻ tại CellphoneS\r\nKhoá cửa vân tay Samsung SHP-DH538 chính hãng là thiết bị gia dụng dành cho ngôi nhà mà không nên bỏ qua, đem lại cảm giác yên tâm và an toàn cho gia đình của bạn. Đây chính là khóa cửa đa năng, tiện dụng lại còn thông minh và an toàn mà bạn nên sở hữu. Còn chần chừ gì mà không mua ngay khoá cửa vân tay Samsung SHP-DH538 chính hãng tại CellphoneS với mức giá hấp dẫn và chất lượng sản phẩm tuyệt vời nhất. CellphoneS luôn đảm bảo cung cấp đến cho người dùng những sản phẩm, phụ kiện chính hãng, chất lượng, giá tốt đến người dùng để bạn có thể tin tưởng, yên tâm mua hàng tại đây.', 1, NULL, NULL, '1', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/k/h/khoa-van-tay-samsung-shp-dh538.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/u/n/unnamed_2_1.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/u/n/unnamed_1__1.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/s/h/shp-dh538_grey_6.jpg', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -203,6 +210,7 @@ CREATE TABLE `sub_product_category` (
   `ID` int NOT NULL,
   `category_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
+  `price` decimal(15,4) NOT NULL,
   `description` varchar(255) NOT NULL,
   `codeSUB` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -211,22 +219,22 @@ CREATE TABLE `sub_product_category` (
 -- Dumping data for table `sub_product_category`
 --
 
-INSERT INTO `sub_product_category` (`ID`, `category_id`, `title`, `description`, `codeSUB`) VALUES
-(1, 10, 'iPhone 11 | 11 Pro | 11 Pro Max', '', 'iphone11'),
-(2, 10, 'iPhone XS | XS Max', '', 'iphonexs'),
-(3, 10, 'iPhone X | XR', '', 'iphonex'),
-(4, 10, 'iPhone 8 | 8 Plus', '', 'iphone8'),
-(5, 10, 'iPhone 7 | 7 Plus', '', 'iphone7'),
-(6, 10, 'iPhone SE 2020', '', 'iphonese'),
-(7, 10, 'iPhone 12 | 12 Mini | 12 Pro | 12 Pro Max', '', 'iphone12'),
-(9, 18, 'Pocophone', '', 'pocophone'),
-(10, 18, 'Motorola', '', 'motorola'),
-(11, 18, 'BKAV Bphone', '', 'bkav-bphone'),
-(12, 18, 'Sharp', '', 'sharp'),
-(13, 29, 'Air filter core', '', 'loi-loc-khong-khi'),
-(14, 23, 'MacBook Air', '', 'macBook-air'),
-(15, 23, 'MacBook Pro', '', 'macbook-pro'),
-(16, 23, 'Mac Mini', '', 'mac-mini');
+INSERT INTO `sub_product_category` (`ID`, `category_id`, `title`, `price`, `description`, `codeSUB`) VALUES
+(1, 10, 'iPhone 11 | 11 Pro | 11 Pro Max', '15000000.0000', '', 'iphone11'),
+(2, 10, 'iPhone XS | XS Max', '18000000.0000', '', 'iphonexs'),
+(3, 10, 'iPhone X | XR', '10000000.0000', '', 'iphonex'),
+(4, 10, 'iPhone 8 | 8 Plus', '5000000.0000', '', 'iphone8'),
+(5, 10, 'iPhone 7 | 7 Plus', '3000000.0000', '', 'iphone7'),
+(6, 10, 'iPhone SE 2020', '10000000.0000', '', 'iphonese'),
+(7, 10, 'iPhone 12 | 12 Mini | 12 Pro | 12 Pro Max', '30000000.0000', '', 'iphone12'),
+(9, 18, 'Pocophone', '4900000.0000', '', 'pocophone'),
+(10, 18, 'Motorola', '3000000.0000', '', 'motorola'),
+(11, 18, 'BKAV Bphone', '7000000.0000', '', 'bkav-bphone'),
+(12, 18, 'Sharp', '5000000.0000', '', 'sharp'),
+(13, 29, 'Air filter core', '3000000.0000', '', 'loi-loc-khong-khi'),
+(14, 23, 'MacBook Air', '22000000.0000', '', 'macbook-air'),
+(15, 23, 'MacBook Pro', '30000000.0000', '', 'macbook-pro'),
+(16, 23, 'Mac Mini', '20000000.0000', '', 'mac-mini');
 
 -- --------------------------------------------------------
 
@@ -235,7 +243,7 @@ INSERT INTO `sub_product_category` (`ID`, `category_id`, `title`, `description`,
 --
 
 CREATE TABLE `transaction` (
-  `transaction_id` bigint NOT NULL,
+  `transaction_id` int NOT NULL,
   `user_id` int NOT NULL,
   `public_id` int DEFAULT NULL,
   `status` int DEFAULT NULL,
@@ -288,7 +296,8 @@ ALTER TABLE `languages`
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
-  ADD PRIMARY KEY (`transaction_id`);
+  ADD PRIMARY KEY (`transaction_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `parent_category`
@@ -321,7 +330,8 @@ ALTER TABLE `sub_product_category`
 -- Indexes for table `transaction`
 --
 ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`transaction_id`);
+  ADD PRIMARY KEY (`transaction_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user`
@@ -355,7 +365,7 @@ ALTER TABLE `parent_category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_category`
@@ -373,7 +383,7 @@ ALTER TABLE `sub_product_category`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -386,6 +396,18 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`category_id`);
+
+--
 -- Constraints for table `product_category`
 --
 ALTER TABLE `product_category`
@@ -396,6 +418,13 @@ ALTER TABLE `product_category`
 --
 ALTER TABLE `sub_product_category`
   ADD CONSTRAINT `sub_product_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`category_id`);
+
+--
+-- Constraints for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`transaction_id`) REFERENCES `order` (`transaction_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
