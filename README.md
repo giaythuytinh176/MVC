@@ -18,7 +18,7 @@ Các chứng năng đã hoàn thành:
 
 /* Hoàn thành date 18/11/2020 */
 
-- Co luu session_id vao db
-- Co the chuyen cac ngon ngu khac nhau. (chua hoan thien tat ca cac tu)
-- Cap nhat them category
-- 
+- Có lưu session_id vào DB
+- Có thể chuyển nhiều ngôn ngữ khác . (chưa hoàn thiện tất cả các từ.)
+- Cập nhật thêm Category.
+- Hoàn thiện category , sub category. 
