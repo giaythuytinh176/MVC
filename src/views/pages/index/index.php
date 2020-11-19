@@ -295,51 +295,12 @@
                     <nav class="primary-menu">
 
                         <ul class="menu-container">
-                            <li class="menu-item current"><a class="menu-link" href="#">
+                            <li class="menu-item current"><a class="menu-link" href="">
                                     <div><?php echo \MVC\libs\Languages::getLangData("Home"); ?><</div>
                                 </a>
-                                <ul class="sub-menu-container">
-                                    <li class="menu-item"><a class="menu-link" href="index-corporate.html">
-                                            <div>Home - Corporate</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="index-corporate.html">
-                                                    <div>Corporate - Layout 1</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-corporate-2.html">
-                                                    <div>Corporate - Layout 2</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-corporate-3.html">
-                                                    <div>Corporate - Layout 3</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-corporate-4.html">
-                                                    <div>Corporate - Layout 4</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="index-portfolio.html">
-                                            <div>Home - Portfolio</div>
-                                        </a>
-                                        <ul class="sub-menu-container">
-                                            <li class="menu-item"><a class="menu-link" href="index-portfolio.html">
-                                                    <div>Portfolio - Layout 1</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-portfolio-2.html">
-                                                    <div>Portfolio - Layout 2</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-portfolio-3.html">
-                                                    <div>Portfolio - Masonry</div>
-                                                </a></li>
-                                            <li class="menu-item"><a class="menu-link" href="index-portfolio-4.html">
-                                                    <div>Portfolio - AJAX</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
                             <!-- Mega Menu
                             ============================================= -->
-
 
                             <?php
                             $sout = '';
@@ -353,20 +314,17 @@
                                     if (empty((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code'])['errors'])) {
                                         $sout .= '<ul class="sub-menu-container">';
                                         foreach ((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code']) as $val) {
-                                            $sout .= ' <li class="menu-item"><a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . "/" . $val['codeSUB'] . '><div>' . $val['codeSUB'] . '</div></a></li>';
+                                            $sout .= ' <li class="menu-item"><a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . "/" . $val['codeSUB'] . '><div>' . \MVC\libs\Languages::getLangData($val['title']) . '</div></a></li>';
                                         }
                                         $sout .= '</ul>';
                                     }
                                     $sout .= '</li>';
-
-
                                 }
                                 $sout .= '</ul>';
                                 $sout .= '</li>';
                             }
                             echo $sout;
                             ?>
-
 
                             <li class="menu-item">
                                 <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url() ?>">
@@ -398,7 +356,6 @@
                         <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.."
                                autocomplete="off">
                     </form>
-
                 </div>
             </div>
         </div>
