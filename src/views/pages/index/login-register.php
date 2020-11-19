@@ -9,14 +9,27 @@
     ============================================= -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
           rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="../src/views/pages/index/css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="../src/views/pages/index/style.css" type="text/css"/>
-    <link rel="stylesheet" href="../src/views/pages/index/css/dark.css" type="text/css"/>
-    <link rel="stylesheet" href="../src/views/pages/index/css/font-icons.css" type="text/css"/>
-    <link rel="stylesheet" href="../src/views/pages/index/css/animate.css" type="text/css"/>
-    <link rel="stylesheet" href="../src/views/pages/index/css/magnific-popup.css" type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/bootstrap.css"
+          type="text/css"/>
+    <link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/style.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/dark.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/font-icons.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/animate.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/magnific-popup.css"
+          type="text/css"/>
 
-    <link rel="stylesheet" href="../src/views/pages/index/css/custom.css" type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/custom.css"
+          type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- Document Title
@@ -42,11 +55,13 @@
                     ============================================= -->
                     <div id="logo">
                         <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="standard-logo"
-                           data-dark-logo="../src/views/pages/index/images/logo-dark.png"><img
-                                    src="../src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
+                           data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark.png"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo.png"
+                                    alt="Canvas Logo"></a>
                         <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"
-                           data-dark-logo="../src/views/pages/index/images/logo-dark@2x.png"><img
-                                    src="../src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
+                           data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark@2x.png"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo@2x.png"
+                                    alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
                     <div class="header-misc">
@@ -54,14 +69,14 @@
                         <!-- Top Search
                         ============================================= -->
                         <div id="top-search" class="header-misc-icon">
-                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+                            <a href="" id="top-search-trigger"><i class="icon-line-search"></i><i
                                         class="icon-line-cross"></i></a>
                         </div><!-- #top-search end -->
 
                         <!-- Top Cart
                         ============================================= -->
                         <div id="top-cart" class="header-misc-icon d-none d-sm-block">
-                            <a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span
+                            <a href="" id="top-cart-trigger"><i class="icon-line-bag"></i><span
                                         class="top-cart-number">5</span></a>
                             <div class="top-cart-content">
                                 <div class="top-cart-title">
@@ -70,8 +85,9 @@
                                 <div class="top-cart-items">
                                     <div class="top-cart-item">
                                         <div class="top-cart-item-image">
-                                            <a href="#"><img src="../src/views/pages/index/images/shop/small/1.jpg"
-                                                             alt="Blue Round-Neck Tshirt"/></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/1.jpg"
+                                                        alt="Blue Round-Neck Tshirt"/></a>
                                         </div>
                                         <div class="top-cart-item-desc">
                                             <div class="top-cart-item-desc-title">
@@ -83,8 +99,9 @@
                                     </div>
                                     <div class="top-cart-item">
                                         <div class="top-cart-item-image">
-                                            <a href="#"><img src="../src/views/pages/index/images/shop/small/6.jpg"
-                                                             alt="Light Blue Denim Dress"/></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/6.jpg"
+                                                        alt="Light Blue Denim Dress"/></a>
                                         </div>
                                         <div class="top-cart-item-desc">
                                             <div class="top-cart-item-desc-title">
@@ -97,7 +114,7 @@
                                 </div>
                                 <div class="top-cart-action">
                                     <span class="top-checkout-price">$114.95</span>
-                                    <a href="#" class="button button-3d button-small m-0">View Cart</a>
+                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>" class="button button-3d button-small m-0">View Cart</a>
                                 </div>
                             </div>
                         </div><!-- #top-cart end -->
@@ -1277,11 +1294,12 @@
                                 <?php
                             } elseif (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] == "login") {
                                 if (\MVC\libs\UserAccess::isLogin()) {
-                                    //header("Location: " . \MVC\controllers\UrlControllers::url("homepage"));
+                                    $checkout_cart = !empty($data[1]) ? "shop/{$data[1]}" : "";
+                                    //header("Location: " . \MVC\controllers\UrlControllers::url($checkout_cart));
                                     if (headers_sent()) {
-                                        die("Redirect failed. Please click on <a href='" . \MVC\controllers\UrlControllers::url("homepage") . "'>this link.</a> <meta http-equiv=\"Refresh\" content=\"1; url=" . \MVC\controllers\UrlControllers::url("homepage") . "\">");
+                                        die("Redirect to new page ... <a href='" . \MVC\controllers\UrlControllers::url($checkout_cart) . "'></a> <meta http-equiv=\"Refresh\" content=\"1; url=" . \MVC\controllers\UrlControllers::url($checkout_cart) . "\">");
                                     } else {
-                                        exit(header("Location: " . \MVC\controllers\UrlControllers::url("homepage")));
+                                        exit(header("Location: " . \MVC\controllers\UrlControllers::url($checkout_cart)));
                                     }
                                 }
                             }
@@ -1311,13 +1329,14 @@
 
                                 <div class="widget clearfix">
 
-                                    <img src="../src/views/pages/index/images/footer-widget-logo.png" alt="Image"
+                                    <img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/footer-widget-logo.png"
+                                         alt="Image"
                                          class="footer-logo">
 
                                     <p>We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp;
                                         <strong>Good price</strong>.</p>
 
-                                    <div style="background: url('../src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
+                                    <div style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
                                         <address>
                                             <strong>Headquarters:</strong><br>
                                             Phú Thượng- Tây Hồ- Hà Nội 100000<br>
@@ -1530,12 +1549,12 @@
 
 <!-- JavaScripts
 ============================================= -->
-<script src="../src/views/pages/index/js/jquery.js"></script>
-<script src="../src/views/pages/index/js/plugins.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/jquery.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/plugins.min.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->
-<script src="../src/views/pages/index/js/functions.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/functions.js"></script>
 
 </body>
 </html>

@@ -8,14 +8,14 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="../src/views/pages/index/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="../src/views/pages/index/style.css" type="text/css" />
-	<link rel="stylesheet" href="../src/views/pages/index/css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="../src/views/pages/index/css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="../src/views/pages/index/css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="../src/views/pages/index/css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/style.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/magnific-popup.css" type="text/css" />
 
-	<link rel="stylesheet" href="../src/views/pages/index/css/custom.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Document Title
@@ -40,8 +40,8 @@
 						<!-- Logo
 						============================================= -->
 						<div id="logo">
-							<a href="index.html" class="standard-logo" data-dark-logo="../src/views/pages/index/images/logo-dark.png"><img src="../src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
-							<a href="index.html" class="retina-logo" data-dark-logo="../src/views/pages/index/images/logo-dark@2x.png"><img src="../src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
+							<a href="index.html" class="standard-logo" data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark.png"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
+							<a href="index.html" class="retina-logo" data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark@2x.png"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
 						</div><!-- #logo end -->
 
 						<div class="header-misc">
@@ -63,7 +63,7 @@
 									<div class="top-cart-items">
 										<div class="top-cart-item">
 											<div class="top-cart-item-image">
-												<a href="#"><img src="../src/views/pages/index/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
+												<a href="#"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
 											</div>
 											<div class="top-cart-item-desc">
 												<div class="top-cart-item-desc-title">
@@ -75,7 +75,7 @@
 										</div>
 										<div class="top-cart-item">
 											<div class="top-cart-item-image">
-												<a href="#"><img src="../src/views/pages/index/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
+												<a href="#"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
 											</div>
 											<div class="top-cart-item-desc">
 												<div class="top-cart-item-desc-title">
@@ -1538,7 +1538,7 @@
 						<div class="col-md-6">
 							<div class="card">
 								<div class="card-body">
-									Returning customer? <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/login") ?>">Click here to login</a>
+									Returning customer? <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/checkout") ?>">Click here to login</a>
 								</div>
 							</div>
 						</div>
@@ -1665,7 +1665,7 @@
 									<tbody>
 										<tr class="cart_item">
 											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="../src/views/pages/index/images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
+												<a href="#"><img width="64" height="64" src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
 											</td>
 
 											<td class="cart-product-name">
@@ -1684,7 +1684,7 @@
 										</tr>
 										<tr class="cart_item">
 											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="../src/views/pages/index/images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
+												<a href="#"><img width="64" height="64" src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
 											</td>
 
 											<td class="cart-product-name">
@@ -1703,7 +1703,7 @@
 										</tr>
 										<tr class="cart_item">
 											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="../src/views/pages/index/images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
+												<a href="#"><img width="64" height="64" src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
 											</td>
 
 											<td class="cart-product-name">
@@ -1821,11 +1821,11 @@
 
 									<div class="widget clearfix">
 
-										<img src="../src/views/pages/index/images/footer-widget-logo.png" alt="Image" class="footer-logo">
+										<img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/footer-widget-logo.png" alt="Image" class="footer-logo">
 
 										<p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp; <strong>Flexible</strong> Design Standards.</p>
 
-										<div style="background: url('../src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
+										<div style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
 											<address>
 												<strong>Headquarters:</strong><br>
 												795 Folsom Ave, Suite 600<br>
@@ -2063,12 +2063,12 @@
 
 	<!-- JavaScripts
 	============================================= -->
-	<script src="../src/views/pages/index/js/jquery.js"></script>
-	<script src="../src/views/pages/index/js/plugins.min.js"></script>
+	<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/jquery.js"></script>
+	<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/plugins.min.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="../src/views/pages/index/js/functions.js"></script>
+	<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/functions.js"></script>
 
 </body>
 </html>

@@ -2,7 +2,6 @@
 
 namespace MVC\controllers;
 
-
 class WebControllers
 {
     public function homepage()
@@ -18,5 +17,11 @@ class WebControllers
     public function view($v, $data = [])
     {
         require_once "./src/views/pages/$v.php";
+    }
+
+    public function redirectPage($page = "")
+    {
+        header("Location: " . UrlControllers::url($page));
+        exit();
     }
 }

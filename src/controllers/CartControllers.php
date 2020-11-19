@@ -8,5 +8,4 @@ class CartControllers extends WebControllers
     {
         $this->view("index/cart");
     }
-
 }

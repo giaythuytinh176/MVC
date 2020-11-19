@@ -34,11 +34,6 @@ class UserAccess extends UserModels
         }
     }
 
-    public static function saveSession()
-    {
-        // Save to Database
-    }
-
     public static function isLogin()
     {
         $isLogined = Session::get('loggedIn');
@@ -54,7 +49,7 @@ class UserAccess extends UserModels
     {
         if ((self::isLogin() == false) && !empty($_COOKIE['username']) && !empty($_COOKIE['password'])) {
             $passwordFromHashDB = (new self)->getPasswordHashFromUsername($_COOKIE['username']);
-            if (sha1($passwordFromHashDB) === $_COOKIE['password']) {
+            if (empty($passwordFromHashDB['errors']) && sha1($passwordFromHashDB) === $_COOKIE['password']) {
                 $_SESSION['username'] = $_COOKIE['username'];
                 $_SESSION['password'] = $passwordFromHashDB;
                 $_SESSION['loggedIn'] = 1;

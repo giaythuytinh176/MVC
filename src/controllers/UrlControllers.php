@@ -36,11 +36,45 @@ class UrlControllers
     {
         switch ($this->controllers) {
             case "shop":
-                $this->parseAction();
-                break;
+                switch ($this->action) {
+                    case "login":
+                        (new LoginControllers())->loginControllers($this->params);
+                        break;
+                    case "cart":
+                        (new CartControllers())->cartView($this->params);
+                        break;
+                    case "checkout":
+                        (new CheckoutControllers())->checkoutView($this->params);
+                        break;
+                    default:
+                        (new WebControllers())->redirectPage();
+                }
             case "lang":
-                $this->parseAction();
-                break;
+                switch ($this->action) {
+                    case "vietnamese":
+                        (new \MVC\libs\Languages())->setLang("vietnamese");
+                        break;
+                    case "english":
+                        (new \MVC\libs\Languages())->setLang("english");
+                        break;
+                    case "french":
+                        (new \MVC\libs\Languages())->setLang("french");
+                        break;
+                    default:
+                        (new \MVC\libs\Languages())->setLang("vietnamese");
+                }
+            case "category":
+                switch ($this->action) {
+                    case "accessories":
+                        if (empty($this->params)) {
+                            (new CategoryControllers())->getAllCategoryWithoutPara($this->action);
+                        } else {
+                            (new CategoryControllers())->getCategory($this->action, $this->params);
+                        }
+                        break;
+                    default:
+                        (new WebControllers())->redirectPage();
+                }
             //case "api":
 
 
@@ -63,47 +97,18 @@ class UrlControllers
     public function parseAction()
     {
         switch ($this->action) {
-            case "login":
-                if ($this->controllers == "shop") {
-                    (new LoginControllers())->loginControllers($this->params);
-                    break;
-                }
-            case "cart":
-                if ($this->controllers == "shop") {
-                    (new CartControllers())->cartView($this->params);
-                    break;
-                }
-            case "checkout":
-                if ($this->controllers == "shop") {
-                    (new CheckoutControllers())->checkoutView($this->params);
-                    break;
-                }
-            case "vietnamese":
-                if ($this->controllers == "lang") {
-                    (new \MVC\libs\Languages())->setLang("vietnamese");
-                    break;
-                }
-            case "english":
-                if ($this->controllers == "lang") {
-                    (new \MVC\libs\Languages())->setLang("english");
-                    break;
-                }
-            case "french":
-                if ($this->controllers == "lang") {
-                    (new \MVC\libs\Languages())->setLang("french");
-                    break;
-                }
-
-
+            //removed
             default:
                 $this->webcontrollers->errorPage();
         }
     }
 
-    public static function url($q = "homepage", $p = "MVC_shop_test")
+    public static function url($q = "", $p = "MVC_shop_test")
     {
+//        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+//        return "$root$p/$q";
         return sprintf(
-            "%s://%s/%s/%s",
+            "%s://%s/%s" . (($q == "") ? "" : "/%s"),
             isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
             $_SERVER['SERVER_NAME'], $p, $q
         );

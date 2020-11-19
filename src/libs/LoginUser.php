@@ -36,5 +36,4 @@ class LoginUser
             return ["errors" => $errors];
         }
     }
-
 }

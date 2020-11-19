@@ -18,6 +18,13 @@ class Cookie extends UserModels
         }
     }
 
+    public static function saveSession()
+    {
+        // Save to Database
+        $session_id = session_id();
+        (new UserModels())->addSessionUser($session_id);
+    }
+
     public static function unset_cookie($name)
     {
         $host = $_SERVER['HTTP_HOST'];

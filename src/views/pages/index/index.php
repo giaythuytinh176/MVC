@@ -9,21 +9,37 @@
     ============================================= -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
           rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="./src/views/pages/index/css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="./src/views/pages/index/style.css" type="text/css"/>
-    <link rel="stylesheet" href="./src/views/pages/index/css/dark.css" type="text/css"/>
-    <link rel="stylesheet" href="./src/views/pages/index/css/font-icons.css" type="text/css"/>
-    <link rel="stylesheet" href="./src/views/pages/index/css/animate.css" type="text/css"/>
-    <link rel="stylesheet" href="./src/views/pages/index/css/magnific-popup.css" type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/bootstrap.css"
+          type="text/css"/>
+    <link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/style.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/dark.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/font-icons.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/animate.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/magnific-popup.css"
+          type="text/css"/>
 
-    <link rel="stylesheet" href="./src/views/pages/index/css/custom.css" type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/custom.css"
+          type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
-    <link rel="stylesheet" type="text/css" href="./src/views/pages/index/include/rs-plugin/css/settings.css"
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/settings.css"
           media="screen"/>
-    <link rel="stylesheet" type="text/css" href="./src/views/pages/index/include/rs-plugin/css/layers.css">
-    <link rel="stylesheet" type="text/css" href="./src/views/pages/index/include/rs-plugin/css/navigation.css">
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/layers.css">
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/navigation.css">
 
     <!-- Document Title
     ============================================= -->
@@ -108,15 +124,15 @@
                                 <ul class="top-links-sub-menu">
                                     <li class="top-links-item"><a
                                                 href="<?php echo \MVC\controllers\UrlControllers::url("lang/french") ?>"><img
-                                                    src="./src/views/pages/index/images/icons/flags/french.png"
+                                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/icons/flags/french.png"
                                                     alt="French"> FR</a></li>
                                     <li class="top-links-item"><a
                                                 href="<?php echo \MVC\controllers\UrlControllers::url("lang/vietnamese") ?>"><img
-                                                    src="./src/views/pages/index/images/icons/flags/vietnamese.png"
+                                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/icons/flags/vietnamese.png"
                                                     alt="Vietnamese"> VI</a></li>
                                     <li class="top-links-item"><a
                                                 href="<?php echo \MVC\controllers\UrlControllers::url("lang/english") ?>"><img
-                                                    src="./src/views/pages/index/images/icons/flags/english.png"
+                                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/icons/flags/english.png"
                                                     alt="English"> EN</a></li>
                                 </ul>
                             </li>
@@ -195,11 +211,13 @@
                     ============================================= -->
                     <div id="logo">
                         <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="standard-logo"
-                           data-dark-logo="./src/views/pages/index/images/logo-dark.png"><img
-                                    src="./src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
+                           data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark.png"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo.png"
+                                    alt="Canvas Logo"></a>
                         <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"
-                           data-dark-logo="./src/views/pages/index/images/logo-dark@2x.png"><img
-                                    src="./src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
+                           data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark@2x.png"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo@2x.png"
+                                    alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
                     <div class="header-misc">
@@ -223,8 +241,9 @@
                                 <div class="top-cart-items">
                                     <div class="top-cart-item">
                                         <div class="top-cart-item-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/small/1.jpg"
-                                                             alt="Blue Round-Neck Tshirt"/></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/1.jpg"
+                                                        alt="Blue Round-Neck Tshirt"/></a>
                                         </div>
                                         <div class="top-cart-item-desc">
                                             <div class="top-cart-item-desc-title">
@@ -236,8 +255,9 @@
                                     </div>
                                     <div class="top-cart-item">
                                         <div class="top-cart-item-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/small/6.jpg"
-                                                             alt="Light Blue Denim Dress"/></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/6.jpg"
+                                                        alt="Light Blue Denim Dress"/></a>
                                         </div>
                                         <div class="top-cart-item-desc">
                                             <div class="top-cart-item-desc-title">
@@ -250,7 +270,8 @@
                                 </div>
                                 <div class="top-cart-action">
                                     <span class="top-checkout-price">$114.95</span>
-                                    <a href="#" class="button button-3d button-small m-0">View Cart</a>
+                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>"
+                                       class="button button-3d button-small m-0">View Cart</a>
                                 </div>
                             </div>
                         </div><!-- #top-cart end -->
@@ -508,9 +529,68 @@
                                     </div>
                                 </div>
                             </li><!-- .mega-menu end -->
-                            <li class="menu-item"><a class="menu-link" href="#">
-                                    <div><?php echo \MVC\libs\Languages::getLangData("Accessories"); ?></div>
-                                    <span>Awesome Works</span></a></li>
+                            <?php
+
+                            $getCategorybyID = (new \MVC\controllers\CategoryControllers())->getAllCategoryWithoutParaReturn("accessories");
+                            //\MVC\controllers\ToolControllers::PrettyShow($getCategorybyID);
+                            if (empty($getCategorybyID['errors'])) {
+                                echo '<li class="menu-item"><a class="menu-link" href='. \MVC\controllers\UrlControllers::url("category/accessories"). '><div>' . \MVC\libs\Languages::getLangData("Accessories") . '</div><span>Awesome Works</span></a>';
+                                echo '<ul class="sub-menu-container">';
+                                foreach ($getCategorybyID as $value) {
+                                    echo '<li class="menu-item"><a class="menu-link" href="' . \MVC\controllers\UrlControllers::url("category/{$value['parent_id']}/{$value['code']}") . '">';
+                                    echo ' <div>Home - ' . $value['title'] . '</div></a>';
+//                                        echo '<ul class="sub-menu-container">';
+//                                        echo '<li class="menu-item"><a class="menu-link" href="index-corporate.html">
+//                                            <div>Corporate - Layout 1</div>
+//                                        </a></li>';
+//                                        echo '</ul>';
+                                    echo '</li>';
+                                }
+                                echo '</ul>';
+                            }
+                            ?>
+                            <!--                            <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
+                            <!--                                    <div>Home - Corporate</div>-->
+                            <!--                                </a>-->
+                            <!--                                <ul class="sub-menu-container">-->
+                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
+                            <!--                                            <div>Corporate - Layout 1</div>-->
+                            <!--                                        </a></li>-->
+                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-corporate-2.html">-->
+                            <!--                                            <div>Corporate - Layout 2</div>-->
+                            <!--                                        </a></li>-->
+                            <!--                                </ul>-->
+                            <!--                            </li>-->
+
+
+                            <!--                                <ul class="sub-menu-container">-->
+                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
+                            <!--                                            <div>Home - Corporate</div>-->
+                            <!--                                        </a>-->
+                            <!--                                        <ul class="sub-menu-container">-->
+                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-corporate.html">-->
+                            <!--                                                    <div>Corporate - Layout 1</div>-->
+                            <!--                                                </a></li>-->
+                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-corporate-2.html">-->
+                            <!--                                                    <div>Corporate - Layout 2</div>-->
+                            <!--                                                </a></li>-->
+                            <!--                                        </ul>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li class="menu-item"><a class="menu-link" href="index-portfolio.html">-->
+                            <!--                                            <div>Home - Portfolio</div>-->
+                            <!--                                        </a>-->
+                            <!--                                        <ul class="sub-menu-container">-->
+                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-portfolio.html">-->
+                            <!--                                                    <div>Portfolio - Layout 1</div>-->
+                            <!--                                                </a></li>-->
+                            <!--                                            <li class="menu-item"><a class="menu-link" href="index-portfolio-2.html">-->
+                            <!--                                                    <div>Portfolio - Layout 2</div>-->
+                            <!--                                                </a></li>-->
+                            <!--                                        </ul>-->
+                            <!--                                    </li>-->
+                            <!--                                </ul>-->
+                            </li>
+
                             <li class="menu-item"><a class="menu-link" href="#">
                                     <div>Sale</div>
                                     <span>Awesome Works</span></a></li>
@@ -521,13 +601,21 @@
                                     <div>Videos</div>
                                     <span>Latest News</span></a></li>
                             <li class="menu-item">
-                                <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url() ?>"><div>Shop</div></a>
+                                <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url() ?>">
+                                    <div>Shop</div>
+                                </a>
                                 <ul class="sub-menu-container">
                                     <li class="menu-item">
-                                        <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>"><div>Cart</div></a>
+                                        <a class="menu-link"
+                                           href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>">
+                                            <div>Cart</div>
+                                        </a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>"><div>Checkout</div></a>
+                                        <a class="menu-link"
+                                           href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>">
+                                            <div>Checkout</div>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -579,7 +667,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"><img
-                                    src="./src/views/pages/index/images/slider/rev/shop/girl1.jpg" alt="Girl"></div>
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/slider/rev/shop/girl1.jpg"
+                                    alt="Girl"></div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-caps-text text-uppercase"
                              data-x="570"
@@ -664,7 +753,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"><img
-                                    src="./src/views/pages/index/images/slider/rev/shop/bag.png" alt="Bag"></div>
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/slider/rev/shop/bag.png"
+                                    alt="Bag"></div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption ltl tp-resizeme revo-slider-caps-text text-uppercase"
@@ -743,7 +833,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"><img
-                                    src="./src/views/pages/index/images/slider/rev/shop/tag.png" alt="Bag"></div>
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/slider/rev/shop/tag.png"
+                                    alt="Bag"></div>
 
                     </li>
                 </ul>
@@ -764,17 +855,17 @@
                         <div class="row align-items-stretch gutter-20 h-100">
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
                                 <a href="#" class="grid-inner d-block h-100"
-                                   style="background-image: url('./src/views/pages/index/images/shop/banners/2.jpg');"></a>
+                                   style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/2.jpg');"></a>
                             </div>
 
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
                                 <a href="#" class="grid-inner d-block h-100"
-                                   style="background-image: url('./src/views/pages/index/images/shop/banners/8.jpg'); background-position: right center;"></a>
+                                   style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/8.jpg'); background-position: right center;"></a>
                             </div>
 
                             <div class="col-md-12 min-vh-25 min-vh-md-0 pb-md-0">
                                 <a href="#" class="grid-inner d-block h-100"
-                                   style="background-image: url('./src/views/pages/index/images/shop/banners/4.jpg');"></a>
+                                   style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/4.jpg');"></a>
                             </div>
                         </div>
 
@@ -782,7 +873,7 @@
 
                     <div class="col-md-4 min-vh-50">
                         <a href="#" class="grid-inner d-block h-100"
-                           style="background-image: url('./src/views/pages/index/images/shop/banners/9.jpg'); background-position: center top;"></a>
+                           style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/9.jpg'); background-position: center top;"></a>
                     </div>
                 </div>
 
@@ -805,17 +896,19 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/dress/1.jpg"
-                                                             alt="Checked Short Dress"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/dress/1-1.jpg"
-                                                             alt="Checked Short Dress"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/1.jpg"
+                                                        alt="Checked Short Dress"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/1-1.jpg"
+                                                        alt="Checked Short Dress"></a>
                                             <div class="sale-flash badge badge-success p-2">50% Off*</div>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -843,16 +936,18 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/pants/1-1.jpg"
-                                                             alt="Slim Fit Chinos"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/pants/1.jpg"
-                                                             alt="Slim Fit Chinos"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/pants/1-1.jpg"
+                                                        alt="Slim Fit Chinos"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/pants/1.jpg"
+                                                        alt="Slim Fit Chinos"></a>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -880,13 +975,13 @@
                                                 <div class="flexslider">
                                                     <div class="slider-wrap">
                                                         <div class="slide"><a href="#"><img
-                                                                        src="./src/views/pages/index/images/shop/shoes/1.jpg"
+                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/1.jpg"
                                                                         alt="Dark Brown Boots"></a></div>
                                                         <div class="slide"><a href="#"><img
-                                                                        src="./src/views/pages/index/images/shop/shoes/1-1.jpg"
+                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/1-1.jpg"
                                                                         alt="Dark Brown Boots"></a></div>
                                                         <div class="slide"><a href="#"><img
-                                                                        src="./src/views/pages/index/images/shop/shoes/1-2.jpg"
+                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/1-2.jpg"
                                                                         alt="Dark Brown Boots"></a></div>
                                                     </div>
                                                 </div>
@@ -896,7 +991,7 @@
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -920,16 +1015,18 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/dress/2.jpg"
-                                                             alt="Light Blue Denim Dress"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/dress/2-2.jpg"
-                                                             alt="Light Blue Denim Dress"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/2.jpg"
+                                                        alt="Light Blue Denim Dress"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/2-2.jpg"
+                                                        alt="Light Blue Denim Dress"></a>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -962,10 +1059,11 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/sunglasses/1.jpg"
-                                                             alt="Unisex Sunglasses"></a>
                                             <a href="#"><img
-                                                        src="./src/views/pages/index/images/shop/sunglasses/1-1.jpg"
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/sunglasses/1.jpg"
+                                                        alt="Unisex Sunglasses"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/sunglasses/1-1.jpg"
                                                         alt="Unisex Sunglasses"></a>
                                             <div class="sale-flash badge badge-danger p-2">Sale!</div>
                                             <div class="bg-overlay">
@@ -973,7 +1071,7 @@
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1000,16 +1098,18 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/tshirts/1.jpg"
-                                                             alt="Blue Round-Neck Tshirt"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/tshirts/1-1.jpg"
-                                                             alt="Blue Round-Neck Tshirt"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/tshirts/1.jpg"
+                                                        alt="Blue Round-Neck Tshirt"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/tshirts/1-1.jpg"
+                                                        alt="Blue Round-Neck Tshirt"></a>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1034,16 +1134,18 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/watches/1.jpg"
-                                                             alt="Silver Chrome Watch"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/watches/1-1.jpg"
-                                                             alt="Silver Chrome Watch"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/watches/1.jpg"
+                                                        alt="Silver Chrome Watch"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/watches/1-1.jpg"
+                                                        alt="Silver Chrome Watch"></a>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1068,17 +1170,19 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/shoes/2.jpg"
-                                                             alt="Men Grey Casual Shoes"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/shoes/2-1.jpg"
-                                                             alt="Men Grey Casual Shoes"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/2.jpg"
+                                                        alt="Men Grey Casual Shoes"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/2-1.jpg"
+                                                        alt="Men Grey Casual Shoes"></a>
                                             <div class="sale-flash badge badge-danger p-2">Sale!</div>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1117,13 +1221,13 @@
                                                 <div class="flexslider">
                                                     <div class="slider-wrap">
                                                         <div class="slide"><a href="#"><img
-                                                                        src="./src/views/pages/index/images/shop/dress/3.jpg"
+                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3.jpg"
                                                                         alt="Pink Printed Dress"></a></div>
                                                         <div class="slide"><a href="#"><img
-                                                                        src="./src/views/pages/index/images/shop/dress/3-1.jpg"
+                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
                                                                         alt="Pink Printed Dress"></a></div>
                                                         <div class="slide"><a href="#"><img
-                                                                        src="./src/views/pages/index/images/shop/dress/3-2.jpg"
+                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
                                                                         alt="Pink Printed Dress"></a></div>
                                                     </div>
                                                 </div>
@@ -1133,7 +1237,7 @@
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1157,17 +1261,19 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/pants/5.jpg"
-                                                             alt="Green Trousers"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/pants/5-1.jpg"
-                                                             alt="Green Trousers"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/pants/5.jpg"
+                                                        alt="Green Trousers"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/pants/5-1.jpg"
+                                                        alt="Green Trousers"></a>
                                             <div class="sale-flash badge badge-danger p-2">Sale!</div>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1194,17 +1300,18 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/sunglasses/2.jpg"
-                                                             alt="Men Aviator Sunglasses"></a>
                                             <a href="#"><img
-                                                        src="./src/views/pages/index/images/shop/sunglasses/2-1.jpg"
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/sunglasses/2.jpg"
+                                                        alt="Men Aviator Sunglasses"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/sunglasses/2-1.jpg"
                                                         alt="Men Aviator Sunglasses"></a>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1229,16 +1336,18 @@
                                 <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/tshirts/4.jpg"
-                                                             alt="Black Polo Tshirt"></a>
-                                            <a href="#"><img src="./src/views/pages/index/images/shop/tshirts/4-1.jpg"
-                                                             alt="Black Polo Tshirt"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/tshirts/4.jpg"
+                                                        alt="Black Polo Tshirt"></a>
+                                            <a href="#"><img
+                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/tshirts/4-1.jpg"
+                                                        alt="Black Polo Tshirt"></a>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
-                                                    <a href="./src/views/pages/index/include/ajax/shop-item.html"
+                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
                                                        class="btn btn-dark" data-lightbox="ajax"><i
                                                                 class="icon-line-expand"></i></a>
                                                 </div>
@@ -1285,7 +1394,8 @@
                         </div>
                         <p>Subscribe to Our Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</p>
                         <div class="widget-subscribe-form-result"></div>
-                        <form id="widget-subscribe-form2" action="./src/views/pages/index/include/subscribe.php"
+                        <form id="widget-subscribe-form2"
+                              action="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/subscribe.php"
                               method="post" class="mb-0">
                             <div class="input-group mx-auto">
                                 <div class="input-group-prepend">
@@ -1396,42 +1506,60 @@
                 </div>
 
                 <ul class="clients-grid grid-2 grid-sm-3 grid-md-6 mb-0">
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/1.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/2.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/3.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/4.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/5.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/6.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/7.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/8.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/9.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/10.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/11.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/12.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/13.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/14.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/15.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/16.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/19.png"
-                                                           alt="Clients"></a></li>
-                    <li class="grid-item"><a href="#"><img src="./src/views/pages/index/images/clients/logo/18.png"
-                                                           alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/1.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/2.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/3.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/4.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/5.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/6.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/7.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/8.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/9.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/10.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/11.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/12.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/13.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/14.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/15.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/16.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/19.png"
+                                    alt="Clients"></a></li>
+                    <li class="grid-item"><a href="#"><img
+                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/clients/logo/18.png"
+                                    alt="Clients"></a></li>
                 </ul>
 
             </div>
@@ -1497,7 +1625,8 @@
 
                     <div class="row col-mb-50">
                         <div class="col-md-6 d-none d-md-flex align-self-end">
-                            <img src="./src/views/pages/index/images/services/4.jpg" alt="Image" class="mb-0">
+                            <img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/services/4.jpg"
+                                 alt="Image" class="mb-0">
                         </div>
 
                         <div class="col-md-6 mb-5 subscribe-widget">
@@ -1510,7 +1639,8 @@
                                 accusamus porro illo exercitationem molestias.</p>
 
                             <div class="widget-subscribe-form-result"></div>
-                            <form id="widget-subscribe-form3" action="./src/views/pages/index/include/subscribe.php"
+                            <form id="widget-subscribe-form3"
+                                  action="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/subscribe.php"
                                   method="post" class="mb-0">
                                 <div class="input-group" style="max-width:400px;">
                                     <div class="input-group-prepend">
@@ -1548,14 +1678,15 @@
 
                                 <div class="widget clearfix">
 
-                                    <img src="./src/views/pages/index/images/footer-widget-logo.png" alt="Image"
+                                    <img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/footer-widget-logo.png"
+                                         alt="Image"
                                          class="footer-logo">
 
                                     <p>
                                         <?php echo \MVC\libs\Languages::getLangData("We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp; <strong>Good price</strong>."); ?>
                                     </p>
 
-                                    <div style="background: url('./src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
+                                    <div style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
                                         <address>
                                             <strong><?php echo \MVC\libs\Languages::getLangData("Headquarters"); ?>
                                                 :</strong><br>
@@ -1673,7 +1804,8 @@
                                         Offers &amp; Inside Scoops:</h5>
                                     <div class="widget-subscribe-form-result"></div>
                                     <form id="widget-subscribe-form"
-                                          action="./src/views/pages/index/include/subscribe.php" method="post"
+                                          action="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/subscribe.php"
+                                          method="post"
                                           class="mb-0">
                                         <div class="input-group mx-auto">
                                             <div class="input-group-prepend">
@@ -1804,25 +1936,25 @@
 
 <!-- JavaScripts
 ============================================= -->
-<script src="./src/views/pages/index/js/jquery.js"></script>
-<script src="./src/views/pages/index/js/plugins.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/jquery.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/plugins.min.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->
-<script src="./src/views/pages/index/js/functions.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/functions.js"></script>
 
 <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
-<script src="./src/views/pages/index/include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="./src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
 
 <script>
 
@@ -1835,7 +1967,7 @@
         var apiRevoSlider = tpj('#rev_slider_ishop').show().revolution(
             {
                 sliderType: "standard",
-                jsFileLocation: "./src/views/pages/index/include/rs-plugin/js/",
+                jsFileLocation: "<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/js/",
                 sliderLayout: "fullwidth",
                 dottedOverlay: "none",
                 delay: 9000,

@@ -37,6 +37,18 @@ class UserModels
         }
     }
 
+    public function addSessionUser(string $ss)
+    {
+        $sql = "UPDATE User SET last_session='$ss' WHERE username='" . $_POST['login-form-username'] . "' LIMIT 1";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => ["Username not found or can not find session."]];
+        } else {
+            return ["Added successful."];
+        }
+    }
+
     public function validateUser()
     {
         $sql = "SELECT * FROM User WHERE username='" . $_POST['login-form-username'] . "' LIMIT 1";
