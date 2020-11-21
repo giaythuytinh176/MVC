@@ -2,9 +2,7 @@
 
 namespace MVC\controllers;
 
-use MVC\models\CartModels;
-
-class CartControllers extends CartModels
+class CartControllers
 {
     public function cartView($params)
     {
@@ -26,8 +24,7 @@ class CartControllers extends CartModels
 
     public function AddProductToCart($action, $params, $req)
     {
-        $data = parent::AddProductToCart($action, $params, $req);
-        (new renderControllers())->view("order/cart", [$data, $action, $params, $req]);
+        (new renderControllers())->view("order/cart", ["", $action, $params, $req]);
     }
 
     public static function UpdateQuantityCart()

@@ -38,4 +38,7 @@ Các chứng năng đã hoàn thành:
 
 - Cập nhật chức nằng xoá sp ở cart, update theo số lượng.
 - Tự động hide text updated cart sau 3s.
-- 
+
+/* Hoàn thành date 22/11/2020 */
+
+- Cập nhất chức năng checkout.

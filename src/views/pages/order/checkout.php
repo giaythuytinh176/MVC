@@ -208,9 +208,14 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                Returning customer? <a
-                                        href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/checkout") ?>">Click
-                                    here to login</a>
+                                <?php if (\MVC\libs\UserAccess::isLogin() == true) {
+                                    echo '<i class="i-plain icon-user"></i>Welcome ' . $_SESSION['username'] . ', ';
+                                } else { ?>
+                                    Returning customer? <a
+                                            href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/checkout") ?>">Click
+                                        here to login</a>
+
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -227,9 +232,7 @@
                     <div class="col-lg-6">
                         <h3>Billing Address</h3>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident
-                            sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat
-                            minus ratione.</p>
+                        <p>Số 23, Lô TT01, KĐT Mon City, Mỹ Đình 2, Nam Từ Liêm, Hà Nội.</p>
 
                         <form id="billing-form" name="billing-form" class="row mb-0" action="#" method="post">
 
@@ -342,121 +345,16 @@
                         <h4>Your Orders</h4>
 
                         <div class="table-responsive">
-                            <table class="table cart">
-                                <thead>
-                                <tr>
-                                    <th class="cart-product-thumbnail">&nbsp;</th>
-                                    <th class="cart-product-name">Product</th>
-                                    <th class="cart-product-quantity">Quantity</th>
-                                    <th class="cart-product-subtotal">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="cart_item">
-                                    <td class="cart-product-thumbnail">
-                                        <a href="#"><img width="64" height="64"
-                                                         src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/dress-3.jpg"
-                                                         alt="Pink Printed Dress"></a>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <a href="#">Pink Printed Dress</a>
-                                    </td>
-
-                                    <td class="cart-product-quantity">
-                                        <div class="quantity clearfix">
-                                            1x2
-                                        </div>
-                                    </td>
-
-                                    <td class="cart-product-subtotal">
-                                        <span class="amount">$39.98</span>
-                                    </td>
-                                </tr>
-                                <tr class="cart_item">
-                                    <td class="cart-product-thumbnail">
-                                        <a href="#"><img width="64" height="64"
-                                                         src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/shoes-2.jpg"
-                                                         alt="Checked Canvas Shoes"></a>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <a href="#">Checked Canvas Shoes</a>
-                                    </td>
-
-                                    <td class="cart-product-quantity">
-                                        <div class="quantity clearfix">
-                                            1x1
-                                        </div>
-                                    </td>
-
-                                    <td class="cart-product-subtotal">
-                                        <span class="amount">$24.99</span>
-                                    </td>
-                                </tr>
-                                <tr class="cart_item">
-                                    <td class="cart-product-thumbnail">
-                                        <a href="#"><img width="64" height="64"
-                                                         src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/tshirt-2.jpg"
-                                                         alt="Pink Printed Dress"></a>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <a href="#">Blue Men Tshirt</a>
-                                    </td>
-
-                                    <td class="cart-product-quantity">
-                                        <div class="quantity clearfix">
-                                            1x3
-                                        </div>
-                                    </td>
-
-                                    <td class="cart-product-subtotal">
-                                        <span class="amount">$41.97</span>
-                                    </td>
-                                </tr>
-                                </tbody>
-
-                            </table>
+                            <?php echo (new \MVC\controllers\CheckoutControllers())->getListItemCheckout(); ?>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <h4>Cart Totals</h4>
 
-                        <div class="table-responsive">
-                            <table class="table cart">
-                                <tbody>
-                                <tr class="cart_item">
-                                    <td class="border-top-0 cart-product-name">
-                                        <strong>Cart Subtotal</strong>
-                                    </td>
-
-                                    <td class="border-top-0 cart-product-name">
-                                        <span class="amount">$106.94</span>
-                                    </td>
-                                </tr>
-                                <tr class="cart_item">
-                                    <td class="cart-product-name">
-                                        <strong>Shipping</strong>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <span class="amount">Free Delivery</span>
-                                    </td>
-                                </tr>
-                                <tr class="cart_item">
-                                    <td class="cart-product-name">
-                                        <strong>Total</strong>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <span class="amount color lead"><strong>$106.94</strong></span>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <?php
+                        echo \MVC\controllers\CheckoutControllers::CalculateTotalCheckOut();
+                        ?>
 
                         <div class="accordion clearfix">
                             <div class="accordion-header">
@@ -465,26 +363,14 @@
                                     <i class="accordion-open icon-line-check"></i>
                                 </div>
                                 <div class="accordion-title">
-                                    Direct Bank Transfer
+                                    Nganluong.vn
                                 </div>
                             </div>
-                            <div class="accordion-content clearfix">Donec sed odio dui. Nulla vitae elit libero, a
-                                pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere
-                                erat a ante venenatis dapibus posuere velit aliquet.
-                            </div>
-
-                            <div class="accordion-header">
-                                <div class="accordion-icon">
-                                    <i class="accordion-closed icon-line-minus"></i>
-                                    <i class="accordion-open icon-line-check"></i>
-                                </div>
-                                <div class="accordion-title">
-                                    Cheque Payment
-                                </div>
-                            </div>
-                            <div class="accordion-content clearfix">Integer posuere erat a ante venenatis dapibus
-                                posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum
-                                nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.
+                            <div class="accordion-content clearfix">NgânLượng.vn là Ví điện tử và Cổng Thanh toán Trực
+                                tuyến (TTTT) tiên phong và uy tín hàng đầu tại Việt Nam, cả về sản phẩm dịch vụ, độ phủ
+                                thị trường và lưu lượng thanh toán. Được phát triển bởi Nexttech Group (tiền thân là
+                                PeaceSoft Group) từ năm 2009, Ngân Lượng cho phép các cá nhân và doanh nghiệp gửi và
+                                nhận tiền thanh toán trên Internet một cách nhanh chóng, an toàn, tiện lợi.
                             </div>
 
                             <div class="accordion-header">
@@ -496,12 +382,33 @@
                                     Paypal
                                 </div>
                             </div>
-                            <div class="accordion-content clearfix">Nullam id dolor id nibh ultricies vehicula ut id
-                                elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis,
-                                est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.
+                            <div class="accordion-content clearfix">Paypal là một công ty hoạt động trong lĩnh vực
+                                thương mại điện tử, chuyên cung cấp các dịch vụ thanh toán và chuyển tiền qua mạng
+                                Internet. Đây là dịch vụ thanh toán và chuyển khoản điện tử thay thế cho các phương thức
+                                truyền thống sử dụng giấy tờ như séc và các lệnh chuyển tiền. Paypal thu phí thông qua
+                                thực hiện việc xử lý thanh toán cho các hãng hoạt động trực tuyến, các trang đấu giá, và
+                                các khách hàng doanh nghiệp khác. Vào tháng 10 năm 2002, eBay đã mua lại toàn bộ Paypal.
+                                Trụ sở chính của Paypal hiện đặt tại khu các công ty con của eBay trong toà nhà North
+                                First Street, thung lũng Sillicon, San Jose, California. Paypal cũng có các hoạt động
+                                quan trọng tại Omaha, Nebraska; Dublin, Ireland; và Berlin, Đức.
+                            </div>
+
+                            <div class="accordion-header">
+                                <div class="accordion-icon">
+                                    <i class="accordion-closed icon-line-minus"></i>
+                                    <i class="accordion-open icon-line-check"></i>
+                                </div>
+                                <div class="accordion-title">
+                                    Direct Bank Transfer
+                                </div>
+                            </div>
+                            <div class="accordion-content clearfix">Wire transfer, bank transfer or credit transfer, is
+                                a method of electronic funds transfer from one person or entity to another. A wire
+                                transfer can be made from one bank account to another bank account, or through a
+                                transfer of cash at a cash office.
                             </div>
                         </div>
-                        <a href="#" class="button button-3d float-right">Place Order</a>
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>" class="button button-3d float-right">Place Order</a>
                     </div>
                 </div>
             </div>

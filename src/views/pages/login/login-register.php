@@ -365,12 +365,7 @@
                             } elseif (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] == "login") {
                                 if (\MVC\libs\UserAccess::isLogin()) {
                                     $checkout_cart = !empty($data[1]) ? "shop/{$data[1]}" : "";
-                                    //header("Location: " . \MVC\controllers\UrlControllers::url($checkout_cart));
-                                    if (headers_sent()) {
-                                        die("Redirect to new page ... <a href='" . \MVC\controllers\UrlControllers::url($checkout_cart) . "'></a> <meta http-equiv=\"Refresh\" content=\"1; url=" . \MVC\controllers\UrlControllers::url($checkout_cart) . "\">");
-                                    } else {
-                                        exit(header("Location: " . \MVC\controllers\UrlControllers::url($checkout_cart)));
-                                    }
+                                    \MVC\controllers\RenderControllers::redirectAfterSecondPage($checkout_cart);
                                 }
                             }
                         }
