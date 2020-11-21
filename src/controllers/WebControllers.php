@@ -17,6 +17,7 @@ class WebControllers
     public function view($v, $data = [])
     {
         require_once "./src/views/pages/$v.php";
+        exit();
     }
 
     public function redirectPage($page = "")

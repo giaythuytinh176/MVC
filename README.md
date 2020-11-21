@@ -22,3 +22,4 @@ Các chứng năng đã hoàn thành:
 - Có thể chuyển nhiều ngôn ngữ khác . (chưa hoàn thiện tất cả các từ.)
 - Cập nhật thêm Category.
 - Hoàn thiện category , sub category. 
+- Cập nhật list danh sách sản phẩm tử DB.

@@ -43,7 +43,7 @@ class UrlControllers extends CategoryControllers
                         (new CheckoutControllers())->checkoutView($this->params);
                         break;
                     default:
-                        $this->webcontrollers->view("index/shop");
+                        $this->webcontrollers->view("category/shop");
                 }
             case "lang":
                 switch ($this->action) {
@@ -66,9 +66,13 @@ class UrlControllers extends CategoryControllers
                     case "laptop":
                     case "smarthome":
                         if (empty($this->params)) {
-                            $this->getAllCategoryWithoutPara($this->action);
-                        } else {
-                            $this->getCategory($this->action, $this->params);
+                            $this->getAllCategoryView($this->action);
+                        } elseif (!empty($this->params[2])) {
+                            $this->getDetaiElementbyID($this->action, $this->params);
+                        } elseif (!empty($this->params[1])) {
+                            $this->getAllElementbyCateID($this->action, $this->params);
+                        } elseif (!empty($this->params[0])) {
+                            $this->getListProductinMainCategory($this->action, $this->params);
                         }
                         break;
 
