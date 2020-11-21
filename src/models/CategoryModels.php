@@ -26,18 +26,6 @@ class CategoryModels
         }
     }
 
-    public function getListProductinMainCategory($action, $params)
-    {
-        $sql = "SELECT * FROM product LEFT JOIN product_category pc on product.category_id = pc.category_id WHERE code='$params[0]' AND is_disabled='0'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Doesn't have any this Category."];
-        } else {
-            return $data;
-        }
-    }
-
     public function getAllListcategory()
     {
         $sql = "SELECT * FROM parent_category";

@@ -2,16 +2,16 @@
 
 namespace MVC\controllers;
 
-class UrlControllers extends CategoryControllers
+class UrlControllers
 {
     protected $controllers = "homepage";
     protected $action = "index";
     protected $params = [];
-    private $webcontrollers;
+    private $render;
 
     public function index()
     {
-        $this->webcontrollers = new WebControllers();
+        $this->render = new renderControllers();
         $parseurl = $this->parseURL();
 
         if (!empty($parseurl[0])) {
@@ -37,13 +37,18 @@ class UrlControllers extends CategoryControllers
                         (new LoginControllers())->loginControllers($this->params);
                         break;
                     case "cart":
-                        (new CartControllers())->cartView($this->params);
-                        break;
+                        if (empty($_REQUEST['btn']) || empty($_REQUEST['qty']) || empty($_REQUEST['product_id']) || empty($_REQUEST['price'])) {
+                            (new CartControllers())->cartView($this->params);
+                            break;
+                        } elseif (!empty($_REQUEST['btn']) && !empty($_REQUEST['qty']) && !empty($_REQUEST['product_id']) && !empty($_REQUEST['price'])) {
+                            (new CartControllers())->AddProductToCart($this->action, $this->params, $_REQUEST);
+                            break;
+                        }
                     case "checkout":
                         (new CheckoutControllers())->checkoutView($this->params);
                         break;
                     default:
-                        $this->webcontrollers->view("category/shop");
+                        $this->render->view("category/shop");
                 }
             case "lang":
                 switch ($this->action) {
@@ -72,22 +77,22 @@ class UrlControllers extends CategoryControllers
                         } elseif (!empty($this->params[1])) {
                             $this->getAllElementbyCateID($this->action, $this->params);
                         } elseif (!empty($this->params[0])) {
-                            $this->getListProductinMainCategory($this->action, $this->params);
+                            (new \MVC\controllers\ProductControllers())->getListProductinMainCategory($this->action, $this->params);
                         }
                         break;
 
                     default:
-                        $this->webcontrollers->redirectPage();
+                        $this->render->redirectPage();
                 }
-            //case "api":
+            case "api"://Hoan thien cuoi
 
 
             case "homepage":
-                $this->webcontrollers->homepage();
+                $this->render->homepage();
                 break;
 
             default:
-                $this->webcontrollers->errorPage();
+                $this->render->errorPage();
         }
     }
 

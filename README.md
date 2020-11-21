@@ -1,5 +1,7 @@
 # MVC
 
+/* Bắt đầu date 18/11/2020 */
+
 Các chứng năng đã hoàn thành:
 - Tạo website theo mô hình MVC
 - Đăng nhập và tạo tài khoản lưu vào database
@@ -21,7 +23,17 @@ Các chứng năng đã hoàn thành:
 - Có lưu session_id vào DB
 - Có thể chuyển nhiều ngôn ngữ khác . (chưa hoàn thiện tất cả các từ.)
 - Cập nhật thêm Category.
+
+/* Hoàn thành date 19/11/2020 */
+
 - Hoàn thiện category , sub category. 
 - Cập nhật list danh sách sản phẩm tử DB.
+
+/* Hoàn thành date 20/11/2020 */
+
 - Tạo các header footer cố định vào blocks.
-- Tạo giỏ hàng và có thể add sản phẩm vào.
+- Tạo giỏ hàng và có thể add sản phẩm vào- lưu vào SESSION.
+
+/* Hoàn thành date 21/11/2020 */
+
+- Cập nhật chức nằng xoá sp ở cart, update theo số lượng.

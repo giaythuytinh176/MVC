@@ -213,7 +213,7 @@
                 <div id="shop" class="shop row grid-container gutter-30" data-layout="fitRows">
 
                     <?php
-                    echo \MVC\controllers\CategoryControllers::printListItems($data[0]);
+                    echo \MVC\controllers\ProductControllers::printListItems($data[0]);
                     ?>
 
                 </div><!-- #shop end -->

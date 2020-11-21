@@ -203,137 +203,18 @@
     <section id="content">
         <div class="content-wrap">
             <div class="container">
+                <?php
 
-                <table class="table cart mb-5">
-                    <thead>
-                    <tr>
-                        <th class="cart-product-remove">&nbsp;</th>
-                        <th class="cart-product-thumbnail">&nbsp;</th>
-                        <th class="cart-product-name">Product</th>
-                        <th class="cart-product-price">Unit Price</th>
-                        <th class="cart-product-quantity">Quantity</th>
-                        <th class="cart-product-subtotal">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="cart_item">
-                        <td class="cart-product-remove">
-                            <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-                        </td>
-
-                        <td class="cart-product-thumbnail">
-                            <a href="#"><img width="64" height="64"
-                                             src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/dress-3.jpg"
-                                             alt="Pink Printed Dress"></a>
-                        </td>
-
-                        <td class="cart-product-name">
-                            <a href="#">Pink Printed Dress</a>
-                        </td>
-
-                        <td class="cart-product-price">
-                            <span class="amount">$19.99</span>
-                        </td>
-
-                        <td class="cart-product-quantity">
-                            <div class="quantity">
-                                <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity" value="2" class="qty"/>
-                                <input type="button" value="+" class="plus">
-                            </div>
-                        </td>
-
-                        <td class="cart-product-subtotal">
-                            <span class="amount">$39.98</span>
-                        </td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td class="cart-product-remove">
-                            <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-                        </td>
-
-                        <td class="cart-product-thumbnail">
-                            <a href="#"><img width="64" height="64"
-                                             src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/shoes-2.jpg"
-                                             alt="Checked Canvas Shoes"></a>
-                        </td>
-
-                        <td class="cart-product-name">
-                            <a href="#">Checked Canvas Shoes</a>
-                        </td>
-
-                        <td class="cart-product-price">
-                            <span class="amount">$24.99</span>
-                        </td>
-
-                        <td class="cart-product-quantity">
-                            <div class="quantity">
-                                <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity" value="1" class="qty"/>
-                                <input type="button" value="+" class="plus">
-                            </div>
-                        </td>
-
-                        <td class="cart-product-subtotal">
-                            <span class="amount">$24.99</span>
-                        </td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td class="cart-product-remove">
-                            <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-                        </td>
-
-                        <td class="cart-product-thumbnail">
-                            <a href="#"><img width="64" height="64"
-                                             src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/thumbs/small/tshirt-2.jpg"
-                                             alt="Pink Printed Dress"></a>
-                        </td>
-
-                        <td class="cart-product-name">
-                            <a href="#">Blue Men Tshirt</a>
-                        </td>
-
-                        <td class="cart-product-price">
-                            <span class="amount">$13.99</span>
-                        </td>
-
-                        <td class="cart-product-quantity">
-                            <div class="quantity">
-                                <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity" value="3" class="qty"/>
-                                <input type="button" value="+" class="plus">
-                            </div>
-                        </td>
-
-                        <td class="cart-product-subtotal">
-                            <span class="amount">$41.97</span>
-                        </td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td colspan="6">
-                            <div class="row justify-content-between py-2 col-mb-30">
-                                <div class="col-lg-auto pl-lg-0">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <input type="text" value="" class="sm-form-control text-center text-md-left"
-                                                   placeholder="Enter Coupon Code.."/>
-                                        </div>
-                                        <div class="col-md-4 mt-3 mt-md-0">
-                                            <a href="#" class="button button-3d button-black m-0">Apply Coupon</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-auto pr-lg-0">
-                                    <a href="#" class="button button-3d m-0">Update Cart</a>
-                                    <a href="shop.html" class="button button-3d mt-2 mt-sm-0 mr-0">Proceed to
-                                        Checkout</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-
-                </table>
+                if (!empty($data[3])) {
+                    echo (new \MVC\controllers\CartControllers())->ShowCartProduct($data);
+                }
+                elseif (!empty($_SESSION['cart_items'][0])) {
+                    echo (new \MVC\controllers\CartControllers())->ShowCartProductFromSession();
+                }
+                else {
+                    echo '<div class="col-lg-6"><h1>Cart is empty.</h1></div>';
+                }
+                ?>
 
                 <div class="row col-mb-30">
                     <div class="col-lg-6">

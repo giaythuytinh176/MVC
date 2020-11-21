@@ -5,7 +5,7 @@ namespace MVC\controllers;
 use MVC\libs\UserAccess;
 use MVC\Models\UserModels;
 
-class LoginControllers extends WebControllers
+class LoginControllers extends renderControllers
 {
     public function loginControllers($params)
     {

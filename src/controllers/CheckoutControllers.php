@@ -2,7 +2,7 @@
 
 namespace MVC\controllers;
 
-class CheckoutControllers extends WebControllers
+class CheckoutControllers extends renderControllers
 {
     public function checkoutView($params)
     {

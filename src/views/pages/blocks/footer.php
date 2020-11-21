@@ -19,8 +19,7 @@
                                      alt="Image"
                                      class="footer-logo">
 
-                                <p>We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp;
-                                    <strong>Good price</strong>.</p>
+                                <p><?php echo \MVC\libs\Languages::getLangData("We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp; <strong>Good price</strong>."); ?></p>
 
                                 <div style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/world-map.png') no-repeat center center; background-size: 100%;">
                                     <address>
