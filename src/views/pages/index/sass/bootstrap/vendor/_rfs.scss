@@ -124,7 +124,7 @@ $rfs-breakpoint-unit-cache: unit($rfs-breakpoint);
 
     // Rendering
     @if $rfs-fluid == null {
-      // Only renderControllers static font-size if no fluid font-size is available
+      // Only render static font-size if no fluid font-size is available
       font-size: $rfs-static;
     }
     @else {
