@@ -1,6 +1,6 @@
 # MVC
 
-/* Bắt đầu date 18/11/2020 */
+/* Bắt đầu date 16/11/2020 */
 
 Các chứng năng đã hoàn thành:
 - Tạo website theo mô hình MVC
