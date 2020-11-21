@@ -37,6 +37,9 @@ class UrlControllers
                         (new LoginControllers())->loginControllers($this->params);
                         break;
                     case "cart":
+                        if (!empty($this->params) && is_numeric($this->params[0]) == true && !empty($_SESSION['cart_items'])) {
+                            (new CartControllers())->removeItems($this->action, $this->params);
+                        }
                         if (empty($_REQUEST['btn']) || empty($_REQUEST['qty']) || empty($_REQUEST['product_id']) || empty($_REQUEST['price'])) {
                             (new CartControllers())->cartView($this->params);
                             break;

@@ -20,6 +20,17 @@ class ProductControllers extends ProductModels
         return $data;
     }
 
+    public static function CalculateTotalCart($cart_items)
+    {
+        $totalPriceEachItem = 0;
+        foreach ($cart_items as $item){
+            $valFromDB = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($item['product_id']);
+            $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
+            $totalPriceEachItem += $amount * $item['qty'];
+        }
+        return $totalPriceEachItem;
+    }
+
     public static function printListItems($data)
     {
         $sout = '';

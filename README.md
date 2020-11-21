@@ -37,3 +37,5 @@ Các chứng năng đã hoàn thành:
 /* Hoàn thành date 21/11/2020 */
 
 - Cập nhật chức nằng xoá sp ở cart, update theo số lượng.
+- Tự động hide text updated cart sau 3s.
+- 
