@@ -78,7 +78,7 @@ class CategoryControllers extends CategoryModels
                                 <div class="product-title"><h3><a href="#">' . $value['ProductName'] . '</a></h3></div>
                                 <div class="product-price">';
 
-            $sout .= (!empty($value['discount']) && $value['discount'] > 0) ? '<del>' . number_format($value['price']) . ' ₫ </del><ins>' . number_format(($value['price'] * $value['discount'] / 100)) . '₫ </ins>' : '<ins>' . number_format($value['price']) . ' ₫ </ins>';
+            $sout .= (!empty($value['discount']) && $value['discount'] > 0) ? '<del>' . number_format($value['price']) . ' ₫ </del><ins>' . number_format(($value['price'] * (100 - $value['discount']) / 100)) . '₫ </ins>' : '<ins>' . number_format($value['price']) . ' ₫ </ins>';
 
             $sout .= '</div>
                                 <div class="product-rating">
@@ -95,7 +95,7 @@ class CategoryControllers extends CategoryModels
         return $sout;
     }
 
-    public static function printListCategory()
+    public static function printListCategory()// Not used
     {
         $sout = '';
         foreach ((new \MVC\controllers\CategoryControllers)->getAllListcategory() as $value) {
@@ -105,6 +105,13 @@ class CategoryControllers extends CategoryModels
             foreach ((new \MVC\controllers\CategoryControllers())->getAllCategorybyParentID($value['parent_id']) as $v) {
                 $sout .= '<li class="menu-item">';
                 $sout .= '<a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/{$value['category_name']}/{$v['code']}") . '><div>' . \MVC\libs\Languages::getLangData($v['title']) . '</div></a>';
+                if (empty((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code'])['errors'])) {
+                    $sout .= '<ul class="sub-menu-container">';
+                    foreach ((new \MVC\controllers\CategoryControllers())->getAllSubCategoryControllers($v['code']) as $val) {
+                        $sout .= ' <li class="menu-item"><a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . "/" . $val['codeSUB'] . '><div>' . \MVC\libs\Languages::getLangData($val['title']) . '</div></a></li>';
+                    }
+                    $sout .= '</ul>';
+                }
                 $sout .= '</li>';
             }
             $sout .= '</ul>';
@@ -113,11 +120,11 @@ class CategoryControllers extends CategoryModels
         return $sout;
     }
 
-    public static function printListCategoryIncludeSub()// Not used
+    public static function printListCategoryIncludeSub()
     {
         $sout = '';
         foreach ((new \MVC\controllers\CategoryControllers)->getAllListcategory() as $value) {
-            $sout .= '<li class="myetenu-item">';
+            $sout .= '<li class="menu-item">';
             $sout .= '<a class="menu-link" href=' . \MVC\controllers\UrlControllers::url("category/" . $value['category_name']) . '><div>' . \MVC\libs\Languages::getLangData($value['category_name']) . '</div></a>';
             $sout .= '<ul class="sub-menu-container">';
             foreach ((new \MVC\controllers\CategoryControllers())->getAllCategorybyParentID($value['parent_id']) as $v) {

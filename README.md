@@ -23,3 +23,5 @@ Các chứng năng đã hoàn thành:
 - Cập nhật thêm Category.
 - Hoàn thiện category , sub category. 
 - Cập nhật list danh sách sản phẩm tử DB.
+- Tạo các header footer cố định vào blocks.
+- Tạo giỏ hàng và có thể add sản phẩm vào.

@@ -6,6 +6,6 @@ class CheckoutControllers extends WebControllers
 {
     public function checkoutView($params)
     {
-        $this->view("index/checkout");
+        $this->view("order/checkout");
     }
 }

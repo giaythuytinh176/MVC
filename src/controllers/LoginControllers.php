@@ -18,7 +18,7 @@ class LoginControllers extends WebControllers
         } elseif (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] == "login") {
             $this->logAcc($params);
         } else {
-            $this->view("index/login-register");
+            $this->view("login/login-register");
         }
     }
 
@@ -26,14 +26,14 @@ class LoginControllers extends WebControllers
     {
         $loginUser = \MVC\libs\LoginUser::checkLoginUser();
         if (!empty($loginUser['errors'])) {
-            $this->view("index/login-register", [$loginUser]);
+            $this->view("login/login-register", [$loginUser]);
         } else {
             $loginUser = (new UserModels())->validateUser();
             if (empty($loginUser['errors'])) {
                 \MVC\libs\Cookie::setRememberMe();
                 \MVC\libs\Cookie::saveSession();
-                $this->view("index/login-register", [$loginUser, (!empty($params[0]) ? $params[0] : [])]);
-            } else $this->view("index/login-register", [$loginUser]);
+                $this->view("login/login-register", [$loginUser, (!empty($params[0]) ? $params[0] : [])]);
+            } else $this->view("login/login-register", [$loginUser]);
         }
     }
 
@@ -41,10 +41,10 @@ class LoginControllers extends WebControllers
     {
         $checkUSer = \MVC\libs\CreateUser::checkCreateUser();
         if (!empty($checkUSer['errors'])) {
-            $this->view("index/login-register", [$checkUSer]);
+            $this->view("login/login-register", [$checkUSer]);
         } else {
             $checkUSer = (new UserModels())->addUser();
-            $this->view("index/login-register", [$checkUSer]);
+            $this->view("login/login-register", [$checkUSer]);
         }
     }
 
@@ -54,7 +54,7 @@ class LoginControllers extends WebControllers
     public function logOut($params): void
     {
         if (!empty($params[0]) && $params[0] == "logout") {
-            $this->view("index/logout");
+            $this->view("login/logout");
         }
     }
 }

@@ -11,7 +11,7 @@ class WebControllers
 
     public function errorPage($head = "")
     {
-        $this->view("404", ["", "", $head]);
+        $this->view("error/404", ["", "", $head]);
     }
 
     public function view($v, $data = [])

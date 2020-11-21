@@ -6,6 +6,6 @@ class CartControllers extends WebControllers
 {
     public function cartView($params)
     {
-        $this->view("index/cart");
+        $this->view("order/cart");
     }
 }
