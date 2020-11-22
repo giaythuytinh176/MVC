@@ -15,7 +15,7 @@ class ProductControllers extends ProductModels
     public function getAllElementbySubCateID($action, $category)
     {
         $data = parent::getAllElementbySubCateID($action, $category);
-        (new \MVC\Controllers\renderControllers())->view("category/shop_sub", [$data, $action, $category]);
+        (new \MVC\Controllers\renderControllers())->view("category/shop", [$data, $action, $category]);
     }
 
     public function getProductDetailbyID($id)
