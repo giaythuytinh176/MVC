@@ -4,9 +4,16 @@ namespace MVC\controllers;
 
 class CartControllers
 {
+    protected $render;
+    
+    public function __construct()
+    {
+        $this->render = new renderControllers();
+    }
+
     public function cartView($params)
     {
-        (new renderControllers())->view("order/cart");
+        $this->render->view("order/cart");
     }
 
     public function removeItems($action, $params)
@@ -19,12 +26,12 @@ class CartControllers
         }
         $_SESSION['cart_items'] = array_values($_SESSION['cart_items']);
         $message = '<div class="col-lg-6"><h3>Removed item successfully.</h3></div>';
-        (new renderControllers())->view("order/cart", [$action, $params, $message]);
+        $this->render->view("order/cart", [$action, $params, $message]);
     }
 
     public function AddProductToCart($action, $params, $req)
     {
-        (new renderControllers())->view("order/cart", ["", $action, $params, $req]);
+        $this->render->view("order/cart", ["", $action, $params, $req]);
     }
 
     public static function UpdateQuantityCart()

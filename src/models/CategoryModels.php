@@ -28,7 +28,7 @@ class CategoryModels
 
     public function getAllListcategory()
     {
-        $sql = "SELECT * FROM parent_category";
+        $sql = "SELECT * FROM parent_category WHERE is_disabled='0' ORDER BY orderParent ASC";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
         if (empty($data)) {
@@ -45,6 +45,18 @@ class CategoryModels
         $data = $stmt->fetch($this->db::FETCH_ASSOC);
         if (empty($data)) {
             return ["errors" => "Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getDetailElementbyCodeSub($code)
+    {
+        $sql = "SELECT * FROM sub_product_category WHERE codeSUB='$code'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Code not found."];
         } else {
             return $data;
         }

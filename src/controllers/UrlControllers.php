@@ -74,11 +74,11 @@ class UrlControllers
                     case "laptop":
                     case "smarthome":
                         if (empty($this->params)) {
-                            $this->getAllCategoryView($this->action);
+                            (new \MVC\controllers\CategoryControllers())->getAllCategoryView($this->action);
                         } elseif (!empty($this->params[2])) {
-                            $this->getDetaiElementbyID($this->action, $this->params);
+                            (new \MVC\controllers\CategoryControllers())->getDetaiElementbyID($this->action, $this->params);
                         } elseif (!empty($this->params[1])) {
-                            $this->getAllElementbyCateID($this->action, $this->params);
+                            (new \MVC\controllers\ProductControllers())->getAllElementbySubCateID($this->action, $this->params);
                         } elseif (!empty($this->params[0])) {
                             (new \MVC\controllers\ProductControllers())->getListProductinMainCategory($this->action, $this->params);
                         }

@@ -12,7 +12,7 @@ class ToolControllers
         if ($stop) die();
     }
 
-    public static  function textarea($var, $cols = 100, $rows = 30, $stop = false, $char = 'UTF-8') {
+    public static  function textarea($var, $stop = false, $cols = 100, $rows = 30, $char = 'UTF-8') {
         $cols = ($cols == 0) ? 100 : $cols;
         $rows = ($rows == 0) ? 30 : $rows;
         if ($char === false) $char = 'ISO-8859-1';

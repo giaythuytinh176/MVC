@@ -131,46 +131,7 @@
 
                     <!-- Primary Navigation
                     ============================================= -->
-                    <nav class="primary-menu">
-
-                        <ul class="menu-container">
-                            <li class="menu-item"><a class="menu-link"
-                                                     href="<?php echo \MVC\controllers\UrlControllers::url(); ?>">
-                                    <div><?php echo \MVC\libs\Languages::getLangData("Home"); ?></div>
-                                </a>
-                            </li>
-                            <!-- Mega Menu
-                            ============================================= -->
-
-                            <?php
-                            echo \MVC\controllers\CategoryControllers::printListCategoryIncludeSub();
-                            ?>
-
-                            <li class="menu-item">
-                                <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop") ?>">
-                                    <div>Shop</div>
-                                </a>
-                                <ul class="sub-menu-container">
-                                    <li class="menu-item">
-                                        <a class="menu-link"
-                                           href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>">
-                                            <div>Cart</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link "
-                                           href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>">
-                                            <div>Checkout<</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item"><a class="menu-link" href="#">
-                                    <div>Contact</div>
-                                    <span>Get In Touch</span></a></li>
-                        </ul>
-
-                    </nav><!-- #primary-menu end -->
+                    <?php require_once "./src/views/pages/blocks/header.php"; ?>
 
                     <form class="top-search-form" action="search.html" method="get">
                         <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.."
@@ -232,9 +193,12 @@
                     <div class="col-lg-6">
                         <h3>Billing Address</h3>
 
-                        <p>Số 23, Lô TT01, KĐT Mon City, Mỹ Đình 2, Nam Từ Liêm, Hà Nội.</p>
+                        <p>Billing Address là địa chỉ thanh toán. Thường được kết nối với thẻ ngân hàng. Được dùng để
+                            thanh toán các khoản mua sắm trên internet. Bạn sẽ được yêu cầu hoàn tất các thông tin trong
+                            billing address. Để ngân hàng có thể gửi hóa đơn sử dụng tiền trong tài khoản ngân hàng. Đó
+                            cũng là địa chỉ mà ngân hàng sử dụng để gửi tất cả các thông báo khác. </p>
 
-                        <form id="billing-form" name="billing-form" class="row mb-0" action="#" method="post">
+                        <form id="billing-form" name="billing-form" class="row mb-0" action="" method="post">
 
                             <div class="col-md-6 form-group">
                                 <label for="billing-form-name">Name:</label>
@@ -291,7 +255,7 @@
                     <div class="col-lg-6">
                         <h3>Shipping Address</h3>
 
-                        <form id="shipping-form" name="shipping-form" class="row mb-0" action="#" method="post">
+                        <form id="shipping-form" name="shipping-form" class="row mb-0" action="" method="post">
 
                             <div class="col-md-6 form-group">
                                 <label for="shipping-form-name">Name:</label>
@@ -408,7 +372,8 @@
                                 transfer of cash at a cash office.
                             </div>
                         </div>
-                        <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>" class="button button-3d float-right">Place Order</a>
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>"
+                           class="button button-3d float-right">Place Order</a>
                     </div>
                 </div>
             </div>

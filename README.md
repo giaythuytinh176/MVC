@@ -42,3 +42,4 @@ Các chứng năng đã hoàn thành:
 /* Hoàn thành date 22/11/2020 */
 
 - Cập nhất chức năng checkout.
+- Fix Sub Category

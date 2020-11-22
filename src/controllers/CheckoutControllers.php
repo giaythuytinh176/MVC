@@ -87,13 +87,7 @@ class CheckoutControllers
                                     </td>
                                 </tr>';
         }
-
-
         $sout .= '</tbody></table>';
-
         echo $sout;
-
     }
-
-
 }
