@@ -14,6 +14,18 @@ class ProductModels
         $this->db = Database::getInstance();
     }
 
+    public function getDetailElementbyID($subcate, $productID)
+    {
+        $sql = "SELECT * FROM product_category JOIN product as p on product_category.category_id = p.category_id WHERE code='$subcate' AND p.product_id='$productID'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public function getAllElementbySubCateID($action, $category_id)
     {
         $sql = "SELECT * FROM sub_product_category JOIN product as p on sub_product_category.category_sub = p.category_sub WHERE sub_product_category.codeSUB='$category_id[1]'";

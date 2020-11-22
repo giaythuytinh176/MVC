@@ -24,10 +24,10 @@ class ProductControllers extends ProductModels
         return $data;
     }
 
-    public static function CalculateTotalCart($cart_items)
+    public static function CalculateTotalCart()
     {
         $totalPriceEachItem = 0;
-        foreach ($cart_items as $item) {
+        foreach ($_SESSION['cart_items'] as $item) {
             $valFromDB = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($item['product_id']);
             $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
             $totalPriceEachItem += $amount * $item['qty'];
@@ -35,10 +35,24 @@ class ProductControllers extends ProductModels
         return $totalPriceEachItem;
     }
 
+    public function getDetailElementbyID($action, $params)
+    {
+        $product_id = current(explode("-", $params[1]));
+        $data = parent::getDetailElementbyID($params[0], $product_id);
+        (new \MVC\Controllers\renderControllers())->view("order/shop-single", [$data, $params[0], $product_id]);
+    }
+
     public static function printListItems($data)
     {
+        $parseURL = \MVC\controllers\UrlControllers::parseURL($_GET['url']);
         $sout = '';
         foreach ($data as $value) {
+            $NameProductToString = preg_replace("/^[\W]+$/", "-", $value['ProductName']);
+            $NameProductToString = str_replace(array("\r", "\n", "\s", "\t", " "), "-", $NameProductToString);
+            $NameProductToString = strtolower($NameProductToString);
+            $NameProductToString = html_entity_decode($NameProductToString, ENT_QUOTES, "utf-8");// xoa cac ki tu dac biet trong chuoi
+            $NameProductToString = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $NameProductToString);//convert chu co dau sang ko dau
+
             $sout .= '<div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="grid-inner">
                             <div class="product-image">';
@@ -59,13 +73,12 @@ class ProductControllers extends ProductModels
                         <input type="hidden" name="product_name" value="' . urlencode($value['ProductName']) . '"/>
                     <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
                 </form>';
-//            $sout .= '<a href="' . \MVC\controllers\UrlControllers::url() . '/shop/cart?product_id=' . $value['product_id'] . '&qty=1" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></a>';
                 $sout .= '<a href="' . \MVC\controllers\UrlControllers::url() . '/src/views/pages/index/include/ajax/shop-item.php" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
                 $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
             }
             $sout .= '     </div>
                             <div class="product-desc">
-                                <div class="product-title"><h3><a href="#">' . $value['ProductName'] . '</a></h3>
+                                <div class="product-title"><h3><a href="' . \MVC\controllers\UrlControllers::url("$parseURL[0]/$parseURL[1]/$parseURL[2]/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $value['ProductName'] . '</a></h3>
                             </div>
                                 <div class="product-price">';
 

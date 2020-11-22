@@ -45,6 +45,13 @@ Các chứng năng đã hoàn thành:
 - Fix Sub Category.
 - Thu gọn các file hiển thị cho vào blocks header.
 - Fix hiển thị giỏ hàng bên trên cùng phải và số tiền.
--
 
 
+/* Hoàn thành date 23/11/2020 */
+
+- Cần hoàn thiện chức năng xem sản phẩm chi tiết.
+
+
+
+*** Cần hoàn thiện:
+- Chức năng apply coupon để trử giá vào sản phẩm.

@@ -12,7 +12,7 @@ class UrlControllers
     public function index()
     {
         $this->render = new renderControllers();
-        $parseurl = $this->parseURL();
+        $parseurl = self::parseURL();
 
         if (!empty($parseurl[0])) {
             $this->controllers = $parseurl[0];
@@ -75,9 +75,9 @@ class UrlControllers
                     case "smarthome":
                         if (empty($this->params)) {
                             (new \MVC\controllers\CategoryControllers())->getAllCategoryView($this->action);
-                        } elseif (!empty($this->params[2])) {
-                            (new \MVC\controllers\CategoryControllers())->getDetaiElementbyID($this->action, $this->params);
-                        } elseif (!empty($this->params[1])) {
+                        } elseif (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
+                            (new \MVC\controllers\ProductControllers())->getDetailElementbyID($this->action, $this->params);
+                        } elseif (!empty($this->params[1]) && self::isSubCategory($this->params[1]) == true) {
                             (new \MVC\controllers\ProductControllers())->getAllElementbySubCateID($this->action, $this->params);
                         } elseif (!empty($this->params[0])) {
                             (new \MVC\controllers\ProductControllers())->getListProductinMainCategory($this->action, $this->params);
@@ -99,7 +99,25 @@ class UrlControllers
         }
     }
 
-    public function parseURL()
+    public static function isNumberofProductBeforeMinus($number)// kiem tra chu dau tien co phai so ko
+    {
+        $NumberBeforeMinus = current(explode("-", $number));
+        if (ctype_digit($NumberBeforeMinus) == true) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function isSubCategory($character)// only a-zA_Z_- , not number include
+    {
+        $pattern = "/^[a-zA-Z\_\-]+$/";
+        if (preg_match($pattern, $character)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function parseURL()
     {
         if (!empty($_GET['url'])) {
             return explode("/", filter_var(trim(strtolower($_GET['url']), "/")));

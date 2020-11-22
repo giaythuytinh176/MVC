@@ -51,8 +51,9 @@
     <section id="page-title">
         <div class="container clearfix"><?php
             echo '<h1>' . $data[1] . '</h1>';
+            $title = (!empty((new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title']) ? (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title'] : ((!empty((new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0])['title'])) ? (new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0])['title'] : "Not found."));
             ?>
-            <span><?php echo(!empty((new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title']) ? (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title'] : (new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0])['title']); ?></span>
+            <span><?php echo $title; ?></span>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Category</a></li>
@@ -60,7 +61,7 @@
                             href="<?php str_replace("/" . (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['code'], "", \MVC\controllers\UrlControllers::url($data[1])) ?>"><?php echo strtoupper($data[1]); ?></a>
                 </li>
                 <li class="breadcrumb-item active"
-                    aria-current="page"><?php echo(!empty((new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title']) ? (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title'] : (new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0])['title']); ?></li>
+                    aria-current="page"><?php echo $title; ?></li>
             </ol>
         </div>
     </section><!-- #page-title end -->

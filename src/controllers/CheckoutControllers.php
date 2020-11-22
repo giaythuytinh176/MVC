@@ -11,7 +11,7 @@ class CheckoutControllers
 
     public static function CalculateTotalCheckOut()
     {
-        if (!empty($_SESSION['cart_items'])) $totalPriceCart = \MVC\controllers\ProductControllers::CalculateTotalCart($_SESSION['cart_items']);
+        if (!empty($_SESSION['cart_items'])) $totalPriceCart = \MVC\controllers\ProductControllers::CalculateTotalCart();
         else $totalPriceCart = 0;
         $sout = '';
         $sout .= '<div class="table-responsive">
