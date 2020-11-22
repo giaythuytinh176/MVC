@@ -65,10 +65,11 @@ class CartControllers
                                     <h4>Shopping Cart</h4>
                                 </div>
                                 <div class="top-cart-items">';
-        foreach ($_SESSION['cart_items'] as $value) {
-            $items_detail = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
-            $amount = ((!empty($items_detail['discount']) && $items_detail['discount'] > 0) ? ($items_detail['price'] * (100 - $items_detail['discount']) / 100) : ($items_detail['price']));
-            $sout .= '
+        if (!empty($_SESSION['cart_items'])){
+            foreach ($_SESSION['cart_items'] as $value) {
+                $items_detail = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
+                $amount = ((!empty($items_detail['discount']) && $items_detail['discount'] > 0) ? ($items_detail['price'] * (100 - $items_detail['discount']) / 100) : ($items_detail['price']));
+                $sout .= '
                                     <div class="top-cart-item">
                                         <div class="top-cart-item-image">
                                             <a href="#"><img src="' . $items_detail['img_link'] . '" alt="' . $items_detail['ProductName'] . '"/></a>
@@ -82,8 +83,11 @@ class CartControllers
                                         </div>
                                     </div>
                                     ';
+            }
         }
-
+        else {
+            $sout .= "Cart is empty.";
+        }
 
         $sout .= '
                                 </div>

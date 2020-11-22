@@ -44,4 +44,7 @@ Các chứng năng đã hoàn thành:
 - Cập nhất chức năng checkout.
 - Fix Sub Category.
 - Thu gọn các file hiển thị cho vào blocks header.
+- Fix hiển thị giỏ hàng bên trên cùng phải và số tiền.
+-
+
 
