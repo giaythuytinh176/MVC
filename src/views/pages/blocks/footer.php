@@ -164,7 +164,7 @@
                                             <i class="icon-facebook"></i>
                                         </a>
                                         <a href="https://www.facebook.com/giaythuytinh176"><small
-                                                style="display: block; margin-top: 3px;"><strong>Like
+                                                    style="display: block; margin-top: 3px;"><strong>Like
                                                     us</strong><br>on Facebook</small></a>
                                     </div>
                                     <div class="col-6 col-md-12 col-lg-6 clearfix">
@@ -175,7 +175,7 @@
                                             <i class="icon-rss"></i>
                                         </a>
                                         <a href=""><small
-                                                style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to
+                                                    style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to
                                                 RSS Feeds</small></a>
                                     </div>
                                 </div>
@@ -200,13 +200,13 @@
             <div class="row col-mb-30">
 
                 <div class="col-md-6 text-center text-md-left">
-                    Copyrights &copy; 2020 All Rights Reserved by CodeGym Inc.<br>
+                    Copyrights &copy; 2019 - <?php echo date("Y"); ?> All Rights Reserved by CodeGym Inc.<br>
                     <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
                 </div>
 
                 <div class="col-md-6 text-center text-md-right">
                     <div class="d-flex justify-content-center justify-content-md-end">
-                        <a href="https://www.facebook.com/codegym.vn/" target="_blank"
+                        <a href="https://www.facebook.com/giaythuytinh176" target="_blank"
                            class="social-icon si-small si-borderless si-facebook">
                             <i class="icon-facebook"></i>
                             <i class="icon-facebook"></i>
@@ -216,8 +216,8 @@
                     <div class="clear"></div>
 
                     <i class="icon-envelope2"></i> giaythuytinh176@gmail.com <span class="middot">&middot;</span> <i
-                        class="icon-headphones"></i> +84-979-029-556 <span class="middot">&middot;</span> <i
-                        class="icon-skype2"></i> giaythuytinh176
+                            class="icon-headphones"></i> +84-979-029-556 <span class="middot">&middot;</span> <i
+                            class="icon-skype2"></i> giaythuytinh176
                 </div>
 
             </div>

@@ -2,197 +2,107 @@
 <html dir="ltr" lang="en-US">
 <head>
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="SemiColonWeb" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="SemiColonWeb"/>
 
-	<!-- Stylesheets
-	============================================= -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/style.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/magnific-popup.css" type="text/css" />
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
+          rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/bootstrap.css"
+          type="text/css"/>
+    <link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/style.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/dark.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/font-icons.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/animate.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/magnific-popup.css"
+          type="text/css"/>
 
-	<link rel="stylesheet" href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/custom.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/custom.css"
+          type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	<!-- Document Title
-	============================================= -->
-	<title>Shop Categories - Parallax | Canvas</title>
+    <!-- Document Title
+    ============================================= -->
+    <title>Shop Categories - Parallax | Canvas</title>
 
 </head>
 
 <body class="stretched">
 
-	<!-- Document Wrapper
-	============================================= -->
-	<div id="wrapper" class="clearfix">
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
 
-		<!-- Header
-		============================================= -->
-		<header id="header" class="full-header">
-			<div id="header-wrap">
-				<div class="container">
-					<div class="header-row">
+    <?php require_once "./src/views/pages/blocks/header.php"; ?>
 
-						<!-- Logo
-						============================================= -->
-						<div id="logo">
-							<a href="index.html" class="standard-logo" data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark.png"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo.png" alt="Canvas Logo"></a>
-							<a href="index.html" class="retina-logo" data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark@2x.png"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo@2x.png" alt="Canvas Logo"></a>
-						</div><!-- #logo end -->
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title">
 
-						<div class="header-misc">
+        <div class="container clearfix">
+            <h1>Shop Categories - Parallax</h1>
+            <span>Showcase of Our Shop Categories in Parallax Mode</span>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Categories</li>
+            </ol>
+        </div>
 
-							<!-- Top Search
-							============================================= -->
-							<div id="top-search" class="header-misc-icon">
-								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
-							</div><!-- #top-search end -->
+    </section><!-- #page-title end -->
 
-							<!-- Top Cart
-							============================================= -->
-							<div id="top-cart" class="header-misc-icon d-none d-sm-block">
-								<a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span class="top-cart-number">5</span></a>
-								<div class="top-cart-content">
-									<div class="top-cart-title">
-										<h4>Shopping Cart</h4>
-									</div>
-									<div class="top-cart-items">
-										<div class="top-cart-item">
-											<div class="top-cart-item-image">
-												<a href="#"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
-											</div>
-											<div class="top-cart-item-desc">
-												<div class="top-cart-item-desc-title">
-													<a href="#">Blue Round-Neck Tshirt with a Button</a>
-													<span class="top-cart-item-price d-block">$19.99</span>
-												</div>
-												<div class="top-cart-item-quantity">x 2</div>
-											</div>
-										</div>
-										<div class="top-cart-item">
-											<div class="top-cart-item-image">
-												<a href="#"><img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
-											</div>
-											<div class="top-cart-item-desc">
-												<div class="top-cart-item-desc-title">
-													<a href="#">Light Blue Denim Dress</a>
-													<span class="top-cart-item-price d-block">$24.99</span>
-												</div>
-												<div class="top-cart-item-quantity">x 3</div>
-											</div>
-										</div>
-									</div>
-									<div class="top-cart-action">
-										<span class="top-checkout-price">$114.95</span>
-										<a href="#" class="button button-3d button-small m-0">View Cart</a>
-									</div>
-								</div>
-							</div><!-- #top-cart end -->
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+        <div class="content-wrap">
 
-						</div>
+            <div id="shop-categories" class="header-stick footer-stick clearfix">
 
-						<div id="primary-menu-trigger">
-							<svg class="svg-trigger" viewBox="0 0 100 100"><path d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"></path><path d="m 30,50 h 40"></path><path d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"></path></svg>
-						</div>
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/15.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-						<!-- Primary Navigation
-						============================================= -->
-                        <nav class="primary-menu">
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/17.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-                            <ul class="menu-container">
-                                <li class="menu-item"><a class="menu-link"
-                                                         href="<?php echo \MVC\controllers\UrlControllers::url(); ?>">
-                                        <div><?php echo \MVC\libs\Languages::getLangData("Home"); ?></div>
-                                    </a>
-                                </li>
-                                <!-- Mega Menu
-                                ============================================= -->
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/6.jpg') no-repeat center center / cover;height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-                                <?php
-                                echo \MVC\controllers\CategoryControllers::printListCategoryIncludeSub();
-                                ?>
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/10.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-                                <li class="menu-item">
-                                    <a class="menu-link" href="<?php echo \MVC\controllers\UrlControllers::url("shop") ?>">
-                                        <div>Shop</div>
-                                    </a>
-                                    <ul class="sub-menu-container">
-                                        <li class="menu-item">
-                                            <a class="menu-link"
-                                               href="<?php echo \MVC\controllers\UrlControllers::url("shop/cart") ?>">
-                                                <div>Cart<</div>
-                                            </a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a class="menu-link"
-                                               href="<?php echo \MVC\controllers\UrlControllers::url("shop/checkout") ?>">
-                                                <div>Checkout</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item"><a class="menu-link" href="#">
-                                        <div>Contact</div>
-                                        <span>Get In Touch</span></a></li>
-                            </ul>
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/14.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-                        </nav><!-- #primary-menu end -->
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/19.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-						<form class="top-search-form" action="search.html" method="get">
-							<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.." autocomplete="off">
-						</form>
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/21.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-					</div>
-				</div>
-			</div>
-			<div class="header-wrap-clone"></div>
-		</header><!-- #header end -->
+                <div class="entry-image mb-0"
+                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/23.jpg') no-repeat center center / cover; height:600px;"
+                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
 
-		<!-- Page Title
-		============================================= -->
-		<section id="page-title">
+            </div>
+        </div>
+    </section><!-- #content end -->
 
-			<div class="container clearfix">
-				<h1>Shop Categories - Parallax</h1>
-				<span>Showcase of Our Shop Categories in Parallax Mode</span>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item"><a href="#">Shop</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Categories</li>
-				</ol>
-			</div>
-
-		</section><!-- #page-title end -->
-
-		<!-- Content
-		============================================= -->
-		<section id="content">
-			<div class="content-wrap">
-
-				<div id="shop-categories" class="header-stick footer-stick clearfix">
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/15.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/17.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/6.jpg') no-repeat center center / cover;height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/10.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/14.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/19.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/21.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-					<div class="entry-image mb-0" style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/23.jpg') no-repeat center center / cover; height:600px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-				</div>
-			</div>
-		</section><!-- #content end -->
-
-<?php require_once "./src/views/pages/blocks/footer.php"; ?>
+    <?php require_once "./src/views/pages/blocks/footer.php"; ?>

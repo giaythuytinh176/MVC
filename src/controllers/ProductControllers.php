@@ -27,7 +27,7 @@ class ProductControllers extends ProductModels
     public static function CalculateTotalCart($cart_items)
     {
         $totalPriceEachItem = 0;
-        foreach ($cart_items as $item){
+        foreach ($cart_items as $item) {
             $valFromDB = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($item['product_id']);
             $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
             $totalPriceEachItem += $amount * $item['qty'];
@@ -48,30 +48,25 @@ class ProductControllers extends ProductModels
                     $sout .= '<a href="#"><img src="' . $ImgList . '" alt="' . $value['ProductName'] . '"></a>';
                 }
             }
-            $sout .= '' . (($value['Stock'] < 1) ? '<div class="sale-flash badge badge-secondary p-2">Out of Stock</div>' : '') . '
-                                ' . (($value['Stock'] > 100) ? '<div class="sale-flash badge badge-success p-2 text-uppercase">Sale!</div>' : '') . '
-                                <div class="bg-overlay">
-                                    <div class="bg-overlay-content align-items-end justify-content-between"
-                                         data-hover-animate="fadeIn" data-hover-speed="400">';
-
-            $sout .= '<form class="cart mb-0" action="' . \MVC\controllers\UrlControllers::url() . '/shop/cart" method="post" enctype=\'multipart/form-data\'>
+            $sout .= '' . (($value['Stock'] < 1) ? '<div class="sale-flash badge badge-secondary p-2">' . \MVC\libs\Languages::getLangData("Out of Stock") . '</div>' : '') . '
+                                ' . (($value['Stock'] > 100) ? '<div class="sale-flash badge badge-success p-2 text-uppercase">Sale!</div>' : '') . '';
+            if ($value['Stock'] > 0) {
+                $sout .= '<div class="bg-overlay"><div class="bg-overlay-content align-items-end justify-content-between" data-hover-animate="fadeIn" data-hover-speed="400">';
+                $sout .= '<form class="cart mb-0" action="' . \MVC\controllers\UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
                         <input type="hidden" name="qty" value="1"/>
                         <input type="hidden" name="price" value="' . ((!empty($value['discount']) && $value['discount'] > 0) ? ($value['price'] * (100 - $value['discount']) / 100) : $value['price']) . '"/>
                         <input type="hidden" name="product_id" value="' . $value['product_id'] . '"/>
                         <input type="hidden" name="product_name" value="' . urlencode($value['ProductName']) . '"/>
                     <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
                 </form>';
-
 //            $sout .= '<a href="' . \MVC\controllers\UrlControllers::url() . '/shop/cart?product_id=' . $value['product_id'] . '&qty=1" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></a>';
-
-            $sout .= '<a href="' . \MVC\controllers\UrlControllers::url() . '/src/views/pages/index/include/ajax/shop-item.php" class="btn btn-dark" data-lightbox="ajax"><i
-                                                    class="icon-line-expand"></i></a>
-                                    </div>
-                                    <div class="bg-overlay-bg bg-transparent"></div>
-                                </div>
-                            </div>
+                $sout .= '<a href="' . \MVC\controllers\UrlControllers::url() . '/src/views/pages/index/include/ajax/shop-item.php" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
+                $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
+            }
+            $sout .= '     </div>
                             <div class="product-desc">
-                                <div class="product-title"><h3><a href="#">' . $value['ProductName'] . '</a></h3></div>
+                                <div class="product-title"><h3><a href="#">' . $value['ProductName'] . '</a></h3>
+                            </div>
                                 <div class="product-price">';
 
             $sout .= (!empty($value['discount']) && $value['discount'] > 0) ? '<del>' . number_format($value['price']) . ' ₫ </del><ins>' . number_format(($value['price'] * (100 - $value['discount']) / 100)) . '₫ </ins>' : '<ins>' . number_format($value['price']) . ' ₫ </ins>';

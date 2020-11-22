@@ -41,7 +41,7 @@ class CheckoutControllers
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <span class="amount color lead"><strong>' . number_format($totalPriceCart * 0.9) . ' đ</strong></span>
+                                        <span class="amount color lead"><strong>' . number_format($totalPriceCart) . ' đ</strong></span>
                                     </td>
                                 </tr>
                                 </tbody>

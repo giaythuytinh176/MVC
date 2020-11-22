@@ -5,7 +5,7 @@ namespace MVC\controllers;
 class CartControllers
 {
     protected $render;
-    
+
     public function __construct()
     {
         $this->render = new renderControllers();
@@ -40,6 +40,63 @@ class CartControllers
             $_SESSION['cart_items'] = $_REQUEST['cart_items'];
             echo '<div class="col-lg-6" id="hideUpdatedCart"><h3>Updated items successfully.</h3></div>';
         }
+    }
+
+    public function ShowCartProductOnRightTop()
+    {
+        if (!empty($_SESSION['cart_items'])) $totalPriceCart = \MVC\controllers\ProductControllers::CalculateTotalCart($_SESSION['cart_items']);
+        else $totalPriceCart = 0;
+        $sout = '';
+        $sout .= '<div class="header-misc">
+                        <!-- Top Search
+                        ============================================= -->
+                        <div id="top-search" class="header-misc-icon">
+                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+                                        class="icon-line-cross"></i></a>
+                        </div><!-- #top-search end -->
+
+                        <!-- Top Cart
+                        ============================================= -->
+                        <div id="top-cart" class="header-misc-icon d-none d-sm-block">
+                            <a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span
+                                        class="top-cart-number">' . count($_SESSION['cart_items']) . '</span></a>
+                            <div class="top-cart-content">
+                                <div class="top-cart-title">
+                                    <h4>Shopping Cart</h4>
+                                </div>
+                                <div class="top-cart-items">';
+        foreach ($_SESSION['cart_items'] as $value) {
+            $items_detail = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
+            $amount = ((!empty($items_detail['discount']) && $items_detail['discount'] > 0) ? ($items_detail['price'] * (100 - $items_detail['discount']) / 100) : ($items_detail['price']));
+            $sout .= '
+                                    <div class="top-cart-item">
+                                        <div class="top-cart-item-image">
+                                            <a href="#"><img src="' . $items_detail['img_link'] . '" alt="' . $items_detail['ProductName'] . '"/></a>
+                                        </div>
+                                        <div class="top-cart-item-desc">
+                                            <div class="top-cart-item-desc-title">
+                                                <a href="#">' . $items_detail['ProductName'] . '</a>
+                                                <span class="top-cart-item-price d-block">' . number_format($amount) . ' đ</span>
+                                            </div>
+                                            <div class="top-cart-item-quantity">x ' . $value['qty'] . '</div>
+                                        </div>
+                                    </div>
+                                    ';
+        }
+
+
+        $sout .= '
+                                </div>
+                                <div class="top-cart-action">
+                                    <span class="top-checkout-price">' . number_format($totalPriceCart) . ' đ</span>
+                                    <a href="' . \MVC\controllers\UrlControllers::url("shop/cart") . '" class="button button-3d button-small m-0">View Cart</a>
+                                </div>
+                            </div>
+                        </div><!-- #top-cart end -->
+
+                    </div>';
+
+        return $sout;
     }
 
     public function ShowCartProductFromSession()
@@ -417,12 +474,17 @@ class CartControllers
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <span class="amount color lead"><strong>' . number_format($totalPriceCart * 0.9) . ' đ</strong></span>
+                                        <span class="amount color lead"><strong>' . number_format($totalPriceCart) . ' đ</strong></span>
                                     </td>
                                 </tr>
-                                       <tr class="cart_item"> <td><strong>Discount</strong></td>
-                                       <td><span class="amount color lead"><strong>10%</strong></span></td>
-                                </tr>
+                                      <tr class="cart_item">
+                                           <td>
+                                           <strong>Discount</strong>
+                                           </td>
+                                       <td>
+                                       <span class="amount color lead"><strong>10%</strong></span>
+                                       </td>
+                                     </tr>
                                 </tbody>
 
                             </table>
@@ -430,8 +492,6 @@ class CartControllers
                     </div>
                 </div>';
         $sout .= "</form>";
-
-
         return $sout;
     }
 

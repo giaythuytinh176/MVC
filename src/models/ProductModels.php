@@ -8,7 +8,6 @@ use MVC\libs\Database;
 class ProductModels
 {
     private $db;
-    private $action;
 
     public function __construct()
     {
