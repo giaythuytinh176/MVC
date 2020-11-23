@@ -503,7 +503,7 @@ class ProductControllers extends ProductModels
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][product_name]" value="' . urlencode($value['ProductName']) . '"/>
                     <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
                 </form>';
-                $sout .= '<a href="' . \MVC\controllers\UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php") . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
+                $sout .= '<a href="' . \MVC\controllers\UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php?product_id=" . $value['product_id']) . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
                 $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
             }
             $sout .= '     </div>

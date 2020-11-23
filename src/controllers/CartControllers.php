@@ -156,7 +156,7 @@ class CartControllers
                         <td class="cart-product-thumbnail">
                             <a href="#"><img width="64" height="64"
                                              src="' . $valFromDB['img_link'] . '"
-                                             alt="Pink Printed Dress"></a>
+                                             alt="' . $valFromDB['ProductName'] . '"></a>
                         </td>
 
                         <td class="cart-product-name">

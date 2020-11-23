@@ -2,6 +2,11 @@
 
 require_once realpath("../../../../../../vendor/autoload.php");
 
+if (!empty($_GET['product_id'])) {
+    $product_id = $_GET['product_id'];
+    $valFromDB = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($product_id);
+}
+
 ?>
 
 <div class="single-product shop-quick-view-ajax">
@@ -18,21 +23,13 @@ require_once realpath("../../../../../../vendor/autoload.php");
                     <div class="fslider" data-pagi="false">
                         <div class="flexslider">
                             <div class="slider-wrap">
-                                <div class="slide"><a
-                                            href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3.jpg"
-                                            title="Pink Printed Dress - Front View"><img
-                                                src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3.jpg"
-                                                alt="Pink Printed Dress"></a></div>
-                                <div class="slide"><a
-                                            href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
-                                            title="Pink Printed Dress - Side View"><img
-                                                src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
-                                                alt="Pink Printed Dress"></a></div>
-                                <div class="slide"><a
-                                            href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
-                                            title="Pink Printed Dress - Back View"><img
-                                                src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
-                                                alt="Pink Printed Dress"></a></div>
+                                <?php
+                                foreach (explode("\r\n", $valFromDB['img_list']) as $value) {
+                                    echo '<div class="slide">
+                                        <a href="' . $value . '" title="' . $valFromDB['ProductName'] . ' - Front View">
+                                        <img src="' . $value . '" alt="' . $valFromDB['ProductName'] . '"></a></div>';
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -56,13 +53,21 @@ require_once realpath("../../../../../../vendor/autoload.php");
 
                 <!-- Product Single - Quantity & Cart Button
                 ============================================= -->
-                <form class="cart mb-0" method="post" enctype='multipart/form-data'>
+                <form class="cart mb-0" action="<?php echo \MVC\controllers\UrlControllers::url("shop/cart"); ?>"
+                      method="post" enctype='multipart/form-data'>
                     <div class="quantity">
                         <input type="button" value="-" class="minus">
-                        <input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
+                        <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="qty"/>
+                        <input type="hidden" name="qty" value="1"/>
+                        <?php
+                        echo '<input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][qty]" value="1"/>
+                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][price]" value="' . ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : $valFromDB['price']) . '"/>
+                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][product_id]" value="' . $valFromDB['product_id'] . '"/>
+                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][product_name]" value="' . urlencode($valFromDB['ProductName']) . '"/>';
+                        ?>
                         <input type="button" value="+" class="plus">
                     </div>
-                    <button type="submit" class="add-to-cart button m-0">Add to cart</button>
+                    <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>
                 </form><!-- Product Single - Quantity & Cart Button End -->
 
                 <div class="clear"></div>
