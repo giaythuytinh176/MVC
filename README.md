@@ -49,7 +49,12 @@ Các chứng năng đã hoàn thành:
 
 /* Hoàn thành date 23/11/2020 */
 
-- Cần hoàn thiện chức năng xem sản phẩm chi tiết.
+- Đang hoàn thiện chức năng xem sản phẩm chi tiết.
+
+
+/* Hoàn thành date 24/11/2020 */
+
+- .
 
 
 

@@ -74,9 +74,9 @@ class CategoryModels
         }
     }
 
-    public function getAllCategorybyParentID($action)
+    public function getAllCategorybyParentID($parentID)
     {
-        $sql = "SELECT * FROM product_category WHERE parent_id='$action'";
+        $sql = "SELECT * FROM product_category WHERE parent_id='$parentID'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
         if (empty($data)) {

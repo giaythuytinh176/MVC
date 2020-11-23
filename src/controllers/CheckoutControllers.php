@@ -4,7 +4,7 @@ namespace MVC\controllers;
 
 class CheckoutControllers
 {
-    public function checkoutView($params)
+    public function checkoutView()
     {
         (new renderControllers())->view("order/checkout");
     }

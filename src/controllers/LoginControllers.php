@@ -11,10 +11,10 @@ class LoginControllers extends renderControllers
     {
         $this->logOut($params);
         if (UserAccess::isLogin() == true) {
-            header("Location: " . \MVC\controllers\UrlControllers::url("homepage"));
+            header("Location: " . \MVC\controllers\UrlControllers::url());
         }
         if (!empty($_POST['register-form-submit']) && $_POST['register-form-submit'] == "register") {
-            $this->regAcc($params);
+            $this->regAcc();
         } elseif (!empty($_POST['login-form-submit']) && $_POST['login-form-submit'] == "login") {
             $this->logAcc($params);
         } else {
@@ -37,7 +37,7 @@ class LoginControllers extends renderControllers
         }
     }
 
-    public function regAcc($params): void
+    public function regAcc(): void
     {
         $checkUSer = \MVC\libs\CreateUser::checkCreateUser();
         if (!empty($checkUSer['errors'])) {

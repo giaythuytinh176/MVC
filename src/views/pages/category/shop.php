@@ -51,14 +51,16 @@
     <section id="page-title">
         <div class="container clearfix"><?php
             echo '<h1>' . $data[1] . '</h1>';
-            $title = (!empty((new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title']) ? (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['title'] : ((!empty((new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0])['title'])) ? (new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0])['title'] : "Not found."));
+            $DataTitle = (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0]);
+            $DataTitleSub = (new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0]);
+            $title = (!empty($DataTitle['title']) ? $DataTitle['title'] : ((!empty($DataTitleSub['title'])) ? $DataTitleSub['title'] : "Not found."));
             ?>
             <span><?php echo $title; ?></span>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Category</a></li>
                 <li class="breadcrumb-item"><a
-                            href="<?php str_replace("/" . (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0])['code'], "", \MVC\controllers\UrlControllers::url($data[1])) ?>"><?php echo strtoupper($data[1]); ?></a>
+                            href="<?php str_replace("/" . $DataTitle['code'], "", \MVC\controllers\UrlControllers::url($data[1])) ?>"><?php echo ucfirst($data[1]); ?></a>
                 </li>
                 <li class="breadcrumb-item active"
                     aria-current="page"><?php echo $title; ?></li>

@@ -11,12 +11,12 @@ class CartControllers
         $this->render = new renderControllers();
     }
 
-    public function cartView($params)
+    public function cartView()
     {
         $this->render->view("order/cart");
     }
 
-    public function removeItems($action, $params)
+    public function removeItems($params)
     {
         foreach ($_SESSION['cart_items'] as $key => $val) {
             if ($val['product_id'] === $params[0]) {
@@ -26,20 +26,47 @@ class CartControllers
         }
         $_SESSION['cart_items'] = array_values($_SESSION['cart_items']);
         $message = '<div class="col-lg-6"><h3>Removed item successfully.</h3></div>';
-        $this->render->view("order/cart", [$action, $params, $message]);
+        $this->render->view("order/cart", [[], $params, $message]);
     }
 
-    public function AddProductToCart($action, $params, $req)
+    public function AddProductToCart($req)
     {
-        $this->render->view("order/cart", ["", $action, $params, $req]);
+        $this->render->view("order/cart", ["", "", "", $req]);
     }
 
     public static function UpdateQuantityCart()
     {
         if (!empty($_REQUEST['uc']) && $_REQUEST['uc'] == 'Update Cart') {
-            $_SESSION['cart_items'] = $_REQUEST['cart_items'];
-            echo '<div class="col-lg-6" id="hideUpdatedCart"><h3>Updated items successfully.</h3></div>';
+            if ($_SESSION['cart_items'] == $_REQUEST['cart_items']) {
+                echo '<div class="col-lg-6" id="hideUpdatedCart"><h3>Nothing to update.</h3></div>';
+            } else {
+                echo '<div class="col-lg-6" id="hideUpdatedCart"><h3>Updated items successfully.</h3></div>';
+                $_SESSION['cart_items'] = $_REQUEST['cart_items'];
+            }
         }
+    }
+
+    public function ShowCartProduct($items)
+    {
+        if (empty($_SESSION['cart_items'])) {// Neu chua co session thi them items vao session do luon
+            $_SESSION = $items;
+        } else {
+            foreach ($_SESSION['cart_items'] as $key_items => $cart_items) {
+                if (!empty($cart_items['product_id']) && !empty($items['cart_items'][$key_items]['product_id']) && $cart_items['product_id'] === $items['cart_items'][$key_items]['product_id']) {
+                    $items["cart_items"][$key_items]['qty'] = $cart_items['qty'] + $items['cart_items'][$key_items]['qty'];
+                    $_SESSION["cart_items"][$key_items] = $items["cart_items"][$key_items];
+                    break;
+                }// neu ton tai product_id trong session roi thi + them so san pham
+            }
+            foreach ($items['cart_items'] as $key => $value) {
+                if (empty($_SESSION['cart_items'][$key]) == true) {//neu chua co product_id thi them product_id nay vao
+                    $_SESSION['cart_items'][$key] = $value;
+                    break;
+                }
+            }
+        }
+        $sout = $this->ShowCartProductFromSession();
+        return $sout;
     }
 
     public function ShowCartProductOnRightTop()
@@ -144,9 +171,10 @@ class CartControllers
                             <div class="quantity">
                                 <input type="button" value="-" class="minus">
                                 <input type="text" name="quantity-' . $item['product_id'] . '" value="' . $item['qty'] . '" class="qty"/>
-                                <input type="hidden" name="cart_items[' . $keyItems . '][qty]" value="' . $item['qty'] . '" class="qty"/>
-                                <input type="hidden" name="cart_items[' . $keyItems . '][product_id]" value="' . $item['product_id'] . '">
-                                <input type="hidden" name="cart_items[' . $keyItems . '][price]" value="' . $item['price'] . '">
+                                <input type="hidden" name="cart_items[' . $item['product_id'] . '][qty]" value="' . $item['qty'] . '" class="qty"/>
+                                <input type="hidden" name="cart_items[' . $item['product_id'] . '][product_id]" value="' . $item['product_id'] . '">
+                                <input type="hidden" name="cart_items[' . $item['product_id'] . '][price]" value="' . $item['price'] . '">
+                                <input type="hidden" name="cart_items[' . $item['product_id'] . '][product_name]" value="' . urlencode($valFromDB['ProductName']) . '">
                                 <input type="button" value="+" class="plus">
                             </div>
                         </td>
@@ -436,7 +464,6 @@ class CartControllers
                             <div class="col-6 form-group">
                                 <input type="text" class="sm-form-control" placeholder="State / Country"/>
                             </div>
-
                             <div class="col-6 form-group">
                                 <input type="text" class="sm-form-control" placeholder="PostCode / Zip"/>
                             </div>
@@ -445,10 +472,8 @@ class CartControllers
                             </div>
                         </form>
                     </div>
-
                     <div class="col-lg-6">
                         <h4>Cart Totals</h4>
-
                         <div class="table-responsive">
                             <table class="table cart cart-totals">
                                 <tbody>
@@ -456,7 +481,6 @@ class CartControllers
                                     <td class="cart-product-name">
                                         <strong>Cart Subtotal</strong>
                                     </td>
-
                                     <td class="cart-product-name">
                                         <span class="amount">' . number_format($totalPriceCart) . ' đ</span>
                                     </td>
@@ -465,7 +489,6 @@ class CartControllers
                                     <td class="cart-product-name">
                                         <strong>Shipping</strong>
                                     </td>
-
                                     <td class="cart-product-name">
                                         <span class="amount">Free Delivery</span>
                                     </td>
@@ -477,7 +500,6 @@ class CartControllers
                                     <td class="cart-product-name">
                                         <strong>Total</strong>
                                     </td>
-
                                     <td class="cart-product-name">
                                         <span class="amount color lead"><strong>' . number_format($totalPriceCart * 0.9) . ' đ</strong></span>
                                     </td>
@@ -497,16 +519,13 @@ class CartControllers
                                     <td class="cart-product-name">
                                         <strong>Total</strong>
                                     </td>
-
                                     <td class="cart-product-name">
                                         <span class="amount color lead"><strong>' . number_format($totalPriceCart) . ' đ</strong></span>
                                     </td>
                                 </tr>';
         }
         $sout .= '
-
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -514,28 +533,6 @@ class CartControllers
         $sout .= "</form>";
         return $sout;
     }
-
 //total = total prices of products in cart (with tax) + shipping cost + fees + tax on fees - discount
 //subtotal = total prices of products in cart (with tax)
-
-    public function ShowCartProduct($data)
-    {
-        $items = ["product_id" => $data[3]['product_id'], 'price' => $data[3]['price'], 'qty' => $data[3]['qty']];
-        if (empty($_SESSION['cart_items']) || empty($_SESSION['cart_items'][0])) {
-            $_SESSION["cart_items"][] = $items;
-        } else {
-            foreach ($_SESSION['cart_items'] as $key_items => $cart_items) {
-                if (!empty($cart_items['product_id']) && $cart_items['product_id'] === $data[3]['product_id']) {
-                    $_SESSION["cart_items"][$key_items] = ["product_id" => $data[3]['product_id'], 'price' => $data[3]['price'], 'qty' => $cart_items['qty'] + $data[3]['qty']];
-                    break;
-                } elseif (empty($_SESSION['cart_items'][$key_items + 1])) {
-                    $_SESSION["cart_items"][] = $items;
-                    //$_SESSION["cart_items"] = array_merge($_SESSION["cart_items"], $items);//other way
-                }
-            }
-        }
-
-        $sout = $this->ShowCartProductFromSession();
-        return $sout;
-    }
 }

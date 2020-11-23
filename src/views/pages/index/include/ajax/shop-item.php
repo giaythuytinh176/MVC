@@ -1,8 +1,9 @@
 <?php
 
-require_once '/Users/letam/Library/Mobile Documents/com~apple~CloudDocs/webroot/MVC_shop_test/vendor/autoload.php';
+require_once realpath("../../../../../../vendor/autoload.php");
 
 ?>
+
 <div class="single-product shop-quick-view-ajax">
 
     <div class="ajax-modal-title">
@@ -18,19 +19,19 @@ require_once '/Users/letam/Library/Mobile Documents/com~apple~CloudDocs/webroot/
                         <div class="flexslider">
                             <div class="slider-wrap">
                                 <div class="slide"><a
-                                            href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3.jpg"
+                                            href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3.jpg"
                                             title="Pink Printed Dress - Front View"><img
-                                                src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3.jpg"
+                                                src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3.jpg"
                                                 alt="Pink Printed Dress"></a></div>
                                 <div class="slide"><a
-                                            href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
+                                            href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
                                             title="Pink Printed Dress - Side View"><img
-                                                src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
+                                                src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-1.jpg"
                                                 alt="Pink Printed Dress"></a></div>
                                 <div class="slide"><a
-                                            href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
+                                            href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
                                             title="Pink Printed Dress - Back View"><img
-                                                src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
+                                                src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/views/pages/index/images/shop/dress/3-2.jpg"
                                                 alt="Pink Printed Dress"></a></div>
                             </div>
                         </div>
@@ -55,10 +56,10 @@ require_once '/Users/letam/Library/Mobile Documents/com~apple~CloudDocs/webroot/
 
                 <!-- Product Single - Quantity & Cart Button
                 ============================================= -->
-                <form class="cart mb-0" action="<?php echo \MVC\controllers\UrlControllers::url() ?>/shop/cart" method="post" enctype='multipart/form-data'>
+                <form class="cart mb-0" method="post" enctype='multipart/form-data'>
                     <div class="quantity">
                         <input type="button" value="-" class="minus">
-                        <input type="text" step="1" min="1" name="quantity" value="1" title="Qty" class="qty" size="4"/>
+                        <input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
                         <input type="button" value="+" class="plus">
                     </div>
                     <button type="submit" class="add-to-cart button m-0">Add to cart</button>

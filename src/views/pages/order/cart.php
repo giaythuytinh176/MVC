@@ -73,8 +73,8 @@
                 }
                 \MVC\controllers\CartControllers::UpdateQuantityCart();
                 if (!empty($data[3])) {
-                    echo (new \MVC\controllers\CartControllers())->ShowCartProduct($data);
-                } elseif (!empty($_SESSION['cart_items'][0])) {
+                    echo (new \MVC\controllers\CartControllers())->ShowCartProduct($data[3]);
+                } elseif (!empty($_SESSION['cart_items'])) {
                     echo (new \MVC\controllers\CartControllers())->ShowCartProductFromSession();
                 } else {
                     echo '<div class="col-lg-6"><h1>Cart is empty.</h1></div>';

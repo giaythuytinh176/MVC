@@ -38,17 +38,17 @@ class UrlControllers
                         break;
                     case "cart":
                         if (!empty($this->params) && is_numeric($this->params[0]) == true && !empty($_SESSION['cart_items'])) {
-                            (new CartControllers())->removeItems($this->action, $this->params);
+                            (new CartControllers())->removeItems($this->params);
                         }
-                        if (empty($_REQUEST['btn']) || empty($_REQUEST['qty']) || empty($_REQUEST['product_id']) || empty($_REQUEST['price'])) {
-                            (new CartControllers())->cartView($this->params);
+                        if (empty($_REQUEST['btn']) || empty($_REQUEST['qty'])) {
+                            (new CartControllers())->cartView();
                             break;
-                        } elseif (!empty($_REQUEST['btn']) && !empty($_REQUEST['qty']) && !empty($_REQUEST['product_id']) && !empty($_REQUEST['price'])) {
-                            (new CartControllers())->AddProductToCart($this->action, $this->params, $_REQUEST);
+                        } elseif (!empty($_REQUEST['btn']) && !empty($_REQUEST['qty'])) {
+                            (new CartControllers())->AddProductToCart($_REQUEST);
                             break;
                         }
                     case "checkout":
-                        (new CheckoutControllers())->checkoutView($this->params);
+                        (new CheckoutControllers())->checkoutView();
                         break;
                     default:
                         $this->render->view("category/shop");

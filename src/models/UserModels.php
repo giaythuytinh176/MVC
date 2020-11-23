@@ -2,7 +2,7 @@
 
 namespace MVC\Models;
 
-use MVC\controllers\ToolControllers;
+use MVC\libs\Database;
 
 class UserModels
 {
@@ -10,7 +10,7 @@ class UserModels
 
     public function __construct()
     {
-        $this->db = \MVC\libs\Database::getInstance();
+        $this->db = Database::getInstance();
     }
 
     public function getUserColumModels()

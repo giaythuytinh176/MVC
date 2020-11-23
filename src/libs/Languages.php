@@ -11,7 +11,6 @@ class Languages
         if (isset($lang)) {
             $_SESSION['lang'] = $lang;
             header('Location:' . UrlControllers::url());
-            exit();
         }
     }
 
