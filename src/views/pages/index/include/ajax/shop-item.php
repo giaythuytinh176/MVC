@@ -12,7 +12,7 @@ if (!empty($_GET['product_id'])) {
 <div class="single-product shop-quick-view-ajax">
 
     <div class="ajax-modal-title">
-        <h2>Pink Printed Dress</h2>
+        <h2><?php echo $valFromDB['ProductName'];?></h2>
     </div>
 
     <div class="product modal-padding">
