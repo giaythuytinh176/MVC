@@ -49,7 +49,7 @@ class CartControllers
     public function ShowCartProduct($items)
     {
         if (empty($_SESSION['cart_items'])) {// Neu chua co session thi them items vao session do luon
-            $_SESSION = $items;
+            $_SESSION['cart_items'] = $items['cart_items'];
         } else {
             foreach ($_SESSION['cart_items'] as $key_items => $cart_items) {
                 if (!empty($cart_items['product_id']) && !empty($items['cart_items'][$key_items]['product_id']) && $cart_items['product_id'] === $items['cart_items'][$key_items]['product_id']) {
