@@ -118,11 +118,7 @@ class ProductControllers extends ProductModels
 
                                 <!-- Product Single - Short Description
                                 ============================================= -->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero velit id eaque ex
-                                    quae laboriosam nulla optio doloribus! Perspiciatis, libero, neque, perferendis at
-                                    nisi optio dolor!</p>
-                                <p>Perspiciatis ad eveniet ea quasi debitis quos laborum eum reprehenderit eaque
-                                    explicabo assumenda rem modi.</p>
+                                ' . $data[0]['cart_description'] . '
                                 <ul class="iconlist">
                                     <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
                                     <li><i class="icon-caret-right"></i> Lots of Size Options</li>
@@ -201,7 +197,7 @@ class ProductControllers extends ProductModels
                                     </div>
                                     <div class="fbox-content fbox-content-sm">
                                         <h3>Payment Options</h3>
-                                        <p class="mt-0">We accept Visa, MasterCard and American Express.</p>
+                                        <p class="mt-0">We accept Nganluong.vn, Vietcombank and Paypal.</p>
                                     </div>
                                 </div>
 
@@ -241,11 +237,7 @@ class ProductControllers extends ProductModels
                                     <div class="tab-container">
 
                                         <div class="tab-content clearfix" id="tabs-1">
-                                            <p>Pink printed dress, woven, round neck with a keyhole and buttoned closure
-                                                at the back, sleeveless, concealed zip up at left side seam, belt loops
-                                                along waist with slight gathers beneath, brand appliqu?? above left
-                                                front hem, has an attached lining.</p>
-                                            Comes with a white, slim synthetic belt that has a tang clasp.
+                                            ' . $data[0]['description'] . '
                                         </div>
                                         <div class="tab-content clearfix" id="tabs-2">
 
@@ -486,11 +478,14 @@ class ProductControllers extends ProductModels
                         <div class="grid-inner">
                             <div class="product-image">';
 
-            foreach (explode("\r\n", $value['img_list']) as $ImgList) {
-                if (!empty($ImgList)) {
-                    $sout .= '<a href="#"><img src="' . $ImgList . '" alt="' . $value['ProductName'] . '"></a>';
-                }
-            }
+//            foreach (explode("\r\n", $value['img_list']) as $ImgList) {
+//                if (!empty($ImgList)) {
+//                    $sout .= '<a href="#"><img src="' . $ImgList . '" alt="' . $value['ProductName'] . '"></a>';
+//                }
+//            }
+            // chi lay 2 anh ko bi loi
+            if (!empty(explode("\r\n", $value['img_list'])[0])) $sout .= '<a href="#"><img src="' . explode("\r\n", $value['img_list'])[0] . '" alt="' . $value['ProductName'] . '"></a>';
+            if (!empty(explode("\r\n", $value['img_list'])[1])) $sout .= '<a href="#"><img src="' . explode("\r\n", $value['img_list'])[1] . '" alt="' . $value['ProductName'] . '"></a>';
             $sout .= '' . (($value['Stock'] < 1) ? '<div class="sale-flash badge badge-secondary p-2">' . \MVC\libs\Languages::getLangData("Out of Stock") . '</div>' : '') . '
                                 ' . (($value['Stock'] > 100) ? '<div class="sale-flash badge badge-success p-2 text-uppercase">Sale!</div>' : '') . '';
             if ($value['Stock'] > 0) {

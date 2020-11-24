@@ -40,7 +40,8 @@ class ProductModels
 
     public function getProductDetailbyID($id)
     {
-        $sql = "SELECT * FROM product WHERE product_id='$id'";
+        //$sql = "SELECT * FROM product WHERE product_id='$id'";
+        $sql = "SELECT * FROM product p JOIN product_category pc on pc.category_id = p.category_id JOIN parent_category c on c.parent_id = pc.parent_id WHERE p.product_id='$id'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetch($this->db::FETCH_ASSOC);
         if (empty($data)) {
