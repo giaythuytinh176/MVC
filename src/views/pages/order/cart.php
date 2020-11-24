@@ -72,6 +72,7 @@
                     \MVC\controllers\RenderControllers::redirectAfterSecondPage("shop/cart", 3);
                 }
                 \MVC\controllers\CartControllers::UpdateQuantityCart();
+                \MVC\controllers\CartControllers::DeleteCart();
                 if (!empty($data[3])) {
                     echo (new \MVC\controllers\CartControllers())->ShowCartProduct($data[3]);
                 } elseif (!empty($_SESSION['cart_items'])) {

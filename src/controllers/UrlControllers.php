@@ -87,8 +87,9 @@ class UrlControllers
                     default:
                         $this->render->redirectPage();
                 }
-            case "api"://Hoan thien cuoi
-
+            case "api":
+                \MVC\controllers\APIControllers::api($this->action, $this->params);
+                break;
 
             case "homepage":
                 $this->render->homepage();

@@ -34,6 +34,14 @@ class CartControllers
         $this->render->view("order/cart", ["", "", "", $req]);
     }
 
+    public static function DeleteCart()
+    {
+        if (!empty($_POST['dc']) && $_POST['dc'] == 'Delete Cart') {
+            unset($_SESSION['cart_items']);
+            echo '<div class="col-lg-6" id="hideUpdatedCart"><h3>Deleted items successfully.</h3></div>';
+        }
+    }
+
     public static function UpdateQuantityCart()
     {
         if (!empty($_REQUEST['uc']) && $_REQUEST['uc'] == 'Update Cart') {
@@ -200,6 +208,7 @@ class CartControllers
                                     </div>
                                 </div>
                                 <div class="col-lg-auto pr-lg-0">
+                                    <input type="submit" name="dc" class="btn btn-danger" onclick="return confirm(\'Are you sure you want to delete this?\');" value="Delete Cart">
                                     <input type="submit" name="uc" class="button button-3d m-0" value="Update Cart">
                                     <a href="' . \MVC\controllers\UrlControllers::url("shop/checkout") . '" class="button button-3d mt-2 mt-sm-0 mr-0">Proceed to Checkout</a>
                                 </div>

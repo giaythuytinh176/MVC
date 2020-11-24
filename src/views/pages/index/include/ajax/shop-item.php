@@ -99,7 +99,7 @@ if (!empty($_GET['product_id'])) {
                             </button>
                         </span>
                         <span class="input-group-btn">
-                                 <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>
+                                 &nbsp; <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>
                         </span>
                      </div>
                 </form>
@@ -203,3 +203,20 @@ if (!empty($_GET['product_id'])) {
         }
     });
 </script>
+
+<!--<style>-->
+<!--    .qty {-->
+<!--        width: 25%;-->
+<!--        height: calc(1.5em + 0.75rem + 2px);-->
+<!--        padding: 0.375rem 0.85rem;-->
+<!--        font-size: 1rem;-->
+<!--        font-weight: 400;-->
+<!--        line-height: 1.5;-->
+<!--        color: #495057;-->
+<!--        background-color: #fff;-->
+<!--        background-clip: padding-box;-->
+<!--        border: 1px solid #ced4da;-->
+<!--        border-radius: 0.25rem;-->
+<!--    }-->
+<!---->
+<!--</style>-->
