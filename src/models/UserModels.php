@@ -25,6 +25,18 @@ class UserModels
         return $arr;
     }
 
+    public function getAllInfoOfOneUserbyPwd($password)
+    {
+        $sql = "SELECT * FROM User WHERE password='" . $password . "' LIMIT 1";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => ["Username not found."]];
+        } else {
+            return $data;
+        }
+    }
+
     public function getPasswordHashFromUsername($username)
     {
         $sql = "SELECT * FROM User WHERE username='" . $username . "' LIMIT 1";

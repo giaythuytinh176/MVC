@@ -34,6 +34,27 @@ class UserAccess extends UserModels
         }
     }
 
+    public static function isAdmin()
+    {
+        $isLogined = Session::get('loggedIn');
+        $isLoginU = Session::get('username');
+        $isLoginP = Session::get('password');
+        if (!empty($_SESSION['AdminLogged']) && $_SESSION['AdminLogged'] == $isLoginP) {
+            return true;
+        }
+        if (empty($_SESSION['AdminLogged'])) {
+            $password = !empty($isLoginP) ? $isLoginP : $_COOKIE['password'];
+            $dataUser = (new self)->getAllInfoOfOneUserbyPwd($password);
+            if (!empty($dataUser['errors'])) {
+                return false;
+            }
+            if ($dataUser['is_admin'] == 1) {
+                $_SESSION['AdminLogged'] = $isLoginP;
+                return true;
+            }
+        }
+    }
+
     public static function isLogin()
     {
         $isLogined = Session::get('loggedIn');

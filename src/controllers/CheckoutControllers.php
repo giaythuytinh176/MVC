@@ -62,10 +62,11 @@ class CheckoutControllers
                                 </tr>';
 
         $sout .= '</thead><tbody>';
-        foreach ($_SESSION['cart_items'] as $value) {
-            $item = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
-            $amount = ((!empty($item['discount']) && $item['discount'] > 0) ? ($item['price'] * (100 - $item['discount']) / 100) : ($item['price']));
-            $sout .= '<tr class="cart_item">
+        if (!empty($_SESSION['cart_items'])) {
+            foreach ($_SESSION['cart_items'] as $value) {
+                $item = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
+                $amount = ((!empty($item['discount']) && $item['discount'] > 0) ? ($item['price'] * (100 - $item['discount']) / 100) : ($item['price']));
+                $sout .= '<tr class="cart_item">
                                     <td class="cart-product-thumbnail">
                                         <a href="#"><img width="64" height="64"
                                                          src="' . $item['img_link'] . '"
@@ -86,6 +87,12 @@ class CheckoutControllers
                                         <span class="amount">' . number_format($amount * $value['qty']) . ' đ</span>
                                     </td>
                                 </tr>';
+            }
+        }
+        else {
+            $sout .= '<tr class="cart_item">
+                     <td class="cart-product-name" colspan="4">Cart is empty.</td>
+                     </tr>';
         }
         $sout .= '</tbody></table>';
         echo $sout;

@@ -22,6 +22,24 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'MVC\\controllers\\APIControllers' => __DIR__ . '/../..' . '/src/controllers/APIControllers.php',
+        'MVC\\controllers\\CartControllers' => __DIR__ . '/../..' . '/src/controllers/CartControllers.php',
+        'MVC\\controllers\\CategoryControllers' => __DIR__ . '/../..' . '/src/controllers/CategoryControllers.php',
+        'MVC\\controllers\\CheckoutControllers' => __DIR__ . '/../..' . '/src/controllers/CheckoutControllers.php',
+        'MVC\\controllers\\LoginControllers' => __DIR__ . '/../..' . '/src/controllers/LoginControllers.php',
+        'MVC\\controllers\\ProductControllers' => __DIR__ . '/../..' . '/src/controllers/ProductControllers.php',
+        'MVC\\controllers\\ToolControllers' => __DIR__ . '/../..' . '/src/controllers/ToolControllers.php',
+        'MVC\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/controllers/UrlControllers.php',
+        'MVC\\libs\\Cookie' => __DIR__ . '/../..' . '/src/libs/Cookie.php',
+        'MVC\\libs\\CreateUser' => __DIR__ . '/../..' . '/src/libs/CreateUser.php',
+        'MVC\\libs\\Database' => __DIR__ . '/../..' . '/src/libs/Database.php',
+        'MVC\\libs\\HashPassword' => __DIR__ . '/../..' . '/src/libs/HashPassword.php',
+        'MVC\\libs\\IP' => __DIR__ . '/../..' . '/src/libs/IP.php',
+        'MVC\\libs\\Languages' => __DIR__ . '/../..' . '/src/libs/Languages.php',
+        'MVC\\libs\\LoginUser' => __DIR__ . '/../..' . '/src/libs/LoginUser.php',
+        'MVC\\libs\\Session' => __DIR__ . '/../..' . '/src/libs/Session.php',
+        'MVC\\libs\\UserAccess' => __DIR__ . '/../..' . '/src/libs/UserAccess.php',
+        'MVC\\libs\\init' => __DIR__ . '/../..' . '/src/libs/init.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

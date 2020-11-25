@@ -18,7 +18,7 @@ class CreateUser
         $required_fields = ["register-form-username", "register-form-email", "register-form-password", "register-form-repassword"];
         foreach ($_POST as $key => $value) {
             if (empty($value) == true && in_array($key, $required_fields) == true) {
-                $errors[] = strtoupper(str_replace("register-form-", "", $key)[0]) . str_replace(str_replace("register-form-", "", $key)[0], "", str_replace("register-form-", "", $key)) . " is a required field.";
+                $errors[] = ucfirst(str_replace("register-form-", "", $key)) . " is a required field.";
             }
         }
         if (!empty($errors)) return ["errors" => $errors];

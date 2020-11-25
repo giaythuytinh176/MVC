@@ -14,9 +14,14 @@ class renderControllers
         $this->view("error/404", ["", "", $head]);
     }
 
-    public function view($v, $data = [])
+    public function view($v, $data = [], $path = "")
     {
-        require_once "./src/views/pages/$v.php";
+        if (!empty($path)) {
+            require_once "./src/admin/views/pages/$v.php";
+        }
+        else {
+            require_once "./src/views/pages/$v.php";
+        }
         exit();
     }
 

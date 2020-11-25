@@ -215,7 +215,7 @@ class CartControllers
                                     </div>
                                 </div>
                                 <div class="col-lg-auto pr-lg-0">
-                                    <input type="submit" name="dc" class="btn btn-danger" onclick="return confirm(\'Are you sure you want to delete this?\');" value="Delete Cart">
+                                    <input type="submit" name="dc" class="btn2 btn-danger" onclick="return confirm(\'Are you sure you want to delete this?\');" value="Delete Cart">
                                     <input type="submit" name="uc" class="button button-3d m-0" value="Update Cart">
                                     <a href="' . \MVC\controllers\UrlControllers::url("shop/checkout") . '" class="button button-3d mt-2 mt-sm-0 mr-0">Proceed to Checkout</a>
                                 </div>

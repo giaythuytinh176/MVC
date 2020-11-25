@@ -56,6 +56,10 @@ Các chứng năng đã hoàn thành:
 
 - .
 
+/* Hoàn thành date 25/11/2020 */
+
+- init admin panel
+
 
 
 *** Cần hoàn thiện:

@@ -2,6 +2,8 @@
 
 namespace MVC\libs;
 
+use MVC\controllers\ToolControllers;
+
 class init
 {
     public static function start()

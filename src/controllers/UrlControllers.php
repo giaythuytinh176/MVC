@@ -13,24 +13,17 @@ class UrlControllers
     {
         $this->render = new renderControllers();
         $parseurl = self::parseURL();
-
-        if (!empty($parseurl[0])) {
-            $this->controllers = $parseurl[0];
-        }
-        if (!empty($parseurl[1])) {
-            $this->action = $parseurl[1];
-        }
-        if (!empty($parseurl[0]) && !empty($parseurl[1]) && !empty($parseurl[2])) {
-            unset($parseurl[0]);
-            unset($parseurl[1]);
-            $this->params = array_values($parseurl);
-        }
+        $this->ParseActionsParams($parseurl);
         $this->parseController();
     }
 
     public function parseController()
     {
         switch ($this->controllers) {
+            case "admin":
+                (new \MVC\admin\controllers\UrlControllers())->index();
+                break;
+
             case "shop":
                 switch ($this->action) {
                     case "login":
@@ -132,5 +125,20 @@ class UrlControllers
             isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
             $_SERVER['SERVER_NAME'], $p, $q
         );
+    }
+
+    public function ParseActionsParams($parseurl): void
+    {
+        if (!empty($parseurl[0])) {
+            $this->controllers = $parseurl[0];
+        }
+        if (!empty($parseurl[1])) {
+            $this->action = $parseurl[1];
+        }
+        if (!empty($parseurl[0]) && !empty($parseurl[1]) && !empty($parseurl[2])) {
+            unset($parseurl[0]);
+            unset($parseurl[1]);
+            $this->params = array_values($parseurl);
+        }
     }
 }

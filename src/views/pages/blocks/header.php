@@ -79,6 +79,15 @@ $fullheader = ($currentpage !== "MVC_shop_test") ? ' class="full-header"' : '';
                                 <span>Get In Touch</span>
                             </a>
                         </li>
+                        <?php
+                        if (\MVC\libs\UserAccess::isLogin() === true && (new \MVC\libs\UserAccess())->isAdmin() == true) {
+                            echo '<li class="menu-item">
+                            <a class="menu-link" href="' . \MVC\controllers\UrlControllers::url("admin") . '">
+                                <div>Admin</div>
+                            </a>
+                        </li>';
+                        }
+                        ?>
                     </ul>
 
                 </nav><!-- #primary-menu end -->
