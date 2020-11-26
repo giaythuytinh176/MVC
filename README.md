@@ -60,6 +60,11 @@ Các chứng năng đã hoàn thành:
 
 - init admin panel
 
+/* Hoàn thành date 25/11/2020 */
+
+- Hiển thị page admin nếu là admin user
+
+
 
 
 *** Cần hoàn thiện:

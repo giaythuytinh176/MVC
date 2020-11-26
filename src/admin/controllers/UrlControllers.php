@@ -24,15 +24,9 @@ class UrlControllers
         switch ($this->controllers) {
             case "admin":
                 switch ($this->action) {
-
-                    case "aaa":
-
-
-                        ToolControllers::PrettyShow($this);
-                        ToolControllers::PrettyShow($_REQUEST, true);
-                        $this->render->view("index/index", [], "./src/admin/views/pages/");
+                    case "products":
+                        $this->render->view("product/$this->action", [], "./src/admin/views/pages/");
                         break;
-
 
                     default :
                         $this->render->view("index/index", [], "./src/admin/views/pages/");
