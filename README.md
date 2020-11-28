@@ -67,6 +67,7 @@ Các chứng năng đã hoàn thành:
 /* Hoàn thành date 28/11/2020 */
 
 - Làm trang quản lý sp , hiển thị sp, sửa sp
+- jquery update enable/disable product
 
 
 

@@ -77,16 +77,48 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCate"
+               aria-expanded="true" aria-controls="collapseCate">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Category</span>
+            </a>
+            <div id="collapseCate" class="collapse" aria-labelledby="headingCate" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Các thao tác:</h6>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/category") ?>">List Category</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+               aria-expanded="true" aria-controls="collapseProducts">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Products</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseProducts" class="collapse" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
                     <a class="collapse-item"
                        href="<?php echo \MVC\controllers\UrlControllers::url("admin/products") ?>">Manage Products</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
+               aria-expanded="true" aria-controls="collapseOrders">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Orders</span>
+            </a>
+            <div id="collapseOrders" class="collapse" aria-labelledby="headingOrders" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Các thao tác:</h6>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/orders") ?>">Manage Orders</a>
                 </div>
             </div>
         </li>

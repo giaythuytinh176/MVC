@@ -53,7 +53,9 @@
         crossorigin="anonymous"></script>
 
 <!-- Bootstrap core JavaScript Must before databless-->
-<script src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/vendor/jquery/jquery.min.js"></script>
+<!--<script src="--><?php //echo \MVC\controllers\UrlControllers::url() ?><!--/src/admin/views/pages/index/vendor/jquery/jquery.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
 <!--<script src="--><?php //echo \MVC\controllers\UrlControllers::url() ?><!--/src/admin/views/pages/index/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 
 <!-- Core plugin JavaScript-->
@@ -73,80 +75,8 @@
 <!-- icons for bt4 -->
 <script src="https://kit.fontawesome.com/b12094d95b.js" crossorigin="anonymous"></script>
 
-<script>
-    $(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
-        $('#ListProduct').DataTable({
-            "pagingType": "full_numbers",
-            'order': [],
-            'columnDefs': [{
-                "targets": [0, 5],//,//[0, 1],
-                "orderable": false
-            }]
-        });
+<script type="text/javascript" src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/js/main.js"></script>
 
-        $('.dataTables_length').addClass('bs-select');
-    });
-</script>
-<script>
-    //https://gist.github.com/seayxu/6f4e5024206eb7cae5651c376929ad09
-    $(function () {
-        //button select all or cancel
-        $("#select-all").click(function () {
-            var all = $("input.select-all")[0];
-            all.checked = !all.checked
-            var checked = all.checked;
-            $("input.select-item").each(function (index, item) {
-                item.checked = checked;
-            });
-        });
-        //button select invert
-        $("#select-invert").click(function () {
-            $("input.select-item").each(function (index, item) {
-                item.checked = !item.checked;
-            });
-            checkSelected();
-        });
-        //button get selected info
-        $("#selected").click(function () {
-            var items = [];
-            $("input.select-item:checked:checked").each(function (index, item) {
-                items[index] = item.value;
-            });
-            if (items.length < 1) {
-                alert("no selected items!!!");
-            } else {
-                var values = items.join(',');
-                console.log(values);
-                var html = $("<div></div>");
-                html.html("selected:" + values);
-                html.appendTo("body");
-            }
-        });
-        //column checkbox select all or cancel
-        $("input.select-all").click(function () {
-            var checked = this.checked;
-            $("input.select-item").each(function (index, item) {
-                item.checked = checked;
-            });
-        });
-        //check selected items
-        $("input.select-item").click(function () {
-            var checked = this.checked;
-            console.log(checked);
-            checkSelected();
-        });
-
-        //check is all selected
-        function checkSelected() {
-            var all = $("input.select-all")[0];
-            var total = $("input.select-item").length;
-            var len = $("input.select-item:checked:checked").length;
-            console.log("total:" + total);
-            console.log("len:" + len);
-            all.checked = len === total;
-        }
-    });
-</script>
 </body>
 
 </html>

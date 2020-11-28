@@ -12,6 +12,11 @@ class ProductController extends ProductModels
         return parent::getAllProduct();
     }
 
+    public function ActiveOrDisableProduct($id)
+    {
+        return parent::ActiveOrDisableProduct($id);
+    }
+
     public function getAllProductbyView()
     {
         return parent::getAllProductbyView();
@@ -21,7 +26,6 @@ class ProductController extends ProductModels
     {
         return parent::getAllCateOfProductbyID($id);
     }
-
 
     public function UpdateProductbyID($id, $data)
     {

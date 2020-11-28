@@ -25,18 +25,32 @@ class UrlControllers
             case "admin":
                 switch ($this->action) {
                     case "products":
-                        $params = !empty($this->params[0]) ? $this->params[0] : "";
+                        $params = !empty($this->params[0]) ? $this->params[0] : null;
                         switch ($params) {
-                            case "edit":
-                                $this->render->view("product/edit", [$this->params], "./src/admin/views/pages/");
-                                break;
-                            case "action":
-                                $this->render->view("product/action", [$this->params], "./src/admin/views/pages/");
-                                break;
-
+//                            case "edit":
+//                                $this->render->view("product/edit", [$this->params], "./src/admin/views/pages/");
+//                                break;
+//                            case "action":
+//                                $this->render->view("product/action", [$this->params], "./src/admin/views/pages/");
+//                                break;
+//                            default:
+//                                $this->render->view("product/products", [], "./src/admin/views/pages/");
+//                                break;
                             default:
-                                $this->render->view("product/products", [], "./src/admin/views/pages/");
+                                if (file_exists("./src/admin/views/pages/product/$params.php") == true) {
+                                    $this->render->view("product/$params", [$this->params], "./src/admin/views/pages/");
+                                } else {
+                                    $this->render->view("product/products", [], "./src/admin/views/pages/");
+                                }
                                 break;
+                        }
+                        break;
+                    case "ajax":
+                        $class = "\MVC\admin\Controllers\\" . ucfirst($this->action) . "Controllers";
+                        $action = new $class();
+                        $params = !empty($this->params[0]) ? $this->params[0] : null;
+                        if (method_exists($action, $params)) {
+                            $action->$params();
                         }
                         break;
 
