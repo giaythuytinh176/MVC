@@ -79,7 +79,7 @@
             "pagingType": "full_numbers",
             'order': [],
             'columnDefs': [{
-                "targets": [0, 4],//,//[0, 1],
+                "targets": [0, 5],//,//[0, 1],
                 "orderable": false
             }]
         });
