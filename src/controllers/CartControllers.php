@@ -155,13 +155,7 @@ class CartControllers
                     <tbody>';
         foreach ($_SESSION['cart_items'] as $keyItems => $item) {
             $valFromDB = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($item['product_id']);
-
-            $NameProductToString = preg_replace("/^[\W]+$/", "-", $valFromDB['ProductName']);
-            $NameProductToString = str_replace(array("\r", "\n", "\s", "\t", " "), "-", $NameProductToString);
-            $NameProductToString = strtolower($NameProductToString);
-            $NameProductToString = html_entity_decode($NameProductToString, ENT_QUOTES, "utf-8");// xoa cac ki tu dac biet trong chuoi
-            $NameProductToString = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $NameProductToString);//convert chu co dau sang ko dau
-
+            $NameProductToString = ToolControllers::ConvertName($valFromDB);
             $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
             $sout .= '<tr class="cart_item">
                         <td class="cart-product-remove">

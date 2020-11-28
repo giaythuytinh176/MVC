@@ -25,18 +25,30 @@ class UrlControllers
             case "admin":
                 switch ($this->action) {
                     case "products":
-                        $this->render->view("product/$this->action", [], "./src/admin/views/pages/");
+                        $params = !empty($this->params[0]) ? $this->params[0] : "";
+                        switch ($params) {
+                            case "edit":
+                                $this->render->view("product/edit", [$this->params], "./src/admin/views/pages/");
+                                break;
+                            case "action":
+                                $this->render->view("product/action", [$this->params], "./src/admin/views/pages/");
+                                break;
+
+                            default:
+                                $this->render->view("product/products", [], "./src/admin/views/pages/");
+                                break;
+                        }
                         break;
 
                     default :
                         $this->render->view("index/index", [], "./src/admin/views/pages/");
                         break;
                 }
+                break;
+
             default:
                 $this->render->errorPage();
         }
-
-
     }
 
     public function ParseActionsParams($parseurl): void

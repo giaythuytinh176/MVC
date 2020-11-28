@@ -22,7 +22,7 @@ class renderControllers
         else {
             require_once "./src/views/pages/$v.php";
         }
-        exit();
+        //exit();
     }
 
     public static function redirectAfterSecondPage($page = "", $second = 1)

@@ -70,30 +70,20 @@
 <script src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/js/demo/chart-area-demo.js"></script>
 <script src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/js/demo/chart-pie-demo.js"></script>
 
+<!-- icons for bt4 -->
+<script src="https://kit.fontawesome.com/b12094d95b.js" crossorigin="anonymous"></script>
+
 <script>
     $(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
         $('#ListProduct').DataTable({
             "pagingType": "full_numbers",
-            'order':[],
+            'order': [],
             'columnDefs': [{
-                "targets": 0,
+                "targets": [0, 4],//,//[0, 1],
                 "orderable": false
             }]
         });
 
-        $('.dataTables_length').addClass('bs-select');
-    });
-</script>
-<script>
-    $(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
-        $('#ListProduct1').DataTable({
-            "pagingType": "full_numbers",
-            'order':[],
-            'columnDefs': [{
-                "targets": 0,
-                "orderable": false
-            }]
-        });
         $('.dataTables_length').addClass('bs-select');
     });
 </script>
@@ -145,6 +135,7 @@
             console.log(checked);
             checkSelected();
         });
+
         //check is all selected
         function checkSelected() {
             var all = $("input.select-all")[0];

@@ -64,6 +64,12 @@ Các chứng năng đã hoàn thành:
 
 - Hiển thị page admin nếu là admin user
 
+/* Hoàn thành date 28/11/2020 */
+
+- Làm trang quản lý sp , hiển thị sp, sửa sp
+
+
+
 
 
 

@@ -40,12 +40,14 @@ class UrlControllers
                             (new CartControllers())->AddProductToCart($_REQUEST);
                             break;
                         }
+                        break;
                     case "checkout":
                         (new CheckoutControllers())->checkoutView();
                         break;
                     default:
                         $this->render->view("category/shop");
                 }
+                break;
             case "lang":
                 switch ($this->action) {
                     case "vietnamese":
@@ -60,6 +62,7 @@ class UrlControllers
                     default:
                         (new \MVC\libs\Languages())->setLang("vietnamese");
                 }
+                break;
             case "category":
                 switch ($this->action) {
                     case "accessories":
@@ -80,6 +83,7 @@ class UrlControllers
                     default:
                         $this->render->redirectPage();
                 }
+                break;
             case "api":
                 \MVC\controllers\APIControllers::api($this->action, $this->params);
                 break;

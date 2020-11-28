@@ -66,13 +66,7 @@ class CheckoutControllers
             foreach ($_SESSION['cart_items'] as $value) {
                 $item = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
                 $amount = ((!empty($item['discount']) && $item['discount'] > 0) ? ($item['price'] * (100 - $item['discount']) / 100) : ($item['price']));
-
-                $NameProductToString = preg_replace("/^[\W]+$/", "-", $item['ProductName']);
-                $NameProductToString = str_replace(array("\r", "\n", "\s", "\t", " "), "-", $NameProductToString);
-                $NameProductToString = strtolower($NameProductToString);
-                $NameProductToString = html_entity_decode($NameProductToString, ENT_QUOTES, "utf-8");// xoa cac ki tu dac biet trong chuoi
-                $NameProductToString = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $NameProductToString);//convert chu co dau sang ko dau
-
+                $NameProductToString = ToolControllers::ConvertName($item);
                 $sout .= '<tr class="cart_item">
                                     <td class="cart-product-thumbnail">
                                         <a href="#"><img width="64" height="64"

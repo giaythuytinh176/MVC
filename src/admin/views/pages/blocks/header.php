@@ -9,24 +9,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Tam Le - Localhost - Dashboard</title>
+
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"-->
+<!--          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"-->
+<!--          rel="stylesheet">-->
+<!--    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">-->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Datatable CSS-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet"
+          type="text/css">
     <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom fonts for this template-->
-    <link href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/vendor/fontawesome-free/css/all.min.css"
+          rel="stylesheet" type="text/css">
 
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/css/sb-admin-2.min.css"
+          rel="stylesheet">
 
 </head>
 
@@ -39,7 +49,8 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo \MVC\controllers\UrlControllers::url("admin") ?>">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center"
+           href="<?php echo \MVC\controllers\UrlControllers::url("admin") ?>">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -74,7 +85,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/products") ?>">Quản lý sản phẩm</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/products") ?>">Manage Products</a>
                 </div>
             </div>
         </li>
@@ -151,8 +163,11 @@
 
         <!-- Sidebar Message -->
         <div class="sidebar-card">
-            <img class="sidebar-card-illustration mb-2" src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_rocket.svg" alt="">
-            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+            <img class="sidebar-card-illustration mb-2"
+                 src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_rocket.svg"
+                 alt="">
+            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and
+                more!</p>
             <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
         </div>
 
@@ -175,7 +190,7 @@
 
                 <!-- Topbar Search -->
                 <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                aria-label="Search" aria-describedby="basic-addon2">
@@ -281,37 +296,43 @@
                             </h6>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_1.svg"
+                                    <img class="rounded-circle"
+                                         src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_1.svg"
                                          alt="">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
+                                        problem I've been having.
+                                    </div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_2.svg"
+                                    <img class="rounded-circle"
+                                         src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_2.svg"
                                          alt="">
                                     <div class="status-indicator"></div>
                                 </div>
                                 <div>
                                     <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
+                                        would you like them sent to you?
+                                    </div>
                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_3.svg"
+                                    <img class="rounded-circle"
+                                         src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_3.svg"
                                          alt="">
                                     <div class="status-indicator bg-warning"></div>
                                 </div>
                                 <div>
                                     <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
+                                        the progress so far, keep up the good work!
+                                    </div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
@@ -323,7 +344,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                        told me that people say this to all dogs, even if they aren't good...
+                                    </div>
                                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </a>

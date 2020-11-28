@@ -8,8 +8,7 @@ class CategoryControllers extends CategoryModels
 {
     public function getCategorybyID($action, $params)
     {
-        $data = parent::getCategorybyID($action, $params);
-        return $data;
+        return parent::getCategorybyID($action, $params);
     }
 
     public function getDetailElementbyCodeSub($code)
@@ -32,8 +31,7 @@ class CategoryControllers extends CategoryModels
 
     public function getAllSubCategoryControllers($code)
     {
-        $data = parent::getAllSubCategoryModels($code);
-        return $data;
+        return parent::getAllSubCategoryModels($code);
     }
 
     public static function printListCategoryIncludeSub()

@@ -12,7 +12,15 @@ class ToolControllers
         if ($stop) die();
     }
 
-    public static  function textarea($var, $stop = false, $cols = 100, $rows = 30, $char = 'UTF-8') {
+    public static function dd($var)
+    {
+        echo "<pre>";
+        print_r($var);
+        exit;
+    }
+
+    public static function textarea($var, $stop = false, $cols = 100, $rows = 30, $char = 'UTF-8')
+    {
         $cols = ($cols == 0) ? 100 : $cols;
         $rows = ($rows == 0) ? 30 : $rows;
         if ($char === false) $char = 'ISO-8859-1';
@@ -26,5 +34,15 @@ class ToolControllers
         }
         echo "$text</textarea><br />\n";
         if ($stop) exit;
+    }
+
+    public static function ConvertName($valFromDB)
+    {
+        $NameProductToString = preg_replace("/^[\W]+$/", "-", $valFromDB['ProductName']);
+        $NameProductToString = str_replace(array("\r", "\n", "\s", "\t", " "), "-", $NameProductToString);
+        $NameProductToString = strtolower($NameProductToString);
+        $NameProductToString = html_entity_decode($NameProductToString, ENT_QUOTES, "utf-8");// xoa cac ki tu dac biet trong chuoi
+        $NameProductToString = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $NameProductToString);//convert chu co dau sang ko dau
+        return $NameProductToString;
     }
 }
