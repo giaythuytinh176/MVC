@@ -28,7 +28,7 @@ class ProductModels
 
     public function getAllElementbySubCateID($action, $category_id)
     {
-        $sql = "SELECT * FROM sub_product_category JOIN product as p on sub_product_category.category_sub = p.category_sub WHERE sub_product_category.codeSUB='$category_id[1]'";
+        $sql = "SELECT * FROM sub_product_category JOIN product as p on sub_product_category.category_sub = p.category_sub WHERE sub_product_category.codeSUB='$category_id[1]' AND is_disabled_sub='0'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
         if (empty($data)) {

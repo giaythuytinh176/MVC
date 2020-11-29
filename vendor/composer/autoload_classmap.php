@@ -13,6 +13,7 @@ return array(
     'MVC\\admin\\controllers\\UrlControllers' => $baseDir . '/src/admin/controllers/UrlControllers.php',
     'MVC\\admin\\models\\CategoryModels' => $baseDir . '/src/admin/models/CategoryModels.php',
     'MVC\\admin\\models\\ProductModels' => $baseDir . '/src/admin/models/ProductModels.php',
+    'MVC\\config\\config' => $baseDir . '/src/config/config.php',
     'MVC\\controllers\\APIControllers' => $baseDir . '/src/controllers/APIControllers.php',
     'MVC\\controllers\\CartControllers' => $baseDir . '/src/controllers/CartControllers.php',
     'MVC\\controllers\\CategoryControllers' => $baseDir . '/src/controllers/CategoryControllers.php',

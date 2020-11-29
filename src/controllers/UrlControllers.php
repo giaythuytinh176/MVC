@@ -111,7 +111,7 @@ class UrlControllers
 
     public static function isSubCategory($character)// only a-zA_Z_- , not number include
     {
-        $pattern = "/^[a-zA-Z\_\-]+$/";
+        $pattern = "/^[a-zA-Z0-9\_\-]+$/";
         if (preg_match($pattern, $character)) {
             return true;
         }
@@ -125,7 +125,7 @@ class UrlControllers
         }
     }
 
-    public static function url($q = "", $p = "MVC_shop_test")
+    public static function url($q = "", $p = \MVC\config\config::BASE_FOLDER)
     {
         return sprintf(
             "%s://%s/%s" . (($q == "") ? "" : "/%s"),

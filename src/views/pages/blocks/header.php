@@ -3,7 +3,7 @@
 <?php
 
 $currentpage = str_replace(array("/", "\\",), "", $_SERVER['REQUEST_URI']);
-$fullheader = ($currentpage !== "MVC_shop_test") ? ' class="full-header"' : '';
+$fullheader = ($currentpage !== \MVC\config\config::BASE_FOLDER) ? ' class="full-header"' : '';
 
 ?>
 <header id="header"<?php echo $fullheader; ?>><!--  class="full-header" Homepage doesn't have class-header-->

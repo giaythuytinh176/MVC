@@ -16,7 +16,7 @@ class CategoryModels
 
     public function getAllSubCategory($code)
     {
-        $sql = "SELECT * FROM product_category INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id WHERE code='$code'";
+        $sql = "SELECT * FROM product_category INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id WHERE code='$code' AND is_disabled_sub='0'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
         if (empty($data)) {

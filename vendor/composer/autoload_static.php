@@ -28,6 +28,7 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
         'MVC\\admin\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/admin/controllers/UrlControllers.php',
         'MVC\\admin\\models\\CategoryModels' => __DIR__ . '/../..' . '/src/admin/models/CategoryModels.php',
         'MVC\\admin\\models\\ProductModels' => __DIR__ . '/../..' . '/src/admin/models/ProductModels.php',
+        'MVC\\config\\config' => __DIR__ . '/../..' . '/src/config/config.php',
         'MVC\\controllers\\APIControllers' => __DIR__ . '/../..' . '/src/controllers/APIControllers.php',
         'MVC\\controllers\\CartControllers' => __DIR__ . '/../..' . '/src/controllers/CartControllers.php',
         'MVC\\controllers\\CategoryControllers' => __DIR__ . '/../..' . '/src/controllers/CategoryControllers.php',

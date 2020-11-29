@@ -7,6 +7,8 @@ use MVC\controllers\ToolControllers;
 
 class CategoryControllers extends CategoryModels
 {
+
+
     public static function PrintEditBrand($data)
     {
         $BrandDetail = (new \MVC\admin\Controllers\CategoryControllers())->getBrandByID($data[0][1]);
@@ -215,6 +217,55 @@ class CategoryControllers extends CategoryModels
                         </table>';
         } else {
             $sout .= "No brand.";
+        }
+        return $sout;
+    }
+
+    public static function PrintListSubCategories()
+    {
+        $sout = '';
+        $sout .= '      
+                        <table id="ListSubCate" class="table table-bordered table-hover" cellspacing="0"
+                               width="100%">
+                            <thead class="text-white thead-dark">
+                            <tr>
+                                <th style="width: 1%">
+                                    <input type="checkbox" class="select-all checkbox" name="select-all"/>
+                                </th>
+                                <th style="width: 2%">#</th>
+                                <th style="width: 11%" class="success">Sub Category Title</th>
+                                <th style="width: 11%" class="warning">Sub Category Code</th>
+                                <th style="width: 11%" class="warning">Category Product</th>
+                                <th style="width: 11%" class="warning">Category Parent</th>
+                                <th style="width: 5%" class="warning">Enable/Disable</th>
+                                <th style="width: 5%" class="danger"></th>
+                            </tr>
+                            </thead>
+                            <tbody>';
+        if (empty((new CategoryControllers())->getOnlySubCateIncludeCateParent()['errors'])) {
+            foreach ((new CategoryControllers())->getOnlySubCateIncludeCateParent() as $key => $value) {
+                $sout .= '                            <tr>
+                                <td class="active">
+                                    <input type="checkbox" class="select-item checkbox" name="select-item"
+                                           value="' . $value['category_sub'] . '"/>
+                                </td>
+                                <td>' . ($key + 1) . '</td>
+                                <td class="success">' . $value['spc_title'] . '</td>
+                                <td class="warning">' . $value['codeSUB'] . '</td>
+                                <td class="warning">' . $value['pc_title'] . '</td>
+                                <td class="warning">' . $value['p_category_title'] . '</td>
+                                <td class="warning" id="subcu' . $value['category_sub'] . '">' . (($value['is_disabled_sub'] == 0) ? "Enabled." : "Disabled.") . '</td>
+                                <td class="danger">
+                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/category/edit/" . $value['spc_category_id']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
+                                       <button id="statussubcategory' . $value['category_sub'] . '" class="fas fa-ban mystatussubcategory" title="Enable/Disable Sub Category" value="' . $value['category_sub'] . '"></button>
+                                       <a href="' . \MVC\controllers\UrlControllers::url("category/".$value['p_category_code']."/".$value['pc_code']."/" . $value['codeSUB']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this sub category"></i></a>
+                                </td>
+                            </tr>';
+            }
+            $sout .= '</tbody>
+                        </table>';
+        } else {
+            $sout .= "No category.";
         }
         return $sout;
     }

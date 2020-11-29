@@ -1,3 +1,5 @@
+var base_url = 'http://localhost/MVC_shop_test';
+
 $(document).ready(function () {
     $("#submitUpdate").on('click', function (e) {
         var brand_title = $('#brand_title').val();
@@ -7,7 +9,7 @@ $(document).ready(function () {
         // console.log(brand_title);
         // console.log(brand_code);
         // console.log(parent_id);
-        // console.log(category_id);
+        // console.log(parent_id);
         if (!(brand_title) || !(brand_code) || !(parent_id) || !(category_id)) {
             if (!(brand_title) && !(brand_code) && !(parent_id) && !(category_id)) {
                 $('#EditResult').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');
@@ -23,7 +25,7 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 type: "POST",
-                url: "http://localhost/MVC_shop_test/admin/Ajax/UpdateBrand",
+                url: base_url + "/admin/Ajax/UpdateBrand",
                 data: {
                     brand_title: brand_title,
                     brand_code: brand_code,
@@ -56,7 +58,7 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 type: "POST",
-                url: "http://localhost/MVC_shop_test/admin/Ajax/AddCategory",
+                url: base_url + "/admin/Ajax/AddCategory",
                 data: {
                     category_code: category_code,
                     category_title: category_title,
@@ -95,7 +97,7 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 type: "POST",
-                url: "http://localhost/MVC_shop_test/admin/Ajax/AddBrand",
+                url: base_url + "/admin/Ajax/AddBrand",
                 data: {
                     brand_title: brand_title,
                     brand_code: brand_code,
@@ -122,7 +124,7 @@ $(document).ready(function () {
         // console.log(bid);
         $.ajax({
             type: "POST",
-            url: "http://localhost/MVC_shop_test/admin/Ajax/StatusBrand",
+            url: base_url + "/admin/Ajax/StatusBrand",
             data: {
                 id: bid,
             },
@@ -138,6 +140,26 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('.mystatussubcategory').on('click', function () {
+        var id_sub = this.id;
+        var sub = id_sub.slice(17, id_sub.length);//17 = statussubcategory
+        // console.log(id_sub);
+        // console.log(sub);
+        $.ajax({
+            type: "POST",
+            url: base_url + "/admin/Ajax/StatusSubCate",
+            data: {
+                id: sub,
+            },
+            cache: false,
+            success: function (response) {
+                $('#subcu' + sub).html(response.replace(" Sub Category", ""));
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
     $('.mystatusproduct').on('click', function () {
         var id_sp = this.id;
         var product_id = id_sp.slice(13, id_sp.length);//13 = statusproduct
@@ -145,7 +167,7 @@ $(document).ready(function () {
         // console.log(product_id);
         $.ajax({
             type: "POST",
-            url: "http://localhost/MVC_shop_test/admin/Ajax/StatusProduct",
+            url: base_url + "/admin/Ajax/StatusProduct",
             data: {
                 id: product_id,
             },
@@ -168,7 +190,7 @@ $(document).ready(function () {
         // console.log(parent_id);
         $.ajax({
             type: "POST",
-            url: "http://localhost/MVC_shop_test/admin/Ajax/StatusCategory",
+            url: base_url + "/admin/Ajax/StatusCategory",
             data: {
                 id: parent_id,
             },
@@ -215,6 +237,19 @@ $(document).ready(function () {//https://datatables.net/examples/styling/bootstr
         'order': [],
         'columnDefs': [{
             "targets": [0, 5],
+            "orderable": false
+        }]
+    });
+
+    $('.dataTables_length').addClass('bs-select');
+});
+
+$(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
+    $('#ListSubCate').DataTable({
+        "pagingType": "full_numbers",
+        'order': [],
+        'columnDefs': [{
+            "targets": [0, 7],
             "orderable": false
         }]
     });
@@ -282,66 +317,3 @@ $(document).ready(function () {
         }
     });
 });
-
-// $('#statusproduct').click(function() {
-//     $.load('http://localhost/MVC_shop_test/admin/Ajax/StatusProduct', function(e){
-//         console.log(e);
-//     });
-// });
-// $(document).click(function () {
-//     $('#statusproduct').load('http://localhost/MVC_shop_test/admin/Ajax/StatusProduct', function (e) {
-//
-//     });
-// });
-
-// $(document).click(function () {
-//     jQuery.ajax({
-//         type: "POST",
-//         url: "http://localhost/MVC_shop_test/admin/Ajax/StatusProduct",
-//         data: 'id=' + $("#statusproduct").val(),
-//         cache: false,
-//         success: function (response) {
-//             console.log(response);
-//             $('statusproduct').text('TEXT TO INSERT');
-//             //alert("Record successfully updated");
-//         }
-//     });
-// });
-
-// $(document).ready(function () {
-//     $(document).on("click", "#statusproduct", function () {
-//         var product_id = $("#statusproduct[" + product_id + "]").val();
-//         $.ajax({
-//             type: "POST",
-//             url: "http://localhost/MVC_shop_test/admin/Ajax/StatusProduct",
-//             data: {
-//                 id: product_id,
-//             },
-//             cache: false,
-//             success: function (response) {
-//                 console.log(response);
-//                 $('#sp[' + product_id + "]").html(response);
-//                 //alert(response);
-//             }
-//         });
-//     });
-// });
-
-// function StatusProduct(id) {// use onclick="StatusProduct(id)"
-//     jQuery.ajax({
-//         type: "POST",
-//         url: "http://localhost/MVC_shop_test/admin/Ajax/StatusProduct",
-//         data: {
-//             id: id,
-//         },
-//         cache: false,
-//         error: function (response) {
-//             alert("failed");
-//             console.log(response);
-//         },
-//         success: function (response) {
-//             alert("success");
-//             console.log(response); // Inspect this in your console
-//         }
-//     });
-// }

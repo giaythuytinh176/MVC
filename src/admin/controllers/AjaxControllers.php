@@ -37,6 +37,14 @@ class AjaxControllers extends ProductController
         }
     }
 
+    public function StatusSubCate(): void
+    {
+        if (!empty($_POST['id'])) {
+            $id = $_POST['id'];
+            echo (new \MVC\admin\controllers\CategoryControllers())->ActiveOrDisableSubCate($id);
+        }
+    }
+
     public function AddBrand(): void
     {
         if (!empty($_POST['brand_title']) && !empty($_POST['brand_code']) && !empty($_POST['parent_id'])) {

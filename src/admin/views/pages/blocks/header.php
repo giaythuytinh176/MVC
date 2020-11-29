@@ -106,6 +106,22 @@
                 </div>
             </div>
         </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSubCate"
+               aria-expanded="true" aria-controls="collapseSubCate">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Sub Category</span>
+            </a>
+            <div id="collapseSubCate" class="collapse" aria-labelledby="headingSubCate" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Các thao tác:</h6>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/subcate") ?>">List Sub Category</a>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/subcate/add") ?>">Add Sub Category</a>
+                </div>
+            </div>
+        </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"

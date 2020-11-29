@@ -13,6 +13,52 @@ class CategoryModels
         $this->db = Database::getInstance();
     }
 
+    public function getOnlySubCateIncludeCateParent()
+    {
+        $sql = "SELECT spc.category_id as spc_category_id,
+                       spc.title as spc_title,
+                       pc.category_id as pc_category_id,
+                       pc.title as pc_title,
+                       pc.code as pc_code,
+                       p.category_code as p_category_code,
+                       p.category_title as p_category_title,
+                       p.parent_id,
+                       spc.codeSUB,
+                       spc.is_disabled_sub,
+                       spc.category_sub
+                FROM sub_product_category as spc LEFT JOIN product_category pc on pc.category_id = spc.category_id LEFT JOIN parent_category p on p.parent_id = pc.parent_id";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllSubCate()
+    {
+        $sql = "SELECT * FROM sub_product_category";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllCateSubParent()
+    {
+        $sql = "SELECT * FROM allcatesubparent";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Cate-Sub-Parent not found."];
+        } else {
+            return $data;
+        }
+    }
 
     public function UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id)
     {
@@ -20,7 +66,6 @@ class CategoryModels
         $this->db->query($sql);
         return "Updated Brand {$brand_title}.";
     }
-
 
     public function AddBrand($title, $code, $parent_id)
     {
@@ -90,6 +135,19 @@ class CategoryModels
         }
     }
 
+    public function getSubByID($id)
+    {
+        //$sql = "SELECT * FROM product_category WHERE category_id='$id'";
+        $sql = "SELECT * FROM sub_product_category WHERE category_sub='$id'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public function getBrandByID($id)
     {
         //$sql = "SELECT * FROM product_category WHERE category_id='$id'";
@@ -114,6 +172,20 @@ class CategoryModels
             $sql = "UPDATE product_category SET is_disabled_brand='0' WHERE category_id='$id'";
             $this->db->query($sql);
             return "Enabled Brand.";
+        }
+    }
+
+    public function ActiveOrDisableSubCate($id)
+    {
+        $category = $this->getSubByID($id);
+        if ($category['is_disabled_sub'] == 0) {
+            $sql = "UPDATE sub_product_category SET is_disabled_sub='1' WHERE category_sub='$id'";
+            $this->db->query($sql);
+            return "Disabled Sub Category.";
+        } else {
+            $sql = "UPDATE sub_product_category SET is_disabled_sub='0' WHERE category_sub='$id'";
+            $this->db->query($sql);
+            return "Enabled Sub Category.";
         }
     }
 
