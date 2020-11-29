@@ -14,7 +14,7 @@ class CategoryModels
         $this->db = Database::getInstance();
     }
 
-    public function getAllSubCategoryModels($code)
+    public function getAllSubCategory($code)
     {
         $sql = "SELECT * FROM product_category INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id WHERE code='$code'";
         $stmt = $this->db->query($sql);
