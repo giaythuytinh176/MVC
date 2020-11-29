@@ -143,7 +143,6 @@ class ProductController extends ProductModels
                                        <a href="' . \MVC\controllers\UrlControllers::url("admin/products/edit/" . $value['product_id']) . '"><i class="fas fa-edit" title="Edit Product"></i></a>
                                        <button id="statusproduct' . $value['product_id'] . '" class="fas fa-ban mystatusproduct" title="Enable/Disable Product" value="' . $value['product_id'] . '"></button>
                                        <a href="' . \MVC\controllers\UrlControllers::url("category/" . $value['category_parent'] . "/" . $value['pc_code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this product"></i></a>
-                                       <strong><p style="color: red" id="sp' . $value['product_id'] . '"></p></strong>
                                 </td>
                             </tr>';
             }

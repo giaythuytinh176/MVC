@@ -13,6 +13,45 @@ class CategoryModels
         $this->db = Database::getInstance();
     }
 
+
+    public function UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id)
+    {
+        $sql = "UPDATE product_category SET title='" . $brand_title . "', code='" . $brand_code . "' WHERE parent_id='$parent_id' AND category_id='$category_id'";
+        $this->db->query($sql);
+        return "Updated Brand {$brand_title}.";
+    }
+
+
+    public function AddBrand($title, $code, $parent_id)
+    {
+        $stmt1 = $this->db->query("SELECT * FROM product_category WHERE title='$title' AND parent_id='$parent_id'");
+        if (!empty($stmt1->fetch($this->db::FETCH_ASSOC))) {
+            return "Brand Title is existed.";
+        }
+
+        $stmt2 = $this->db->query("SELECT * FROM product_category WHERE code='$code' AND parent_id='$parent_id'");
+        if (!empty($stmt2->fetch($this->db::FETCH_ASSOC))) {
+            return "Brand Code is existed.";
+        }
+
+        $stmt4 = $this->db->query("SELECT * FROM product_category WHERE code='$code' AND title='$title' AND parent_id='$parent_id'");
+        if (!empty($stmt4->fetch($this->db::FETCH_ASSOC))) {
+            return "Brand Title- Code is existed.";
+        }
+
+        $CheckParentCate = $this->getAllCateParentbyID($parent_id);
+        if (!empty($CheckParentCate['errors'])) {
+            return "Parent Category not found.";
+        }
+
+        $stmt3 = $this->db->query("SELECT count(category_id) as c FROM product_category");
+        $sort_order = $stmt3->fetch($this->db::FETCH_ASSOC)["c"] + 1;
+
+        $sql = "INSERT INTO product_category (title, code, sort_order, parent_id) VALUES ('$title', '$code', '$sort_order', '$parent_id')";
+        $this->db->query($sql);
+        return "Added Brand {$title}.";
+    }
+
     public function AddCategoryParrent($title, $code)
     {
         $sql1 = "SELECT * FROM parent_category WHERE category_title='$title'";
@@ -32,9 +71,50 @@ class CategoryModels
         $stmt3 = $this->db->query("SELECT count(parent_id) as c FROM parent_category");
         $orderParent = $stmt3->fetch($this->db::FETCH_ASSOC);
         $orderParent = $orderParent["c"] + 1;
+
         $sql = "INSERT INTO parent_category (category_title, category_code, orderParent) VALUES ('$title', '$code', '$orderParent')";
         $this->db->query($sql);
         return "Added Category {$title}.";
+    }
+
+    public function getAllBrand()
+    {
+        //$sql = "SELECT * FROM product_category ORDER BY sort_order";
+        $sql = "SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id ORDER BY sort_order";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Brand not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getBrandByID($id)
+    {
+        //$sql = "SELECT * FROM product_category WHERE category_id='$id'";
+        $sql = "SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id WHERE category_id='$id'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Brand not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function ActiveOrDisableBrand($id)
+    {
+        $category = $this->getBrandByID($id);
+        if ($category['is_disabled_brand'] == 0) {
+            $sql = "UPDATE product_category SET is_disabled_brand='1' WHERE category_id='$id'";
+            $this->db->query($sql);
+            return "Disabled Brand.";
+        } else {
+            $sql = "UPDATE product_category SET is_disabled_brand='0' WHERE category_id='$id'";
+            $this->db->query($sql);
+            return "Enabled Brand.";
+        }
     }
 
     public function getALlCategoryParent()

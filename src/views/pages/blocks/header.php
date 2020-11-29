@@ -73,12 +73,12 @@ $fullheader = ($currentpage !== "MVC_shop_test") ? ' class="full-header"' : '';
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item">
-                            <a class="menu-link" href="#">
-                                <div>Contact</div>
-                                <span>Get In Touch</span>
-                            </a>
-                        </li>
+<!--                        <li class="menu-item">-->
+<!--                            <a class="menu-link" href="#">-->
+<!--                                <div>Contact</div>-->
+<!--                                <span>Get In Touch</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
                         <?php
                         if (\MVC\libs\UserAccess::isLogin() === true && (new \MVC\libs\UserAccess())->isAdmin() == true) {
                             echo '<li class="menu-item">

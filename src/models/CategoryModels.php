@@ -76,7 +76,7 @@ class CategoryModels
 
     public function getAllCategorybyParentID($parentID)
     {
-        $sql = "SELECT * FROM product_category WHERE parent_id='$parentID'";
+        $sql = "SELECT * FROM product_category WHERE parent_id='$parentID' AND is_disabled_brand='0'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
         if (empty($data)) {

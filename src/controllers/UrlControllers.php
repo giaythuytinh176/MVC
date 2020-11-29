@@ -68,11 +68,12 @@ class UrlControllers
                 }
                 break;
             case "category":
-                switch ($this->action) {
-                    case "accessories":
-                    case "telephone":
-                    case "laptop":
-                    case "smarthome":
+                $list_parent_category = [];
+                foreach ((new \MVC\controllers\CategoryControllers())->getAllListcategory() as $value) {
+                    $list_parent_category[] = $value['category_code'];
+                }
+                foreach ($list_parent_category as $val) {
+                    if ($val == $this->action) {
                         if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
                             $this->ProductControllers->getDetailElementbyID($this->action, $this->params);
                         } elseif (!empty($this->params[1]) && self::isSubCategory($this->params[1]) == true) {
@@ -83,9 +84,7 @@ class UrlControllers
                             $this->CategoryControllers->getAllCategoryView($this->action);
                         }
                         break;
-
-                    default:
-                        $this->render->redirectPage();
+                    }
                 }
                 break;
             case "api":

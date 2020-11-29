@@ -53,6 +53,17 @@ class UrlControllers
                                 }
                         }
                         break;
+                    case "brand":
+                        $params = !empty($this->params[0]) ? $this->params[0] : null;
+                        switch ($params) {
+                            default:
+                                if (file_exists("./src/admin/views/pages/brand/$params.php") == true) {
+                                    $this->render->view("brand/$params", [$this->params], "./src/admin/views/pages/");
+                                } else {
+                                    $this->render->view("brand/brandes", [], "./src/admin/views/pages/");
+                                }
+                        }
+                        break;
                     default :
                         $this->render->view("index/index", [], "./src/admin/views/pages/");
                 }

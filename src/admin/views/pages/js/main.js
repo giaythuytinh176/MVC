@@ -1,4 +1,45 @@
 $(document).ready(function () {
+    $("#submitUpdate").on('click', function (e) {
+        var brand_title = $('#brand_title').val();
+        var brand_code = $('#brand_code').val();
+        var parent_id = $('#parent_id').val();
+        var category_id = $('#category_id').val();
+        // console.log(brand_title);
+        // console.log(brand_code);
+        // console.log(parent_id);
+        // console.log(category_id);
+        if (!(brand_title) || !(brand_code) || !(parent_id) || !(category_id)) {
+            if (!(brand_title) && !(brand_code) && !(parent_id) && !(category_id)) {
+                $('#EditResult').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');
+            } else if (!brand_code) {
+                $('#EditResult').html('<div class="alert alert-danger" role="alert">Brand Code is required field.</div>');
+            } else if (!brand_title) {
+                $('#EditResult').html('<div class="alert alert-danger" role="alert">Brand Title is required field.</div>');
+            } else if (!parent_id) {
+                $('#EditResult').html('<div class="alert alert-danger" role="alert">Parent Category is required field.</div>');
+            } else if (!category_id) {
+                $('#EditResult').html('<div class="alert alert-danger" role="alert">Category ID is required field.</div>');
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/MVC_shop_test/admin/Ajax/UpdateBrand",
+                data: {
+                    brand_title: brand_title,
+                    brand_code: brand_code,
+                    parent_id: parent_id,
+                    category_id: category_id,
+                },
+                cache: false,
+                success: function (response) {
+                    $('#EditResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
     $("#submitAdd").on('click', function (e) {
         var category_title = $('#category_title').val();
         var category_code = $('#category_code').val();
@@ -31,7 +72,69 @@ $(document).ready(function () {
             });
         }
     });
+});
 
+$(document).ready(function () {
+    $("#submitAddBrand").on('click', function (e) {
+        var brand_title = $('#brand_title').val();
+        var brand_code = $('#brand_code').val();
+        var parent_id = $('#parent_id').val();
+        //console.log(brand_title);
+        //console.log(brand_code);
+        //console.log(parent_id);
+        if (!(brand_title) || !(brand_code) || !(parent_id)) {
+            if (!(brand_title) && !(brand_code) && !(parent_id)) {
+                $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');
+            } else if (!brand_code) {
+                $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Brand Code is required field.</div>');
+            } else if (!brand_title) {
+                $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Brand Title is required field.</div>');
+            } else if (!parent_id) {
+                $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Parent Category is required field.</div>');
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/MVC_shop_test/admin/Ajax/AddBrand",
+                data: {
+                    brand_title: brand_title,
+                    brand_code: brand_code,
+                    parent_id: parent_id,
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.includes("existed")) {
+                        $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else {
+                        $('#AddResultBrand').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('.mystatusbrand').on('click', function () {
+        var id_bid = this.id;
+        var bid = id_bid.slice(11, id_bid.length);//11 = statusbrand
+        // console.log(id_bid);
+        // console.log(bid);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/MVC_shop_test/admin/Ajax/StatusBrand",
+            data: {
+                id: bid,
+            },
+            cache: false,
+            success: function (response) {
+                //console.log(response);
+                //$('#scu' + parent_id).html(response);
+                $('#bu' + bid).html(response.replace(" Brand", ""));
+                //alert(response);
+            }
+        });
+    });
 });
 
 $(document).ready(function () {
@@ -95,6 +198,19 @@ $(document).ready(function () {//https://datatables.net/examples/styling/bootstr
 
 $(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
     $('#ListCategory').DataTable({
+        "pagingType": "full_numbers",
+        'order': [],
+        'columnDefs': [{
+            "targets": [0, 5],
+            "orderable": false
+        }]
+    });
+
+    $('.dataTables_length').addClass('bs-select');
+});
+
+$(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
+    $('#ListBrand').DataTable({
         "pagingType": "full_numbers",
         'order': [],
         'columnDefs': [{
