@@ -40,7 +40,7 @@ class CategoryModels
 
     public function getCategorybyID($categoryName, $category_id)
     {
-        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id WHERE code='$category_id[0]' AND category_name='$categoryName'";
+        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id WHERE code='$category_id[0]' AND category_code='$categoryName'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetch($this->db::FETCH_ASSOC);
         if (empty($data)) {
@@ -88,7 +88,7 @@ class CategoryModels
 
     public function getSubCategorybyID($action, $category_id)
     {
-        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id WHERE code='$category_id[0]' AND category_name='$action'";
+        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id WHERE code='$category_id[0]' AND category_code='$action'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetch($this->db::FETCH_ASSOC);
         if (empty($data)) {

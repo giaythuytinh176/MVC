@@ -2,6 +2,8 @@
 
 namespace MVC\admin\controllers;
 
+use MVC\controllers\RenderControllers;
+
 class UrlControllers
 {
     protected $controllers = "homepage";
@@ -11,7 +13,7 @@ class UrlControllers
 
     public function index()
     {
-        $this->render = new \MVC\controllers\RenderControllers();
+        $this->render = new RenderControllers();
         $this->ParseActionsParams(\MVC\controllers\UrlControllers::parseURL());
         $this->parseController();
     }
@@ -24,22 +26,12 @@ class UrlControllers
                     case "products":
                         $params = !empty($this->params[0]) ? $this->params[0] : null;
                         switch ($params) {
-//                            case "edit":
-//                                $this->render->view("product/edit", [$this->params], "./src/admin/views/pages/");
-//                                break;
-//                            case "action":
-//                                $this->render->view("product/action", [$this->params], "./src/admin/views/pages/");
-//                                break;
-//                            default:
-//                                $this->render->view("product/products", [], "./src/admin/views/pages/");
-//                                break;
                             default:
                                 if (file_exists("./src/admin/views/pages/product/$params.php") == true) {
                                     $this->render->view("product/$params", [$this->params], "./src/admin/views/pages/");
                                 } else {
                                     $this->render->view("product/products", [], "./src/admin/views/pages/");
                                 }
-                                break;
                         }
                         break;
                     case "ajax":
@@ -50,10 +42,19 @@ class UrlControllers
                             $action->$params();
                         }
                         break;
-
+                    case "category":
+                        $params = !empty($this->params[0]) ? $this->params[0] : null;
+                        switch ($params) {
+                            default:
+                                if (file_exists("./src/admin/views/pages/category/$params.php") == true) {
+                                    $this->render->view("category/$params", [$this->params], "./src/admin/views/pages/");
+                                } else {
+                                    $this->render->view("category/categories", [], "./src/admin/views/pages/");
+                                }
+                        }
+                        break;
                     default :
                         $this->render->view("index/index", [], "./src/admin/views/pages/");
-                        break;
                 }
                 break;
 

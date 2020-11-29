@@ -101,7 +101,7 @@ CREATE TABLE `order` (
 
 CREATE TABLE `parent_category` (
   `parent_id` int NOT NULL,
-  `category_name` varchar(255) NOT NULL,
+  `category_code` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -109,7 +109,7 @@ CREATE TABLE `parent_category` (
 -- Dumping data for table `parent_category`
 --
 
-INSERT INTO `parent_category` (`parent_id`, `category_name`, `description`) VALUES
+INSERT INTO `parent_category` (`parent_id`, `category_code`, `description`) VALUES
 (1, 'accessories', ''),
 (2, 'telephone', ''),
 (3, 'laptop', ''),

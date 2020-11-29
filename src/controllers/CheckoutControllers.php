@@ -75,7 +75,7 @@ class CheckoutControllers
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <a href="' . \MVC\controllers\UrlControllers::url("category/".$item['category_name']."/".$item['code']."/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $item['ProductName'] . '</a>
+                                        <a href="' . \MVC\controllers\UrlControllers::url("category/".$item['category_code']."/".$item['code']."/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $item['ProductName'] . '</a>
                                     </td>
 
                                     <td class="cart-product-quantity">

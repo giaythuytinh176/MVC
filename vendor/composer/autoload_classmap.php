@@ -8,8 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'MVC\\admin\\controllers\\AjaxControllers' => $baseDir . '/src/admin/controllers/AjaxControllers.php',
+    'MVC\\admin\\controllers\\CategoryControllers' => $baseDir . '/src/admin/controllers/CategoryControllers.php',
     'MVC\\admin\\controllers\\ProductController' => $baseDir . '/src/admin/controllers/ProductController.php',
     'MVC\\admin\\controllers\\UrlControllers' => $baseDir . '/src/admin/controllers/UrlControllers.php',
+    'MVC\\admin\\models\\CategoryModels' => $baseDir . '/src/admin/models/CategoryModels.php',
     'MVC\\admin\\models\\ProductModels' => $baseDir . '/src/admin/models/ProductModels.php',
     'MVC\\controllers\\APIControllers' => $baseDir . '/src/controllers/APIControllers.php',
     'MVC\\controllers\\CartControllers' => $baseDir . '/src/controllers/CartControllers.php',

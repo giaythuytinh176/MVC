@@ -23,8 +23,10 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'MVC\\admin\\controllers\\AjaxControllers' => __DIR__ . '/../..' . '/src/admin/controllers/AjaxControllers.php',
+        'MVC\\admin\\controllers\\CategoryControllers' => __DIR__ . '/../..' . '/src/admin/controllers/CategoryControllers.php',
         'MVC\\admin\\controllers\\ProductController' => __DIR__ . '/../..' . '/src/admin/controllers/ProductController.php',
         'MVC\\admin\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/admin/controllers/UrlControllers.php',
+        'MVC\\admin\\models\\CategoryModels' => __DIR__ . '/../..' . '/src/admin/models/CategoryModels.php',
         'MVC\\admin\\models\\ProductModels' => __DIR__ . '/../..' . '/src/admin/models/ProductModels.php',
         'MVC\\controllers\\APIControllers' => __DIR__ . '/../..' . '/src/controllers/APIControllers.php',
         'MVC\\controllers\\CartControllers' => __DIR__ . '/../..' . '/src/controllers/CartControllers.php',

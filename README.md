@@ -69,6 +69,12 @@ Các chứng năng đã hoàn thành:
 - Làm trang quản lý sp , hiển thị sp, sửa sp
 - jquery update enable/disable product
 
+/* Hoàn thành date 29/11/2020 */
+
+- Thêm danh sách parent category
+- Thêm jquery cho thêm thư mục gốc.
+
+
 
 
 

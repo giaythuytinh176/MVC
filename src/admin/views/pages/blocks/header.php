@@ -85,12 +85,27 @@
             <div id="collapseCate" class="collapse" aria-labelledby="headingCate" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
-                    <a class="collapse-item"
-                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/category") ?>">List Category</a>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/category") ?>">List Category</a>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/category/add") ?>">Add Category</a>
                 </div>
             </div>
         </li>
 
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBrand"
+               aria-expanded="true" aria-controls="collapseBrand">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Brand</span>
+            </a>
+            <div id="collapseBrand" class="collapse" aria-labelledby="headingBrand" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Các thao tác:</h6>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/brand") ?>">List Brand</a>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/brand/add") ?>">Add Brand</a>
+                </div>
+            </div>
+        </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"

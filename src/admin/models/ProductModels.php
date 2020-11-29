@@ -40,7 +40,7 @@ class ProductModels
 
     public function getAllCateOfProductbyID($id)
     {
-        $sql = "SELECT * FROM allcategoryproducts WHERE product_id='$id'";//From View
+        $sql = "SELECT * FROM allcategoryproducts WHERE product_id='$id'";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetch($this->db::FETCH_ASSOC);
         if (empty($data)) {

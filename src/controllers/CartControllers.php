@@ -144,8 +144,8 @@ class CartControllers
         $sout .= '<form action="' . \MVC\controllers\UrlControllers::url("shop/cart") . '" method="post" enctype="multipart/form-data">';
         $sout .= '<table class="table cart mb-5"><thead>';
         $sout .= ' <tr>
-                        <th class="cart-product-remove">&nbsp;</th>
-                        <th class="cart-product-thumbnail">&nbsp;</th>
+                        <th class="cart-product-remove"></th>
+                        <th class="cart-product-thumbnail"></th>
                         <th class="cart-product-name">Product</th>
                         <th class="cart-product-price">Unit Price</th>
                         <th class="cart-product-quantity">Quantity</th>
@@ -169,7 +169,7 @@ class CartControllers
                         </td>
 
                         <td class="cart-product-name">
-                            <a href="' . \MVC\controllers\UrlControllers::url("category/".$valFromDB['category_name']."/".$valFromDB['code']."/" . $item['product_id'] . "-$NameProductToString.html") . '">' . $valFromDB['ProductName'] . '</a>
+                            <a href="' . \MVC\controllers\UrlControllers::url("category/".$valFromDB['category_code']."/".$valFromDB['code']."/" . $item['product_id'] . "-$NameProductToString.html") . '">' . $valFromDB['ProductName'] . '</a>
                         </td>
 
                         <td class="cart-product-price">

@@ -1,4 +1,40 @@
 $(document).ready(function () {
+    $("#submitAdd").on('click', function (e) {
+        var category_title = $('#category_title').val();
+        var category_code = $('#category_code').val();
+        //console.log(category_title);
+        //console.log(category_code);
+        if (!(category_title) || !(category_code)) {
+            if (!(category_title) && !(category_code)) {
+                $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Title, Category Code is required field.</div>');
+            } else if (!category_code) {
+                $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Code is required field.</div>');
+            } else if (!category_title) {
+                $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Title is required field.</div>');
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/MVC_shop_test/admin/Ajax/AddCategory",
+                data: {
+                    category_code: category_code,
+                    category_title: category_title,
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.includes("existed")) {
+                        $('#AddResult').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else {
+                        $('#AddResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    }
+                }
+            });
+        }
+    });
+
+});
+
+$(document).ready(function () {
     $('.mystatusproduct').on('click', function () {
         var id_sp = this.id;
         var product_id = id_sp.slice(13, id_sp.length);//13 = statusproduct
@@ -21,12 +57,48 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('.mystatuscategory').on('click', function () {
+        var id_sc = this.id;
+        var parent_id = id_sc.slice(14, id_sc.length);//14 = statuscategory
+        // console.log(id_sc);
+        // console.log(parent_id);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/MVC_shop_test/admin/Ajax/StatusCategory",
+            data: {
+                id: parent_id,
+            },
+            cache: false,
+            success: function (response) {
+                //console.log(response);
+                //$('#scu' + parent_id).html(response);
+                $('#scu' + parent_id).html(response.replace(" Category", ""));
+                //alert(response);
+            }
+        });
+    });
+});
+
 $(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
     $('#ListProduct').DataTable({
         "pagingType": "full_numbers",
         'order': [],
         'columnDefs': [{
             "targets": [0, 3, 7],//,//[0, 1],
+            "orderable": false
+        }]
+    });
+
+    $('.dataTables_length').addClass('bs-select');
+});
+
+$(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
+    $('#ListCategory').DataTable({
+        "pagingType": "full_numbers",
+        'order': [],
+        'columnDefs': [{
+            "targets": [0, 5],
             "orderable": false
         }]
     });
