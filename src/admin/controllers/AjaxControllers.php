@@ -65,4 +65,15 @@ class AjaxControllers extends ProductController
             echo (new \MVC\admin\controllers\CategoryControllers())->UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id);
         }
     }
+    public function UpdateSubCate(): void
+    {
+        if (!empty($_POST['sub_title']) && !empty($_POST['sub_code']) && !empty($_POST['sub_cate_id']) && !empty($_POST['category_id']) && !empty($_POST['sub_parent_id'])) {
+            $data['sub_title'] = $_POST['sub_title'];
+            $data['sub_code'] = $_POST['sub_code'];
+            $data['sub_cate_id'] = $_POST['sub_cate_id'];
+            $data['category_id'] = $_POST['category_id'];
+            $data['sub_parent_id'] = $_POST['sub_parent_id'];
+            echo (new \MVC\admin\controllers\CategoryControllers())->UpdateSubCatebyID($data);
+        }
+    }
 }

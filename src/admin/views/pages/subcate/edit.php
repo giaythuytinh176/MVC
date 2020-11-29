@@ -26,10 +26,9 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <?php echo \MVC\admin\controllers\CategoryControllers::PrintSubmitEditCategory($data); ?>
-                    <div id="results"></div>
+                    <div id="SubCateResult"></div>
                     <div class='table-responsive'>
-                        <?php echo \MVC\admin\controllers\CategoryControllers::PrintEditCategory($data); ?>
+                        <?php echo \MVC\admin\controllers\CategoryControllers::PrintEditSubCategory($data); ?>
                     </div>
                 </div>
             </div>

@@ -11,12 +11,12 @@
 
     <title>Tam Le - Localhost - Dashboard</title>
 
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"-->
-<!--          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<!--    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"-->
-<!--          rel="stylesheet">-->
-<!--    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">-->
+    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"-->
+    <!--          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"-->
+    <!--          rel="stylesheet">-->
+    <!--    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">-->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -85,8 +85,10 @@
             <div id="collapseCate" class="collapse" aria-labelledby="headingCate" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/category") ?>">List Category</a>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/category/add") ?>">Add Category</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/category") ?>">List Category</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/category/add") ?>">Add Category</a>
                 </div>
             </div>
         </li>
@@ -101,8 +103,10 @@
             <div id="collapseBrand" class="collapse" aria-labelledby="headingBrand" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/brand") ?>">List Brand</a>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/brand/add") ?>">Add Brand</a>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/brand") ?>">List
+                        Brand</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/brand/add") ?>">Add Brand</a>
                 </div>
             </div>
         </li>
@@ -117,8 +121,11 @@
             <div id="collapseSubCate" class="collapse" aria-labelledby="headingSubCate" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/subcate") ?>">List Sub Category</a>
-                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/subcate/add") ?>">Add Sub Category</a>
+                    <a class="collapse-item" href="<?php echo \MVC\controllers\UrlControllers::url("admin/subcate") ?>">List
+                        Sub Category</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/subcate/add") ?>">Add Sub
+                        Category</a>
                 </div>
             </div>
         </li>
@@ -129,11 +136,14 @@
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Products</span>
             </a>
-            <div id="collapseProducts" class="collapse" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
+            <div id="collapseProducts" class="collapse" aria-labelledby="headingProducts"
+                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
                     <a class="collapse-item"
                        href="<?php echo \MVC\controllers\UrlControllers::url("admin/products") ?>">Manage Products</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/products/add") ?>">Add Products</a>
                 </div>
             </div>
         </li>

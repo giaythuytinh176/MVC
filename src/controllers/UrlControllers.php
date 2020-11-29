@@ -76,16 +76,17 @@ class UrlControllers
                     if ($val == $this->action) {
                         if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
                             $this->ProductControllers->getDetailElementbyID($this->action, $this->params);
-                        } elseif (!empty($this->params[1]) && self::isSubCategory($this->params[1]) == true) {
+                        } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
                             $this->ProductControllers->getAllElementbySubCateID($this->action, $this->params);
                         } elseif (!empty($this->params[0])) {
                             $this->ProductControllers->getListProductinMainCategory($this->action, $this->params);
-                        } else {//empty($this->params)
+                        } else {
                             $this->CategoryControllers->getAllCategoryView($this->action);
                         }
                         break;
                     }
                 }
+                $this->render->errorPage();
                 break;
             case "api":
                 \MVC\controllers\APIControllers::api($this->action, $this->params);
@@ -109,10 +110,10 @@ class UrlControllers
         return false;
     }
 
-    public static function isSubCategory($character)// only a-zA_Z_- , not number include
+    public function isSubCategory($codeSUB)
     {
-        $pattern = "/^[a-zA-Z0-9\_\-]+$/";
-        if (preg_match($pattern, $character)) {
+        $isSubCate = $this->CategoryControllers->getDetailElementbyCodeSub($codeSUB);
+        if (empty($isSubCate['errors'])) {
             return true;
         }
         return false;

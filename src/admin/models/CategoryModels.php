@@ -48,6 +48,18 @@ class CategoryModels
         }
     }
 
+    public function getOnlySubCateParentbyID($ID)
+    {
+        $sql = "SELECT * FROM allcatesubparent WHERE spc_category_sub='$ID'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public function getAllCateSubParent()
     {
         $sql = "SELECT * FROM allcatesubparent";
@@ -65,6 +77,13 @@ class CategoryModels
         $sql = "UPDATE product_category SET title='" . $brand_title . "', code='" . $brand_code . "' WHERE parent_id='$parent_id' AND category_id='$category_id'";
         $this->db->query($sql);
         return "Updated Brand {$brand_title}.";
+    }
+
+    public function UpdateSubCatebyID($data)
+    {
+        $sql = "UPDATE sub_product_category SET title='" . $data['sub_title'] . "', codeSUB='" . $data['sub_code'] . "' WHERE category_sub='" . $data['sub_cate_id'] . "' AND category_id='" . $data['category_id'] . "'";
+        $this->db->query($sql);
+        return "Updated Sub Category {$data['sub_title']}.";
     }
 
     public function AddBrand($title, $code, $parent_id)

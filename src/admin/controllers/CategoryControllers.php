@@ -177,6 +177,51 @@ class CategoryControllers extends CategoryModels
         return $sout;
     }
 
+    public static function PrintEditSubCategory($data)
+    {
+        $SubCategoryDetail = (new \MVC\admin\Controllers\CategoryControllers())->getOnlySubCateParentbyID($data[0][1]);
+        $sout = '';
+        $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
+                               width="100%">
+                            <thead class="text-white thead-dark">
+                            <tr>
+                                <th class="success" colspan="4">General Settings</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Sub Category Title</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_title" value="' . $SubCategoryDetail['spc_title'] . '"></th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Sub Category Code</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_code" value="' . $SubCategoryDetail['codeSUB'] . '"></th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Category Product</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_cate_product" value="' . $SubCategoryDetail['pc_title'] . '" disabled></th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Parent Category</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_parrent" value="' . $SubCategoryDetail['p_category_title'] . '" disabled></th>
+                                <th></th> 
+                            </tr>
+                            <input type="hidden" id="sub_cate_id" value="' . $SubCategoryDetail['spc_category_sub'] . '">
+                            <input type="hidden" id="category_id" value="' . $SubCategoryDetail['pc_category_id'] . '">
+                            <input type="hidden" id="sub_parent_id" value="' . $SubCategoryDetail['parent_id'] . '">
+                             <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitSubCate" value="Submit"></th></tr>
+                            </tbody>
+                        </table>';
+        return $sout;
+    }
+
     public static function PrintListBrandes()
     {
         $sout = '';
@@ -256,9 +301,9 @@ class CategoryControllers extends CategoryModels
                                 <td class="warning">' . $value['p_category_title'] . '</td>
                                 <td class="warning" id="subcu' . $value['category_sub'] . '">' . (($value['is_disabled_sub'] == 0) ? "Enabled." : "Disabled.") . '</td>
                                 <td class="danger">
-                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/category/edit/" . $value['spc_category_id']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
+                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/subcate/edit/" . $value['category_sub']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
                                        <button id="statussubcategory' . $value['category_sub'] . '" class="fas fa-ban mystatussubcategory" title="Enable/Disable Sub Category" value="' . $value['category_sub'] . '"></button>
-                                       <a href="' . \MVC\controllers\UrlControllers::url("category/".$value['p_category_code']."/".$value['pc_code']."/" . $value['codeSUB']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this sub category"></i></a>
+                                       <a href="' . \MVC\controllers\UrlControllers::url("category/" . $value['p_category_code'] . "/" . $value['pc_code'] . "/" . $value['codeSUB']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this sub category"></i></a>
                                 </td>
                             </tr>';
             }
