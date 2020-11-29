@@ -12,8 +12,8 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Products (displaying records
-            1-<?php echo count((new \MVC\admin\Controllers\ProductController())->getAllProduct()); ?>
-            from <?php echo count((new \MVC\admin\Controllers\ProductController())->getAllProduct()); ?>)</h1>
+            1-<?php echo count((new \MVC\admin\controllers\ProductController())->getAllProduct()); ?>
+            from <?php echo count((new \MVC\admin\controllers\ProductController())->getAllProduct()); ?>)</h1>
     </div>
 
     <!-- Content Row -->
@@ -48,9 +48,9 @@
                             </thead>
                             <tbody>
                             <?php $sout = '';
-                            if (empty((new \MVC\admin\Controllers\ProductController())->getAllProductbyView()['errors'])) {
-                                foreach ((new \MVC\admin\Controllers\ProductController())->getAllProductbyView() as $key => $value) {
-                                    $NameProductToString = \MVC\Controllers\ToolControllers::ConvertName($value);
+                            if (empty((new \MVC\admin\controllers\ProductController())->getAllProductbyView()['errors'])) {
+                                foreach ((new \MVC\admin\controllers\ProductController())->getAllProductbyView() as $key => $value) {
+                                    $NameProductToString = \MVC\controllers\ToolControllers::ConvertName($value);
                                     $sout .= '                            <tr>
                                 <td class="active">
                                     <input type="checkbox" class="select-item checkbox" name="select-item"

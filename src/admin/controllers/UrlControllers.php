@@ -1,8 +1,6 @@
 <?php
 
-namespace MVC\admin\Controllers;
-
-use MVC\controllers\ToolControllers;
+namespace MVC\admin\controllers;
 
 class UrlControllers
 {
@@ -14,8 +12,7 @@ class UrlControllers
     public function index()
     {
         $this->render = new \MVC\controllers\RenderControllers();
-        $parseurl = (new \MVC\controllers\UrlControllers())::parseURL();
-        $this->ParseActionsParams($parseurl);
+        $this->ParseActionsParams(\MVC\controllers\UrlControllers::parseURL());
         $this->parseController();
     }
 
@@ -46,7 +43,7 @@ class UrlControllers
                         }
                         break;
                     case "ajax":
-                        $class = "\MVC\admin\Controllers\\" . ucfirst($this->action) . "Controllers";
+                        $class = "\MVC\admin\controllers\\" . ucfirst($this->action) . "Controllers";
                         $action = new $class();
                         $params = !empty($this->params[0]) ? $this->params[0] : null;
                         if (method_exists($action, $params)) {

@@ -2,7 +2,7 @@
 
 namespace MVC\libs;
 
-use MVC\Models\UserModels;
+use MVC\models\UserModels;
 
 class LoginUser
 {

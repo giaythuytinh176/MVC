@@ -22,12 +22,17 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'MVC\\admin\\controllers\\AjaxControllers' => __DIR__ . '/../..' . '/src/admin/controllers/AjaxControllers.php',
+        'MVC\\admin\\controllers\\ProductController' => __DIR__ . '/../..' . '/src/admin/controllers/ProductController.php',
+        'MVC\\admin\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/admin/controllers/UrlControllers.php',
+        'MVC\\admin\\models\\ProductModels' => __DIR__ . '/../..' . '/src/admin/models/ProductModels.php',
         'MVC\\controllers\\APIControllers' => __DIR__ . '/../..' . '/src/controllers/APIControllers.php',
         'MVC\\controllers\\CartControllers' => __DIR__ . '/../..' . '/src/controllers/CartControllers.php',
         'MVC\\controllers\\CategoryControllers' => __DIR__ . '/../..' . '/src/controllers/CategoryControllers.php',
         'MVC\\controllers\\CheckoutControllers' => __DIR__ . '/../..' . '/src/controllers/CheckoutControllers.php',
         'MVC\\controllers\\LoginControllers' => __DIR__ . '/../..' . '/src/controllers/LoginControllers.php',
         'MVC\\controllers\\ProductControllers' => __DIR__ . '/../..' . '/src/controllers/ProductControllers.php',
+        'MVC\\controllers\\RenderControllers' => __DIR__ . '/../..' . '/src/controllers/RenderControllers.php',
         'MVC\\controllers\\ToolControllers' => __DIR__ . '/../..' . '/src/controllers/ToolControllers.php',
         'MVC\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/controllers/UrlControllers.php',
         'MVC\\libs\\Cookie' => __DIR__ . '/../..' . '/src/libs/Cookie.php',
@@ -40,6 +45,10 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
         'MVC\\libs\\Session' => __DIR__ . '/../..' . '/src/libs/Session.php',
         'MVC\\libs\\UserAccess' => __DIR__ . '/../..' . '/src/libs/UserAccess.php',
         'MVC\\libs\\init' => __DIR__ . '/../..' . '/src/libs/init.php',
+        'MVC\\models\\CategoryModels' => __DIR__ . '/../..' . '/src/models/CategoryModels.php',
+        'MVC\\models\\LangModels' => __DIR__ . '/../..' . '/src/models/LangModels.php',
+        'MVC\\models\\ProductModels' => __DIR__ . '/../..' . '/src/models/ProductModels.php',
+        'MVC\\models\\UserModels' => __DIR__ . '/../..' . '/src/models/UserModels.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

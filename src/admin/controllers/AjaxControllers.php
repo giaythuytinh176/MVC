@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\admin\Controllers;
+namespace MVC\admin\controllers;
 
 class AjaxControllers extends ProductController
 {

@@ -2,7 +2,7 @@
 
 namespace MVC\controllers;
 
-use MVC\Models\CategoryModels;
+use MVC\models\CategoryModels;
 
 class CategoryControllers extends CategoryModels
 {
@@ -62,6 +62,6 @@ class CategoryControllers extends CategoryModels
     public function getAllCategoryView($action)
     {
         $data = parent::getAllCategorybyParentID($action);
-        (new renderControllers())->view("category/shop-category-parallax", $data);
+        (new RenderControllers())->view("category/shop-category-parallax", $data);
     }
 }

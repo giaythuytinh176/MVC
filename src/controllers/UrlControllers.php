@@ -17,7 +17,7 @@ class UrlControllers
 
     public function index()
     {
-        $this->render = new renderControllers();
+        $this->render = new RenderControllers();
         $this->CartControllers = new CartControllers();
         $this->Languages = new \MVC\libs\Languages();
         $this->ProductControllers = new ProductControllers();

@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\admin\Models;
+namespace MVC\admin\models;
 
 use MVC\controllers\ToolControllers;
 use MVC\libs\Database;
@@ -66,9 +66,14 @@ class ProductModels
 
     public function UpdateProductbyID($id, $data)
     {
-        $sql = "UPDATE product SET ProductName='" . $data['product_name'] . "', price='" . $data['price'] . "', description='" . $data['description'] . "', img_link='" . $data['img_link'] . "', img_list='" . $data['img_list'] . "', discount='" . $data['discount'] . "' WHERE product_id='$id'";
+        $sql = "UPDATE product SET ProductName='" . $data['product_name'] . "'
+                                , price='" . $data['price'] . "'
+                                , description='" . $data['description'] . "'
+                                , img_link='" . $data['img_link'] . "'
+                                , img_list='" . $data['img_list'] . "'
+                                , discount='" . $data['discount'] . "' 
+                                WHERE product_id='$id'";
         $this->db->query($sql);
     }
-
 
 }

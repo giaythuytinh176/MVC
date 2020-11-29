@@ -2,7 +2,7 @@
 
 namespace MVC\controllers;
 
-class renderControllers
+class RenderControllers
 {
     public function homepage()
     {

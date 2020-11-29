@@ -8,7 +8,7 @@ class CartControllers
 
     public function __construct()
     {
-        $this->render = new renderControllers();
+        $this->render = new RenderControllers();
     }
 
     public function cartView()

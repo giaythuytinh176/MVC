@@ -38,11 +38,11 @@
                         if (!empty($errors)) {
                             echo "<div class=\"alert alert-danger\" role=\"alert\">" . implode("<br>", $errors) . "</div>";
                         } else {
-                            (new \MVC\admin\Controllers\ProductController())->UpdateProductbyID($data[0][1], $_POST);
+                            (new \MVC\admin\controllers\ProductController())->UpdateProductbyID($data[0][1], $_POST);
                             echo '<div class="alert alert-success" role="alert">
                                 Updated data sucessfully.
                              </div>';
-                            (new \MVC\controllers\renderControllers())->redirectAfterSecondPage("admin/products", 3);
+                            (new \MVC\controllers\RenderControllers())->redirectAfterSecondPage("admin/products", 3);
                         }
                     }
                     ?>

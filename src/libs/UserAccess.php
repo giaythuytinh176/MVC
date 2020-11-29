@@ -3,7 +3,7 @@
 namespace MVC\libs;
 
 use MVC\controllers\ToolControllers;
-use MVC\Models\UserModels;
+use MVC\models\UserModels;
 
 class UserAccess extends UserModels
 {

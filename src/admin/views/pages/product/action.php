@@ -29,7 +29,7 @@
                     <?php
                     if (!empty($data[0][1])) {
                         echo "<div class=\"alert alert-primary\" role=\"alert\">" . (new \MVC\admin\controllers\ProductController())->ActiveOrDisableProduct($data[0][1]) . "</div>";
-                        (new \MVC\controllers\renderControllers())->redirectAfterSecondPage("admin/products", 3);
+                        (new \MVC\controllers\RenderControllers())->redirectAfterSecondPage("admin/products", 3);
                     }
                     ?>
                 </div>
