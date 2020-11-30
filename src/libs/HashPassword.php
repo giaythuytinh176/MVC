@@ -6,8 +6,7 @@ class HashPassword
 {
     public static function getHashPassword($password)
     {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        return $hashed_password;
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 
     public static function verifyPassword($password, $hashed_password)//$hashed_password from DB

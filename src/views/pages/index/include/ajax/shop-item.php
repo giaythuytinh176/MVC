@@ -92,7 +92,7 @@ if (!empty($_GET['product_id'])) {
               </button>
                         </span>
                         <input type="hidden" id="qty" name="qty" value="1"/>
-                        <input type="number" name="quant[2]" class="form-control input-number" value="1" min="1" max="100">
+                        <input type="number" name="quant[2]" class="form-control input-number" value="1" min="1" max="1000">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
                                  <span class="glyphicon glyphicon-plus">+</span>

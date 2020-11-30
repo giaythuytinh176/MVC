@@ -2,6 +2,7 @@
 
 namespace MVC\libs;
 
+use Exception;
 use MVC\controllers\ToolControllers;
 use MVC\models\UserModels;
 

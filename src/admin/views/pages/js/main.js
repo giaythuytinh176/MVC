@@ -42,6 +42,41 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $("#submitAdd").on('click', function (e) {
+        var category_title = $('#category_title').val();
+        var category_code = $('#category_code').val();
+        //console.log(category_title);
+        //console.log(category_code);
+        if (!(category_title) || !(category_code)) {
+            if (!(category_title) && !(category_code)) {
+                $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Title, Category Code is required field.</div>');
+            } else if (!category_code) {
+                $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Code is required field.</div>');
+            } else if (!category_title) {
+                $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Title is required field.</div>');
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: base_url + "/admin/Ajax/AddCategory",
+                data: {
+                    category_code: category_code,
+                    category_title: category_title,
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.includes("existed")) {
+                        $('#AddResult').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else {
+                        $('#AddResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
     $("#submitUpdate").on('click', function (e) {
         var brand_title = $('#brand_title').val();
         var brand_code = $('#brand_code').val();
@@ -133,9 +168,9 @@ $(document).ready(function () {
         var brand_title = $('#brand_title').val();
         var brand_code = $('#brand_code').val();
         var parent_id = $('#parent_id').val();
-        //console.log(brand_title);
-        //console.log(brand_code);
-        //console.log(parent_id);
+        console.log(brand_title);
+        console.log(brand_code);
+        console.log(parent_id);
         if (!(brand_title) || !(brand_code) || !(parent_id)) {
             if (!(brand_title) && !(brand_code) && !(parent_id)) {
                 $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');

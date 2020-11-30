@@ -179,8 +179,8 @@ class CartControllers
                         <td class="cart-product-quantity">
                             <div class="quantity">
                                 <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity-' . $item['product_id'] . '" value="' . $item['qty'] . '" class="qty"/>
-                                <input type="hidden" name="cart_items[' . $item['product_id'] . '][qty]" value="' . $item['qty'] . '" class="qty"/>
+                                <input type="hidden" name="quantity-' . $item['product_id'] . '" value="' . $item['qty'] . '" class="qty"/>
+                                <input type="text" name="cart_items[' . $item['product_id'] . '][qty]" value="' . $item['qty'] . '" class="qty"/>
                                 <input type="hidden" name="cart_items[' . $item['product_id'] . '][product_id]" value="' . $item['product_id'] . '">
                                 <input type="hidden" name="cart_items[' . $item['product_id'] . '][price]" value="' . $item['price'] . '">
                                 <input type="hidden" name="cart_items[' . $item['product_id'] . '][product_name]" value="' . urlencode($valFromDB['ProductName']) . '">
