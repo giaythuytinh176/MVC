@@ -104,6 +104,85 @@ class ProductController extends ProductModels
         return $sout;
     }
 
+    public static function PrintAddProduct($data)
+    {
+        $sout = '';
+        $sout .= '<form method="post">';
+        $sout .= '<table id="AddProduct" class="table table-borderless" cellspacing="0"
+                               width="100%">
+                            <thead class="text-white thead-dark">
+                            <tr>
+                                <th class="success" colspan="4">General Settings</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Title</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="product_name" value=""></th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Product Parent</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_parent" value="">
+                                
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Product Category</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_title" value="">
+                                
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Product SubCategory</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_sub" value="">
+                                
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Price</th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" name="price" value=""></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Discount</th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" name="discount" value=""></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Img link</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="img_link" value=""></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Img list</th>
+                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" name="img_list" rows="5"></textarea></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Description</th>
+                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" name="description" rows="10"></textarea></th>
+                                <th></th>
+                            </tr>
+                             <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" name="btn" value="Submit"></th></tr>
+                            </tbody>
+                        </table>';
+        $sout .= '</form>';
+        return $sout;
+    }
+
     public static function PrintListProduct()
     {
         $sout = '';

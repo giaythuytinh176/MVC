@@ -124,11 +124,11 @@ $(document).ready(function () {
         var sub_cate_id = $('#sub_cate_id').val();
         var category_id = $('#category_id').val();
         var sub_parent_id = $('#sub_parent_id').val();
-        // console.log(sub_title);
-        // console.log(sub_code);
-        // console.log(sub_cate_id);
-        // console.log(category_id);
-        // console.log(sub_parent_id);
+        console.log(sub_title);
+        console.log(sub_code);
+        console.log(sub_cate_id);
+        console.log(category_id);
+        console.log(sub_parent_id);
         if (!(sub_title) || !(sub_code) || !(sub_cate_id) || !(category_id) || !(sub_parent_id)) {
             if (!(sub_title) && !(sub_code) && !(sub_cate_id) && !(category_id) && !(sub_parent_id)) {
                 $('#SubCateResult').html('<div class="alert alert-danger" role="alert">Sub Category Title, Sub Category Code, Sub Category ID, Category Product ID, Parent Category ID is required field.</div>');
@@ -156,7 +156,56 @@ $(document).ready(function () {
                 },
                 cache: false,
                 success: function (response) {
-                    $('#SubCateResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    if (response.includes("existed")) {
+                        $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else {
+                        $('#SubCateResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
+    $("#submitAddSubCate").on('click', function (e) {
+        var sub_title = $('#sub_title').val();
+        var sub_code = $('#sub_code').val();
+        var category_id = $('#category_id').val();
+        var parent_id = $('#parent_id').val();
+        // console.log(sub_title);
+        // console.log(sub_code);
+        // console.log(category_id);
+        // console.log(parent_id);
+        if (!(sub_title) || !(sub_code) || !(category_id) || !(parent_id)) {
+            if (!(sub_title) && !(sub_code) && !(category_id) && !(parent_id)) {
+                $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">Sub Cate Title, Sub Cate Code, Cate Product, Parent Category is required field.</div>');
+            } else if (!sub_title) {
+                $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">Sub Cate Title is required field.</div>');
+            } else if (!sub_code) {
+                $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">Sub Cate Code is required field.</div>');
+            } else if (!category_id) {
+                $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">Cate Product is required field.</div>');
+            } else if (!parent_id) {
+                $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">Parent Category is required field.</div>');
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: base_url + "/admin/Ajax/AddSubCate",
+                data: {
+                    sub_title: sub_title,
+                    sub_code: sub_code,
+                    category_id: category_id,
+                    parent_id: parent_id
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.includes("allow")) {
+                        $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else {
+                        $('#AddSubCateResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    }
                 }
             });
         }
@@ -168,9 +217,9 @@ $(document).ready(function () {
         var brand_title = $('#brand_title').val();
         var brand_code = $('#brand_code').val();
         var parent_id = $('#parent_id').val();
-        console.log(brand_title);
-        console.log(brand_code);
-        console.log(parent_id);
+        // console.log(brand_title);
+        // console.log(brand_code);
+        // console.log(parent_id);
         if (!(brand_title) || !(brand_code) || !(parent_id)) {
             if (!(brand_title) && !(brand_code) && !(parent_id)) {
                 $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');

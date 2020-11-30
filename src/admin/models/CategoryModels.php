@@ -2,6 +2,7 @@
 
 namespace MVC\admin\models;
 
+use MVC\controllers\ToolControllers;
 use MVC\libs\Database;
 
 class CategoryModels
@@ -81,9 +82,14 @@ class CategoryModels
 
     public function UpdateSubCatebyID($data)
     {
-        $sql = "UPDATE sub_product_category SET title='" . $data['sub_title'] . "', codeSUB='" . $data['sub_code'] . "' WHERE category_sub='" . $data['sub_cate_id'] . "' AND category_id='" . $data['category_id'] . "'";
-        $this->db->query($sql);
-        return "Updated Sub Category {$data['sub_title']}.";
+        $checkCatePro = $this->db->query("SELECT * FROM product_category WHERE category_id='" . $data['category_id'] . "'");
+        if (empty($checkCatePro->fetch($this->db::FETCH_ASSOC))) {
+            return "Category Product is not existed.";
+        } else {
+            $sql = "UPDATE sub_product_category SET title='" . $data['sub_title'] . "', codeSUB='" . $data['sub_code'] . "', category_id='" . $data['category_id'] . "' WHERE category_sub='" . $data['sub_cate_id'] . "'";
+            $this->db->query($sql);
+            return "Updated Sub Category {$data['sub_title']}.";
+        }
     }
 
     public function AddBrand($title, $code, $parent_id)
@@ -114,6 +120,23 @@ class CategoryModels
         $sql = "INSERT INTO product_category (title, code, sort_order, parent_id) VALUES ('$title', '$code', '$sort_order', '$parent_id')";
         $this->db->query($sql);
         return "Added Brand {$title}.";
+    }
+
+    public function AddSubCate($title, $code, $cate_id, $parent_id)
+    {
+        $stmt1 = $this->db->query("SELECT * FROM sub_product_category WHERE title='$title' AND category_id='$cate_id'");
+        if (!empty($stmt1->fetch($this->db::FETCH_ASSOC))) {
+            return "Sub Category Title is existed.";
+        }
+
+        $stmt2 = $this->db->query("SELECT * FROM sub_product_category WHERE codeSUB='$code' AND category_id='$cate_id'");
+        if (!empty($stmt2->fetch($this->db::FETCH_ASSOC))) {
+            return "Sub Category Code is existed.";
+        }
+
+        $sql = "INSERT INTO sub_product_category (category_id, title, codeSUB) VALUES ('$cate_id','$title','$code')";
+        $this->db->query($sql);
+        return "Added Sub Category {$title}.";
     }
 
     public function AddCategoryParrent($title, $code)
@@ -215,6 +238,54 @@ class CategoryModels
         $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
         if (empty($data)) {
             return ["errors" => "Parent Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getParrentFromParentID($parent_id)
+    {
+        $sql = "SELECT * FROM parent_category WHERE parent_id='$parent_id'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getCategoryProductFromCateID($category_id)
+    {
+        $sql = "SELECT * FROM product_category WHERE category_id='$category_id'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetch($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getALlCategoryProductFromParentID($parent_id)
+    {
+        $sql = "SELECT * FROM product_category WHERE parent_id='$parent_id'";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getALlCategoryProduct()
+    {
+        $sql = "SELECT * FROM product_category ORDER BY sort_order";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
         } else {
             return $data;
         }

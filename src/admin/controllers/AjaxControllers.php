@@ -2,6 +2,8 @@
 
 namespace MVC\admin\controllers;
 
+use MVC\controllers\ToolControllers;
+
 class AjaxControllers extends ProductController
 {
     public function StatusProduct(): void
@@ -55,6 +57,33 @@ class AjaxControllers extends ProductController
         }
     }
 
+    public function AddSubCate()
+    {
+        if (!empty($_POST['sub_title']) && !empty($_POST['sub_code']) && !empty($_POST['category_id']) && !empty($_POST['parent_id'])) {
+            $sub_title = $_POST['sub_title'];
+            $sub_code = $_POST['sub_code'];
+            $category_id = $_POST['category_id'];
+            $parent_id = $_POST['parent_id'];
+            $CheckCorrectParentCatePro = \MVC\admin\controllers\CategoryControllers::AllowSelectSubCateFromCateProductParent();
+            $check = false;
+            if (!empty($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'])) {
+                foreach ($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'] as $cate_id) {
+                    if ($cate_id == $category_id) {
+                        $check = true;
+                        break;
+                    }
+                }
+            }
+            if ($check == false) {
+                $cateInfo = (new \MVC\admin\controllers\CategoryControllers())->getCategoryProductFromCateID($category_id);
+                $parInfo = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
+                echo "We only allow {$cateInfo['title']} select with {$parInfo['category_title']}.";
+            } else {
+                echo (new \MVC\admin\controllers\CategoryControllers())->AddSubCate($sub_title, $sub_code, $category_id, $parent_id);
+            }
+        }
+    }
+
     public function UpdateBrand(): void
     {
         if (!empty($_POST['brand_title']) && !empty($_POST['brand_code']) && !empty($_POST['parent_id']) && !empty($_POST['category_id'])) {
@@ -65,6 +94,7 @@ class AjaxControllers extends ProductController
             echo (new \MVC\admin\controllers\CategoryControllers())->UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id);
         }
     }
+
     public function UpdateSubCate(): void
     {
         if (!empty($_POST['sub_title']) && !empty($_POST['sub_code']) && !empty($_POST['sub_cate_id']) && !empty($_POST['category_id']) && !empty($_POST['sub_parent_id'])) {

@@ -33,7 +33,11 @@ class ProductControllers extends ProductModels
     {
         $product_id = current(explode("-", $params[1]));
         $data = parent::getDetailElementbyID($params[0], $product_id);
-        (new \MVC\Controllers\RenderControllers())->view("order/shop-single", [$data, $params[0], $product_id]);
+        if (empty($data['errors'])) {
+            (new \MVC\Controllers\RenderControllers())->view("order/shop-single", [$data, $params[0], $product_id]);
+        } else {
+            (new \MVC\Controllers\RenderControllers())->errorPage();
+        }
     }
 
     public function showDetailProduct($data)
@@ -101,9 +105,9 @@ class ProductControllers extends ProductModels
                                       enctype=\'multipart/form-data\'>
                                     <div class="quantity clearfix">
                                         <input type="button" value="-" class="minus">
-                                        <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="qty"/>
+                                        <input type="hidden" step="1" min="1" name="quantity" value="1" title="Qty" class="qty"/>
                                         <input type="hidden" name="qty" value="1"/>
-                                        <input type="hidden" name="cart_items[' . $data[0]['product_id'] . '][qty]" value="1" class="qty"/>
+                                        <input type="number" name="cart_items[' . $data[0]['product_id'] . '][qty]" value="1" title="Qty" class="qty"/>
                                         <input type="hidden" name="cart_items[' . $data[0]['product_id'] . '][product_id]" value="' . $data[0]['product_id'] . '">
                                         <input type="hidden" name="cart_items[' . $data[0]['product_id'] . '][price]" value="' . $data[0]['price'] . '">
                                         <input type="hidden" name="cart_items[' . $data[0]['product_id'] . '][product_name]" value="' . urlencode($data[0]['ProductName']) . '">

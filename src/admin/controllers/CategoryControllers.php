@@ -47,7 +47,6 @@ class CategoryControllers extends CategoryModels
         return $sout;
     }
 
-
     public static function PrintAddBrand()
     {
         $sout = '';
@@ -88,6 +87,84 @@ class CategoryControllers extends CategoryModels
                             <tr>
                                  <th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitAddBrand" value="Submit"></th>
                             </tr>
+                            </tbody>
+                        </table>';
+        return $sout;
+    }
+
+    public static function AllowSelectSubCateFromCateProductParent()
+    {
+        $parent_category_product = [];
+        if (empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent()['errors'])) {
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $parent) {
+                if (empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent['parent_id'])['errors'])) {
+                    foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent['parent_id']) as $categories) {
+                        $parent_category_product['parent_id'][$parent['parent_id']]['category_id'][] = $categories['category_id'];
+                    }
+                }
+            }
+        }
+        ksort($parent_category_product['parent_id']);
+        return $parent_category_product;
+    }
+
+
+    public static function PrintAddSubCategory()
+    {
+        $sout = '';
+        $sout .= '<table id="AddSubCate" class="table table-borderless" cellspacing="0"
+                               width="100%">
+                            <thead class="text-white thead-dark">
+                            <tr>
+                                <th class="success" colspan="4">General Settings</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Sub Category Title</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_title" value=""></th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Sub Category Code</th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_code" value=""></th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Category Product</th>
+                                <th style="width: 30%" class="warning">';
+
+        $sout .= '
+                                    <select id="category_id" required="1">';
+        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct())) {
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $category) {
+                $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . '</option>';
+            }
+        }
+        $sout .= '
+                                    </select>
+                                </th>
+                                <th></th> 
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">Parent Category</th>
+                                <th style="width: 30%" class="warning">
+                                    <select id="parent_id" required="1">';
+        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent())) {
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $parent) {
+                $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
+            }
+        }
+        $sout .= '
+                                    </select>
+                                </th>
+                                <th></th> 
+                            </tr>
+                             <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitAddSubCate" value="Submit"></th></tr>
                             </tbody>
                         </table>';
         return $sout;
@@ -204,7 +281,16 @@ class CategoryControllers extends CategoryModels
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Category Product</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_cate_product" value="' . $SubCategoryDetail['pc_title'] . '" disabled></th>
+                                <th style="width: 30%" class="warning">
+                                    <select id="category_id" required="1">';
+        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct())) {
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $cate) {
+                $sout .= '<option value="' . $cate['category_id'] . '">' . $cate['title'] . '</option>';
+            }
+        }
+        $sout .= '
+                                    </select>
+                                </th>
                                 <th></th> 
                             </tr>
                             <tr>
@@ -214,7 +300,6 @@ class CategoryControllers extends CategoryModels
                                 <th></th> 
                             </tr>
                             <input type="hidden" id="sub_cate_id" value="' . $SubCategoryDetail['spc_category_sub'] . '">
-                            <input type="hidden" id="category_id" value="' . $SubCategoryDetail['pc_category_id'] . '">
                             <input type="hidden" id="sub_parent_id" value="' . $SubCategoryDetail['parent_id'] . '">
                              <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitSubCate" value="Submit"></th></tr>
                             </tbody>

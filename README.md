@@ -74,6 +74,10 @@ Các chứng năng đã hoàn thành:
 - Thêm danh sách parent category
 - Thêm jquery cho thêm thư mục gốc.
 
+/* Hoàn thành date 30/11/2020 */
+
+- Thêm sub category theo category product
+
 
 
 
