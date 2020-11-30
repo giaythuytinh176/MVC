@@ -24,7 +24,7 @@ if (!empty($_GET['product_id'])) {
                         <div class="flexslider">
                             <div class="slider-wrap">
                                 <?php
-                                foreach (explode("\r\n", $valFromDB['img_list']) as $value) {
+                                foreach (explode(PHP_EOL, $valFromDB['img_list']) as $value) {
                                     echo '<div class="slide">
                                         <a href="' . $value . '" title="' . $valFromDB['ProductName'] . ' - Front View">
                                         <img src="' . $value . '" alt="' . $valFromDB['ProductName'] . '"></a></div>';

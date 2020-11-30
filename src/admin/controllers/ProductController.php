@@ -8,6 +8,31 @@ use MVC\controllers\ToolControllers;
 class ProductController extends ProductModels
 {
 
+    public function InsertProduct($post)
+    {
+        $product_name = $post['product_name'];
+        $parent_id = $post['parent_id'];
+        $category_id = $post['category_id'];
+        $category_sub = $post['category_sub'] ? $post['category_sub'] : "NULL";
+        $price = $post['price'];
+        $discount = $post['discount'];
+        $img_link = $post['img_link'];
+        $img_list = $post['img_list'];
+        $description = $post['description'];
+//        $stmt1 = $this->db->query("SELECT * FROM sub_product_category WHERE title='$title' AND category_id='$cate_id'");
+//        if (!empty($stmt1->fetch($this->db::FETCH_ASSOC))) {
+//            return "Sub Category Title is existed.";
+//        }
+//
+//        $stmt2 = $this->db->query("SELECT * FROM sub_product_category WHERE codeSUB='$code' AND category_id='$cate_id'");
+//        if (!empty($stmt2->fetch($this->db::FETCH_ASSOC))) {
+//            return "Sub Category Code is existed.";
+//        }
+        $sql = "INSERT INTO product (ProductName, category_id, category_sub, price, discount, img_link, img_list, description) VALUES ('$product_name','$category_id','$category_sub','$price','$discount','$img_link','$img_list','$description')";
+        $this->db->query($sql);
+        return "Added Product {$product_name}.";
+    }
+
     public static function PrintSubmitEditProduct($data)
     {
         if (!empty($_POST['btn'])) {
@@ -107,7 +132,6 @@ class ProductController extends ProductModels
     public static function PrintAddProduct($data)
     {
         $sout = '';
-        $sout .= '<form method="post">';
         $sout .= '<table id="AddProduct" class="table table-borderless" cellspacing="0"
                                width="100%">
                             <thead class="text-white thead-dark">
@@ -119,67 +143,90 @@ class ProductController extends ProductModels
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Title</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="product_name" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="product_name" value=""></th>
                                 <th></th> 
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Parent</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_parent" value="">
-                                
+                                <th style="width: 30%" class="warning">
+                                    <select id="parent_id" required="1">';
+        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent())) {
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $parent) {
+                $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
+            }
+        }
+        $sout .= '
+                                    </select>
                                 </th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Category</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_title" value="">
-                                
+                                <th style="width: 30%" class="warning">';
+
+        $sout .= '
+                                    <select id="category_id" required="1">';
+        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct())) {
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $category) {
+                $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . '</option>';
+            }
+        }
+        $sout .= '
+                                    </select>
                                 </th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product SubCategory</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_sub" value="">
-                                
+                                <th style="width: 30%" class="warning">
+                                    <select id="category_sub" required="1">';
+        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getAllSubCate())) {
+            $sout .= '<option value="null">Null [not in this sub]</option>';
+            foreach ((new \MVC\admin\controllers\CategoryControllers())->getAllSubCate() as $sub) {
+                $sout .= '<option value="' . $sub['category_sub'] . '">' . $sub['title'] . '</option>';
+            }
+        }
+        $sout .= '
+                                    </select>
                                 </th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Price</th>
-                                <th style="width: 30%" class="warning"><input type="number" class="form-control" name="price" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="price" value=""></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Discount</th>
-                                <th style="width: 30%" class="warning"><input type="number" class="form-control" name="discount" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="discount" value=""></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Img link</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="img_link" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="img_link" value=""></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Img list</th>
-                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" name="img_list" rows="5"></textarea></th>
+                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="img_list" rows="5"></textarea></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Description</th>
-                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" name="description" rows="10"></textarea></th>
+                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="description" rows="10"></textarea></th>
                                 <th></th>
                             </tr>
-                             <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" name="btn" value="Submit"></th></tr>
+                             <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="btnAddProduct" value="Submit"></th></tr>
                             </tbody>
                         </table>';
-        $sout .= '</form>';
         return $sout;
     }
 

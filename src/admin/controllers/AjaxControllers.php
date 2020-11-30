@@ -84,6 +84,33 @@ class AjaxControllers extends ProductController
         }
     }
 
+    public function AddProduct()
+    {
+        if (!empty($_POST['product_name']) && !empty($_POST['parent_id']) && !empty($_POST['category_id'])) {
+            $product_name = $_POST['product_name'];
+            $parent_id = $_POST['parent_id'];
+            $category_id = $_POST['category_id'];
+            $category_sub = !empty($_POST['category_sub']) ? $_POST['category_sub'] : null;
+            $CheckCorrectParentCatePro = \MVC\admin\controllers\CategoryControllers::AllowSelectSubCateFromCateProductParent();
+            $check = false;
+            if (!empty($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'])) {
+                foreach ($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'] as $cate_id) {
+                    if ($cate_id == $category_id) {
+                        $check = true;
+                        break;
+                    }
+                }
+            }
+            if ($check == false) {
+                $cateInfo = (new \MVC\admin\controllers\CategoryControllers())->getCategoryProductFromCateID($category_id);
+                $parInfo = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
+                echo "We only allow {$cateInfo['title']} select with {$parInfo['category_title']}.";
+            } else {
+                echo (new \MVC\admin\controllers\ProductController())->InsertProduct($_POST);
+            }
+        }
+    }
+
     public function UpdateBrand(): void
     {
         if (!empty($_POST['brand_title']) && !empty($_POST['brand_code']) && !empty($_POST['parent_id']) && !empty($_POST['category_id'])) {

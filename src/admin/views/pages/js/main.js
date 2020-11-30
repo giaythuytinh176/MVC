@@ -124,11 +124,11 @@ $(document).ready(function () {
         var sub_cate_id = $('#sub_cate_id').val();
         var category_id = $('#category_id').val();
         var sub_parent_id = $('#sub_parent_id').val();
-        console.log(sub_title);
-        console.log(sub_code);
-        console.log(sub_cate_id);
-        console.log(category_id);
-        console.log(sub_parent_id);
+        // console.log(sub_title);
+        // console.log(sub_code);
+        // console.log(sub_cate_id);
+        // console.log(category_id);
+        // console.log(sub_parent_id);
         if (!(sub_title) || !(sub_code) || !(sub_cate_id) || !(category_id) || !(sub_parent_id)) {
             if (!(sub_title) && !(sub_code) && !(sub_cate_id) && !(category_id) && !(sub_parent_id)) {
                 $('#SubCateResult').html('<div class="alert alert-danger" role="alert">Sub Category Title, Sub Category Code, Sub Category ID, Category Product ID, Parent Category ID is required field.</div>');
@@ -205,6 +205,64 @@ $(document).ready(function () {
                         $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
                     } else {
                         $('#AddSubCateResult').html('<div class="alert alert-success" role="alert">' + response + '</div>');
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
+    $("#btnAddProduct").on('click', function (e) {
+        var product_name = $('#product_name').val();
+        var parent_id = $('#parent_id').val();
+        var category_id = $('#category_id').val();
+        var category_sub = $('#category_sub').val();
+        var price = $('#price').val();
+        var discount = $('#discount').val();
+        var img_link = $('#img_link').val();
+        var img_list = $('#img_list').val();
+        var description = $('#description').val();
+        // console.log(product_name);
+        // console.log(parent_id);
+        // console.log(category_id);
+        // console.log(category_sub);
+        // console.log(price);
+        // console.log(discount);
+        // console.log(img_link);
+        // console.log(img_list);
+        // console.log(description);
+        if (!(product_name) || !(parent_id) || !(category_id)) {
+            if (!(product_name) && !(parent_id) && !(category_id)) {
+                $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">Product Name, Parent Category, Category Product, Category Sub is required field.</div>');
+            } else if (!product_name) {
+                $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">Product Name is required field.</div>');
+            } else if (!parent_id) {
+                $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">Parent Category is required field.</div>');
+            } else if (!category_id) {
+                $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">Category Product is required field.</div>');
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: base_url + "/admin/Ajax/AddProduct",
+                data: {
+                    product_name: product_name,
+                    parent_id: parent_id,
+                    category_id: category_id,
+                    category_sub: category_sub ? category_sub : null,
+                    price: price,
+                    discount: discount,
+                    img_link: img_link,
+                    img_list: img_list,
+                    description: description,
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.includes("allow")) {
+                        $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else {
+                        $('#AddProDuctResults').html('<div class="alert alert-success" role="alert">' + response + '</div>');
                     }
                 }
             });

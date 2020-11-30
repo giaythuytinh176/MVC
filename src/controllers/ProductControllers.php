@@ -54,7 +54,7 @@ class ProductControllers extends ProductModels
                                         <div class="flexslider">
                                             <div class="slider-wrap" data-lightbox="gallery">';
         if (!empty($data[0]['img_list'])) {
-            foreach (explode("\r\n", $data[0]['img_list']) as $value) {
+            foreach (explode(PHP_EOL, $data[0]['img_list']) as $value) {
                 $sout .= '
                                                 <div class="slide" data-thumb="' . $value . '">
                                                     <a href="' . $value . '" title="' . $data[0]['ProductName'] . ' - Front View"
@@ -476,14 +476,14 @@ class ProductControllers extends ProductModels
                         <div class="grid-inner">
                             <div class="product-image">';
 
-//            foreach (explode("\r\n", $value['img_list']) as $ImgList) {
+//            foreach (explode(PHP_EOL, $value['img_list']) as $ImgList) {
 //                if (!empty($ImgList)) {
 //                    $sout .= '<a href="#"><img src="' . $ImgList . '" alt="' . $value['ProductName'] . '"></a>';
 //                }
 //            }
             // chi lay 2 anh ko bi loi
-            if (!empty(explode("\r\n", $value['img_list'])[0])) $sout .= '<a href="#"><img src="' . explode("\r\n", $value['img_list'])[0] . '" alt="' . $value['ProductName'] . '"></a>';
-            if (!empty(explode("\r\n", $value['img_list'])[1])) $sout .= '<a href="#"><img src="' . explode("\r\n", $value['img_list'])[1] . '" alt="' . $value['ProductName'] . '"></a>';
+            if (!empty(explode(PHP_EOL, $value['img_list'])[0])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $value['img_list'])[0] . '" alt="' . $value['ProductName'] . '"></a>';
+            if (!empty(explode(PHP_EOL, $value['img_list'])[1])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $value['img_list'])[1] . '" alt="' . $value['ProductName'] . '"></a>';
             $sout .= '' . (($value['Stock'] < 1) ? '<div class="sale-flash badge badge-secondary p-2">' . \MVC\libs\Languages::getLangData("Out of Stock") . '</div>' : '') . '
                                 ' . (($value['Stock'] > 100) ? '<div class="sale-flash badge badge-success p-2 text-uppercase">Sale!</div>' : '') . '';
             if ($value['Stock'] > 0) {

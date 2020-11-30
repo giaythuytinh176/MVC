@@ -108,7 +108,6 @@ class CategoryControllers extends CategoryModels
         return $parent_category_product;
     }
 
-
     public static function PrintAddSubCategory()
     {
         $sout = '';

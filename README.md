@@ -77,6 +77,7 @@ Các chứng năng đã hoàn thành:
 /* Hoàn thành date 30/11/2020 */
 
 - Thêm sub category theo category product
+- Thêm sp Product
 
 
 
