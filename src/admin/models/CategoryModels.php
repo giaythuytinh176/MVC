@@ -61,14 +61,24 @@ class CategoryModels
         return $this->CRUDmodels->select("product_category", [], 'ORDER BY sort_order', 'All');
     }
 
+    public function ActiveOrDisableCategory($id, int $status)
+    {
+        $this->CRUDmodels->update('parent_category', ['is_disabled' => $status], ['parent_id' => $id]);
+    }
+
+    public function getAllCateParentbyID($id)
+    {
+        return $this->CRUDmodels->select("parent_category", ['parent_id' => $id]);
+    }
+
+    public function getALlCategoryProductFromParentID($parent_id)
+    {
+        return $this->CRUDmodels->select("product_category", ['parent_id' => $parent_id], '', 'All');
+    }
+
     public function getAllCateSubParent()
     {
-        $data = $this->CRUDmodels->select("allcatesubparent", [], '', 'All');
-        if (empty($data)) {
-            return ["errors" => "Cate-Sub-Parent not found."];
-        } else {
-            return $data;
-        }
+        return $this->CRUDmodels->select("allcatesubparent", [], '', 'All');
     }
 
     public function UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id)
@@ -188,37 +198,6 @@ class CategoryModels
         $data = $this->CRUDmodels->select("product_category", ['category_id' => $category_id]);
         if (empty($data)) {
             return ["errors" => "Category Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getALlCategoryProductFromParentID($parent_id)
-    {
-        $data = $this->CRUDmodels->select("product_category", ['parent_id' => $parent_id], '', 'All');
-        if (empty($data)) {
-            return ["errors" => "Category Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function ActiveOrDisableCategory($id)
-    {
-        if ($this->getAllCateParentbyID($id)['is_disabled'] == 0) {
-            $this->CRUDmodels->update('parent_category', ['is_disabled' => '1'], ['parent_id' => $id]);
-            return "Disabled Category.";
-        } else {
-            $this->CRUDmodels->update('parent_category', ['is_disabled' => '0'], ['parent_id' => $id]);
-            return "Enabled Category.";
-        }
-    }
-
-    public function getAllCateParentbyID($id)
-    {
-        $data = $this->CRUDmodels->select("parent_category", ['parent_id' => $id]);
-        if (empty($data)) {
-            return ["errors" => "Category not found."];
         } else {
             return $data;
         }
