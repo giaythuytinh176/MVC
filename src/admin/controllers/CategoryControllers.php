@@ -5,13 +5,103 @@ namespace MVC\admin\controllers;
 use MVC\admin\models\CategoryModels;
 use MVC\controllers\ToolControllers;
 
-class CategoryControllers extends CategoryModels
+class CategoryControllers
 {
+    protected $categorymodels;
 
+    public function __construct()
+    {
+        $this->categorymodels = new CategoryModels();
+    }
+
+    public function getALlCategoryParent()
+    {
+        $data = $this->categorymodels->getALlCategoryParent();
+        if (empty($data)) {
+            return ["errors" => "Parent Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getBrandByID($id)
+    {
+        $data = $this->categorymodels->getBrandByID($id);
+        if (empty($data)) {
+            return ["errors" => "Brand not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllBrand()
+    {
+        $data = $this->categorymodels->getAllBrand();
+        if (empty($data)) {
+            return ["errors" => "Brand not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllSubCate()
+    {
+        $data = $this->categorymodels->getAllSubCate();
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getOnlySubCateIncludeCateParent()
+    {
+        $data = $this->categorymodels->getOnlySubCateIncludeCateParent();
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getOnlySubCateParentbyID($ID)
+    {
+        $data = $this->categorymodels->getOnlySubCateParentbyID($ID);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+    public function getALlCategoryProduct()
+    {
+        $data = $this->categorymodels->getALlCategoryProduct();
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public static function AllowSelectSubCateFromCateProductParent()
+    {
+        $parent_category_product = [];
+        if (empty((new self)->getALlCategoryParent()['errors'])) {
+            foreach ((new self)->getALlCategoryParent() as $parent) {
+                if (empty((new self)->getALlCategoryProductFromParentID($parent['parent_id'])['errors'])) {
+                    foreach ((new self)->getALlCategoryProductFromParentID($parent['parent_id']) as $categories) {
+                        $parent_category_product['parent_id'][$parent['parent_id']]['category_id'][] = $categories['category_id'];
+                    }
+                }
+            }
+        }
+        ksort($parent_category_product['parent_id']);
+        return $parent_category_product;
+    }
 
     public static function PrintEditBrand($data)
     {
-        $BrandDetail = (new \MVC\admin\Controllers\CategoryControllers())->getBrandByID($data[0][1]);
+        $BrandDetail = (new self)->getBrandByID($data[0][1]);
         $sout = '';
         $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
                                width="100%">
@@ -74,8 +164,8 @@ class CategoryControllers extends CategoryModels
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="parent_id" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent())) {
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $cate) {
+        if (!empty((new self)->getALlCategoryParent())) {
+            foreach ((new self)->getALlCategoryParent() as $cate) {
                 $sout .= '<option value="' . $cate['parent_id'] . '">' . $cate['category_title'] . '</option>';
             }
         }
@@ -90,22 +180,6 @@ class CategoryControllers extends CategoryModels
                             </tbody>
                         </table>';
         return $sout;
-    }
-
-    public static function AllowSelectSubCateFromCateProductParent()
-    {
-        $parent_category_product = [];
-        if (empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent()['errors'])) {
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $parent) {
-                if (empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent['parent_id'])['errors'])) {
-                    foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent['parent_id']) as $categories) {
-                        $parent_category_product['parent_id'][$parent['parent_id']]['category_id'][] = $categories['category_id'];
-                    }
-                }
-            }
-        }
-        ksort($parent_category_product['parent_id']);
-        return $parent_category_product;
     }
 
     public static function PrintAddSubCategory()
@@ -138,8 +212,8 @@ class CategoryControllers extends CategoryModels
 
         $sout .= '
                                     <select id="category_id" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct())) {
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $category) {
+        if (!empty((new self)->getALlCategoryProduct())) {
+            foreach ((new self)->getALlCategoryProduct() as $category) {
                 $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . '</option>';
             }
         }
@@ -153,8 +227,8 @@ class CategoryControllers extends CategoryModels
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="parent_id" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent())) {
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $parent) {
+        if (!empty((new self)->getALlCategoryParent())) {
+            foreach ((new self)->getALlCategoryParent() as $parent) {
                 $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
             }
         }
@@ -212,7 +286,7 @@ class CategoryControllers extends CategoryModels
             if (!empty($errors)) {
                 echo "<div class=\"alert alert-danger\" role=\"alert\">" . implode("<br>", $errors) . "</div>";
             } else {
-                (new \MVC\admin\controllers\CategoryControllers())->UpdateCategorybyID($data[0][1], $_POST);
+                (new self)->UpdateCategorybyID($data[0][1], $_POST);
                 echo '<div class="alert alert-success" role="alert">
                                 Updated data sucessfully.
                              </div>';
@@ -223,7 +297,7 @@ class CategoryControllers extends CategoryModels
 
     public static function PrintEditCategory($data)
     {
-        $CategoryDetail = (new \MVC\admin\Controllers\CategoryControllers())->getAllCateParentbyID($data[0][1]);
+        $CategoryDetail = (new self)->getAllCateParentbyID($data[0][1]);
         $sout = '';
         $sout .= '<form method="post">';
         $sout .= '<table id="EditCategory" class="table table-borderless" cellspacing="0"
@@ -255,7 +329,7 @@ class CategoryControllers extends CategoryModels
 
     public static function PrintEditSubCategory($data)
     {
-        $SubCategoryDetail = (new \MVC\admin\Controllers\CategoryControllers())->getOnlySubCateParentbyID($data[0][1]);
+        $SubCategoryDetail = (new self)->getOnlySubCateParentbyID($data[0][1]);
         $sout = '';
         $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
                                width="100%">
@@ -282,8 +356,8 @@ class CategoryControllers extends CategoryModels
                                 <th style="width: 30%" class="success">Category Product</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="category_id" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct())) {
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $cate) {
+        if (!empty((new self)->getALlCategoryProduct())) {
+            foreach ((new self)->getALlCategoryProduct() as $cate) {
                 $sout .= '<option value="' . $cate['category_id'] . '">' . $cate['title'] . '</option>';
             }
         }
@@ -325,8 +399,8 @@ class CategoryControllers extends CategoryModels
                             </tr>
                             </thead>
                             <tbody>';
-        if (empty((new CategoryControllers())->getAllBrand()['errors'])) {
-            foreach ((new CategoryControllers())->getAllBrand() as $key => $value) {
+        if (empty((new self)->getAllBrand()['errors'])) {
+            foreach ((new self)->getAllBrand() as $key => $value) {
                 $sout .= '      <tr>
                                 <td class="active">
                                     <input type="checkbox" class="select-item checkbox" name="select-item" value="' . $value['category_id'] . '"/>
@@ -371,8 +445,8 @@ class CategoryControllers extends CategoryModels
                             </tr>
                             </thead>
                             <tbody>';
-        if (empty((new CategoryControllers())->getOnlySubCateIncludeCateParent()['errors'])) {
-            foreach ((new CategoryControllers())->getOnlySubCateIncludeCateParent() as $key => $value) {
+        if (empty((new self)->getOnlySubCateIncludeCateParent()['errors'])) {
+            foreach ((new self)->getOnlySubCateIncludeCateParent() as $key => $value) {
                 $sout .= '                            <tr>
                                 <td class="active">
                                     <input type="checkbox" class="select-item checkbox" name="select-item"
@@ -418,8 +492,8 @@ class CategoryControllers extends CategoryModels
                             </tr>
                             </thead>
                             <tbody>';
-        if (empty((new CategoryControllers())->getALlCategoryParent()['errors'])) {
-            foreach ((new CategoryControllers())->getALlCategoryParent() as $key => $value) {
+        if (empty((new self)->getALlCategoryParent()['errors'])) {
+            foreach ((new self)->getALlCategoryParent() as $key => $value) {
                 $sout .= '                            <tr>
                                 <td class="active">
                                     <input type="checkbox" class="select-item checkbox" name="select-item"
