@@ -4,32 +4,33 @@ namespace MVC\controllers;
 
 use MVC\models\ProductModels;
 use \MVC\Controllers\RenderControllers;
+use \MVC\controllers\UrlControllers;
 
 class ProductControllers
 {
-    protected $pc;
+    protected $productmodels;
+    protected $render;
 
     public function __construct()
     {
-        $this->pc = new ProductModels();
+        $this->productmodels = new ProductModels();
+        $this->render = new RenderControllers();
     }
 
-    public function getDetailElementbyID($action, $params)
+    public function getDetailElementbyID($params)
     {
         $product_id = current(explode("-", $params[1]));
-        $data = ['code' => $params[0], 'product_id' => $product_id];
-        $dataSQL = $this->pc->getDetailElementbyID($data);
+        $dataSQL = $this->productmodels->getDetailElementbyID(['code' => $params[0], 'product_id' => $product_id]);
         if (!empty($dataSQL)) {
-            (new RenderControllers())->view("order/shop-single", [$dataSQL, $params[0], $product_id]);
+            $this->render->view("order/shop-single", [$dataSQL, $params[0], $product_id]);
         } else {
-            (new RenderControllers())->errorPage();
+            $this->render->errorPage();
         }
     }
 
     public function getProductDetailbyID($id)
     {
-        $data = ['product_id' => $id];
-        $dataSQL = $this->pc->getProductDetailbyID($data);
+        $dataSQL = $this->productmodels->getProductDetailbyID(['product_id' => $id]);
         if (empty($dataSQL)) {
             $dataSQL = ["errors" => "Doesn't have this product."];
         }
@@ -38,22 +39,20 @@ class ProductControllers
 
     public function getListProductinMainCategory($action, $params)
     {
-        $data = ['code' => $params[0], 'is_disabled' => '0'];
-        $dataSQL = $this->pc->getListProductinMainCategory($data);
+        $dataSQL = $this->productmodels->getListProductinMainCategory(['code' => $params[0], 'is_disabled' => '0']);
         if (empty($dataSQL)) {
             $dataSQL = ["errors" => "Doesn't have any this Category."];
         }
-        (new RenderControllers())->view("category/shop", [$dataSQL, $action, $params]);
+        $this->render->view("category/shop", [$dataSQL, $action, $params]);
     }
 
     public function getAllElementbySubCateID($action, $category)
     {
-        $data = ['codeSUB' => $category[1], 'is_disabled_sub' => '0', 'is_disabled' => '0'];
-        $dataSQL = $this->pc->getAllElementbySubCateID($data);
+        $dataSQL = $this->productmodels->getAllElementbySubCateID(['codeSUB' => $category[1], 'is_disabled_sub' => '0', 'is_disabled' => '0']);
         if (empty($dataSQL)) {
             $dataSQL = ["errors" => "Doesn't have this product."];
         }
-        (new RenderControllers())->view("category/shop", [$dataSQL, $action, $category]);
+        $this->render->view("category/shop", [$dataSQL, $action, $category]);
     }
 
     public static function CalculateTotalCart()
@@ -206,7 +205,7 @@ class ProductControllers
                             <div class="col-md-2">
 
                                 <a href="#" title="Brand Logo" class="d-none d-md-block"><img
-                                            src="' . \MVC\controllers\UrlControllers::url("") . '/src/views/pages/index/images/shop/brand.jpg"
+                                            src="' . UrlControllers::url("") . '/src/views/pages/index/images/shop/brand.jpg"
                                             alt="Brand Logo"></a>
 
                                 <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
@@ -515,7 +514,7 @@ class ProductControllers
                                 ' . (($value['Stock'] > 100) ? '<div class="sale-flash badge badge-success p-2 text-uppercase">Sale!</div>' : '') . '';
                 if ($value['Stock'] > 0) {
                     $sout .= '<div class="bg-overlay"><div class="bg-overlay-content align-items-end justify-content-between" data-hover-animate="fadeIn" data-hover-speed="400">';
-                    $sout .= '<form class="cart mb-0" action="' . \MVC\controllers\UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
+                    $sout .= '<form class="cart mb-0" action="' . UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
                         <input type="hidden" name="qty" value="1"/>
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][qty]" value="1"/>
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][price]" value="' . ((!empty($value['discount']) && $value['discount'] > 0) ? ($value['price'] * (100 - $value['discount']) / 100) : $value['price']) . '"/>
@@ -523,12 +522,12 @@ class ProductControllers
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][product_name]" value="' . urlencode($value['ProductName']) . '"/>
                     <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
                 </form>';
-                    $sout .= '<a href="' . \MVC\controllers\UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php?product_id=" . $value['product_id']) . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
+                    $sout .= '<a href="' . UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php?product_id=" . $value['product_id']) . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
                     $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
                 }
                 $sout .= '     </div>
                             <div class="product-desc">
-                                <div class="product-title"><h3><a href="' . \MVC\controllers\UrlControllers::url("$parseURL[0]/$parseURL[1]/$parseURL[2]/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $value['ProductName'] . '</a></h3>
+                                <div class="product-title"><h3><a href="' . UrlControllers::url("$parseURL[0]/$parseURL[1]/$parseURL[2]/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $value['ProductName'] . '</a></h3>
                             </div>
                                 <div class="product-price">';
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace MVC\controllers;
+use \MVC\controllers\ProductControllers;
+use \MVC\controllers\UrlControllers;
 
 class CheckoutControllers
 {
@@ -11,7 +13,7 @@ class CheckoutControllers
 
     public static function CalculateTotalCheckOut()
     {
-        if (!empty($_SESSION['cart_items'])) $totalPriceCart = \MVC\controllers\ProductControllers::CalculateTotalCart();
+        if (!empty($_SESSION['cart_items'])) $totalPriceCart = ProductControllers::CalculateTotalCart();
         else $totalPriceCart = 0;
         $sout = '';
         $sout .= '<div class="table-responsive">
@@ -64,7 +66,7 @@ class CheckoutControllers
         $sout .= '</thead><tbody>';
         if (!empty($_SESSION['cart_items'])) {
             foreach ($_SESSION['cart_items'] as $value) {
-                $item = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
+                $item = (new ProductControllers())->getProductDetailbyID($value['product_id']);
                 $amount = ((!empty($item['discount']) && $item['discount'] > 0) ? ($item['price'] * (100 - $item['discount']) / 100) : ($item['price']));
                 $NameProductToString = ToolControllers::ConvertName($item);
                 $sout .= '<tr class="cart_item">
@@ -75,7 +77,7 @@ class CheckoutControllers
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <a href="' . \MVC\controllers\UrlControllers::url("category/".$item['category_code']."/".$item['code']."/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $item['ProductName'] . '</a>
+                                        <a href="' . UrlControllers::url("category/".$item['category_code']."/".$item['code']."/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $item['ProductName'] . '</a>
                                     </td>
 
                                     <td class="cart-product-quantity">

@@ -4,43 +4,116 @@ namespace MVC\models;
 
 use MVC\controllers\ToolControllers;
 use PDO;
+use MVC\libs\Database;
 
-class CRUDModels
+class CRUDModels extends Database
 {
     private $crud;
 
     public function __construct()
     {
-        $this->crud = \MVC\libs\Database::getInstance();
+        $this->crud = parent::getInstance();
     }
 
-    public function select($sql, $data = array(), $fetch = "", $condition2 = '' , $fetchStyle = PDO::FETCH_ASSOC)
+    /**
+     * SELECT
+     *
+     * @param string $table for insert
+     * @param array $where
+     * @param string $sql
+     * @param string $fetchType
+     * @param int $fetchMode
+     * @return array
+     */
+    public function select(string $table, $where = array(), string $sql = "", string $fetchType = "", $fetchMode = PDO::FETCH_ASSOC)
     {
-        $stmt = $this->crud->prepare($sql . $this->condition($data) . $condition2);
-        foreach ($data as $key => &$value) {
-            $stmt->bindParam(':' . $key, $value, PDO::PARAM_STR);
+        if (empty($where)) {
+            $stmt = $this->crud->prepare("SELECT * FROM $table $sql");
+        } else {
+            $stmt = $this->crud->prepare("SELECT * FROM $table $sql WHERE {$this->conditionToString($where)}");
+            foreach ($where as $key => &$value) {
+                $stmt->bindParam(":$key", $value);
+            }
         }
         $stmt->execute();
-        if ($fetch == "All") {
-            return $stmt->fetchAll($fetchStyle);
-        } else {
-            return $stmt->fetch($fetchStyle);
-        }
+        $fetch = "fetch$fetchType";
+        return $stmt->$fetch($fetchMode);
     }
 
-    public function condition($data = array())
+    /**
+     * INSERT
+     *
+     * @param string $table for insert
+     * @param array $data data for bindvalue
+     * @return integer
+     */
+    public function insert(string $table, array $data)
+    {
+        ksort($data);
+        $fieldkey = implode(', ', array_keys($data));
+        $fieldvalue = ':' . implode(', :', array_keys($data));
+        $stmt = $this->crud->prepare("INSERT INTO $table ($fieldkey) VALUES ($fieldvalue)");
+        foreach ($data as $key => &$value) {
+            $stmt->bindParam(":$key", $value);
+        }
+        return $stmt->execute();
+    }
+
+    /**
+     * @param string $table
+     * @param array $data
+     * @return string
+     */
+    public function insertid(string $table, array $data)
+    {
+        ksort($data);
+        $fieldkey = implode(', ', array_keys($data));
+        $fieldvalue = ':' . implode(', :', array_keys($data));
+        $stmt = $this->crud->prepare("INSERT INTO $table ($fieldkey) VALUES ($fieldvalue)");
+        foreach ($data as $key => &$value) {
+            $stmt->bindParam(":$key", $value);
+        }
+        $stmt->execute();
+        $id = $this->crud->lastInsertId();
+        return $id;
+    }
+
+    /**
+     * UPDATE
+     *
+     * @param string $table
+     * @param array $data
+     * @param array $where
+     * @return integer
+     */
+    public function update(string $table, array $data, array $where)
+    {
+        ksort($data);
+        $fieldDetails = "";
+        foreach ($data as $key => $value) {
+            $fieldDetails .= " `$key`=:$key ,";
+        }
+        $fieldDetails = rtrim($fieldDetails, ' ,');
+        $fieldWhere = $this->conditionToString($where);
+        $stmt = $this->crud->prepare("UPDATE $table SET $fieldDetails WHERE $fieldWhere");
+        foreach ($data as $k => &$val) {
+            $stmt->bindParam(":$k", $val);
+        }
+        foreach ($where as $kw => &$valw) {
+            $stmt->bindParam(":$kw", $valw);
+        }
+        return $stmt->execute();
+    }
+
+    public function conditionToString($data = array())
     {
         $condition = '';
         if (!empty($data)) {
             $list_condition = [];
             foreach (array_keys($data) as $val) {
-                $list_condition[$val] = ":{$val}";
+                $list_condition[] = "{$val}=:{$val}";
             }
-            if (count($data) == 1) {
-                $condition .= " WHERE " . urldecode(http_build_query($list_condition));
-            } else {
-                $condition .= " WHERE " . urldecode(http_build_query($list_condition, '', ' AND '));
-            }
+            $condition .= (sizeof($data) == 1) ? $list_condition[0] : implode(" AND ", $list_condition);
         }
         return $condition;
     }

@@ -4,6 +4,7 @@ namespace MVC\libs;
 
 use MVC\controllers\ToolControllers;
 use MVC\models\UserModels;
+use \MVC\controllers\UrlControllers;
 
 class UserAccess extends UserModels
 {
@@ -11,7 +12,7 @@ class UserAccess extends UserModels
     {
         $isLogin = Session::get('loggedIn');
         if (!$isLogin) {
-            \MVC\controllers\UrlControllers::url("shop/login");
+            UrlControllers::url("shop/login");
         }
     }
 

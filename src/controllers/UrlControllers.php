@@ -2,28 +2,18 @@
 
 namespace MVC\controllers;
 
+use \MVC\libs\Languages;
+use \MVC\config\config;
+use \MVC\controllers\APIControllers;
+
 class UrlControllers
 {
     protected $controllers = "homepage";
     protected $action = "index";
     protected $params = [];
-    protected $render;
-    protected $CartControllers;
-    protected $Languages;
-    protected $ProductControllers;
-    protected $CategoryControllers;
-    protected $loginControllers;
-    protected $CheckoutControllers;
 
     public function index()
     {
-        $this->render = new RenderControllers();
-        $this->CartControllers = new CartControllers();
-        $this->Languages = new \MVC\libs\Languages();
-        $this->ProductControllers = new ProductControllers();
-        $this->CategoryControllers = new CategoryControllers();
-        $this->loginControllers = new LoginControllers();
-        $this->CheckoutControllers = new CheckoutControllers();
         $this->ParseActionsParams(self::parseURL());
         $this->parseController();
     }
@@ -38,25 +28,25 @@ class UrlControllers
             case "shop":
                 switch ($this->action) {
                     case "login":
-                        $this->loginControllers->loginControllers($this->params);
+                        (new LoginControllers)->loginControllers($this->params);
                         break;
                     case "cart":
                         if (!empty($this->params) && (is_numeric($this->params[0]) == true) && !empty($_SESSION['cart_items'])) {
-                            $this->CartControllers->removeItems($this->params);
+                            (new CartControllers)->removeItems($this->params);
                         }
                         if (empty($_REQUEST['btn']) || empty($_REQUEST['qty'])) {
-                            $this->CartControllers->cartView();
+                            (new CartControllers)->cartView();
                             break;
                         } elseif (!empty($_REQUEST['btn']) && !empty($_REQUEST['qty'])) {
-                            $this->CartControllers->AddProductToCart($_REQUEST);
+                            (new CartControllers)->AddProductToCart($_REQUEST);
                             break;
                         }
                         break;
                     case "checkout":
-                        $this->CheckoutControllers->checkoutView();
+                        (new CheckoutControllers)->checkoutView();
                         break;
                     default:
-                        $this->render->view("category/shop");
+                        (new RenderControllers)->view("category/shop");
                 }
                 break;
             case "lang":
@@ -64,39 +54,39 @@ class UrlControllers
                     default:
                         if (in_array($this->action, ["vietnamese", "english", "french"]) == true) $lang = $this->action;
                         else $lang = "vietnamese";
-                        $this->Languages->setLang($lang);
+                        (new Languages)->setLang($lang);
                 }
                 break;
             case "category":
                 $list_parent_category = [];
-                foreach ((new CategoryControllers())->getAllListcategory() as $value) {
+                foreach ((new CategoryControllers)->getAllListcategory() as $value) {
                     $list_parent_category[] = $value['category_code'];
                 }
                 foreach ($list_parent_category as $val) {
                     if ($val == $this->action) {
                         if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
-                            $this->ProductControllers->getDetailElementbyID($this->action, $this->params);
+                            (new ProductControllers)->getDetailElementbyID($this->params);
                         } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
-                            $this->ProductControllers->getAllElementbySubCateID($this->action, $this->params);
+                            (new ProductControllers)->getAllElementbySubCateID($this->action, $this->params);
                         } elseif (!empty($this->params[0])) {
-                            $this->ProductControllers->getListProductinMainCategory($this->action, $this->params);
+                            (new ProductControllers)->getListProductinMainCategory($this->action, $this->params);
                         } else {
-                            $this->CategoryControllers->getAllCategoryView($this->action);
+                            (new CategoryControllers)->getAllCategoryView($this->action);
                         }
                         break;
                     }
                 }
                 break;
             case "api":
-                \MVC\controllers\APIControllers::api($this->action, $this->params);
+                APIControllers::api($this->action, $this->params);
                 break;
 
             case "homepage":
-                $this->render->homepage();
+                (new RenderControllers)->homepage();
                 break;
 
             default:
-                $this->render->errorPage();
+                (new RenderControllers)->errorPage();
         }
     }
 
@@ -111,7 +101,7 @@ class UrlControllers
 
     public function isSubCategory($codeSUB)
     {
-        $isSubCate = $this->CategoryControllers->getDetailElementbyCodeSub($codeSUB);
+        $isSubCate = (new CategoryControllers)->getDetailElementbyCodeSub($codeSUB);
         if (empty($isSubCate['errors'])) {
             return true;
         }
@@ -125,7 +115,7 @@ class UrlControllers
         }
     }
 
-    public static function url($q = "", $p = \MVC\config\config::BASE_FOLDER)
+    public static function url($q = "", $p = config::BASE_FOLDER)
     {
         return sprintf(
             "%s://%s/%s" . (($q == "") ? "" : "/%s"),

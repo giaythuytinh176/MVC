@@ -169,7 +169,7 @@ class CartControllers
                         </td>
 
                         <td class="cart-product-name">
-                            <a href="' . \MVC\controllers\UrlControllers::url("category/".$valFromDB['category_code']."/".$valFromDB['code']."/" . $item['product_id'] . "-$NameProductToString.html") . '">' . $valFromDB['ProductName'] . '</a>
+                            <a href="' . \MVC\controllers\UrlControllers::url("category/" . $valFromDB['category_code'] . "/" . $valFromDB['code'] . "/" . $item['product_id'] . "-$NameProductToString.html") . '">' . $valFromDB['ProductName'] . '</a>
                         </td>
 
                         <td class="cart-product-price">

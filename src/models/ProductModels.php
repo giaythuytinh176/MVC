@@ -3,40 +3,34 @@
 namespace MVC\models;
 
 use MVC\controllers\ToolControllers;
-use MVC\libs\Database;
+use \MVC\models\CRUDModels;
 
 class ProductModels
 {
-    protected $db;
     private $CRUDmodels;
 
     public function __construct()
     {
-        $this->db = Database::getInstance();
-        $this->CRUDmodels = new \MVC\models\CRUDModels();
+        $this->CRUDmodels = new CRUDModels();
     }
 
     public function getDetailElementbyID($data)
     {
-        $sql = "SELECT * FROM product_category JOIN product as p on product_category.category_id = p.category_id";
-        return $this->CRUDmodels->select($sql, $data);
+        return $this->CRUDmodels->select("product_category", $data, "JOIN product as p on product_category.category_id = p.category_id");
     }
 
     public function getProductDetailbyID($data)
     {
-        $sql = "SELECT * FROM product p JOIN product_category pc on pc.category_id = p.category_id JOIN parent_category c on c.parent_id = pc.parent_id";
-        return $this->CRUDmodels->select($sql, $data);
+        return $this->CRUDmodels->select("product", $data, "p JOIN product_category pc on pc.category_id = p.category_id JOIN parent_category c on c.parent_id = pc.parent_id");
     }
 
     public function getListProductinMainCategory($data)
     {
-        $sql = "SELECT * FROM product LEFT JOIN product_category pc on product.category_id = pc.category_id";
-        return $this->CRUDmodels->select($sql, $data, "All");
+        return $this->CRUDmodels->select("product", $data, "LEFT JOIN product_category pc on product.category_id = pc.category_id", "All");
     }
 
     public function getAllElementbySubCateID($data)
     {
-        $sql = "SELECT * FROM sub_product_category JOIN product as p on sub_product_category.category_sub = p.category_sub";
-        return $this->CRUDmodels->select($sql, $data, "All");
+        return $this->CRUDmodels->select("sub_product_category", $data, "JOIN product as p on sub_product_category.category_sub = p.category_sub", "All");
     }
 }
