@@ -48,6 +48,7 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
         'MVC\\libs\\Session' => __DIR__ . '/../..' . '/src/libs/Session.php',
         'MVC\\libs\\UserAccess' => __DIR__ . '/../..' . '/src/libs/UserAccess.php',
         'MVC\\libs\\init' => __DIR__ . '/../..' . '/src/libs/init.php',
+        'MVC\\models\\CRUDModels' => __DIR__ . '/../..' . '/src/models/CRUDModels.php',
         'MVC\\models\\CategoryModels' => __DIR__ . '/../..' . '/src/models/CategoryModels.php',
         'MVC\\models\\LangModels' => __DIR__ . '/../..' . '/src/models/LangModels.php',
         'MVC\\models\\ProductModels' => __DIR__ . '/../..' . '/src/models/ProductModels.php',

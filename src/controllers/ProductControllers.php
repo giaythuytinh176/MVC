@@ -3,41 +3,68 @@
 namespace MVC\controllers;
 
 use MVC\models\ProductModels;
+use \MVC\Controllers\RenderControllers;
 
-class ProductControllers extends ProductModels
+class ProductControllers
 {
+    protected $pc;
+
+    public function __construct()
+    {
+        $this->pc = new ProductModels();
+    }
+
+    public function getDetailElementbyID($action, $params)
+    {
+        $product_id = current(explode("-", $params[1]));
+        $data = ['code' => $params[0], 'product_id' => $product_id];
+        $dataSQL = $this->pc->getDetailElementbyID($data);
+        if (!empty($dataSQL)) {
+            (new RenderControllers())->view("order/shop-single", [$dataSQL, $params[0], $product_id]);
+        } else {
+            (new RenderControllers())->errorPage();
+        }
+    }
+
+    public function getProductDetailbyID($id)
+    {
+        $data = ['product_id' => $id];
+        $dataSQL = $this->pc->getProductDetailbyID($data);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have this product."];
+        }
+        return $dataSQL;
+    }
+
     public function getListProductinMainCategory($action, $params)
     {
-        $data = parent::getListProductinMainCategory($action, $params);
-        (new \MVC\Controllers\RenderControllers())->view("category/shop", [$data, $action, $params]);
+        $data = ['code' => $params[0], 'is_disabled' => '0'];
+        $dataSQL = $this->pc->getListProductinMainCategory($data);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have any this Category."];
+        }
+        (new RenderControllers())->view("category/shop", [$dataSQL, $action, $params]);
     }
 
     public function getAllElementbySubCateID($action, $category)
     {
-        $data = parent::getAllElementbySubCateID($action, $category);
-        (new \MVC\Controllers\RenderControllers())->view("category/shop", [$data, $action, $category]);
+        $data = ['codeSUB' => $category[1], 'is_disabled_sub' => '0', 'is_disabled' => '0'];
+        $dataSQL = $this->pc->getAllElementbySubCateID($data);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have this product."];
+        }
+        (new RenderControllers())->view("category/shop", [$dataSQL, $action, $category]);
     }
 
     public static function CalculateTotalCart()
     {
         $totalPriceEachItem = 0;
         foreach ($_SESSION['cart_items'] as $item) {
-            $valFromDB = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($item['product_id']);
+            $valFromDB = (new self)->getProductDetailbyID($item['product_id']);
             $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
             $totalPriceEachItem += $amount * $item['qty'];
         }
         return $totalPriceEachItem;
-    }
-
-    public function getDetailElementbyID($action, $params)
-    {
-        $product_id = current(explode("-", $params[1]));
-        $data = parent::getDetailElementbyID($params[0], $product_id);
-        if (empty($data['errors'])) {
-            (new \MVC\Controllers\RenderControllers())->view("order/shop-single", [$data, $params[0], $product_id]);
-        } else {
-            (new \MVC\Controllers\RenderControllers())->errorPage();
-        }
     }
 
     public function showDetailProduct($data)
@@ -468,27 +495,27 @@ class ProductControllers extends ProductModels
 
     public static function printListItems($data)
     {
-        $parseURL = \MVC\controllers\UrlControllers::parseURL($_GET['url']);
+        $parseURL = UrlControllers::parseURL($_GET['url']);
         $sout = '';
-        foreach ($data as $value) {
-            $NameProductToString = ToolControllers::ConvertName($value);
-            $sout .= '<div class="product col-lg-3 col-md-4 col-sm-6 col-12">
+        if (!empty($data)) {
+            foreach ($data as $value) {
+                $NameProductToString = ToolControllers::ConvertName($value);
+                $sout .= '<div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="grid-inner">
                             <div class="product-image">';
-
 //            foreach (explode(PHP_EOL, $value['img_list']) as $ImgList) {
 //                if (!empty($ImgList)) {
 //                    $sout .= '<a href="#"><img src="' . $ImgList . '" alt="' . $value['ProductName'] . '"></a>';
 //                }
 //            }
-            // chi lay 2 anh ko bi loi
-            if (!empty(explode(PHP_EOL, $value['img_list'])[0])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $value['img_list'])[0] . '" alt="' . $value['ProductName'] . '"></a>';
-            if (!empty(explode(PHP_EOL, $value['img_list'])[1])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $value['img_list'])[1] . '" alt="' . $value['ProductName'] . '"></a>';
-            $sout .= '' . (($value['Stock'] < 1) ? '<div class="sale-flash badge badge-secondary p-2">' . \MVC\libs\Languages::getLangData("Out of Stock") . '</div>' : '') . '
+                // chi lay 2 anh ko bi loi
+                if (!empty(explode(PHP_EOL, $value['img_list'])[0])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $value['img_list'])[0] . '" alt="' . $value['ProductName'] . '"></a>';
+                if (!empty(explode(PHP_EOL, $value['img_list'])[1])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $value['img_list'])[1] . '" alt="' . $value['ProductName'] . '"></a>';
+                $sout .= '' . (($value['Stock'] < 1) ? '<div class="sale-flash badge badge-secondary p-2">' . \MVC\libs\Languages::getLangData("Out of Stock") . '</div>' : '') . '
                                 ' . (($value['Stock'] > 100) ? '<div class="sale-flash badge badge-success p-2 text-uppercase">Sale!</div>' : '') . '';
-            if ($value['Stock'] > 0) {
-                $sout .= '<div class="bg-overlay"><div class="bg-overlay-content align-items-end justify-content-between" data-hover-animate="fadeIn" data-hover-speed="400">';
-                $sout .= '<form class="cart mb-0" action="' . \MVC\controllers\UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
+                if ($value['Stock'] > 0) {
+                    $sout .= '<div class="bg-overlay"><div class="bg-overlay-content align-items-end justify-content-between" data-hover-animate="fadeIn" data-hover-speed="400">';
+                    $sout .= '<form class="cart mb-0" action="' . \MVC\controllers\UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
                         <input type="hidden" name="qty" value="1"/>
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][qty]" value="1"/>
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][price]" value="' . ((!empty($value['discount']) && $value['discount'] > 0) ? ($value['price'] * (100 - $value['discount']) / 100) : $value['price']) . '"/>
@@ -496,18 +523,18 @@ class ProductControllers extends ProductModels
                         <input type="hidden" name="cart_items[' . $value['product_id'] . '][product_name]" value="' . urlencode($value['ProductName']) . '"/>
                     <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
                 </form>';
-                $sout .= '<a href="' . \MVC\controllers\UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php?product_id=" . $value['product_id']) . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
-                $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
-            }
-            $sout .= '     </div>
+                    $sout .= '<a href="' . \MVC\controllers\UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php?product_id=" . $value['product_id']) . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
+                    $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
+                }
+                $sout .= '     </div>
                             <div class="product-desc">
                                 <div class="product-title"><h3><a href="' . \MVC\controllers\UrlControllers::url("$parseURL[0]/$parseURL[1]/$parseURL[2]/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $value['ProductName'] . '</a></h3>
                             </div>
                                 <div class="product-price">';
 
-            $sout .= (!empty($value['discount']) && $value['discount'] > 0) ? '<del>' . number_format($value['price']) . ' ₫ </del><ins>' . number_format(($value['price'] * (100 - $value['discount']) / 100)) . '₫ </ins>' : '<ins>' . number_format($value['price']) . ' ₫ </ins>';
+                $sout .= (!empty($value['discount']) && $value['discount'] > 0) ? '<del>' . number_format($value['price']) . ' ₫ </del><ins>' . number_format(($value['price'] * (100 - $value['discount']) / 100)) . '₫ </ins>' : '<ins>' . number_format($value['price']) . ' ₫ </ins>';
 
-            $sout .= '</div>
+                $sout .= '</div>
                                 <div class="product-rating">
                                     <i class="icon-star3"></i>
                                     <i class="icon-star3"></i>
@@ -518,6 +545,9 @@ class ProductControllers extends ProductModels
                             </div>
                         </div>
                     </div>';
+            }
+        } else {
+            $sout .= '<div class=\'product col-lg-3 col-md-4 col-sm-6 col-12\'><h4>' . \MVC\libs\Languages::getLangData("No products.") . '</h4></div>';
         }
         return $sout;
     }

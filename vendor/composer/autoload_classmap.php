@@ -33,6 +33,7 @@ return array(
     'MVC\\libs\\Session' => $baseDir . '/src/libs/Session.php',
     'MVC\\libs\\UserAccess' => $baseDir . '/src/libs/UserAccess.php',
     'MVC\\libs\\init' => $baseDir . '/src/libs/init.php',
+    'MVC\\models\\CRUDModels' => $baseDir . '/src/models/CRUDModels.php',
     'MVC\\models\\CategoryModels' => $baseDir . '/src/models/CategoryModels.php',
     'MVC\\models\\LangModels' => $baseDir . '/src/models/LangModels.php',
     'MVC\\models\\ProductModels' => $baseDir . '/src/models/ProductModels.php',

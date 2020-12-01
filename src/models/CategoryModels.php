@@ -7,95 +7,54 @@ use MVC\libs\Database;
 
 class CategoryModels
 {
-    private $db;
+    protected $db;
+    private $CRUDmodels;
 
     public function __construct()
     {
         $this->db = Database::getInstance();
+        $this->CRUDmodels = new \MVC\models\CRUDModels();
     }
 
-    public function getAllSubCategory($code)
+    public function getAllSubCategory($data)
     {
-        $sql = "SELECT * FROM product_category INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id WHERE code='$code' AND is_disabled_sub='0'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Doesn't have any sub Category."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM product_category INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id";
+        return $this->CRUDmodels->select($sql, $data, 'All');
     }
 
-    public function getAllListcategory()
+    public function getAllListcategory($data)
     {
-        $sql = "SELECT * FROM parent_category WHERE is_disabled='0' ORDER BY orderParent ASC";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Doesn't have any Category."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM parent_category";
+        return $this->CRUDmodels->select($sql, $data, 'All', ' ORDER BY orderParent ASC');
     }
 
-    public function getCategorybyID($categoryName, $category_id)
+    public function getCategorybyID($data)
     {
-        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id WHERE code='$category_id[0]' AND category_code='$categoryName'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetch($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Category not found."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id";
+        return $this->CRUDmodels->select($sql, $data);
     }
 
-    public function getDetailElementbyCodeSub($code)
+    public function getDetailElementbyCodeSub($data)
     {
-        $sql = "SELECT * FROM sub_product_category WHERE codeSUB='$code'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetch($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Code not found."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM sub_product_category";
+        return $this->CRUDmodels->select($sql, $data);
     }
 
-    public function getDetaiElementbyCode($code)
+    public function getDetaiElementbyCode($data)
     {
-        $sql = "SELECT * FROM product_category WHERE code='$code'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetch($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Code not found."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM product_category";
+        return $this->CRUDmodels->select($sql, $data);
     }
 
-    public function getAllCategorybyParentID($parentID)
+    public function getAllCategorybyParentID($data)
     {
-        $sql = "SELECT * FROM product_category WHERE parent_id='$parentID' AND is_disabled_brand='0'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetchAll($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Doesn't have any Category."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM product_category";
+        return $this->CRUDmodels->select($sql, $data, 'All');
     }
 
-    public function getSubCategorybyID($action, $category_id)
+    public function getSubCategorybyID($data)
     {
-        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id WHERE code='$category_id[0]' AND category_code='$action'";
-        $stmt = $this->db->query($sql);
-        $data = $stmt->fetch($this->db::FETCH_ASSOC);
-        if (empty($data)) {
-            return ["errors" => "Category not found."];
-        } else {
-            return $data;
-        }
+        $sql = "SELECT * FROM parent_category RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id";
+        return $this->CRUDmodels->select($sql, $data);
     }
-
 }

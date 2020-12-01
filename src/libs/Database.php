@@ -2,6 +2,7 @@
 
 namespace MVC\libs;
 
+use MVC\controllers\ToolControllers;
 use PDO;
 use PDOException;
 
@@ -26,4 +27,3 @@ class Database
         return self::$instance;
     }
 }
-

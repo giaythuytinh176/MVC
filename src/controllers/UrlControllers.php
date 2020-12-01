@@ -69,7 +69,7 @@ class UrlControllers
                 break;
             case "category":
                 $list_parent_category = [];
-                foreach ((new \MVC\controllers\CategoryControllers())->getAllListcategory() as $value) {
+                foreach ((new CategoryControllers())->getAllListcategory() as $value) {
                     $list_parent_category[] = $value['category_code'];
                 }
                 foreach ($list_parent_category as $val) {
