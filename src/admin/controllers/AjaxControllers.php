@@ -77,7 +77,16 @@ class AjaxControllers extends ProductController
             if ($check == false) {
                 $cateInfo = (new \MVC\admin\controllers\CategoryControllers())->getCategoryProductFromCateID($category_id);
                 $parInfo = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
-                echo "We only allow {$cateInfo['title']} select with {$parInfo['category_title']}.";
+                $parInfo2 = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($parent_id);
+
+                $cateInfo2 = (new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent_id);
+                $list_cate = [];
+                foreach ($cateInfo2 as $cate) {
+                    $list_cate[] = $cate['title'];
+                }
+
+                echo "We only allowed [{$cateInfo['title']}] select with [{$parInfo['category_title']}].<br>";
+                echo "We only allowed [{$parInfo2['category_title']}] select with [" . implode(", ", $list_cate) . "].";
             } else {
                 echo (new \MVC\admin\controllers\CategoryControllers())->AddSubCate($sub_title, $sub_code, $category_id, $parent_id);
             }
@@ -112,8 +121,8 @@ class AjaxControllers extends ProductController
                     $list_cate[] = $cate['title'];
                 }
 
-                echo "We only allowed {$cateInfo['title']} select with {$parInfo['category_title']}.<br>";
-                echo "We only allowed {$parInfo2['category_title']} select with " . implode(", ", $list_cate) . ".";
+                echo "We only allowed [{$cateInfo['title']}] select with [{$parInfo['category_title']}].<br>";
+                echo "We only allowed [{$parInfo2['category_title']}] select with [" . implode(", ", $list_cate) . "].";
             } else {
                 echo (new \MVC\admin\controllers\ProductController())->InsertProduct($_POST);
             }
