@@ -76,14 +76,17 @@ class UrlControllers
                     if ($val == $this->action) {
                         if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
                             $this->ProductControllers->getDetailElementbyID($this->action, $this->params);
+                            break;
                         } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
                             $this->ProductControllers->getAllElementbySubCateID($this->action, $this->params);
+                            break;
                         } elseif (!empty($this->params[0])) {
                             $this->ProductControllers->getListProductinMainCategory($this->action, $this->params);
+                            break;
                         } else {
                             $this->CategoryControllers->getAllCategoryView($this->action);
+                            break;
                         }
-                        break;
                     }
                 }
                 $this->render->errorPage();

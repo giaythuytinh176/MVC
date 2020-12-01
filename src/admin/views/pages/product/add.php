@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <div id="AddProDuctResults"></div>
                     <div class='table-responsive'>
-                        <?php echo \MVC\admin\controllers\ProductController::PrintAddProduct($data); ?>
+                        <?php echo \MVC\admin\controllers\ProductController::PrintAddProduct(); ?>
                     </div>
                 </div>
             </div>

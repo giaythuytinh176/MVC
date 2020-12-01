@@ -13,22 +13,25 @@ class ProductController extends ProductModels
         $product_name = $post['product_name'];
         $parent_id = $post['parent_id'];
         $category_id = $post['category_id'];
-        $category_sub = $post['category_sub'] ? $post['category_sub'] : "NULL";
+        $category_sub = $post['category_sub'] ? $post['category_sub'] : 'NULL';
+        $category_sub = (strtolower($category_sub) === 'null') ? 'NULL' : $category_sub;
+        $category_sub = (empty($category_sub)) ? 'NULL' : $category_sub;
         $price = $post['price'];
         $discount = $post['discount'];
         $img_link = $post['img_link'];
         $img_list = $post['img_list'];
         $description = $post['description'];
-//        $stmt1 = $this->db->query("SELECT * FROM sub_product_category WHERE title='$title' AND category_id='$cate_id'");
-//        if (!empty($stmt1->fetch($this->db::FETCH_ASSOC))) {
-//            return "Sub Category Title is existed.";
-//        }
-//
+        $stmt1 = $this->db->query("SELECT * FROM product WHERE ProductName='$product_name' AND category_id='$category_id'");
+        if (!empty($stmt1->fetch($this->db::FETCH_ASSOC))) {
+            return "Product Name is existed.";
+        }
+
 //        $stmt2 = $this->db->query("SELECT * FROM sub_product_category WHERE codeSUB='$code' AND category_id='$cate_id'");
 //        if (!empty($stmt2->fetch($this->db::FETCH_ASSOC))) {
 //            return "Sub Category Code is existed.";
 //        }
-        $sql = "INSERT INTO product (ProductName, category_id, category_sub, price, discount, img_link, img_list, description) VALUES ('$product_name','$category_id','$category_sub','$price','$discount','$img_link','$img_list','$description')";
+
+        $sql = "INSERT INTO product (ProductName, category_id, category_sub, price, discount, img_link, img_list, description) VALUES ('$product_name','$category_id'," . $category_sub . ",'$price','$discount','$img_link','$img_list','$description')";
         $this->db->query($sql);
         return "Added Product {$product_name}.";
     }
@@ -129,7 +132,7 @@ class ProductController extends ProductModels
         return $sout;
     }
 
-    public static function PrintAddProduct($data)
+    public static function PrintAddProduct()
     {
         $sout = '';
         $sout .= '<table id="AddProduct" class="table table-borderless" cellspacing="0"
@@ -184,7 +187,7 @@ class ProductController extends ProductModels
                                 <th style="width: 30%" class="warning">
                                     <select id="category_sub" required="1">';
         if (!empty((new \MVC\admin\controllers\CategoryControllers())->getAllSubCate())) {
-            $sout .= '<option value="null">Null [not in this sub]</option>';
+            $sout .= '<option value="null">Not in these list below</option>';
             foreach ((new \MVC\admin\controllers\CategoryControllers())->getAllSubCate() as $sub) {
                 $sout .= '<option value="' . $sub['category_sub'] . '">' . $sub['title'] . '</option>';
             }

@@ -14,6 +14,9 @@ class UrlControllers
     public function index()
     {
         $this->render = new RenderControllers();
+        if ((new \MVC\libs\UserAccess())->isAdmin() === false) {
+            $this->render->redirectAfterSecondPage("", 1);
+        }
         $this->ParseActionsParams(\MVC\controllers\UrlControllers::parseURL());
         $this->parseController();
     }

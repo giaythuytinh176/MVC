@@ -259,7 +259,9 @@ $(document).ready(function () {
                 },
                 cache: false,
                 success: function (response) {
-                    if (response.includes("allow")) {
+                    if (response.includes("existed")) {
+                        $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
+                    } else if (response.includes("allow")) {
                         $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">' + response + '</div>');
                     } else {
                         $('#AddProDuctResults').html('<div class="alert alert-success" role="alert">' + response + '</div>');
