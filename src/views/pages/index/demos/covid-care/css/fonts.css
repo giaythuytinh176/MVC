@@ -26,7 +26,9 @@ small,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'IBM Plex Sans', sans-serif !important; }
+.font-secondary {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+}
 
 
 h1,
@@ -47,7 +49,11 @@ label,
 .widget-filter-links li a,
 .nav-tree li a,
 .wedding-head,
-.font-primary { font-family: 'IBM Plex Serif', serif !important; }
+.font-primary {
+    font-family: 'IBM Plex Serif', serif !important;
+}
 
-.font-display { font-family: 'Playfair Display', serif !important; }
+.font-display {
+    font-family: 'Playfair Display', serif !important;
+}
 

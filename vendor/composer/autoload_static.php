@@ -6,21 +6,21 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
 {
-    public static $prefixLengthsPsr4 = array (
-        'M' => 
-        array (
-            'MVC\\' => 4,
-        ),
+    public static $prefixLengthsPsr4 = array(
+        'M' =>
+            array(
+                'MVC\\' => 4,
+            ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'MVC\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
+    public static $prefixDirsPsr4 = array(
+        'MVC\\' =>
+            array(
+                0 => __DIR__ . '/../..' . '/src',
+            ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array(
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'MVC\\admin\\controllers\\AjaxControllers' => __DIR__ . '/../..' . '/src/admin/controllers/AjaxControllers.php',
         'MVC\\admin\\controllers\\CategoryControllers' => __DIR__ . '/../..' . '/src/admin/controllers/CategoryControllers.php',

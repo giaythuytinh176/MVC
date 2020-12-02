@@ -22,7 +22,9 @@ label,
 .nav-tree li a,
 .wedding-head .first-name,
 .wedding-head .last-name,
-.font-primary { font-family: 'Montserrat', sans-serif; }
+.font-primary {
+    font-family: 'Montserrat', sans-serif;
+}
 
 .entry-meta li,
 .entry-link span,
@@ -35,5 +37,7 @@ label,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'Merriweather', serif; }
+.font-secondary {
+    font-family: 'Merriweather', serif;
+}
 

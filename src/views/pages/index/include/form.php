@@ -27,9 +27,9 @@ require 'phpmailer/src/SMTP.php';
 $toemails = array();
 
 $toemails[] = array(
-				'email' => 'your-email@website.com', // Your Email Address
-				'name' => 'Your Name' // Your Name
-			);
+    'email' => 'your-email@website.com', // Your Email Address
+    'name' => 'Your Name' // Your Name
+);
 
 
 /*-------------------------------------------------
@@ -37,9 +37,9 @@ $toemails[] = array(
 ---------------------------------------------------*/
 
 $fromemail = array(
-				'email' => 'no-reply@website.com', // Company's Email Address (preferably currently used Domain Name)
-				'name' => 'Company Name' // Company Name
-			);
+    'email' => 'no-reply@website.com', // Company's Email Address (preferably currently used Domain Name)
+    'name' => 'Company Name' // Company Name
+);
 
 
 /*-------------------------------------------------
@@ -67,12 +67,12 @@ $mail = new PHPMailer();
 ---------------------------------------------------*/
 
 $message = array(
-	'success'			=> 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.',
-	'error'				=> 'Email <strong>could not</strong> be sent due to some Unexpected Error. Please Try Again later.',
-	'error_bot'			=> 'Bot Detected! Form could not be processed! Please Try Again!',
-	'error_unexpected'	=> 'An <strong>unexpected error</strong> occured. Please Try Again later.',
-	'recaptcha_invalid'	=> 'Captcha not Validated! Please Try Again!',
-	'recaptcha_error'	=> 'Captcha not Submitted! Please Try Again.'
+    'success' => 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.',
+    'error' => 'Email <strong>could not</strong> be sent due to some Unexpected Error. Please Try Again later.',
+    'error_bot' => 'Bot Detected! Form could not be processed! Please Try Again!',
+    'error_unexpected' => 'An <strong>unexpected error</strong> occured. Please Try Again later.',
+    'recaptcha_invalid' => 'Captcha not Validated! Please Try Again!',
+    'recaptcha_error' => 'Captcha not Submitted! Please Try Again.'
 );
 
 
@@ -81,9 +81,9 @@ $message = array(
 ---------------------------------------------------*/
 
 $spam_keywords = array(
-	'viagra',
-	'cialis',
-	'levitra'
+    'viagra',
+    'cialis',
+    'levitra'
 );
 
 
@@ -91,207 +91,208 @@ $spam_keywords = array(
 	Form Processor
 ---------------------------------------------------*/
 
-if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$prefix		= !empty( $_POST['prefix'] ) ? $_POST['prefix'] : '';
-	$submits	= $_POST;
-	$botpassed	= false;
-
-
-	$message_form					= !empty( $submits['message'] ) ? $submits['message'] : array();
-	$message['success']				= !empty( $message_form['success'] ) ? $message_form['success'] : $message['success'];
-	$message['error']				= !empty( $message_form['error'] ) ? $message_form['error'] : $message['error'];
-	$message['error_bot']			= !empty( $message_form['error_bot'] ) ? $message_form['error_bot'] : $message['error_bot'];
-	$message['error_unexpected']	= !empty( $message_form['error_unexpected'] ) ? $message_form['error_unexpected'] : $message['error_unexpected'];
-	$message['recaptcha_invalid']	= !empty( $message_form['recaptcha_invalid'] ) ? $message_form['recaptcha_invalid'] : $message['recaptcha_invalid'];
-	$message['recaptcha_error']		= !empty( $message_form['recaptcha_error'] ) ? $message_form['recaptcha_error'] : $message['recaptcha_error'];
+    $prefix = !empty($_POST['prefix']) ? $_POST['prefix'] : '';
+    $submits = $_POST;
+    $botpassed = false;
 
 
-	/*-------------------------------------------------
-		Bot Protection
-	---------------------------------------------------*/
-
-	if( isset( $submits[ $prefix . 'botcheck' ] ) ) {
-		$botpassed = true;
-	}
-
-	if( !empty( $submits[ $prefix . 'botcheck' ] ) ) {
-		$botpassed = false;
-	}
-
-	if( $botpassed == false ) {
-		echo '{ "alert": "error", "message": "' . $message['error_bot'] . '" }';
-		exit;
-	}
+    $message_form = !empty($submits['message']) ? $submits['message'] : array();
+    $message['success'] = !empty($message_form['success']) ? $message_form['success'] : $message['success'];
+    $message['error'] = !empty($message_form['error']) ? $message_form['error'] : $message['error'];
+    $message['error_bot'] = !empty($message_form['error_bot']) ? $message_form['error_bot'] : $message['error_bot'];
+    $message['error_unexpected'] = !empty($message_form['error_unexpected']) ? $message_form['error_unexpected'] : $message['error_unexpected'];
+    $message['recaptcha_invalid'] = !empty($message_form['recaptcha_invalid']) ? $message_form['recaptcha_invalid'] : $message['recaptcha_invalid'];
+    $message['recaptcha_error'] = !empty($message_form['recaptcha_error']) ? $message_form['recaptcha_error'] : $message['recaptcha_error'];
 
 
-	/*-------------------------------------------------
-		SPAM Protection
-	---------------------------------------------------*/
+    /*-------------------------------------------------
+        Bot Protection
+    ---------------------------------------------------*/
 
-	function spam_keyword_check( $submitted, $spamwords ) {
-		if( is_array( $submitted ) ) {
-			return false;
-		}
-		if( !is_array( $spamwords ) ) $spamwords = array( $spamwords );
-		foreach( $spamwords as $spamstring ) {
-			if( ( $position = stripos( $submitted, $spamstring ) ) !== false ) return $position;
-		}
-		return false;
-	}
+    if (isset($submits[$prefix . 'botcheck'])) {
+        $botpassed = true;
+    }
 
-	foreach( $submits as $spam_submit ) {
-		if( spam_keyword_check( $spam_submit, $spam_keywords ) ) {
-			// A successful message is displayed to the submitter that makes him think that the Form has been sent so that he cannot modify the keywords to prevent SPAM
-			echo '{ "alert": "success", "message": "' . $message['success'] . '" }';
-			exit;
-		}
-	}
+    if (!empty($submits[$prefix . 'botcheck'])) {
+        $botpassed = false;
+    }
+
+    if ($botpassed == false) {
+        echo '{ "alert": "error", "message": "' . $message['error_bot'] . '" }';
+        exit;
+    }
 
 
-	/*-------------------------------------------------
-		reCaptcha
-	---------------------------------------------------*/
+    /*-------------------------------------------------
+        SPAM Protection
+    ---------------------------------------------------*/
 
-	if( isset( $submits['g-recaptcha-response'] ) ) {
+    function spam_keyword_check($submitted, $spamwords)
+    {
+        if (is_array($submitted)) {
+            return false;
+        }
+        if (!is_array($spamwords)) $spamwords = array($spamwords);
+        foreach ($spamwords as $spamstring) {
+            if (($position = stripos($submitted, $spamstring)) !== false) return $position;
+        }
+        return false;
+    }
 
-		$recaptcha_data = array(
-			'secret' => $recaptcha_secret,
-			'response' => $submits['g-recaptcha-response']
-		);
+    foreach ($submits as $spam_submit) {
+        if (spam_keyword_check($spam_submit, $spam_keywords)) {
+            // A successful message is displayed to the submitter that makes him think that the Form has been sent so that he cannot modify the keywords to prevent SPAM
+            echo '{ "alert": "success", "message": "' . $message['success'] . '" }';
+            exit;
+        }
+    }
 
-		$recap_verify = curl_init();
-		curl_setopt( $recap_verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify" );
-		curl_setopt( $recap_verify, CURLOPT_POST, true );
-		curl_setopt( $recap_verify, CURLOPT_POSTFIELDS, http_build_query( $recaptcha_data ) );
-		curl_setopt( $recap_verify, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $recap_verify, CURLOPT_RETURNTRANSFER, true );
-		$recap_response = curl_exec( $recap_verify );
 
-		$g_response = json_decode( $recap_response );
+    /*-------------------------------------------------
+        reCaptcha
+    ---------------------------------------------------*/
 
-		if ( $g_response->success !== true ) {
-			echo '{ "alert": "error", "message": "' . $message['recaptcha_invalid'] . '" }';
-			exit;
-		}
-	}
+    if (isset($submits['g-recaptcha-response'])) {
 
-	$template	= !empty( $submits['template'] ) ? $submits['template'] : 'html';
-	$html_title	= !empty( $submits['html_title'] ) ? $submits['html_title'] : 'Form Response';
-	$forcerecap	= ( !empty( $submits['force_recaptcha'] ) && $submits['force_recaptcha'] != 'false' ) ? true : false;
-	$replyto	= !empty( $submits['replyto'] ) ? explode( ',', $submits['replyto'] ) : false;
+        $recaptcha_data = array(
+            'secret' => $recaptcha_secret,
+            'response' => $submits['g-recaptcha-response']
+        );
 
-	if( $forcerecap ) {
-		if( !isset( $submits['g-recaptcha-response'] ) ) {
-			echo '{ "alert": "error", "message": "' . $message['recaptcha_error'] . '" }';
-			exit;
-		}
-	}
+        $recap_verify = curl_init();
+        curl_setopt($recap_verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($recap_verify, CURLOPT_POST, true);
+        curl_setopt($recap_verify, CURLOPT_POSTFIELDS, http_build_query($recaptcha_data));
+        curl_setopt($recap_verify, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($recap_verify, CURLOPT_RETURNTRANSFER, true);
+        $recap_response = curl_exec($recap_verify);
 
-	/*-------------------------------------------------
-		Auto-Responders
-	---------------------------------------------------*/
+        $g_response = json_decode($recap_response);
 
-	$autores	= ( !empty( $submits['autoresponder'] ) && $submits['autoresponder'] != 'false' ) ? true : false;
-	$ar_subject	= !empty( $submits['ar_subject'] ) ? $submits['ar_subject'] : 'Thanks for your Email';
-	$ar_title	= !empty( $submits['ar_title'] ) ? $submits['ar_title'] : 'Its so good to hear from You!';
-	$ar_message	= !empty( $submits['ar_message'] ) ? $submits['ar_message'] : 'Autoresponder Message';
+        if ($g_response->success !== true) {
+            echo '{ "alert": "error", "message": "' . $message['recaptcha_invalid'] . '" }';
+            exit;
+        }
+    }
 
-	preg_match_all('#\{(.*?)\}#', $ar_message, $ar_matches);
-	if( !empty( $ar_matches[1] ) ) {
-		foreach( $ar_matches[1] as $ar_key => $ar_value ) {
-			$ar_message = str_replace( '{' . $ar_value . '}' , $submits[ $ar_value ], $ar_message );
-		}
-	}
+    $template = !empty($submits['template']) ? $submits['template'] : 'html';
+    $html_title = !empty($submits['html_title']) ? $submits['html_title'] : 'Form Response';
+    $forcerecap = (!empty($submits['force_recaptcha']) && $submits['force_recaptcha'] != 'false') ? true : false;
+    $replyto = !empty($submits['replyto']) ? explode(',', $submits['replyto']) : false;
 
-	$ar_footer	= !empty( $submits['ar_footer'] ) ? $submits['ar_footer'] : 'Copyrights &copy; ' . date('Y') . ' <strong>SemiColonWeb</strong>. All Rights Reserved.';
+    if ($forcerecap) {
+        if (!isset($submits['g-recaptcha-response'])) {
+            echo '{ "alert": "error", "message": "' . $message['recaptcha_error'] . '" }';
+            exit;
+        }
+    }
 
-	$mail->Subject = !empty( $submits['subject'] ) ? $submits['subject'] : 'Form Response from your Website';
-	$mail->SetFrom( $fromemail['email'] , $fromemail['name'] );
+    /*-------------------------------------------------
+        Auto-Responders
+    ---------------------------------------------------*/
 
-	if( !empty( $replyto ) ) {
-		if( count( $replyto ) > 1 ) {
-			$replyto_e = $submits[ $replyto[0] ];
-			$replyto_n = $submits[ $replyto[1] ];
-			$mail->AddReplyTo( $replyto_e , $replyto_n );
-		} elseif( count( $replyto ) == 1 ) {
-			$replyto_e = $submits[ $replyto[0] ];
-			$mail->AddReplyTo( $replyto_e );
-		}
-	}
+    $autores = (!empty($submits['autoresponder']) && $submits['autoresponder'] != 'false') ? true : false;
+    $ar_subject = !empty($submits['ar_subject']) ? $submits['ar_subject'] : 'Thanks for your Email';
+    $ar_title = !empty($submits['ar_title']) ? $submits['ar_title'] : 'Its so good to hear from You!';
+    $ar_message = !empty($submits['ar_message']) ? $submits['ar_message'] : 'Autoresponder Message';
 
-	foreach( $toemails as $toemail ) {
-		$mail->AddAddress( $toemail['email'] , $toemail['name'] );
-	}
+    preg_match_all('#\{(.*?)\}#', $ar_message, $ar_matches);
+    if (!empty($ar_matches[1])) {
+        foreach ($ar_matches[1] as $ar_key => $ar_value) {
+            $ar_message = str_replace('{' . $ar_value . '}', $submits[$ar_value], $ar_message);
+        }
+    }
 
-	$unsets = array( 'prefix', 'subject', 'replyto', 'template', 'html_title', 'message', 'autoresponder', 'ar_subject', 'ar_title', 'ar_message', 'ar_footer', $prefix . 'botcheck', 'g-recaptcha-response', 'force_recaptcha', $prefix . 'submit' );
+    $ar_footer = !empty($submits['ar_footer']) ? $submits['ar_footer'] : 'Copyrights &copy; ' . date('Y') . ' <strong>SemiColonWeb</strong>. All Rights Reserved.';
 
-	foreach( $unsets as $unset ) {
-		unset( $submits[ $unset ] );
-	}
+    $mail->Subject = !empty($submits['subject']) ? $submits['subject'] : 'Form Response from your Website';
+    $mail->SetFrom($fromemail['email'], $fromemail['name']);
 
-	$fields = array();
+    if (!empty($replyto)) {
+        if (count($replyto) > 1) {
+            $replyto_e = $submits[$replyto[0]];
+            $replyto_n = $submits[$replyto[1]];
+            $mail->AddReplyTo($replyto_e, $replyto_n);
+        } elseif (count($replyto) == 1) {
+            $replyto_e = $submits[$replyto[0]];
+            $mail->AddReplyTo($replyto_e);
+        }
+    }
 
-	foreach( $submits as $name => $value ) {
+    foreach ($toemails as $toemail) {
+        $mail->AddAddress($toemail['email'], $toemail['name']);
+    }
 
-		if( empty( $value ) ) continue;
+    $unsets = array('prefix', 'subject', 'replyto', 'template', 'html_title', 'message', 'autoresponder', 'ar_subject', 'ar_title', 'ar_message', 'ar_footer', $prefix . 'botcheck', 'g-recaptcha-response', 'force_recaptcha', $prefix . 'submit');
 
-		$name = str_replace( $prefix , '', $name );
-		$name = mb_convert_case( $name, MB_CASE_TITLE, "UTF-8" );
+    foreach ($unsets as $unset) {
+        unset($submits[$unset]);
+    }
 
-		if( is_array( $value ) ) {
-			$value = implode( ', ', $value );
-		}
+    $fields = array();
 
-		$fields[$name] = $value;
+    foreach ($submits as $name => $value) {
 
-	}
+        if (empty($value)) continue;
 
-	$files = $_FILES;
+        $name = str_replace($prefix, '', $name);
+        $name = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
 
-	foreach( $files as $file => $filevalue ) {
+        if (is_array($value)) {
+            $value = implode(', ', $value);
+        }
 
-		if( is_array( $filevalue['name'] ) ) {
+        $fields[$name] = $value;
 
-			$filecount = count( $filevalue['name'] );
+    }
 
-			for( $f = 0; $f < $filecount; $f++ ) {
-				if ( isset( $_FILES[ $file ] ) && $_FILES[ $file ]['error'][ $f ] == UPLOAD_ERR_OK ) {
-					$mail->IsHTML(true);
-					$mail->AddAttachment( $_FILES[ $file ]['tmp_name'][ $f ], $_FILES[ $file ]['name'][ $f ] );
-				}
-			}
+    $files = $_FILES;
 
-		} else {
+    foreach ($files as $file => $filevalue) {
 
-			if ( isset( $_FILES[ $file ] ) && $_FILES[ $file ]['error'] == UPLOAD_ERR_OK ) {
-				$mail->IsHTML(true);
-				$mail->AddAttachment( $_FILES[ $file ]['tmp_name'], $_FILES[ $file ]['name'] );
-			}
+        if (is_array($filevalue['name'])) {
 
-		}
+            $filecount = count($filevalue['name']);
 
-	}
+            for ($f = 0; $f < $filecount; $f++) {
+                if (isset($_FILES[$file]) && $_FILES[$file]['error'][$f] == UPLOAD_ERR_OK) {
+                    $mail->IsHTML(true);
+                    $mail->AddAttachment($_FILES[$file]['tmp_name'][$f], $_FILES[$file]['name'][$f]);
+                }
+            }
 
-	$response = array();
+        } else {
 
-	foreach( $fields as $fieldname => $fieldvalue ) {
-		if( $template == 'text' ) {
-			$response[] = $fieldname . ': ' . $fieldvalue;
-		} else {
-			$fieldname = '<tr>
+            if (isset($_FILES[$file]) && $_FILES[$file]['error'] == UPLOAD_ERR_OK) {
+                $mail->IsHTML(true);
+                $mail->AddAttachment($_FILES[$file]['tmp_name'], $_FILES[$file]['name']);
+            }
+
+        }
+
+    }
+
+    $response = array();
+
+    foreach ($fields as $fieldname => $fieldvalue) {
+        if ($template == 'text') {
+            $response[] = $fieldname . ': ' . $fieldvalue;
+        } else {
+            $fieldname = '<tr>
 								<td class="hero-subheader__title" style="font-size: 16px; line-height: 24px; font-weight: bold; padding: 0 0 5px 0;" align="left">' . $fieldname . '</td>
 							</tr>';
-			$fieldvalue = '<tr>
+            $fieldvalue = '<tr>
 								<td class="hero-subheader__content" style="font-size: 16px; line-height: 24px; color: #777777; padding: 0 15px 30px 0;" align="left">' . $fieldvalue . '</td>
 							</tr>';
-			$response[] = $fieldname . $fieldvalue;
-		}
-	}
+            $response[] = $fieldname . $fieldvalue;
+        }
+    }
 
-	$referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: ' . $_SERVER['HTTP_REFERER'] : '';
+    $referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: ' . $_SERVER['HTTP_REFERER'] : '';
 
-	$html_before = '<table class="full-width-container" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" bgcolor="#eeeeee" style="width: 100%; height: 100%; padding: 50px 0 50px 0;">
+    $html_before = '<table class="full-width-container" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" bgcolor="#eeeeee" style="width: 100%; height: 100%; padding: 50px 0 50px 0;">
 				<tr>
 					<td align="center" valign="top">
 						<!-- / 700px container -->
@@ -300,7 +301,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 								<td align="center" valign="top">
 									';
 
-	$html_after = '<!-- /// Footer -->
+    $html_after = '<!-- /// Footer -->
 								</td>
 							</tr>
 						</table>
@@ -308,10 +309,10 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				</tr>
 			</table>';
 
-	if( $template == 'text' ) {
-		$body = implode( "<br>", $response ) . $referrer;
-	} else {
-		$html = $html_before . '<!-- / Header -->
+    if ($template == 'text') {
+        $body = implode("<br>", $response) . $referrer;
+    } else {
+        $html = $html_before . '<!-- / Header -->
 									<table class="container header" border="0" cellpadding="0" cellspacing="0" width="84%" style="width: 84%;">
 										<tr>
 											<td style="padding: 30px 0 30px 0; border-bottom: solid 1px #eeeeee; font-size: 30px; font-weight: bold; text-decoration: none; color: #000000;" align="left">
@@ -323,7 +324,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 									<!-- / Hero subheader -->
 									<table class="container hero-subheader" border="0" cellpadding="0" cellspacing="0" width="84%" style="width: 84%; padding: 60px 0 30px 0;"">
-										' . implode( '', $response ) . '
+										' . implode('', $response) . '
 									</table>
 
 									<!-- / Footer -->
@@ -332,7 +333,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 											<td align="center">
 												<table class="container" border="0" cellpadding="0" cellspacing="0" width="84%" align="center" style="border-top: 1px solid #eeeeee; width: 84%;">
 													<tr>
-														<td style="color: #d5d5d5; text-align: center; font-size: 12px; padding: 30px 0 30px 0; line-height: 22px;">' . strip_tags( $referrer ) . '</td>
+														<td style="color: #d5d5d5; text-align: center; font-size: 12px; padding: 30px 0 30px 0; line-height: 22px;">' . strip_tags($referrer) . '</td>
 													</tr>
 												</table>
 											</td>
@@ -340,26 +341,26 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 									</table>
 									' . $html_after;
 
-		$body = $html;
-	}
+        $body = $html;
+    }
 
-	if( $autores && !empty( $replyto_e ) ) {
-		$autoresponder = new PHPMailer();
+    if ($autores && !empty($replyto_e)) {
+        $autoresponder = new PHPMailer();
 
-		/* Add your Auto-Responder SMTP Codes after this Line */
+        /* Add your Auto-Responder SMTP Codes after this Line */
 
 
-		// End of Auto-Responder SMTP
+        // End of Auto-Responder SMTP
 
-		$autoresponder->SetFrom( $fromemail['email'] , $fromemail['name'] );
-		if( !empty( $replyto_n ) ) {
-			$autoresponder->AddAddress( $replyto_e , $replyto_n );
-		} else {
-			$autoresponder->AddAddress( $replyto_e );
-		}
-		$autoresponder->Subject = $ar_subject;
+        $autoresponder->SetFrom($fromemail['email'], $fromemail['name']);
+        if (!empty($replyto_n)) {
+            $autoresponder->AddAddress($replyto_e, $replyto_n);
+        } else {
+            $autoresponder->AddAddress($replyto_e);
+        }
+        $autoresponder->Subject = $ar_subject;
 
-		$ar_body = $html_before . '<!-- / Header -->
+        $ar_body = $html_before . '<!-- / Header -->
 					<table class="container header" border="0" cellpadding="0" cellspacing="0" width="84%" style="width: 84%;">
 						<tr>
 							<td style="padding: 30px 0 30px 0; border-bottom: solid 1px #eeeeee; font-size: 30px; font-weight: bold; text-decoration: none; color: #000000;" align="left">
@@ -390,26 +391,26 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					</table>
 					' . $html_after;
 
-		$autoresponder->MsgHTML( $ar_body );
-	}
+        $autoresponder->MsgHTML($ar_body);
+    }
 
-	$mail->MsgHTML( $body );
-	$mail->CharSet = "UTF-8";
-	$sendEmail = $mail->Send();
+    $mail->MsgHTML($body);
+    $mail->CharSet = "UTF-8";
+    $sendEmail = $mail->Send();
 
-	if( $sendEmail == true ):
+    if ($sendEmail == true):
 
-		if( $autores && !empty( $replyto_e ) ) {
-			$send_arEmail = $autoresponder->Send();
-		}
+        if ($autores && !empty($replyto_e)) {
+            $send_arEmail = $autoresponder->Send();
+        }
 
-		echo '{ "alert": "success", "message": "' . $message['success'] . '" }';
-	else:
-		echo '{ "alert": "error", "message": "' . $message['error'] . '<br><br><strong>Reason:</strong><br>' . $mail->ErrorInfo . '" }';
-	endif;
+        echo '{ "alert": "success", "message": "' . $message['success'] . '" }';
+    else:
+        echo '{ "alert": "error", "message": "' . $message['error'] . '<br><br><strong>Reason:</strong><br>' . $mail->ErrorInfo . '" }';
+    endif;
 
 } else {
-	echo '{ "alert": "error", "message": "' . $message['error_unexpected'] . '" }';
+    echo '{ "alert": "error", "message": "' . $message['error_unexpected'] . '" }';
 }
 
 ?>

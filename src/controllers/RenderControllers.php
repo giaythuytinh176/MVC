@@ -18,8 +18,7 @@ class RenderControllers
     {
         if (!empty($path)) {
             require_once "./src/admin/views/pages/$v.php";
-        }
-        else {
+        } else {
             require_once "./src/views/pages/$v.php";
         }
         //exit();

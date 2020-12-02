@@ -51,7 +51,7 @@
     <section id="page-title">
 
         <div class="container clearfix">
-            <h1><?php echo ((!empty($data[0]['ProductName'])) ? $data[0]['ProductName'] : "Not Found.");?></h1>
+            <h1><?php echo((!empty($data[0]['ProductName'])) ? $data[0]['ProductName'] : "Not Found."); ?></h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Shop</a></li>

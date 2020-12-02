@@ -44,9 +44,13 @@ label,
 .team-title span,
 .before-heading,
 .wedding-head .first-name span,
-.wedding-head .last-name span { font-family: 'Poppins', sans-serif !important; }
+.wedding-head .last-name span {
+    font-family: 'Poppins', sans-serif !important;
+}
 
 .heading-block h2,
 .heading-block h3,
-.font-secondary { font-family: 'Caveat Brush', cursive !important; }
+.font-secondary {
+    font-family: 'Caveat Brush', cursive !important;
+}
 

@@ -5,9 +5,17 @@
 -----------------------------------------------------------------*/
 
 
-::selection { background: var(--themecolor, #222E2B); }
-::-moz-selection { background: var(--themecolor, #222E2B); }
-::-webkit-selection { background: var(--themecolor, #222E2B); }
+::selection {
+    background: var(--themecolor, #222E2B);
+}
+
+::-moz-selection {
+    background: var(--themecolor, #222E2B);
+}
+
+::-webkit-selection {
+    background: var(--themecolor, #222E2B);
+}
 
 
 a,
@@ -62,7 +70,9 @@ h6 > span:not(.nocolor):not(.badge),
 .dark .product-title h3 a:hover,
 .dark .single-product .product-title h2 a:hover,
 .dark .product-price ins,
-.dark .tab-nav-lg li.ui-tabs-active a { color: var(--themecolor, #222E2B); }
+.dark .tab-nav-lg li.ui-tabs-active a {
+    color: var(--themecolor, #222E2B);
+}
 
 .color,
 .h-text-color:hover,
@@ -72,7 +82,9 @@ a.h-text-color:hover,
 .tagcloud a:hover,
 .nav-tree li:hover > a,
 .nav-tree li.current > a,
-.nav-tree li.active > a { color: var(--themecolor, #222E2B) !important; }
+.nav-tree li.active > a {
+    color: var(--themecolor, #222E2B) !important;
+}
 
 .top-cart-number::before,
 #page-menu-wrap,
@@ -118,7 +130,9 @@ input.switch-toggle-flat:checked + label:after,
 .dark #gotoTop:hover,
 .dark input.switch-toggle-round:checked + label::before,
 .dark input.switch-toggle-flat:checked + label,
-.dark input.switch-toggle-flat:checked + label::after { background-color: var(--themecolor, #222E2B); }
+.dark input.switch-toggle-flat:checked + label::after {
+    background-color: var(--themecolor, #222E2B);
+}
 
 .bg-color,
 .bg-color #header-wrap,
@@ -131,7 +145,9 @@ input.switch-toggle-flat:checked + label:after,
 .widget-filter-links li.active-filter span,
 .page-item.active .page-link,
 .page-link:hover,
-.page-link:focus { background-color: var(--themecolor, #222E2B) !important; }
+.page-link:focus {
+    background-color: var(--themecolor, #222E2B) !important;
+}
 
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-themecolor,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-themecolor,
@@ -139,7 +155,9 @@ input.switch-toggle-flat:checked + label:after,
 .checkbox-style:checked + .checkbox-style-1-label:before,
 .checkbox-style:checked + .checkbox-style-2-label:before,
 .checkbox-style:checked + .checkbox-style-3-label:before,
-.radio-style:checked + .radio-style-3-label:before { background: var(--themecolor, #222E2B); }
+.radio-style:checked + .radio-style-3-label:before {
+    background: var(--themecolor, #222E2B);
+}
 
 .irs-bar,
 .irs-from,
@@ -147,7 +165,9 @@ input.switch-toggle-flat:checked + label:after,
 .irs-single,
 .irs-handle > i:first-child,
 .irs-handle.state_hover > i:first-child,
-.irs-handle:hover > i:first-child { background-color: var(--themecolor, #222E2B) !important; }
+.irs-handle:hover > i:first-child {
+    background-color: var(--themecolor, #222E2B) !important;
+}
 
 .top-cart-item-image:hover,
 .grid-filter.style-3 li.activeFilter a,
@@ -159,13 +179,17 @@ input.switch-toggle-flat:checked + label:after,
 .heading-block.border-color::after,
 .page-item.active .page-link,
 .page-link:focus,
-.dark .cart-product-thumbnail img:hover { border-color: var(--themecolor, #222E2B); }
+.dark .cart-product-thumbnail img:hover {
+    border-color: var(--themecolor, #222E2B);
+}
 
 .border-color,
 .process-steps li.active a,
 .process-steps li.ui-tabs-active a,
 .tagcloud a:hover,
-.page-link:hover { border-color: var(--themecolor, #222E2B) !important; }
+.page-link:hover {
+    border-color: var(--themecolor, #222E2B) !important;
+}
 
 .top-links-sub-menu,
 .top-links-section,
@@ -178,14 +202,22 @@ input.switch-toggle-flat:checked + label:after,
 .irs-single:before,
 .dark .top-links-sub-menu,
 .dark .top-links-section,
-.dark .tabs-tb .tab-nav li.ui-tabs-active a { border-top-color: var(--themecolor, #222E2B); }
+.dark .tabs-tb .tab-nav li.ui-tabs-active a {
+    border-top-color: var(--themecolor, #222E2B);
+}
 
 .title-border-color::before,
-.title-border-color::after { border-top-color: var(--themecolor, #222E2B) !important; }
+.title-border-color::after {
+    border-top-color: var(--themecolor, #222E2B) !important;
+}
 
-.title-block { border-left-color: var(--themecolor, #222E2B); }
+.title-block {
+    border-left-color: var(--themecolor, #222E2B);
+}
 
-.title-block-right { border-right-color: var(--themecolor, #222E2B); }
+.title-block-right {
+    border-right-color: var(--themecolor, #222E2B);
+}
 
 .more-link,
 .tabs-bb .tab-nav li.ui-tabs-active a,
@@ -194,44 +226,62 @@ input.switch-toggle-flat:checked + label:after,
 .title-bottom-border h3,
 .title-bottom-border h4,
 .title-bottom-border h5,
-.title-bottom-border h6 { border-bottom-color: var(--themecolor, #222E2B); }
+.title-bottom-border h6 {
+    border-bottom-color: var(--themecolor, #222E2B);
+}
 
 .fbox-effect.fbox-dark .fbox-icon i::after,
-.dark .fbox-effect.fbox-dark .fbox-icon i:after { box-shadow: 0 0 0 2px var(--themecolor, #222E2B); }
+.dark .fbox-effect.fbox-dark .fbox-icon i:after {
+    box-shadow: 0 0 0 2px var(--themecolor, #222E2B);
+}
 
 .fbox-border.fbox-effect.fbox-dark .fbox-icon i:hover,
 .fbox-border.fbox-effect.fbox-dark:hover .fbox-icon i,
 .dark .fbox-border.fbox-effect.fbox-dark .fbox-icon i:hover,
-.dark .fbox-border.fbox-effect.fbox-dark:hover .fbox-icon i { box-shadow: 0 0 0 1px var(--themecolor, #222E2B); }
+.dark .fbox-border.fbox-effect.fbox-dark:hover .fbox-icon i {
+    box-shadow: 0 0 0 1px var(--themecolor, #222E2B);
+}
 
 
 @media (min-width: 992px) {
 
-	.sub-menu-container .menu-item:hover > .menu-link,
-	.mega-menu-style-2 .mega-menu-title > .menu-link:hover,
-	.dark .mega-menu-style-2 .mega-menu-title:hover > .menu-link { color: var(--themecolor, #222E2B); }
+    .sub-menu-container .menu-item:hover > .menu-link,
+    .mega-menu-style-2 .mega-menu-title > .menu-link:hover,
+    .dark .mega-menu-style-2 .mega-menu-title:hover > .menu-link {
+        color: var(--themecolor, #222E2B);
+    }
 
-	.style-3 .menu-container > .menu-item.current > .menu-link,
-	.sub-title .menu-container > .menu-item:hover > .menu-link::after,
-	.sub-title .menu-container > .menu-item.current > .menu-link::after,
-	.page-menu-sub-menu,
-	.dots-menu .page-menu-item.current > a,
-	.dots-menu .page-menu-item div,
-	.dark .sub-menu-container .menu-item:hover > .menu-link,
-	.dark .style-3 .menu-container > .menu-item.current > .menu-link { background-color: var(--themecolor, #222E2B); }
+    .style-3 .menu-container > .menu-item.current > .menu-link,
+    .sub-title .menu-container > .menu-item:hover > .menu-link::after,
+    .sub-title .menu-container > .menu-item.current > .menu-link::after,
+    .page-menu-sub-menu,
+    .dots-menu .page-menu-item.current > a,
+    .dots-menu .page-menu-item div,
+    .dark .sub-menu-container .menu-item:hover > .menu-link,
+    .dark .style-3 .menu-container > .menu-item.current > .menu-link {
+        background-color: var(--themecolor, #222E2B);
+    }
 
-	.style-4 .menu-container > .menu-item:hover > .menu-link,
-	.style-4 .menu-container > .menu-item.current > .menu-link,
-	.dots-menu.dots-menu-border .page-menu-item.current > a { border-color: var(--themecolor, #222E2B); }
+    .style-4 .menu-container > .menu-item:hover > .menu-link,
+    .style-4 .menu-container > .menu-item.current > .menu-link,
+    .dots-menu.dots-menu-border .page-menu-item.current > a {
+        border-color: var(--themecolor, #222E2B);
+    }
 
-	.sub-menu-container,
-	.mega-menu-content,
-	.style-6 .menu-container > .menu-item > .menu-link::after,
-	.style-6 .menu-container > .menu-item.current > .menu-link::after,
-	.top-cart-content,
-	.dark .sub-menu-container,
-	.dark .mega-menu-content,
-	.dark .top-cart-content { border-top-color: var(--themecolor, #222E2B); }
+    .sub-menu-container,
+    .mega-menu-content,
+    .style-6 .menu-container > .menu-item > .menu-link::after,
+    .style-6 .menu-container > .menu-item.current > .menu-link::after,
+    .top-cart-content,
+    .dark .sub-menu-container,
+    .dark .mega-menu-content,
+    .dark .top-cart-content {
+        border-top-color: var(--themecolor, #222E2B);
+    }
 
-	.dots-menu .page-menu-item div::after { border-left-color: var(--themecolor, #222E2B); }
-}}
+    .dots-menu .page-menu-item div::after {
+        border-left-color: var(--themecolor, #222E2B);
+    }
+}
+
+}

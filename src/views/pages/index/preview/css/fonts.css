@@ -5,7 +5,6 @@
 -----------------------------------------------------------------*/
 
 
-
 body,
 small,
 .sub-menu-container .menu-item > .menu-link,
@@ -25,7 +24,9 @@ small,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'Roboto', sans-serif !important; }
+.font-secondary {
+    font-family: 'Roboto', sans-serif !important;
+}
 
 
 h1,
@@ -48,5 +49,7 @@ label,
 .widget-filter-links li a,
 .nav-tree li a,
 .wedding-head,
-.font-primary { font-family: 'Montserrat', sans-serif !important; }
+.font-primary {
+    font-family: 'Montserrat', sans-serif !important;
+}
 

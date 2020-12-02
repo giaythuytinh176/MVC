@@ -28,7 +28,9 @@ small,
 .team-title span,
 .button,
 .button.button-desc,
-.font-secondary { font-family: "Inter"; }
+.font-secondary {
+    font-family: "Inter";
+}
 
 
 h1,
@@ -49,4 +51,6 @@ label,
 .wedding-head .first-name,
 .wedding-head .last-name,
 .font-primary,
-.font-serif { font-family: 'Merriweather', serif; }
+.font-serif {
+    font-family: 'Merriweather', serif;
+}

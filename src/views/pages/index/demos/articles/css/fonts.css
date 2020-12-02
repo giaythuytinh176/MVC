@@ -25,7 +25,9 @@ small,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'Nunito', sans-serif !important; }
+.font-secondary {
+    font-family: 'Nunito', sans-serif !important;
+}
 
 
 h1,
@@ -47,5 +49,7 @@ label,
 .widget-filter-links li a,
 .nav-tree li a,
 .wedding-head,
-.font-primary { font-family: 'Playfair Display', sans-serif !important; }
+.font-primary {
+    font-family: 'Playfair Display', sans-serif !important;
+}
 

@@ -23,5 +23,7 @@ label,
 .nav-tree li a,
 .wedding-head .first-name,
 .wedding-head .last-name,
-.font-primary { font-family: 'Montserrat', sans-serif; }
+.font-primary {
+    font-family: 'Montserrat', sans-serif;
+}
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace MVC\controllers;
+
 use \MVC\controllers\ProductControllers;
 use \MVC\controllers\UrlControllers;
 
@@ -77,7 +78,7 @@ class CheckoutControllers
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <a href="' . UrlControllers::url("category/".$item['category_code']."/".$item['code']."/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $item['ProductName'] . '</a>
+                                        <a href="' . UrlControllers::url("category/" . $item['category_code'] . "/" . $item['code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $item['ProductName'] . '</a>
                                     </td>
 
                                     <td class="cart-product-quantity">
@@ -91,8 +92,7 @@ class CheckoutControllers
                                     </td>
                                 </tr>';
             }
-        }
-        else {
+        } else {
             $sout .= '<tr class="cart_item">
                      <td class="cart-product-name" colspan="4">Cart is empty.</td>
                      </tr>';

@@ -5,7 +5,6 @@
 -----------------------------------------------------------------*/
 
 
-
 body,
 small,
 .sub-menu-container .menu-item > .menu-link,
@@ -24,7 +23,9 @@ small,
 .team-title span,
 .before-heading,
 .wedding-head .first-name span,
-.wedding-head .last-name span { font-family: 'Open Sans', sans-serif !important; }
+.wedding-head .last-name span {
+    font-family: 'Open Sans', sans-serif !important;
+}
 
 
 h1,
@@ -47,11 +48,13 @@ label,
 .widget-filter-links li a,
 .nav-tree li a,
 .wedding-head,
-.font-primary { font-family: 'Poppins', sans-serif !important; }
+.font-primary {
+    font-family: 'Poppins', sans-serif !important;
+}
 
 
 .font-secondary {
-	font-family: 'Cookie', cursive !important;
-	font-weight: 400 !important;
+    font-family: 'Cookie', cursive !important;
+    font-weight: 400 !important;
 }
 

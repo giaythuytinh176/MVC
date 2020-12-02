@@ -1,4 +1,5 @@
 <?php
+
 namespace TwitterPhp\Connection;
 
 /**
@@ -44,7 +45,7 @@ abstract class Base
      * @param $method
      * @return array
      */
-    abstract protected function _buildHeaders($url,array $parameters = null,$method);
+    abstract protected function _buildHeaders($url, array $parameters = null, $method);
 
 
     /**
@@ -59,9 +60,9 @@ abstract class Base
     public function get($resource, array $parameters = array())
     {
         $url = $this->_prepareUrl($resource);
-        $headers = $this->_buildHeaders($url,$parameters,self::METHOD_GET);
+        $headers = $this->_buildHeaders($url, $parameters, self::METHOD_GET);
         $url = $url . '?' . http_build_query($parameters);
-        $curlParams = array (
+        $curlParams = array(
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => $headers
         );
@@ -81,8 +82,8 @@ abstract class Base
     public function post($resource, array $parameters = array())
     {
         $url = $this->_prepareUrl($resource);
-        $headers = $this->_buildHeaders($url,$parameters,self::METHOD_POST);
-        $curlParams = array (
+        $headers = $this->_buildHeaders($url, $parameters, self::METHOD_POST);
+        $curlParams = array(
             CURLOPT_URL => $url,
             CURLOPT_POST => 1,
             CURLOPT_POSTFIELDS => $parameters,
@@ -101,12 +102,12 @@ abstract class Base
     protected function _callApi(array $params)
     {
         $curl = curl_init();
-        curl_setopt_array($curl,$params);
+        curl_setopt_array($curl, $params);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, self::DEFAULT_TIMEOUT);
         $response = curl_exec($curl);
-        return json_decode($response,true);
+        return json_decode($response, true);
     }
 
     /**
@@ -115,6 +116,6 @@ abstract class Base
      */
     private function _prepareUrl($resource)
     {
-        return self::TWITTER_API_URL . '/' . self::TWITTER_API_VERSION . '/' . ltrim($resource,'/') . '.json';
+        return self::TWITTER_API_URL . '/' . self::TWITTER_API_VERSION . '/' . ltrim($resource, '/') . '.json';
     }
 }

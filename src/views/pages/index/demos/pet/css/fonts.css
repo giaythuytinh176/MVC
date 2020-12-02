@@ -44,8 +44,12 @@ label,
 .team-title span,
 .before-heading,
 .wedding-head .first-name span,
-.wedding-head .last-name span { font-family: 'Quicksand', sans-serif !important; }
+.wedding-head .last-name span {
+    font-family: 'Quicksand', sans-serif !important;
+}
 
 
-.font-secondary { font-family: 'Chewy', cursive; }
+.font-secondary {
+    font-family: 'Chewy', cursive;
+}
 

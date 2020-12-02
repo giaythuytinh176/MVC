@@ -108,7 +108,7 @@ class AjaxControllers extends ProductController
 
     public function AddProduct()
     {
-        if (!empty($_POST['product_name']) && !empty($_POST['parent_id']) && !empty($_POST['category_id'])) {
+        if (($_FILES['file']['error'] == 0) && !empty($_POST['parent_id']) && !empty($_POST['category_id'])) {
             $product_name = $_POST['product_name'];
             $parent_id = $_POST['parent_id'];
             $category_id = $_POST['category_id'];
@@ -126,8 +126,22 @@ class AjaxControllers extends ProductController
             if ($check == false) {
                 echo $this->OnlyAllow($category_id, $parent_id);
             } else {
+                move_uploaded_file($_FILES['file']['tmp_name'], "uploads/" . ($_FILES['file']['name']));
+                if (empty($_POST['img_link'])) {
+                    $_POST['img_link'] = "http://localhost/" . \MVC\config\config::BASE_FOLDER . "/uploads/" . ($_FILES['file']['name']);
+                }
+                if (!empty($_POST['img_list'])) {
+                    $list = explode(PHP_EOL, $_POST['img_list']);
+                    $img_upload = "http://localhost/" . \MVC\config\config::BASE_FOLDER . "/uploads/" . ($_FILES['file']['name']);
+                    array_push($list, $img_upload);
+                    $_POST['img_list'] = implode(PHP_EOL, $list);
+                } else {
+                    $_POST['img_list'] = "http://localhost/" . \MVC\config\config::BASE_FOLDER . "/uploads/" . ($_FILES['file']['name']);
+                }
                 echo (new \MVC\admin\controllers\ProductController())->InsertProduct($_POST);
             }
+        } else {
+            echo "File upload is error.";
         }
     }
 

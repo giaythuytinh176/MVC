@@ -12,7 +12,7 @@ if (!empty($_GET['product_id'])) {
 <div class="single-product shop-quick-view-ajax">
 
     <div class="ajax-modal-title">
-        <h2><?php echo $valFromDB['ProductName'];?></h2>
+        <h2><?php echo $valFromDB['ProductName']; ?></h2>
     </div>
 
     <div class="product modal-padding">
@@ -48,34 +48,34 @@ if (!empty($_GET['product_id'])) {
                     <i class="icon-star-half-full"></i>
                     <i class="icon-star-empty"></i>
                 </div>
-<!--                <div class="clear"></div>-->
-<!--                <div class="line"></div>-->
+                <!--                <div class="clear"></div>-->
+                <!--                <div class="line"></div>-->
 
 
                 <!-- Product Single - Quantity & Cart Button
                 ============================================= -->
-<!--                <form class="cart mb-0" action="--><?php //echo \MVC\controllers\UrlControllers::url("shop/cart"); ?><!--"-->
-<!--                      method="post" enctype='multipart/form-data'>-->
-<!--                    <div class="quantity">-->
-<!--                        <input type="button" value="-" class="minus">-->
-<!--                        <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="qty"/>-->
-<!--                        <input type="hidden" name="qty" value="1"/>-->
-<!--                        --><?php
-//                        echo '<input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][qty]" value="1"/>
-//                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][price]" value="' . ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : $valFromDB['price']) . '"/>
-//                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][product_id]" value="' . $valFromDB['product_id'] . '"/>
-//                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][product_name]" value="' . urlencode($valFromDB['ProductName']) . '"/>';
-//                        ?>
-<!--                        <input type="button" value="+" class="plus">-->
-<!--                    </div>-->
-<!--                    <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>-->
-<!--                </form>-->
+                <!--                <form class="cart mb-0" action="-->
+                <?php //echo \MVC\controllers\UrlControllers::url("shop/cart"); ?><!--"-->
+                <!--                      method="post" enctype='multipart/form-data'>-->
+                <!--                    <div class="quantity">-->
+                <!--                        <input type="button" value="-" class="minus">-->
+                <!--                        <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="qty"/>-->
+                <!--                        <input type="hidden" name="qty" value="1"/>-->
+                <!--                        --><?php
+                //                        echo '<input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][qty]" value="1"/>
+                //                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][price]" value="' . ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : $valFromDB['price']) . '"/>
+                //                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][product_id]" value="' . $valFromDB['product_id'] . '"/>
+                //                              <input type="hidden" name="cart_items[' . $valFromDB['product_id'] . '][product_name]" value="' . urlencode($valFromDB['ProductName']) . '"/>';
+                //                        ?>
+                <!--                        <input type="button" value="+" class="plus">-->
+                <!--                    </div>-->
+                <!--                    <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>-->
+                <!--                </form>-->
                 <!-- Product Single - Quantity & Cart Button End -->
 
 
                 <div class="clear"></div>
                 <div class="line"></div>
-
 
 
                 <form class="cart mb-0" action="<?php echo \MVC\controllers\UrlControllers::url("shop/cart"); ?>"
@@ -87,23 +87,25 @@ if (!empty($_GET['product_id'])) {
                     ?>
                     <div class="input-group">
                         <span class="input-group-btn">
-                           <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                           <button type="button" class="btn btn-danger btn-number" data-type="minus"
+                                   data-field="quant[2]">
                 <span class="glyphicon glyphicon-minus">-</span>
               </button>
                         </span>
                         <input type="hidden" id="qty" name="qty" value="1"/>
-                        <input type="number" name="quant[2]" class="form-control input-number" value="1" min="1" max="1000">
+                        <input type="number" name="quant[2]" class="form-control input-number" value="1" min="1"
+                               max="1000">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                            <button type="button" class="btn btn-success btn-number" data-type="plus"
+                                    data-field="quant[2]">
                                  <span class="glyphicon glyphicon-plus">+</span>
                             </button>
                         </span>
                         <span class="input-group-btn">
                                  &nbsp; <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>
                         </span>
-                     </div>
+                    </div>
                 </form>
-
 
 
                 <div class="clear"></div>

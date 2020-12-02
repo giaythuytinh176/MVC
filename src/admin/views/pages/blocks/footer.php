@@ -75,7 +75,8 @@
 <!-- icons for bt4 -->
 <script src="https://kit.fontawesome.com/b12094d95b.js" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/js/main.js"></script>
+<script type="text/javascript"
+        src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/js/main.js"></script>
 
 </body>
 

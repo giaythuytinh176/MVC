@@ -2,9 +2,9 @@
 //
 // Generate semantic grid columns with these mixins.
 @mixin make-col-offset($size, $columns: $grid-columns) {
-	@if $RTL-template == true {
-	  $num: $size / $columns;
-	  margin-right: if($num == 0, 0, percentage($num));
-	  margin-left: 0;
-	}
+  @if $RTL-template == true {
+    $num: $size / $columns;
+    margin-right: if($num == 0, 0, percentage($num));
+    margin-left: 0;
+  }
 }

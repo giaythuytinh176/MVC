@@ -16,7 +16,7 @@ class LoginUser
         $required_fields = ["login-form-username", "login-form-password"];
         foreach ($_POST as $key => $value) {
             if (empty($value) == true && in_array($key, $required_fields) == true) {
-                $errors[] = ucfirst(str_replace("login-form-", "", $key)). " is a required field.";
+                $errors[] = ucfirst(str_replace("login-form-", "", $key)) . " is a required field.";
             }
         }
         if (!empty($errors)) return ["errors" => $errors];

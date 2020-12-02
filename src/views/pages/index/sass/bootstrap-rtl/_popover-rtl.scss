@@ -12,6 +12,7 @@
     > .arrow {
       right: subtract(-$popover-arrow-height, $popover-border-width);
       left: auto;
+
       &::before {
         right: 0;
         left: auto;

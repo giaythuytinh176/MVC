@@ -283,7 +283,17 @@ class ProductController
                                 <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="description" rows="10"></textarea></th>
                                 <th></th>
                             </tr>
-                             <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="btnAddProduct" value="Submit"></th></tr>
+                            <tr>
+                                <th></th>
+                                <th style="width: 30%" class="success">
+                                     Upload image: 
+                                </th>
+                                <th style="width: 30%" class="warning">
+                                    <input id="picture" type="file" accept="image/*"" />
+                                </th>
+                                <th></th>
+                            </tr>
+                             <tr><th style="text-align: center" colspan="4"><button class="btn btn-primary" id="btnAddProduct">Submit</button></th></tr>
                             </tbody>
                         </table>';
         return $sout;

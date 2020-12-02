@@ -33,7 +33,9 @@ label,
 .widget-filter-links li a,
 .nav-tree li a,
 .wedding-head,
-.font-primary { font-family: 'Source Sans Pro', sans-serif !important; }
+.font-primary {
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
 
 
 .entry-link span,
@@ -47,5 +49,7 @@ label,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'Playfair Display', serif !important; }
+.font-secondary {
+    font-family: 'Playfair Display', serif !important;
+}
 

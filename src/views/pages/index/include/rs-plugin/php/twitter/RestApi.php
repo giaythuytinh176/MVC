@@ -17,7 +17,11 @@ require_once 'connection/User.php';
 /**
  * Class TwitterRestApiException
  */
-class RestApiException extends \Exception {};
+class RestApiException extends \Exception
+{
+}
+
+;
 
 /**
  * Class RestApi
@@ -53,7 +57,7 @@ class RestApi
      * @param null|string $accessTokenSecret
      * @throws TwitterRestApiException
      */
-    public function __construct($consumerKey,$consumerSecret,$accessToken = null,$accessTokenSecret = null)
+    public function __construct($consumerKey, $consumerSecret, $accessToken = null, $accessTokenSecret = null)
     {
         if (!function_exists('curl_init')) {
             throw new TwitterRestApiException('You must have the cURL extension enabled to use this library');
@@ -72,7 +76,7 @@ class RestApi
      */
     public function connectAsApplication()
     {
-        return new Application($this->_consumerKey,$this->_consumerSecret);
+        return new Application($this->_consumerKey, $this->_consumerSecret);
     }
 
     /**
@@ -87,7 +91,7 @@ class RestApi
         if (!$this->_accessToken || !$this->_accessTokenSecret) {
             throw new TwitterRestApiException('Missing ACCESS_TOKEN OR ACCESS_TOKEN_SECRET');
         }
-        return new User($this->_consumerKey,$this->_consumerSecret,$this->_accessToken,$this->_accessTokenSecret);
+        return new User($this->_consumerKey, $this->_consumerSecret, $this->_accessToken, $this->_accessTokenSecret);
     }
 
 }

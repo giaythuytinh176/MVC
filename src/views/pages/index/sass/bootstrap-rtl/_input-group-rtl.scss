@@ -20,16 +20,26 @@
 
     > .form-control,
     > .custom-select {
-      &:not(:last-child) { @include border-left-radius(0); }
-      &:not(:first-child) { @include border-right-radius(0); }
+      &:not(:last-child) {
+        @include border-left-radius(0);
+      }
+
+      &:not(:first-child) {
+        @include border-right-radius(0);
+      }
     }
 
     // Custom file inputs have more complex markup, thus requiring different
     // border-radius overrides.
     > .custom-file {
       &:not(:last-child) .custom-file-label,
-      &:not(:last-child) .custom-file-label::after { @include border-left-radius(0); }
-      &:not(:first-child) .custom-file-label { @include border-right-radius(0); }
+      &:not(:last-child) .custom-file-label::after {
+        @include border-left-radius(0);
+      }
+
+      &:not(:first-child) .custom-file-label {
+        @include border-right-radius(0);
+      }
     }
   }
 
@@ -51,9 +61,14 @@
     }
   }
 
-  .input-group-prepend { margin-left: -$input-border-width; margin-right: 0; }
-  .input-group-append { margin-right: -$input-border-width; margin-left: 0; }
-
+  .input-group-prepend {
+    margin-left: -$input-border-width;
+    margin-right: 0;
+  }
+  .input-group-append {
+    margin-right: -$input-border-width;
+    margin-left: 0;
+  }
 
 
   // Sizing

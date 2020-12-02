@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname(__FILE__).'/serialisation.php';
-require_once dirname(__FILE__).'/transport.php';
-require_once dirname(__FILE__).'/log.php';
+require_once dirname(__FILE__) . '/serialisation.php';
+require_once dirname(__FILE__) . '/transport.php';
+require_once dirname(__FILE__) . '/log.php';
 
 define('CS_REST_WRAPPER_VERSION', '4.0.2');
 define('CS_HOST', 'api.createsend.com');
-define('CS_OAUTH_BASE_URI', 'https://'.CS_HOST.'/oauth');
-define('CS_OAUTH_TOKEN_URI', CS_OAUTH_BASE_URI.'/token');
+define('CS_OAUTH_BASE_URI', 'https://' . CS_HOST . '/oauth');
+define('CS_OAUTH_TOKEN_URI', CS_OAUTH_BASE_URI . '/token');
 define('CS_REST_WEBHOOK_FORMAT_JSON', 'json');
 define('CS_REST_WEBHOOK_FORMAT_XML', 'xml');
 
@@ -16,20 +16,22 @@ define('CS_REST_WEBHOOK_FORMAT_XML', 'xml');
  * @author tobyb
  *
  */
-class CS_REST_Wrapper_Result {
+class CS_REST_Wrapper_Result
+{
     /**
      * The deserialised result of the API call
      * @var mixed
      */
     var $response;
-    
+
     /**
      * The http status code of the API call
      * @var int
      */
     var $http_status_code;
-    
-    function CS_REST_Wrapper_Result($response, $code) {
+
+    function CS_REST_Wrapper_Result($response, $code)
+    {
         $this->response = $response;
         $this->http_status_code = $code;
     }
@@ -39,7 +41,8 @@ class CS_REST_Wrapper_Result {
      * @return boolean False if the call failed. Check the response property for the failure reason.
      * @access public
      */
-    function was_successful() {
+    function was_successful()
+    {
         return $this->http_status_code >= 200 && $this->http_status_code < 300;
     }
 }
@@ -51,7 +54,8 @@ class CS_REST_Wrapper_Result {
  * @author tobyb
  *
  */
-class CS_REST_Wrapper_Base {
+class CS_REST_Wrapper_Base
+{
     /**
      * The protocol to use while accessing the api
      * @var string http or https
@@ -134,7 +138,8 @@ class CS_REST_Wrapper_Base {
         $host = CS_HOST,
         $log = NULL,
         $serialiser = NULL,
-        $transport = NULL) {
+        $transport = NULL)
+    {
 
         if (is_string($auth_details)) {
             # If $auth_details is a string, assume it is an API key
@@ -144,27 +149,27 @@ class CS_REST_Wrapper_Base {
         $this->_log = is_null($log) ? new CS_REST_Log($debug_level) : $log;
 
         $this->_protocol = $protocol;
-        $this->_base_route = $protocol.'://'.$host.'/api/v3.1/';
+        $this->_base_route = $protocol . '://' . $host . '/api/v3.1/';
 
-        $this->_log->log_message('Creating wrapper for '.$this->_base_route, get_class($this), CS_REST_LOG_VERBOSE);
+        $this->_log->log_message('Creating wrapper for ' . $this->_base_route, get_class($this), CS_REST_LOG_VERBOSE);
 
         $this->_transport = is_null($transport) ?
             CS_REST_TRANSPORT_get_available($this->is_secure(), $this->_log) :
             $transport;
 
         $transport_type = method_exists($this->_transport, 'get_type') ? $this->_transport->get_type() : 'Unknown';
-        $this->_log->log_message('Using '.$transport_type.' for transport', get_class($this), CS_REST_LOG_WARNING);
+        $this->_log->log_message('Using ' . $transport_type . ' for transport', get_class($this), CS_REST_LOG_WARNING);
 
         $this->_serialiser = is_null($serialiser) ?
             CS_REST_SERIALISATION_get_available($this->_log) : $serialiser;
 
-        $this->_log->log_message('Using '.$this->_serialiser->get_type().' json serialising', get_class($this), CS_REST_LOG_WARNING);
+        $this->_log->log_message('Using ' . $this->_serialiser->get_type() . ' json serialising', get_class($this), CS_REST_LOG_WARNING);
 
-        $this->_default_call_options = array (
+        $this->_default_call_options = array(
             'authdetails' => $auth_details,
-            'userAgent' => 'CS_REST_Wrapper v'.CS_REST_WRAPPER_VERSION.
-                ' PHPv'.phpversion().' over '.$transport_type.' with '.$this->_serialiser->get_type(),
-            'contentType' => 'application/json; charset=utf-8', 
+            'userAgent' => 'CS_REST_Wrapper v' . CS_REST_WRAPPER_VERSION .
+                ' PHPv' . phpversion() . ' over ' . $transport_type . ' with ' . $this->_serialiser->get_type(),
+            'contentType' => 'application/json; charset=utf-8',
             'deserialise' => true,
             'host' => $host,
             'protocol' => $protocol
@@ -175,7 +180,8 @@ class CS_REST_Wrapper_Base {
      * Refresh the current OAuth token using the current refresh token.
      * @access public
      */
-    function refresh_token() {
+    function refresh_token()
+    {
         if (!isset($this->_default_call_options['authdetails']) ||
             !isset($this->_default_call_options['authdetails']['refresh_token'])) {
             trigger_error(
@@ -183,8 +189,8 @@ class CS_REST_Wrapper_Base {
                 E_USER_ERROR);
             return array(NULL, NULL, NULL);
         }
-        $body = "grant_type=refresh_token&refresh_token=".urlencode(
-            $this->_default_call_options['authdetails']['refresh_token']);
+        $body = "grant_type=refresh_token&refresh_token=" . urlencode(
+                $this->_default_call_options['authdetails']['refresh_token']);
         $options = array('contentType' => 'application/x-www-form-urlencoded');
         $wrap = new CS_REST_Wrapper_Base(
             NULL, 'https', CS_REST_LOG_NONE, CS_HOST, NULL,
@@ -202,7 +208,7 @@ class CS_REST_Wrapper_Base {
             return array($access_token, $expires_in, $refresh_token);
         } else {
             trigger_error(
-                'Error refreshing token. '.$result->response->error.': '.$result->response->error_description,
+                'Error refreshing token. ' . $result->response->error . ': ' . $result->response->error_description,
                 E_USER_ERROR);
             return array(NULL, NULL, NULL);
         }
@@ -212,76 +218,83 @@ class CS_REST_Wrapper_Base {
      * @return boolean True if the wrapper is using SSL.
      * @access public
      */
-    function is_secure() {
+    function is_secure()
+    {
         return $this->_protocol === 'https';
     }
-    
-    function put_request($route, $data, $call_options = array()) {
+
+    function put_request($route, $data, $call_options = array())
+    {
         return $this->_call($call_options, CS_REST_PUT, $route, $data);
     }
-    
-    function post_request($route, $data, $call_options = array()) {
+
+    function post_request($route, $data, $call_options = array())
+    {
         return $this->_call($call_options, CS_REST_POST, $route, $data);
     }
-    
-    function delete_request($route, $call_options = array()) {
+
+    function delete_request($route, $call_options = array())
+    {
         return $this->_call($call_options, CS_REST_DELETE, $route);
     }
-    
-    function get_request($route, $call_options = array()) {
+
+    function get_request($route, $call_options = array())
+    {
         return $this->_call($call_options, CS_REST_GET, $route);
     }
-    
+
     function get_request_paged($route, $page_number, $page_size, $order_field, $order_direction,
-        $join_char = '&') {      
-        if(!is_null($page_number)) {
-            $route .= $join_char.'page='.$page_number;
+                               $join_char = '&')
+    {
+        if (!is_null($page_number)) {
+            $route .= $join_char . 'page=' . $page_number;
             $join_char = '&';
         }
-        
-        if(!is_null($page_size)) {
-            $route .= $join_char.'pageSize='.$page_size;
+
+        if (!is_null($page_size)) {
+            $route .= $join_char . 'pageSize=' . $page_size;
             $join_char = '&';
         }
-        
-        if(!is_null($order_field)) {
-            $route .= $join_char.'orderField='.$order_field;
+
+        if (!is_null($order_field)) {
+            $route .= $join_char . 'orderField=' . $order_field;
             $join_char = '&';
         }
-        
-        if(!is_null($order_direction)) {
-            $route .= $join_char.'orderDirection='.$order_direction;
+
+        if (!is_null($order_direction)) {
+            $route .= $join_char . 'orderDirection=' . $order_direction;
             $join_char = '&';
         }
-        
-        return $this->get_request($route);      
-    }       
+
+        return $this->get_request($route);
+    }
 
     /**
      * Internal method to make a general API request based on the provided options
      * @param $call_options
      * @access private
      */
-    function _call($call_options, $method, $route, $data = NULL) {
+    function _call($call_options, $method, $route, $data = NULL)
+    {
         $call_options['route'] = $route;
         $call_options['method'] = $method;
 
-        if(!is_null($data)) {
+        if (!is_null($data)) {
             $call_options['data'] = $this->_serialiser->serialise($data);
         }
-        
+
         $call_options = array_merge($this->_default_call_options, $call_options);
-        $this->_log->log_message('Making '.$call_options['method'].' call to: '.$call_options['route'], get_class($this), CS_REST_LOG_WARNING);
-            
+        $this->_log->log_message('Making ' . $call_options['method'] . ' call to: ' . $call_options['route'], get_class($this), CS_REST_LOG_WARNING);
+
         $call_result = $this->_transport->make_call($call_options);
 
-        $this->_log->log_message('Call result: <pre>'.var_export($call_result, true).'</pre>',
+        $this->_log->log_message('Call result: <pre>' . var_export($call_result, true) . '</pre>',
             get_class($this), CS_REST_LOG_VERBOSE);
 
-        if($call_options['deserialise']) {
+        if ($call_options['deserialise']) {
             $call_result['response'] = $this->_serialiser->deserialise($call_result['response']);
         }
-         
+
         return new CS_REST_Wrapper_Result($call_result['response'], $call_result['code']);
     }
 }

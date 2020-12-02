@@ -44,7 +44,11 @@ label,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'Roboto', sans-serif !important; }
+.font-secondary {
+    font-family: 'Roboto', sans-serif !important;
+}
 
-.font-primary { font-family: 'Roboto Slab', serif !important; }
+.font-primary {
+    font-family: 'Roboto Slab', serif !important;
+}
 

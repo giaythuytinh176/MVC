@@ -12,16 +12,16 @@
     var sliders = [],
         assets = [];
 
-    var setOptions = function(data) {
+    var setOptions = function (data) {
         options = $.extend(options, data);
     };
 
-    var regReplace = function(search, replace, content, escape) {
-        var regString = typeof escape != 'undefined' && ! escape ? search : search.replace(/([.*+?^$|(){}\[\]])/mg, "\\$1");
+    var regReplace = function (search, replace, content, escape) {
+        var regString = typeof escape != 'undefined' && !escape ? search : search.replace(/([.*+?^$|(){}\[\]])/mg, "\\$1");
         return content.replace(new RegExp('(' + regString + ')', 'g'), replace);
     }
 
-    var embed = function(target, slider) {
+    var embed = function (target, slider) {
 
         if (typeof slider.styles != 'undefined') {
             if (options.assetsLocation.length) {
@@ -37,7 +37,7 @@
         }
         if (typeof slider.assets != 'undefined') {
 
-            $.each(slider.assets, function(key, asset) {
+            $.each(slider.assets, function (key, asset) {
 
                 var assetUrl = asset;
 
@@ -51,7 +51,7 @@
 
                     assets.push(assetUrl);
 
-                    if ( ! $('link[href="' + assetUrl + '"]').length) {
+                    if (!$('link[href="' + assetUrl + '"]').length) {
 
                         console.log('add', assetUrl);
 
@@ -84,7 +84,7 @@
      * @param {...*} var_args
      */
 
-    $.fn.embedRevslider = function(var_args) {
+    $.fn.embedRevslider = function (var_args) {
         var action = '',
             data = {};
         if (arguments.length == 0) {
@@ -114,7 +114,7 @@
                     }
                 }
                 if (options.embedLoaded) {
-                    $.each(sliders, function(index, data) {
+                    $.each(sliders, function (index, data) {
                         embed(options.selectorTemplate.replace('{alias}', data.alias), data);
                     });
                 }
@@ -123,13 +123,13 @@
                 var slider = JSON.parse(data);
                 if (typeof slider.alias != 'undefined') {
                     var added = false;
-                    $.each(sliders, function(index, data) {
+                    $.each(sliders, function (index, data) {
                         if (data.alias == slider.alias) {
                             sliders[index] = slider;
                             added = true;
                         }
                     });
-                    if ( ! added) {
+                    if (!added) {
                         sliders.push(slider);
                     }
                 }
