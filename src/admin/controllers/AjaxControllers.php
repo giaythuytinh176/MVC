@@ -2,6 +2,7 @@
 
 namespace MVC\admin\controllers;
 
+use MVC\admin\controllers\CategoryControllers;
 use MVC\controllers\ToolControllers;
 
 class AjaxControllers extends ProductController
@@ -18,7 +19,7 @@ class AjaxControllers extends ProductController
     {
         if (!empty($_POST['id'])) {
             $id = $_POST['id'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->ActiveOrDisableCategory($id);
+            echo (new CategoryControllers())->ActiveOrDisableCategory($id);
         }
     }
 
@@ -27,7 +28,7 @@ class AjaxControllers extends ProductController
         if (!empty($_POST['category_title']) && !empty($_POST['category_code'])) {
             $category_title = $_POST['category_title'];
             $category_code = $_POST['category_code'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->AddCategoryParrent($category_title, $category_code);
+            echo (new CategoryControllers())->AddCategoryParrent($category_title, $category_code);
         }
     }
 
@@ -35,7 +36,7 @@ class AjaxControllers extends ProductController
     {
         if (!empty($_POST['id'])) {
             $id = $_POST['id'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->ActiveOrDisableBrand($id);
+            echo (new CategoryControllers())->ActiveOrDisableBrand($id);
         }
     }
 
@@ -43,7 +44,7 @@ class AjaxControllers extends ProductController
     {
         if (!empty($_POST['id'])) {
             $id = $_POST['id'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->ActiveOrDisableSubCate($id);
+            echo (new CategoryControllers())->ActiveOrDisableSubCate($id);
         }
     }
 
@@ -53,7 +54,7 @@ class AjaxControllers extends ProductController
             $brand_title = $_POST['brand_title'];
             $brand_code = $_POST['brand_code'];
             $parent_id = $_POST['parent_id'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->AddBrand($brand_title, $brand_code, $parent_id);
+            echo (new CategoryControllers())->AddBrand($brand_title, $brand_code, $parent_id);
         }
     }
 
@@ -64,7 +65,7 @@ class AjaxControllers extends ProductController
             $sub_code = $_POST['sub_code'];
             $category_id = $_POST['category_id'];
             $parent_id = $_POST['parent_id'];
-            $CheckCorrectParentCatePro = \MVC\admin\controllers\CategoryControllers::AllowSelectSubCateFromCateProductParent();
+            $CheckCorrectParentCatePro = CategoryControllers::AllowSelectSubCateFromCateProductParent();
             $check = false;
             if (!empty($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'])) {
                 foreach ($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'] as $cate_id) {
@@ -75,11 +76,11 @@ class AjaxControllers extends ProductController
                 }
             }
             if ($check == false) {
-                $cateInfo = (new \MVC\admin\controllers\CategoryControllers())->getCategoryProductFromCateID($category_id);
-                $parInfo = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
-                $parInfo2 = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($parent_id);
+                $cateInfo = (new CategoryControllers())->getCategoryProductFromCateID($category_id);
+                $parInfo = (new CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
+                $parInfo2 = (new CategoryControllers())->getParrentFromParentID($parent_id);
 
-                $cateInfo2 = (new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent_id);
+                $cateInfo2 = (new CategoryControllers())->getALlCategoryProductFromParentID($parent_id);
                 $list_cate = [];
                 foreach ($cateInfo2 as $cate) {
                     $list_cate[] = $cate['title'];
@@ -88,7 +89,7 @@ class AjaxControllers extends ProductController
                 echo "We only allowed [{$cateInfo['title']}] select with [{$parInfo['category_title']}].<br>";
                 echo "We only allowed [{$parInfo2['category_title']}] select with [" . implode(", ", $list_cate) . "].";
             } else {
-                echo (new \MVC\admin\controllers\CategoryControllers())->AddSubCate($sub_title, $sub_code, $category_id, $parent_id);
+                echo (new CategoryControllers())->AddSubCate($sub_title, $sub_code, $category_id, $parent_id);
             }
         }
     }
@@ -100,7 +101,7 @@ class AjaxControllers extends ProductController
             $parent_id = $_POST['parent_id'];
             $category_id = $_POST['category_id'];
             $category_sub = !empty($_POST['category_sub']) ? $_POST['category_sub'] : null;
-            $CheckCorrectParentCatePro = \MVC\admin\controllers\CategoryControllers::AllowSelectSubCateFromCateProductParent();
+            $CheckCorrectParentCatePro = CategoryControllers::AllowSelectSubCateFromCateProductParent();
             $check = false;
             if (!empty($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'])) {
                 foreach ($CheckCorrectParentCatePro['parent_id'][$parent_id]['category_id'] as $cate_id) {
@@ -111,11 +112,11 @@ class AjaxControllers extends ProductController
                 }
             }
             if ($check == false) {
-                $cateInfo = (new \MVC\admin\controllers\CategoryControllers())->getCategoryProductFromCateID($category_id);
-                $parInfo = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
-                $parInfo2 = (new \MVC\admin\controllers\CategoryControllers())->getParrentFromParentID($parent_id);
+                $cateInfo = (new CategoryControllers())->getCategoryProductFromCateID($category_id);
+                $parInfo = (new CategoryControllers())->getParrentFromParentID($cateInfo['parent_id']);
+                $parInfo2 = (new CategoryControllers())->getParrentFromParentID($parent_id);
 
-                $cateInfo2 = (new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProductFromParentID($parent_id);
+                $cateInfo2 = (new CategoryControllers())->getALlCategoryProductFromParentID($parent_id);
                 $list_cate = [];
                 foreach ($cateInfo2 as $cate) {
                     $list_cate[] = $cate['title'];
@@ -136,7 +137,7 @@ class AjaxControllers extends ProductController
             $brand_code = $_POST['brand_code'];
             $parent_id = $_POST['parent_id'];
             $category_id = $_POST['category_id'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id);
+            echo (new CategoryControllers())->UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id);
         }
     }
 
@@ -148,7 +149,7 @@ class AjaxControllers extends ProductController
             $data['sub_cate_id'] = $_POST['sub_cate_id'];
             $data['category_id'] = $_POST['category_id'];
             $data['sub_parent_id'] = $_POST['sub_parent_id'];
-            echo (new \MVC\admin\controllers\CategoryControllers())->UpdateSubCatebyID($data);
+            echo (new CategoryControllers())->UpdateSubCatebyID($data);
         }
     }
 }

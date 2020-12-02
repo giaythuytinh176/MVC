@@ -2,37 +2,89 @@
 
 namespace MVC\admin\controllers;
 
+use MVC\admin\models\CategoryModels;
 use MVC\admin\models\ProductModels;
 use MVC\controllers\ToolControllers;
+use MVC\controllers\UrlControllers;
+use MVC\admin\controllers\CategoryControllers;
+use MVC\models\CRUDModels;
 
-class ProductController extends ProductModels
+class ProductController
 {
+    private $productmodels;
+
+    public function __construct()
+    {
+        $this->productmodels = new ProductModels();
+    }
+
+    public function getAllProductbyView()
+    {
+        $data = $this->productmodels->getAllProductbyView();
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllCateOfProductbyID($id)
+    {
+        $data = $this->productmodels->getAllCateOfProductbyID($id);
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function UpdateProductbyID($id, $data)
+    {
+        $this->productmodels->UpdateProductbyID($id, $data);
+    }
+
+    public function ActiveOrDisableProduct($id)
+    {
+        return $this->productmodels->ActiveOrDisableProduct($id);
+    }
+
+    public function getAllProduct()
+    {
+        $data = $this->productmodels->getAllProduct();
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
 
     public function InsertProduct($post)
     {
         $product_name = $post['product_name'];
         $parent_id = $post['parent_id'];
         $category_id = $post['category_id'];
-        $category_sub = $post['category_sub'] ? $post['category_sub'] : 'NULL';
-        $category_sub = (strtolower($category_sub) === 'null') ? 'NULL' : $category_sub;
-        $category_sub = (empty($category_sub)) ? 'NULL' : $category_sub;
+        $category_sub = $post['category_sub'] ? $post['category_sub'] : NULL;
+        $category_sub = (strtolower($category_sub) === 'null') ? NULL : $category_sub;
+        $category_sub = (empty($category_sub)) ? NULL : $category_sub;
         $price = $post['price'];
         $discount = $post['discount'];
         $img_link = $post['img_link'];
         $img_list = $post['img_list'];
         $description = $post['description'];
-        $stmt1 = $this->db->query("SELECT * FROM product WHERE ProductName='$product_name' AND category_id='$category_id'");
-        if (!empty($stmt1->fetch($this->db::FETCH_ASSOC))) {
+        $stmt1 = $this->productmodels->getProductbyNameID($product_name, $category_id);
+        if (!empty($stmt1)) {
             return "Product Name is existed.";
         }
-
-//        $stmt2 = $this->db->query("SELECT * FROM sub_product_category WHERE codeSUB='$code' AND category_id='$cate_id'");
-//        if (!empty($stmt2->fetch($this->db::FETCH_ASSOC))) {
-//            return "Sub Category Code is existed.";
-//        }
-
-        $sql = "INSERT INTO product (ProductName, category_id, category_sub, price, discount, img_link, img_list, description) VALUES ('$product_name','$category_id'," . $category_sub . ",'$price','$discount','$img_link','$img_list','$description')";
-        $this->db->query($sql);
+        $data = ['ProductName' => $product_name,
+            'category_id' => $category_id,
+            'category_sub' => $category_sub,
+            'price' => $price,
+            'discount' => $discount,
+            'img_link' => $img_link,
+            'img_list' => $img_list,
+            'description' => $description,
+        ];
+        $this->productmodels->AddProduct($data);
         return "Added Product {$product_name}.";
     }
 
@@ -49,7 +101,7 @@ class ProductController extends ProductModels
             if (!empty($errors)) {
                 echo "<div class=\"alert alert-danger\" role=\"alert\">" . implode("<br>", $errors) . "</div>";
             } else {
-                (new \MVC\admin\controllers\ProductController())->UpdateProductbyID($data[0][1], $_POST);
+                (new self)->UpdateProductbyID($data[0][1], $_POST);
                 echo '<div class="alert alert-success" role="alert">
                                 Updated data sucessfully.
                              </div>';
@@ -60,10 +112,11 @@ class ProductController extends ProductModels
 
     public static function PrintEditProduct($data)
     {
-        $ProductDetail = (new \MVC\admin\Controllers\ProductController())->getAllCateOfProductbyID($data[0][1]);
+        $ProductDetail = (new self)->getAllCateOfProductbyID($data[0][1]);
         $sout = '';
-        $sout .= '<form method="post">';
-        $sout .= '<table id="EditProduct" class="table table-borderless" cellspacing="0"
+        if (empty($ProductDetail['errors'])) {
+            $sout .= '<form method="post">';
+            $sout .= '<table id="EditProduct" class="table table-borderless" cellspacing="0"
                                width="100%">
                             <thead class="text-white thead-dark">
                             <tr>
@@ -128,7 +181,10 @@ class ProductController extends ProductModels
                              <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" name="btn" value="Submit"></th></tr>
                             </tbody>
                         </table>';
-        $sout .= '</form>';
+            $sout .= '</form>';
+        } else {
+            $sout .= '<div class="alert alert-danger" role="alert">Product ID not found.</div>';
+        }
         return $sout;
     }
 
@@ -154,8 +210,8 @@ class ProductController extends ProductModels
                                 <th style="width: 30%" class="success">Product Parent</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="parent_id" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent())) {
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryParent() as $parent) {
+        if (empty((new CategoryControllers())->getALlCategoryParent()['errors'])) {
+            foreach ((new CategoryControllers())->getALlCategoryParent() as $parent) {
                 $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
             }
         }
@@ -171,7 +227,7 @@ class ProductController extends ProductModels
 
         $sout .= '
                                     <select id="category_id" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct())) {
+        if (empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct()['errors'])) {
             foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $category) {
                 $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . '</option>';
             }
@@ -186,9 +242,9 @@ class ProductController extends ProductModels
                                 <th style="width: 30%" class="success">Product SubCategory</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="category_sub" required="1">';
-        if (!empty((new \MVC\admin\controllers\CategoryControllers())->getAllSubCate())) {
+        if (empty((new CategoryControllers())->getAllSubCate()['errors'])) {
             $sout .= '<option value="null">Not in these list below</option>';
-            foreach ((new \MVC\admin\controllers\CategoryControllers())->getAllSubCate() as $sub) {
+            foreach ((new CategoryControllers())->getAllSubCate() as $sub) {
                 $sout .= '<option value="' . $sub['category_sub'] . '">' . $sub['title'] . '</option>';
             }
         }
@@ -254,9 +310,9 @@ class ProductController extends ProductModels
                             </tr>
                             </thead>
                             <tbody>';
-        if (empty((new \MVC\admin\controllers\ProductController())->getAllProductbyView()['errors'])) {
-            foreach ((new \MVC\admin\controllers\ProductController())->getAllProductbyView() as $key => $value) {
-                $NameProductToString = \MVC\controllers\ToolControllers::ConvertName($value);
+        if (empty((new self)->getAllProductbyView()['errors'])) {
+            foreach ((new self)->getAllProductbyView() as $key => $value) {
+                $NameProductToString = ToolControllers::ConvertName($value);
                 $sout .= '                            <tr>
                                 <td class="active">
                                     <input type="checkbox" class="select-item checkbox" name="select-item"
@@ -269,9 +325,9 @@ class ProductController extends ProductModels
                                 <td class="warning">' . $value['price'] . '</td>
                                 <td class="warning" id="spu' . $value['product_id'] . '">' . (($value['is_disabled'] == 0) ? "Enabled." : "Disabled.") . '</td>
                                 <td class="danger">
-                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/products/edit/" . $value['product_id']) . '"><i class="fas fa-edit" title="Edit Product"></i></a>
+                                       <a href="' . UrlControllers::url("admin/products/edit/" . $value['product_id']) . '"><i class="fas fa-edit" title="Edit Product"></i></a>
                                        <button id="statusproduct' . $value['product_id'] . '" class="fas fa-ban mystatusproduct" title="Enable/Disable Product" value="' . $value['product_id'] . '"></button>
-                                       <a href="' . \MVC\controllers\UrlControllers::url("category/" . $value['category_parent'] . "/" . $value['pc_code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this product"></i></a>
+                                       <a href="' . UrlControllers::url("category/" . $value['category_parent'] . "/" . $value['pc_code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this product"></i></a>
                                 </td>
                             </tr>';
             }

@@ -79,28 +79,30 @@ class CategoryControllers
     public static function printListCategoryIncludeSub()
     {
         $sout = '';
-        foreach ((new self)->getAllListcategory() as $value) {
-            $sout .= '<li class="menu-item">';
-            $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . '><div>' . Languages::getLangData($value['category_code']) . '</div></a>';
-            $sout .= '<ul class="sub-menu-container">';
-            foreach ((new self)->getAllCategorybyParentID($value['parent_id']) as $v) {
+        if (empty((new self)->getAllListcategory()['errors'])) {
+            foreach ((new self)->getAllListcategory() as $value) {
                 $sout .= '<li class="menu-item">';
-                if (empty($v['code'])) {
-                    $sout .= '<a class="menu-link" href=""><div>You need add a Product Category.</div></a>';
-                } else {
-                    $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/{$value['category_code']}/{$v['code']}") . '><div>' . Languages::getLangData($v['title']) . '</div></a>';
-                    if (empty((new self)->getAllSubCategory($v['code'])['errors'])) {
-                        $sout .= '<ul class="sub-menu-container">';
-                        foreach ((new self)->getAllSubCategory($v['code']) as $val) {
-                            $sout .= ' <li class="menu-item"><a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . "/{$v['code']}/" . $val['codeSUB'] . '><div>' . Languages::getLangData($val['title']) . '</div></a></li>';
+                $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . '><div>' . Languages::getLangData($value['category_code']) . '</div></a>';
+                $sout .= '<ul class="sub-menu-container">';
+                foreach ((new self)->getAllCategorybyParentID($value['parent_id']) as $v) {
+                    $sout .= '<li class="menu-item">';
+                    if (empty($v['code'])) {
+                        $sout .= '<a class="menu-link" href=""><div>You need add a Product Category.</div></a>';
+                    } else {
+                        $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/{$value['category_code']}/{$v['code']}") . '><div>' . Languages::getLangData($v['title']) . '</div></a>';
+                        if (empty((new self)->getAllSubCategory($v['code'])['errors'])) {
+                            $sout .= '<ul class="sub-menu-container">';
+                            foreach ((new self)->getAllSubCategory($v['code']) as $val) {
+                                $sout .= ' <li class="menu-item"><a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . "/{$v['code']}/" . $val['codeSUB'] . '><div>' . Languages::getLangData($val['title']) . '</div></a></li>';
+                            }
+                            $sout .= '</ul>';
                         }
-                        $sout .= '</ul>';
                     }
+                    $sout .= '</li>';
                 }
+                $sout .= '</ul>';
                 $sout .= '</li>';
             }
-            $sout .= '</ul>';
-            $sout .= '</li>';
         }
         return $sout;
     }

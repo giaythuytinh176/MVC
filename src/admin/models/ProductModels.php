@@ -17,32 +17,22 @@ class ProductModels
 
     public function getAllProductbyView()
     {
-        $data = $this->CRUDmodels->select("allcategoryproducts", [], '', 'All');
-        if (empty($data)) {
-            return ["errors" => "Product not found."];
-        } else {
-            return $data;
-        }
+        return $this->CRUDmodels->select("allcategoryproducts", [], '', 'All');
     }
 
     public function getAllProduct()
     {
-        $data = $this->CRUDmodels->select("product", [], '', 'All');
-        if (empty($data)) {
-            return ["errors" => "Product not found."];
-        } else {
-            return $data;
-        }
+        return $this->CRUDmodels->select("product", [], '', 'All');
+    }
+
+    public function getProductbyNameID($product_name, $category_id)
+    {
+        return $this->CRUDmodels->select("product", ['ProductName' => $product_name, 'category_id' => $category_id]);
     }
 
     public function getAllCateOfProductbyID($id)
     {
-        $data = $this->CRUDmodels->select("allcategoryproducts", ['product_id' => $id]);
-        if (empty($data)) {
-            return ["errors" => "Product not found."];
-        } else {
-            return $data;
-        }
+        return $this->CRUDmodels->select("allcategoryproducts", ['product_id' => $id]);
     }
 
     public function ActiveOrDisableProduct($id)
@@ -54,6 +44,11 @@ class ProductModels
             $this->CRUDmodels->update('product', ['is_disabled' => '0'], ['product_id' => $id]);
             return "Enabled Product.";
         }
+    }
+
+    public function AddProduct($data)
+    {
+        $this->CRUDmodels->insert("product", $data);
     }
 
     public function UpdateProductbyID($id, $data)

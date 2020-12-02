@@ -54,7 +54,12 @@ class CRUDModels extends Database
         $fieldvalue = ':' . implode(', :', array_keys($data));
         $stmt = $this->crud->prepare("INSERT INTO $table ($fieldkey) VALUES ($fieldvalue)");
         foreach ($data as $key => &$value) {
-            $stmt->bindParam(":$key", $value);
+            if ($value == NULL) {
+                $myNull = NULL;
+                $stmt->bindParam(":$key", $myNull, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindParam(":$key", $value);
+            }
         }
         return $stmt->execute();
     }

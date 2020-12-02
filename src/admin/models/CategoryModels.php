@@ -116,8 +116,7 @@ class CategoryModels
         if (!empty($CheckParentCate['errors'])) {
             return "Parent Category not found.";
         }
-        $stmt3 = $this->CRUDmodels->select("product_category", [], '', 'All');
-        $this->CRUDmodels->insert("product_category", ['title' => $title, 'code' => $code, 'sort_order' => sizeof($stmt3) + 1, 'parent_id' => $parent_id]);
+        $this->CRUDmodels->insert("product_category", ['title' => $title, 'code' => $code, 'sort_order' => sizeof($this->getALlCategoryParent()) + 1, 'parent_id' => $parent_id]);
         return "Added Brand {$title}.";
     }
 
@@ -145,9 +144,7 @@ class CategoryModels
         if (!empty($data2)) {
             return "Category Code is existed.";
         }
-        $orderParent = $this->CRUDmodels->select("parent_category", [], '', 'All');
-        $orderParent = sizeof($orderParent) + 1;
-        $this->CRUDmodels->insert("parent_category", ['category_title' => $title, 'category_code' => $code, 'orderParent' => sizeof($orderParent) + 1]);
+        $this->CRUDmodels->insert("parent_category", ['category_title' => $title, 'category_code' => $code, 'orderParent' => sizeof($this->getALlCategoryParent()) + 1]);
         return "Added Category {$title}.";
     }
 

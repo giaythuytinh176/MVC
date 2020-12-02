@@ -4,6 +4,8 @@ namespace MVC\admin\controllers;
 
 use MVC\admin\models\CategoryModels;
 use MVC\controllers\ToolControllers;
+use MVC\controllers\UrlControllers;
+use MVC\controllers\RenderControllers;
 
 class CategoryControllers
 {
@@ -177,7 +179,7 @@ class CategoryControllers
 
     public function UpdateCategorybyID($id, $data)
     {
-        return $this->categorymodels->UpdateCategorybyID($id, $data);
+        $this->categorymodels->UpdateCategorybyID($id, $data);
     }
 
     public static function AllowSelectSubCateFromCateProductParent()
@@ -200,7 +202,8 @@ class CategoryControllers
     {
         $BrandDetail = (new self)->getBrandByID($data[0][1]);
         $sout = '';
-        $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
+        if (empty($BrandDetail['errors'])) {
+            $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
                                width="100%">
                             <thead class="text-white thead-dark">
                             <tr>
@@ -231,6 +234,9 @@ class CategoryControllers
                              <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitUpdate" value="Submit"></th></tr>
                             </tbody>
                         </table>';
+        } else {
+            $sout .= '<div class="alert alert-danger" role="alert">Brand ID not found.</div>';
+        }
         return $sout;
     }
 
@@ -261,7 +267,7 @@ class CategoryControllers
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="parent_id" required="1">';
-        if (!empty((new self)->getALlCategoryParent())) {
+        if (empty((new self)->getALlCategoryParent()['errors'])) {
             foreach ((new self)->getALlCategoryParent() as $cate) {
                 $sout .= '<option value="' . $cate['parent_id'] . '">' . $cate['category_title'] . '</option>';
             }
@@ -309,7 +315,7 @@ class CategoryControllers
 
         $sout .= '
                                     <select id="category_id" required="1">';
-        if (!empty((new self)->getALlCategoryProduct())) {
+        if (empty((new self)->getALlCategoryProduct()['errors'])) {
             foreach ((new self)->getALlCategoryProduct() as $category) {
                 $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . '</option>';
             }
@@ -324,9 +330,9 @@ class CategoryControllers
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="parent_id" required="1">';
-        if (!empty((new self)->getALlCategoryParent())) {
+        if (empty((new self)->getALlCategoryParent()['errors'])) {
             foreach ((new self)->getALlCategoryParent() as $parent) {
-                $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
+                $sout .= '<option value=category_title' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
             }
         }
         $sout .= '
@@ -387,7 +393,7 @@ class CategoryControllers
                 echo '<div class="alert alert-success" role="alert">
                                 Updated data sucessfully.
                              </div>';
-                (new \MVC\controllers\RenderControllers())->redirectAfterSecondPage("admin/category", 3);
+                (new RenderControllers())->redirectAfterSecondPage("admin/category", 3);
             }
         }
     }
@@ -396,8 +402,9 @@ class CategoryControllers
     {
         $CategoryDetail = (new self)->getAllCateParentbyID($data[0][1]);
         $sout = '';
-        $sout .= '<form method="post">';
-        $sout .= '<table id="EditCategory" class="table table-borderless" cellspacing="0"
+        if (empty($CategoryDetail['errors'])) {
+            $sout .= '<form method="post">';
+            $sout .= '<table id="EditCategory" class="table table-borderless" cellspacing="0"
                                width="100%">
                             <thead class="text-white thead-dark">
                             <tr>
@@ -420,7 +427,10 @@ class CategoryControllers
                              <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" name="btn" value="Submit"></th></tr>
                             </tbody>
                         </table>';
-        $sout .= '</form>';
+            $sout .= '</form>';
+        } else {
+            $sout .= '<div class="alert alert-danger" role="alert">Category ID not found.</div>';
+        }
         return $sout;
     }
 
@@ -428,7 +438,8 @@ class CategoryControllers
     {
         $SubCategoryDetail = (new self)->getOnlySubCateParentbyID($data[0][1]);
         $sout = '';
-        $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
+        if (empty($SubCategoryDetail['errors'])) {
+            $sout .= '<table id="EditBrand" class="table table-borderless" cellspacing="0"
                                width="100%">
                             <thead class="text-white thead-dark">
                             <tr>
@@ -453,12 +464,12 @@ class CategoryControllers
                                 <th style="width: 30%" class="success">Category Product</th>
                                 <th style="width: 30%" class="warning">
                                     <select id="category_id" required="1">';
-        if (!empty((new self)->getALlCategoryProduct())) {
-            foreach ((new self)->getALlCategoryProduct() as $cate) {
-                $sout .= '<option value="' . $cate['category_id'] . '">' . $cate['title'] . '</option>';
+            if (!empty((new self)->getALlCategoryProduct())) {
+                foreach ((new self)->getALlCategoryProduct() as $cate) {
+                    $sout .= '<option value="' . $cate['category_id'] . '">' . $cate['title'] . '</option>';
+                }
             }
-        }
-        $sout .= '
+            $sout .= '
                                     </select>
                                 </th>
                                 <th></th> 
@@ -474,6 +485,9 @@ class CategoryControllers
                              <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitSubCate" value="Submit"></th></tr>
                             </tbody>
                         </table>';
+        } else {
+            $sout .= '<div class="alert alert-danger" role="alert">Sub Category ID not found.</div>';
+        }
         return $sout;
     }
 
@@ -507,9 +521,9 @@ class CategoryControllers
                                 <td class="success">' . $value['code'] . '</td>
                                 <td class="warning" id="bu' . $value['category_id'] . '">' . (($value['is_disabled_brand'] == 0) ? "Enabled." : "Disabled.") . '</td>
                                 <td class="danger">
-                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/brand/edit/" . $value['category_id']) . '"><i class="fas fa-edit" title="Edit Brand"></i></a>
+                                       <a href="' . UrlControllers::url("admin/brand/edit/" . $value['category_id']) . '"><i class="fas fa-edit" title="Edit Brand"></i></a>
                                        <button id="statusbrand' . $value['category_id'] . '" class="fas fa-ban mystatusbrand" title="Enable/Disable Brand" value="' . $value['category_id'] . '"></button>
-                                       <a href="' . \MVC\controllers\UrlControllers::url("category/" . $value['category_code'] . "/" . $value['code']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this brand"></i></a>
+                                       <a href="' . UrlControllers::url("category/" . $value['category_code'] . "/" . $value['code']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this brand"></i></a>
                                 </td>
                             </tr>';
             }
@@ -556,9 +570,9 @@ class CategoryControllers
                                 <td class="warning">' . $value['p_category_title'] . '</td>
                                 <td class="warning" id="subcu' . $value['category_sub'] . '">' . (($value['is_disabled_sub'] == 0) ? "Enabled." : "Disabled.") . '</td>
                                 <td class="danger">
-                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/subcate/edit/" . $value['category_sub']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
+                                       <a href="' . UrlControllers::url("admin/subcate/edit/" . $value['category_sub']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
                                        <button id="statussubcategory' . $value['category_sub'] . '" class="fas fa-ban mystatussubcategory" title="Enable/Disable Sub Category" value="' . $value['category_sub'] . '"></button>
-                                       <a href="' . \MVC\controllers\UrlControllers::url("category/" . $value['p_category_code'] . "/" . $value['pc_code'] . "/" . $value['codeSUB']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this sub category"></i></a>
+                                       <a href="' . UrlControllers::url("category/" . $value['p_category_code'] . "/" . $value['pc_code'] . "/" . $value['codeSUB']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this sub category"></i></a>
                                 </td>
                             </tr>';
             }
@@ -601,9 +615,9 @@ class CategoryControllers
                                 <td class="success">' . $value['category_code'] . '</td>
                                 <td class="warning" id="scu' . $value['parent_id'] . '">' . (($value['is_disabled'] == 0) ? "Enabled." : "Disabled.") . '</td>
                                 <td class="danger">
-                                       <a href="' . \MVC\controllers\UrlControllers::url("admin/category/edit/" . $value['parent_id']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
+                                       <a href="' . UrlControllers::url("admin/category/edit/" . $value['parent_id']) . '"><i class="fas fa-edit" title="Edit Category"></i></a>
                                        <button id="statuscategory' . $value['parent_id'] . '" class="fas fa-ban mystatuscategory" title="Enable/Disable Category" value="' . $value['parent_id'] . '"></button>
-                                       <a href="' . \MVC\controllers\UrlControllers::url("category/" . $value['category_code']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this category"></i></a>
+                                       <a href="' . UrlControllers::url("category/" . $value['category_code']) . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this category"></i></a>
                                 </td>
                             </tr>';
             }
