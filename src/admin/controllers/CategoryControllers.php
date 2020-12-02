@@ -332,7 +332,7 @@ class CategoryControllers
                                     <select id="parent_id" required="1">';
         if (empty((new self)->getALlCategoryParent()['errors'])) {
             foreach ((new self)->getALlCategoryParent() as $parent) {
-                $sout .= '<option value=category_title' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
+                $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
             }
         }
         $sout .= '
@@ -486,7 +486,7 @@ class CategoryControllers
                             </tbody>
                         </table>';
         } else {
-            $sout .= '<div class="alert alert-danger" role="alert">Sub Category ID not found.</div>';
+            $sout .= '<div class="alert alert-danger" role="alert">Brand ID not found.</div>';
         }
         return $sout;
     }
