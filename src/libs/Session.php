@@ -2,11 +2,20 @@
 
 namespace MVC\libs;
 
+use MVC\controllers\ToolControllers;
+
 class Session
 {
     public static function init()
     {
         @session_start();
+    }
+
+    public static function DeleteProductRemoved()
+    {
+        if (!empty($_SESSION['cart_items'][0])) {
+            unset($_SESSION['cart_items'][0]);
+        }
     }
 
     public static function set($key, $value)

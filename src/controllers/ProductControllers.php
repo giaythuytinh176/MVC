@@ -58,10 +58,14 @@ class ProductControllers
     public static function CalculateTotalCart()
     {
         $totalPriceEachItem = 0;
-        foreach ($_SESSION['cart_items'] as $item) {
+        foreach ($_SESSION['cart_items'] as $k => $item) {
             $valFromDB = (new self)->getProductDetailbyID($item['product_id']);
-            $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
-            $totalPriceEachItem += $amount * $item['qty'];
+            if (empty($valFromDB['errors'])) {
+                $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
+                $totalPriceEachItem += $amount * $item['qty'];
+            } else {
+                unset($_SESSION['cart_items'][$k]);
+            }
         }
         return $totalPriceEachItem;
     }

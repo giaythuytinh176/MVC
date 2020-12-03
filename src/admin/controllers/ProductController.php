@@ -20,6 +20,8 @@ class ProductController
 
     public function DeleteProduct($id)
     {
+        $ProductIdData = $this->productmodels->getAllCateOfProductbyID($id);
+        unlink(str_replace("http://localhost/MVC_shop_test/", "", $ProductIdData['img_link']));
         $this->productmodels->DeleteProduct($id);
     }
 

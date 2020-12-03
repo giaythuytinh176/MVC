@@ -101,10 +101,11 @@ class CartControllers
                                 </div>
                                 <div class="top-cart-items">';
         if (!empty($_SESSION['cart_items'])) {
-            foreach ($_SESSION['cart_items'] as $value) {
+            foreach ($_SESSION['cart_items'] as $key => $value) {
                 $items_detail = (new \MVC\controllers\ProductControllers())->getProductDetailbyID($value['product_id']);
-                $amount = ((!empty($items_detail['discount']) && $items_detail['discount'] > 0) ? ($items_detail['price'] * (100 - $items_detail['discount']) / 100) : ($items_detail['price']));
-                $sout .= '
+                if (empty($items_detail['errors'])) {
+                    $amount = ((!empty($items_detail['discount']) && $items_detail['discount'] > 0) ? ($items_detail['price'] * (100 - $items_detail['discount']) / 100) : ($items_detail['price']));
+                    $sout .= '
                                     <div class="top-cart-item">
                                         <div class="top-cart-item-image">
                                             <a href="#"><img src="' . $items_detail['img_link'] . '" alt="' . $items_detail['ProductName'] . '"/></a>
@@ -118,6 +119,9 @@ class CartControllers
                                         </div>
                                     </div>
                                     ';
+                } else {
+                    unset($_SESSION['cart_items'][$key]);
+                }
             }
         } else {
             $sout .= "Cart is empty.";

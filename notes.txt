@@ -1,3 +1,6 @@
+
+
+
 CREATE VIEW AllCategoryProducts AS
 SELECT p.product_id,
        ProductName,
@@ -23,9 +26,32 @@ FROM product p
         LEFT JOIN parent_category c on c.parent_id = pc.parent_id
         LEFT JOIN sub_product_category spc on spc.category_sub = p.category_sub;
 
+SELECT p.product_id     AS product_id,
+       p.ProductName    AS ProductName,
+       pc.category_id   AS category_id,
+       c.category_code  AS category_parent,
+       c.category_title AS parent_title,
+       pc.title         AS category_title,
+       pc.parent_id     AS parent_id,
+       p.category_sub   AS category_sub,
+       p.is_disabled    AS is_disabled,
+       p.sort_order     AS sort_order,
+       p.Stock          AS Stock,
+       p.price          AS price,
+       p.discount       AS discount,
+       p.description    AS description,
+       p.img_link       AS img_link,
+       p.img_list       AS img_list,
+       pc.code          AS pc_code,
+       spc.codeSUB      AS spc_codeSUB,
+       spc.title        AS spc_title
+FROM product p
+         LEFT JOIN product_category pc on pc.category_id = p.category_id
+         LEFT JOIN parent_category c on c.parent_id = pc.parent_id
+         LEFT JOIN sub_product_category spc on spc.category_sub = p.category_sub
 
 
-CREATE VIEW AllCateSubParent AS
+CREATE VIEW v_spc_pc_pac AS
 SELECT spc.category_id as spc_category_id,
        spc.category_sub as spc_category_sub,
        spc.title as spc_title,
@@ -42,7 +68,8 @@ FROM sub_product_category as spc
 
 
 
-CREATE VIEW v_spc_pc_pac AS
+
+CREATE VIEW allcatesubparent AS
 SELECT spc.category_id as spc_category_id,
        spc.title as spc_title,
        spc.category_sub as spc_category_sub,
@@ -53,8 +80,37 @@ SELECT spc.category_id as spc_category_id,
        p.category_title as p_category_title,
        p.parent_id,
        spc.codeSUB
-FROM sub_product_category as spc LEFT JOIN product_category pc on pc.category_id = spc.category_id LEFT JOIN parent_category p on p.parent_id = pc.parent_id
+FROM sub_product_category as spc
+        LEFT JOIN product_category pc on pc.category_id = spc.category_id
+        LEFT JOIN parent_category p on p.parent_id = pc.parent_id
+
+CREATE VIEW allcatesubparent AS
+SELECT spc.category_id  AS spc_category_id,
+       spc.category_sub AS spc_category_sub,
+       spc.title        AS spc_title,
+       pc.category_id   AS pc_category_id,
+       pc.title         AS pc_title,
+       pc.code          AS pc_code,
+       p.category_code  AS p_category_code,
+       p.category_title AS p_category_title,
+       p.parent_id      AS parent_id,
+       spc.codeSUB      AS codeSUB
+FROM product_category pc
+         LEFT JOIN sub_product_category spc ON pc.category_id = spc.category_id
+         LEFT JOIN parent_category p ON p.parent_id = pc.parent_id
 
 
-
-
+select spc.category_id     AS spc_category_id,
+       spc.title           AS spc_title,
+       pc.category_id      AS pc_category_id,
+       pc.title            AS pc_title,
+       pc.code             AS pc_code,
+       p.category_code     AS p_category_code,
+       p.category_title    AS p_category_title,
+       p.parent_id         AS parent_id,
+       spc.codeSUB         AS codeSUB,
+       spc.is_disabled_sub AS is_disabled_sub,
+       spc.category_sub    AS category_sub
+from sub_product_category spc
+         left join product_category pc on pc.category_id = spc.category_id
+         left join parent_category p on p.parent_id = pc.parent_id
