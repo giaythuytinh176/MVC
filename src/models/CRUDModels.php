@@ -63,8 +63,7 @@ class CRUDModels extends Database
      * @param array $data data for bindvalue
      * @return integer
      */
-    public
-    function insert(string $table, array $data)
+    public function insert(string $table, array $data)
     {
         ksort($data);
         $fieldkey = implode(', ', array_keys($data));
@@ -86,8 +85,7 @@ class CRUDModels extends Database
      * @param array $data
      * @return string
      */
-    public
-    function insertid(string $table, array $data)
+    public function insertid(string $table, array $data)
     {
         ksort($data);
         $fieldkey = implode(', ', array_keys($data));
@@ -109,8 +107,7 @@ class CRUDModels extends Database
      * @param array $where
      * @return integer
      */
-    public
-    function update(string $table, array $data, array $where)
+    public function update(string $table, array $data, array $where)
     {
         ksort($data);
         $fieldDetails = "";
@@ -129,8 +126,7 @@ class CRUDModels extends Database
         return $stmt->execute();
     }
 
-    public
-    function delete(string $table, array $where, int $limit = 1)
+    public function delete(string $table, array $where, int $limit = 1)
     {
         $fieldWhere = $this->conditionToString($where);
         $stmt = $this->crud->prepare("DELETE FROM $table WHERE $fieldWhere LIMIT $limit");
@@ -140,8 +136,7 @@ class CRUDModels extends Database
         return $stmt->execute();
     }
 
-    public
-    function conditionToString($data = array())
+    public function conditionToString($data = array())
     {
         $condition = '';
         if (!empty($data)) {
