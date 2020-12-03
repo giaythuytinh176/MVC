@@ -81,6 +81,12 @@ Các chứng năng đã hoàn thành:
 
 
 
+/* Hoàn thành date 04/12/2020 */
+
+- Thêm xoá product
+
+
+
 
 
 
