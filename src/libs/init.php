@@ -11,6 +11,7 @@ class init
     public static function start()
     {
         //ob_start();
+        \MVC\libs\Session::init();
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         if (empty($_SESSION['lang'])) $_SESSION['lang'] = "vietnamese";
         UserAccess::isLogin();

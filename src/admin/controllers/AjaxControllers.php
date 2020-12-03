@@ -118,7 +118,7 @@ class AjaxControllers
 
     public function AddProduct()
     {
-        if (($_FILES['file']['error'] == 0) && !empty($_POST['parent_id']) && !empty($_POST['category_id'])) {
+        if (!empty($_POST['parent_id']) && !empty($_POST['category_id'])) {//($_FILES['file']['error'] == 0) &&
             $product_name = $_POST['product_name'];
             $parent_id = $_POST['parent_id'];
             $category_id = $_POST['category_id'];
@@ -150,8 +150,6 @@ class AjaxControllers
                 }
                 echo (new \MVC\admin\controllers\ProductController())->InsertProduct($_POST);
             }
-        } else {
-            echo "File upload is error.";
         }
     }
 

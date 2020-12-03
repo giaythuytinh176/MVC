@@ -24,7 +24,6 @@ class CartControllers
                 break;
             }
         }
-        $_SESSION['cart_items'] = array_values($_SESSION['cart_items']);
         $message = '<div class="col-lg-6"><h3>Removed item successfully.</h3></div>';
         $this->render->view("order/cart", [[], $params, $message]);
     }

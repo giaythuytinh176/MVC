@@ -276,6 +276,12 @@ class ProductController
                             </tr>
                             <tr>
                                 <th></th>
+                                <th style="width: 30%" class="success">Stock</th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" name="Stock" value="0"></th>
+                                <th></th>
+                            </tr>  
+                            <tr>
+                                <th></th>
                                 <th style="width: 30%" class="success">Price</th>
                                 <th style="width: 30%" class="warning"><input type="number" class="form-control" id="price" value=""></th>
                                 <th></th>
