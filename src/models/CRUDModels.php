@@ -110,6 +110,16 @@ class CRUDModels extends Database
         return $stmt->execute();
     }
 
+    public function delete(string $table, array $where, int $limit = 1)
+    {
+        $fieldWhere = $this->conditionToString($where);
+        $stmt = $this->crud->prepare("DELETE FROM $table WHERE $fieldWhere LIMIT $limit");
+        foreach ($where as $k => &$val) {
+            $stmt->bindParam(":$k", $val);
+        }
+        return $stmt->execute();
+    }
+
     public function conditionToString($data = array())
     {
         $condition = '';

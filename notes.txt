@@ -20,7 +20,8 @@ SELECT p.product_id,
        spc.title as spc_title
 FROM product p
         LEFT JOIN product_category pc on pc.category_id = p.category_id
-        LEFT JOIN parent_category c on c.parent_id = pc.parent_id LEFT JOIN sub_product_category spc on spc.category_sub = p.category_sub;
+        LEFT JOIN parent_category c on c.parent_id = pc.parent_id
+        LEFT JOIN sub_product_category spc on spc.category_sub = p.category_sub;
 
 
 
@@ -35,11 +36,13 @@ SELECT spc.category_id as spc_category_id,
        p.category_title as p_category_title,
        p.parent_id,
        spc.codeSUB
-FROM sub_product_category as spc RIGHT JOIN product_category pc on pc.category_id = spc.category_id LEFT JOIN parent_category p on p.parent_id = pc.parent_id;
+FROM sub_product_category as spc
+        RIGHT JOIN product_category pc on pc.category_id = spc.category_id
+        LEFT JOIN parent_category p on p.parent_id = pc.parent_id;
 
 
 
-
+CREATE VIEW v_spc_pc_pac AS
 SELECT spc.category_id as spc_category_id,
        spc.title as spc_title,
        spc.category_sub as spc_category_sub,
@@ -51,4 +54,7 @@ SELECT spc.category_id as spc_category_id,
        p.parent_id,
        spc.codeSUB
 FROM sub_product_category as spc LEFT JOIN product_category pc on pc.category_id = spc.category_id LEFT JOIN parent_category p on p.parent_id = pc.parent_id
+
+
+
 

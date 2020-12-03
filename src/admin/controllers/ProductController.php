@@ -18,6 +18,11 @@ class ProductController
         $this->productmodels = new ProductModels();
     }
 
+    public function DeleteProduct($id)
+    {
+        $this->productmodels->DeleteProduct($id);
+    }
+
     public function getAllProductbyView()
     {
         $data = $this->productmodels->getAllProductbyView();
@@ -312,7 +317,7 @@ class ProductController
                                 </th>
                                 <th style="width: 2%">#</th>
                                 <th style="width: 22%" class="success">Title</th>
-                                <th style="width: 10%" class="success">Img</th>
+                                <th style="width: 10%" class="success">Image</th>
                                 <th style="width: 45%" class="warning">Product Information</th>
                                 <th style="width: 10%" class="warning">Price</th>
                                 <th style="width: 5%" class="warning">Enable/Disable</th>
@@ -323,7 +328,7 @@ class ProductController
         if (empty((new self)->getAllProductbyView()['errors'])) {
             foreach ((new self)->getAllProductbyView() as $key => $value) {
                 $NameProductToString = ToolControllers::ConvertName($value);
-                $sout .= '                            <tr>
+                $sout .= '  <tr id="tr_' . $value['product_id'] . '">
                                 <td class="active">
                                     <input type="checkbox" class="select-item checkbox" name="select-item"
                                            value="' . $value['product_id'] . '"/>
@@ -335,20 +340,21 @@ class ProductController
                                 <td class="warning">' . $value['price'] . '</td>
                                 <td class="warning" id="spu' . $value['product_id'] . '">' . (($value['is_disabled'] == 0) ? "Enabled." : "Disabled.") . '</td>
                                 <td class="danger">
-                                       <a href="' . UrlControllers::url("admin/products/edit/" . $value['product_id']) . '"><i class="fas fa-edit" title="Edit Product"></i></a>
-                                       <button id="statusproduct' . $value['product_id'] . '" class="fas fa-ban mystatusproduct" title="Enable/Disable Product" value="' . $value['product_id'] . '"></button>
-                                       <a href="' . UrlControllers::url("category/" . $value['category_parent'] . "/" . $value['pc_code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this product"></i></a>
+                                       <a href="' . UrlControllers::url("admin/products/edit/" . $value['product_id']) . '"><i class="fas fa-edit" title="Edit Product"></i></a><br>
+                                       <button id="statusproduct' . $value['product_id'] . '" class="fas fa-ban mystatusproduct" title="Enable/Disable Product" value="' . $value['product_id'] . '"></button><br>
+                                       <button id="trash' . $value['product_id'] . '" class="fas fa-trash-alt mytrash" title="Delete Product ' . $value['product_id'] . '" value="' . $value['product_id'] . '"></button><br>
+                                       <a href="' . UrlControllers::url("category/" . $value['category_parent'] . "/" . $value['pc_code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '" target="_blank"><i class="fas fa-external-link-alt" title="Open this product"></i></a><br>
                                 </td>
                             </tr>';
             }
-            $sout .= '    </tbody>
+        } else {
+            $sout .= "No product.";
+        }
+        $sout .= '    </tbody>
                       </table>';
 //                                                <button id="select-all" class="btn button-default">SelectAll/Cancel</button>
 //                                                <button id="select-invert" class="btn button-default">Invert</button>
 //                                                <button id="selected" class="btn button-default">GetSelected</button>
-        } else {
-            $sout .= "No product.";
-        }
         return $sout;
     }
 

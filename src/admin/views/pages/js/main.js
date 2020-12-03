@@ -365,6 +365,36 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('.mytrash').on('click', function () {
+        var id_trash = this.id;
+        var product_id = id_trash.slice(5, id_trash.length);//5 = trash
+        // console.log(id_trash);
+        // console.log(product_id);
+        $.ajax({
+            type: "POST",
+            url: base_url + "/admin/Ajax/TrashProduct",
+            data: {
+                id: product_id,
+            },
+            cache: false,
+            success: function (response) {
+                //console.log(response);
+                //$('#sp' + product_id).html(response);
+                $('#DelRowMessage').html('<div id="DelRowMessage" class="card-header py-3 d-flex flex-row align-items-center justify-content-between alert alert-success" role="alert">\n' +
+                    '                                <h5 class="m-0 font-weight-bold text-primary">Deleted Product Successfully.</h5>\n' +
+                    '                        </div>');
+                //$('#hide' + product_id).hide();
+                //$('#trash' + product_id).hide();
+                $('#tr_' + product_id).remove();
+
+                //confirm("Do you want to delete it?");
+                //alert(response);
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
     $('.mystatusproduct').on('click', function () {
         var id_sp = this.id;
         var product_id = id_sp.slice(13, id_sp.length);//13 = statusproduct

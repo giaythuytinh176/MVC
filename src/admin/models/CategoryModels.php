@@ -36,18 +36,6 @@ class CategoryModels
 
     public function getOnlySubCateIncludeCateParent()
     {
-//        $sql = "SELECT spc.category_id as spc_category_id,
-//                       spc.title as spc_title,
-//                       pc.category_id as pc_category_id,
-//                       pc.title as pc_title,
-//                       pc.code as pc_code,
-//                       p.category_code as p_category_code,
-//                       p.category_title as p_category_title,
-//                       p.parent_id,
-//                       spc.codeSUB,
-//                       spc.is_disabled_sub,
-//                       spc.category_sub
-//                FROM sub_product_category as spc LEFT JOIN product_category pc on pc.category_id = spc.category_id LEFT JOIN parent_category p on p.parent_id = pc.parent_id";
         return $this->CRUDmodels->select("v_spc_pc_pac", [], '', 'All');
     }
 

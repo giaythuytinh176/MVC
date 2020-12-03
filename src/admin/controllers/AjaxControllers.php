@@ -5,20 +5,30 @@ namespace MVC\admin\controllers;
 use MVC\admin\controllers\CategoryControllers;
 use MVC\controllers\ToolControllers;
 
-class AjaxControllers extends ProductController
+class AjaxControllers
 {
     protected $categorycontrollers;
+    protected $productcontroller;
 
     public function __construct()
     {
         $this->categorycontrollers = new CategoryControllers();
+        $this->productcontroller = new ProductController();
+    }
+
+    public function TrashProduct(): void
+    {
+        if (!empty($_POST['id'])) {
+            $id = $_POST['id'];
+            $this->productcontroller->DeleteProduct($id);
+        }
     }
 
     public function StatusProduct(): void
     {
         if (!empty($_POST['id'])) {
             $id = $_POST['id'];
-            echo $this->ActiveOrDisableProduct($id);
+            echo $this->productcontroller->ActiveOrDisableProduct($id);
         }
     }
 

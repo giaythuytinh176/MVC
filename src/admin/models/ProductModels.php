@@ -15,6 +15,11 @@ class ProductModels
         $this->CRUDmodels = new CRUDModels();
     }
 
+    public function DeleteProduct($id)
+    {
+        $this->CRUDmodels->delete("product", ['product_id' => $id]);
+    }
+
     public function getAllProductbyView()
     {
         return $this->CRUDmodels->select("allcategoryproducts", [], '', 'All');
