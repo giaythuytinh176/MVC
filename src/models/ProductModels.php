@@ -16,12 +16,12 @@ class ProductModels
 
     public function getDetailElementbyID($data)
     {
-        return $this->CRUDmodels->select2("SELECT * FROM product_category LEFT JOIN product on product_category.category_id = product.category_id", $data);
+        return $this->CRUDmodels->select2("SELECT * FROM product_category JOIN product as p on product_category.category_id = p.category_id", $data);
     }
 
     public function getProductDetailbyID($data)
     {
-        return $this->CRUDmodels->select2("SELECT * FROM product JOIN product_category on product.category_id = product_category.category_id JOIN parent_category on product_category.parent_id = parent_category.parent_id", $data);
+        return $this->CRUDmodels->select2("SELECT * FROM product p JOIN product_category pc on pc.category_id = p.category_id JOIN parent_category c on c.parent_id = pc.parent_id", $data);
     }
 
     public function getListProductinMainCategory($data)
@@ -31,6 +31,6 @@ class ProductModels
 
     public function getAllElementbySubCateID($data)
     {
-        return $this->CRUDmodels->select2("SELECT * FROM sub_product_category JOIN product on sub_product_category.category_sub = product.category_sub", $data, "", "All");
+        return $this->CRUDmodels->select2("SELECT * FROM sub_product_category JOIN product p on sub_product_category.category_sub = p.category_sub", $data, "", "All");
     }
 }
