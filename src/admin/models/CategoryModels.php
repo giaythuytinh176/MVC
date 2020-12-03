@@ -21,12 +21,12 @@ class CategoryModels
 
     public function getBrandByID($id)
     {
-        return $this->CRUDmodels->select("product_category", ['category_id' => $id], 'pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id');
+        return $this->CRUDmodels->select2("SELECT * FROM product_category LEFT JOIN parent_category on product_category.parent_id = parent_category.parent_id", ['category_id' => $id]);
     }
 
     public function getAllBrand()
     {
-        return $this->CRUDmodels->select("product_category", [], 'pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id ORDER BY sort_order', 'All');
+        return $this->CRUDmodels->select2("SELECT * FROM product_category LEFT JOIN parent_category on product_category.parent_id = parent_category.parent_id", '', 'ORDER BY sort_order', "All");
     }
 
     public function getAllSubCate()

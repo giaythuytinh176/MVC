@@ -1,7 +1,7 @@
 
 
 
-CREATE VIEW AllCategoryProducts AS
+CREATE VIEW view_parentproduct_productcategory_subcategory AS
 SELECT p.product_id,
        ProductName,
        pc.category_id  as category_id,

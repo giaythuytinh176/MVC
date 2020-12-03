@@ -22,7 +22,7 @@ class ProductModels
 
     public function getAllProductbyView()
     {
-        return $this->CRUDmodels->select("allcategoryproducts", [], '', 'All');
+        return $this->CRUDmodels->select("view_parentproduct_productcategory_subcategory", [], '', 'All');
     }
 
     public function getAllProduct()
@@ -37,7 +37,7 @@ class ProductModels
 
     public function getAllCateOfProductbyID($id)
     {
-        return $this->CRUDmodels->select("allcategoryproducts", ['product_id' => $id]);
+        return $this->CRUDmodels->select("view_parentproduct_productcategory_subcategory", ['product_id' => $id]);
     }
 
     public function ActiveOrDisableProduct($id)

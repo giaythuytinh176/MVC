@@ -58,22 +58,24 @@ class UrlControllers
                 }
                 break;
             case "category":
-                $list_parent_category = [];
-                foreach ((new CategoryControllers)->getAllListcategory() as $value) {
-                    $list_parent_category[] = $value['category_code'];
-                }
-                foreach ($list_parent_category as $val) {
-                    if ($val == $this->action) {
-                        if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
-                            (new ProductControllers)->getDetailElementbyID($this->params);
-                        } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
-                            (new ProductControllers)->getAllElementbySubCateID($this->action, $this->params);
-                        } elseif (!empty($this->params[0])) {
-                            (new ProductControllers)->getListProductinMainCategory($this->action, $this->params);
-                        } else {
-                            (new CategoryControllers)->getAllCategoryView($this->action);
+                if (empty((new CategoryControllers)->getAllListcategory()['errors'])){
+                    $list_parent_category = [];
+                    foreach ((new CategoryControllers)->getAllListcategory() as $value) {
+                        $list_parent_category[] = $value['category_code'];
+                    }
+                    foreach ($list_parent_category as $val) {
+                        if ($val == $this->action) {
+                            if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
+                                (new ProductControllers)->getDetailElementbyID($this->params);
+                            } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
+                                (new ProductControllers)->getAllElementbySubCateID($this->action, $this->params);
+                            } elseif (!empty($this->params[0])) {
+                                (new ProductControllers)->getListProductinMainCategory($this->action, $this->params);
+                            } else {
+                                (new CategoryControllers)->getAllCategoryView($this->action);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
                 break;
