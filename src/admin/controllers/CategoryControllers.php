@@ -317,7 +317,7 @@ class CategoryControllers
                                     <select id="category_id" required="1">';
         if (empty((new self)->getALlCategoryProduct()['errors'])) {
             foreach ((new self)->getALlCategoryProduct() as $category) {
-                $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . '</option>';
+                $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . ' [' . (new self())->getBrandByID($category['category_id'])['category_title'] . '] </option>';
             }
         }
         $sout .= '

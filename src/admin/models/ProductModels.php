@@ -58,13 +58,6 @@ class ProductModels
 
     public function UpdateProductbyID($id, $data)
     {
-        $this->CRUDmodels->update('product',
-            ['ProductName' => $data['product_name'],
-                'price' => $data['price'],
-                'description' => $data['description'],
-                'img_link' => $data['img_link'],
-                'img_list' => $data['img_list'],
-                'discount' => $data['discount'],
-            ], ['product_id' => $id]);
+        $this->CRUDmodels->update('product', $data, ['product_id' => $id]);
     }
 }

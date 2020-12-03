@@ -104,7 +104,7 @@ class CategoryModels
         if (!empty($CheckParentCate['errors'])) {
             return "Parent Category not found.";
         }
-        $this->CRUDmodels->insert("product_category", ['title' => $title, 'code' => $code, 'sort_order' => sizeof($this->getALlCategoryParent()) + 1, 'parent_id' => $parent_id]);
+        $this->CRUDmodels->insert("product_category", ['title' => $title, 'code' => $code, 'sort_order' => sizeof($this->getALlCategoryProduct()) + 1, 'parent_id' => $parent_id]);
         return "Added Brand {$title}.";
     }
 
