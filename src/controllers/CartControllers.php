@@ -19,13 +19,13 @@ class CartControllers
     public function removeItems($params)
     {
         foreach ($_SESSION['cart_items'] as $key => $val) {
-            if ($val['product_id'] === $params[0]) {
+            if ($val['product_id'] === $params[1]) {
                 unset($_SESSION['cart_items'][$key]);
                 break;
             }
         }
         $message = '<div class="col-lg-6"><h3>Removed item successfully.</h3></div>';
-        $this->render->view("order/cart", [[], $params, $message]);
+        $this->render->view("order/cart", [[], $params, "", $message]);
     }
 
     public function AddProductToCart($req)
@@ -162,7 +162,7 @@ class CartControllers
             $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
             $sout .= '<tr class="cart_item">
                         <td class="cart-product-remove">
-                            <a href="' . \MVC\controllers\UrlControllers::url("shop/cart/" . $item['product_id']) . '" onclick="return confirm(\'Are you sure want to delete it?\')" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                            <a href="' . \MVC\controllers\UrlControllers::url("shop/cart/delete/" . $item['product_id']) . '" onclick="return confirm(\'Are you sure want to delete it?\')" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
                         </td>
 
                         <td class="cart-product-thumbnail">

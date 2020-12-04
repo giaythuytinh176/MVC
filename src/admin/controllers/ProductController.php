@@ -99,7 +99,7 @@ class ProductController
     {
         if (!empty($_POST['btn'])) {
             $errors = [];
-            $required_fields = ['product_name', 'price', 'description', 'img_link', 'img_list', 'Stock'];//, 'discount'
+            $required_fields = ['product_name', 'price', 'description', 'img_link', 'img_list'];//, 'discount', 'Stock'
             foreach ($_POST as $key => $value) {
                 if (empty($value) && in_array($key, $required_fields) == true) {
                     $errors[] = ucwords(str_replace("_", " ", $key)) . " is a required field.";
@@ -109,7 +109,7 @@ class ProductController
                 echo "<div class=\"alert alert-danger\" role=\"alert\">" . implode("<br>", $errors) . "</div>";
             } else {
                 $dataSQL = [];
-                array_push($required_fields, 'discount');
+                array_push($required_fields, 'discount', 'Stock');
                 foreach ($_POST as $k => $item) {
                     if (in_array($k, $required_fields) === false) {
                         continue;

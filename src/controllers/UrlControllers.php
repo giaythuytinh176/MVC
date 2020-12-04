@@ -31,8 +31,13 @@ class UrlControllers
                         (new LoginControllers)->loginControllers($this->params);
                         break;
                     case "cart":
-                        if (!empty($this->params) && (is_numeric($this->params[0]) == true) && !empty($_SESSION['cart_items'])) {
-                            (new CartControllers)->removeItems($this->params);
+                        $param = !empty($this->params[0]) ? $this->params[0] : "";
+                        switch ($param) {
+                            case "delete" :
+                                if (!empty($this->params) && (is_numeric($this->params[1]) == true) && !empty($_SESSION['cart_items'])) {
+                                    (new CartControllers)->removeItems($this->params);
+                                }
+                                break;
                         }
                         if (empty($_REQUEST['btn']) || empty($_REQUEST['qty'])) {
                             (new CartControllers)->cartView();
@@ -58,7 +63,7 @@ class UrlControllers
                 }
                 break;
             case "category":
-                if (empty((new CategoryControllers)->getAllListcategory()['errors'])){
+                if (empty((new CategoryControllers)->getAllListcategory()['errors'])) {
                     $list_parent_category = [];
                     foreach ((new CategoryControllers)->getAllListcategory() as $value) {
                         $list_parent_category[] = $value['category_code'];

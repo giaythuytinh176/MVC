@@ -67,8 +67,8 @@
         <div class="content-wrap">
             <div class="container">
                 <?php
-                if (!empty($data[1][0]) && is_numeric($data[1][0]) == true) {
-                    echo $data[2];
+                if (!empty($data[1][0]) && is_numeric($data[1][1]) == true) {
+                    echo $data[3];
                     \MVC\controllers\RenderControllers::redirectAfterSecondPage("shop/cart", 3);
                 }
                 \MVC\controllers\CartControllers::UpdateQuantityCart();
