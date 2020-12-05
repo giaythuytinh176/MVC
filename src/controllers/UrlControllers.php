@@ -14,15 +14,15 @@ class UrlControllers
 
     public function index()
     {
-        $this->ParseActionsParams(self::parseURL());
-        $this->parseController();
+        static::ParseActionsParams(self::parseURL());
+        static::parseController();
     }
 
     public function parseController()
     {
         switch ($this->controllers) {
             case "admin":
-                (new \MVC\admin\controllers\UrlControllers())->index();
+                (new \MVC\admin\controllers\UrlControllers)->index();
                 break;
 
             case "shop":
