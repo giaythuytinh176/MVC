@@ -26,11 +26,11 @@ class ProductModels
 
     public function getListProductinMainCategory($data)
     {
-        return $this->CRUDmodels->select2("SELECT * FROM product LEFT JOIN product_category pc on product.category_id = pc.category_id", $data, "", "All", );
+        return $this->CRUDmodels->select2("SELECT * FROM product LEFT JOIN product_category pc on product.category_id = pc.category_id", $data, "All", );
     }
 
     public function getAllElementbySubCateID($data)
     {
-        return $this->CRUDmodels->select2("SELECT * FROM sub_product_category JOIN product p on sub_product_category.category_sub = p.category_sub", $data, "", "All");
+        return $this->CRUDmodels->select2("SELECT * FROM sub_product_category JOIN product p on sub_product_category.category_sub = p.category_sub", $data, "All");
     }
 }

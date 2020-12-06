@@ -14,11 +14,6 @@ class CategoryModels
         $this->CRUDmodels = new CRUDModels();
     }
 
-//    public function getCategorybyID($data)
-//    {
-//        return $this->CRUDmodels->select("parent_category", $data, "RIGHT JOIN product_category as pc on parent_category.parent_id = pc.parent_id");
-//    }
-
     public function getAllListcategory($data)
     {
         return $this->CRUDmodels->select("parent_category", $data, "", 'All');
@@ -26,7 +21,7 @@ class CategoryModels
 
     public function getAllSubCategory($data)
     {
-        return $this->CRUDmodels->select("product_category", $data, "INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id", 'All');
+        return $this->CRUDmodels->select2("SElECT * FROM product_category INNER JOIN sub_product_category as spc on product_category.category_id = spc.category_id", $data, 'All');
     }
 
     public function getAllCategorybyParentID($data)

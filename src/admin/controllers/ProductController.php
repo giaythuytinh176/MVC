@@ -283,31 +283,31 @@ class ProductController
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Price</th>
-                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="price" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="price" value="" required></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Discount</th>
-                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="discount" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="discount" value="0"></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Img link</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="img_link" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="img_link" value="" required></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Img list</th>
-                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="img_list" rows="5"></textarea></th>
+                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="img_list" rows="5" required></textarea></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Description</th>
-                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="description" rows="10"></textarea></th>
+                                <th style="width: 30%" class="warning"><textarea type="text" class="form-control" id="description" rows="10" required></textarea></th>
                                 <th></th>
                             </tr>
                             <tr>
@@ -316,7 +316,7 @@ class ProductController
                                      Upload image: 
                                 </th>
                                 <th style="width: 30%" class="warning">
-                                    <input id="picture" type="file" accept="image/*"" />
+                                    <input required id="picture" type="file" accept="image/*"" />
                                 </th>
                                 <th></th>
                             </tr>

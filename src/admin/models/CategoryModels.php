@@ -16,7 +16,7 @@ class CategoryModels
 
     public function getALlCategoryParent()
     {
-        return $this->CRUDmodels->select("parent_category", [], 'ORDER BY OrderParent', 'All');
+        return $this->CRUDmodels->select2("SELECT * FROM parent_category ORDER BY OrderParent", "", 'All');
     }
 
     public function getBrandByID($id)
@@ -26,7 +26,7 @@ class CategoryModels
 
     public function getAllBrand()
     {
-        return $this->CRUDmodels->select2("SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id", '', 'ORDER BY sort_order', "All");
+        return $this->CRUDmodels->select2("SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id ORDER BY pc.sort_order", "", "All");
     }
 
     public function getAllSubCate()
@@ -46,7 +46,7 @@ class CategoryModels
 
     public function getALlCategoryProduct()
     {
-        return $this->CRUDmodels->select("product_category", [], 'ORDER BY sort_order', 'All');
+        return $this->CRUDmodels->select2("SELECT * FROM product_category ORDER BY sort_order", "", "All");
     }
 
     public function ActiveOrDisableCategory($id, int $status)
