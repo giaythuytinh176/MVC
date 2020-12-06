@@ -35,9 +35,10 @@ class CartControllers
 
     public static function DeleteCart()
     {
-        if (!empty($_POST['dc']) && $_POST['dc'] == 'Delete Cart') {
+        if (!empty($_REQUEST['dc']) && $_REQUEST['dc'] == 'Delete Cart') {
             unset($_SESSION['cart_items']);
             echo '<div class="col-lg-6" id="hideUpdatedCart"><h3>Deleted items successfully.</h3></div>';
+            \MVC\controllers\RenderControllers::redirectAfterSecondPage("shop/cart", 3);
         }
     }
 
@@ -162,9 +163,29 @@ class CartControllers
             $amount = ((!empty($valFromDB['discount']) && $valFromDB['discount'] > 0) ? ($valFromDB['price'] * (100 - $valFromDB['discount']) / 100) : ($valFromDB['price']));
             $sout .= '<tr class="cart_item">
                         <td class="cart-product-remove">
-                            <a href="' . \MVC\controllers\UrlControllers::url("shop/cart/delete/" . $item['product_id']) . '" onclick="return confirm(\'Are you sure want to delete it?\')" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                              <a class="remove" title="Remove this item" href="#" data-toggle="modal" data-target="#deleteCartModal' . $item['product_id'] . '">
+                                <i class="icon-trash2"></i>
+                            </a>
+                            <!-- DeleteCart Modal-->
+                            <div class="modal fade" id="deleteCartModal' . $item['product_id'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="DeleteCartModal' . $item['product_id'] . '">Bạn có xoá sản phẩm này không?</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">Nếu chọn xoá thì bạn sẽ mất sản phẩm này trong giỏ hàng.</div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                            <a class="btn btn-primary" href="' . \MVC\controllers\UrlControllers::url("shop/cart/delete/" . $item['product_id']) . '">Xoá</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
-
                         <td class="cart-product-thumbnail">
                             <a href="#"><img width="64" height="64"
                                              src="' . $valFromDB['img_link'] . '"
@@ -212,7 +233,28 @@ class CartControllers
                                     </div>
                                 </div>
                                 <div class="col-lg-auto pr-lg-0">
-                                    <input type="submit" name="dc" class="btn2 btn-danger" onclick="return confirm(\'Are you sure you want to delete this?\');" value="Delete Cart">
+                                      <a class="btn2 btn-danger" title="Remove All items" href="#" data-toggle="modal" data-target="#deleteAllCartModal">
+                                        Delete Cart
+                                     </a>
+                                    <!-- DeleteCart Modal-->
+                                    <div class="modal fade" id="deleteAllCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="DeleteAllCartModal">Bạn có xoá tất cả sản phẩm không?</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">Nếu chọn xoá thì bạn sẽ mất tất cả sản phẩm này trong giỏ hàng.</div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-primary" href="' . \MVC\controllers\UrlControllers::url("shop/cart?dc=Delete%20Cart") . '">Xoá</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <input type="submit" name="uc" class="button button-3d m-0" value="Update Cart">
                                     <a href="' . \MVC\controllers\UrlControllers::url("shop/checkout") . '" class="button button-3d mt-2 mt-sm-0 mr-0">Proceed to Checkout</a>
                                 </div>

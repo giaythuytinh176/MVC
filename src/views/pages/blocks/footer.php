@@ -241,5 +241,6 @@
 ============================================= -->
 <script src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/js/functions.js"></script>
 
+
 </body>
 </html>

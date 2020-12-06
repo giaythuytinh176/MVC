@@ -14,14 +14,13 @@ $fullheader = ($currentpage !== \MVC\config\config::BASE_FOLDER) ? ' class="full
                 <!-- Logo
     ============================================= -->
                 <div id="logo">
-                    <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="standard-logo"
-                       data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark.png"><img
+                    <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="standard-logo"><img
                                 src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo.png"
-                                alt="Canvas Logo"></a>
-                    <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"
-                       data-dark-logo="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo-dark@2x.png"><img
+                                alt="Tam Le Logo"></a>
+                    <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"><img
                                 src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo@2x.png"
-                                alt="Canvas Logo"></a>
+                                alt="Tam Le Logo"></a>
+                    <p><sub>Những thứ chúng tôi không có nghĩa là bạn không cần!</sub></p>
                 </div><!-- #logo end -->
 
                 <?php

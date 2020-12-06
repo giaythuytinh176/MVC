@@ -54,7 +54,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Tâm Lê <sup>Admin</sup></div>
         </a>
 
         <!-- Divider -->
@@ -164,25 +164,6 @@
             </div>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
-                </div>
-            </div>
-        </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -201,48 +182,24 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/login.html">Login</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/register.html">Register</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/forgot-password.html">Forgot
+                        Password</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/404.html">404
+                        Page</a>
+                    <a class="collapse-item"
+                       href="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/blank.html">Blank
+                        Page</a>
                 </div>
             </div>
         </li>
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-
-        <!-- Sidebar Message -->
-        <div class="sidebar-card">
-            <img class="sidebar-card-illustration mb-2"
-                 src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_rocket.svg"
-                 alt="">
-            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and
-                more!</p>
-            <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-        </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -277,7 +234,6 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -323,7 +279,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
+                                    <div class="small text-gray-500">December 13, 2020</div>
                                     <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                 </div>
                             </a>
@@ -334,7 +290,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
+                                    <div class="small text-gray-500">December 13, 2020</div>
                                     $290.29 has been deposited into your account!
                                 </div>
                             </a>
@@ -345,84 +301,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
+                                    <div class="small text-gray-500">December 13, 2020</div>
                                     Spending Alert: We've noticed unusually high spending for your account.
                                 </div>
                             </a>
                             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle"
-                                         src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_1.svg"
-                                         alt="">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.
-                                    </div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle"
-                                         src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_2.svg"
-                                         alt="">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?
-                                    </div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle"
-                                         src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile_3.svg"
-                                         alt="">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!
-                                    </div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...
-                                    </div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                         </div>
                     </li>
 
@@ -432,7 +315,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Tâm Lê logged</span>
                             <img class="img-profile rounded-circle"
                                  src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/img/undraw_profile.svg">
                         </a>
@@ -442,14 +325,6 @@
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

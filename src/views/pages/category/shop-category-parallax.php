@@ -30,11 +30,15 @@
     <link rel="stylesheet"
           href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/css/custom.css"
           type="text/css"/>
+
+    <link rel="shortcut icon" type="image/png"
+          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/favicon.ico">
+
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- Document Title
     ============================================= -->
-    <title>Shop Categories - Parallax | Canvas</title>
+    <title>Shop Categories | Tam Le</title>
 
 </head>
 

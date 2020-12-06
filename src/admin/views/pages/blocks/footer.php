@@ -28,15 +28,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn thoát khỏi đăng nhập?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Chọn "Logout" phía dưới nếu bạn đã sẵn sàng thoát khỏi phiên đăng nhập hiện tại.
+            </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary"
+                   href="<?php echo \MVC\controllers\UrlControllers::url("shop/login/logout") ?>">Logout</a>
             </div>
         </div>
     </div>
@@ -67,13 +69,6 @@
 <!-- dataTables core JavaScript-->
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/js/demo/chart-area-demo.js"></script>
-<script src="<?php echo \MVC\controllers\UrlControllers::url() ?>/src/admin/views/pages/index/js/demo/chart-pie-demo.js"></script>
 
 <!-- icons for bt4 -->
 <script src="https://kit.fontawesome.com/b12094d95b.js" crossorigin="anonymous"></script>
