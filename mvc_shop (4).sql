@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 03, 2020 at 07:51 PM
+-- Generation Time: Dec 07, 2020 at 10:51 AM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -28,16 +28,16 @@ SET time_zone = "+00:00";
 -- (See below for the actual view)
 --
 CREATE TABLE `allcatesubparent` (
-`spc_category_id` int
-,`spc_category_sub` int
-,`spc_title` varchar(255)
-,`pc_category_id` int
-,`pc_title` varchar(255)
-,`pc_code` text
+`codeSUB` varchar(255)
 ,`p_category_code` varchar(255)
 ,`p_category_title` varchar(255)
 ,`parent_id` int
-,`codeSUB` varchar(255)
+,`pc_category_id` int
+,`pc_code` text
+,`pc_title` varchar(255)
+,`spc_category_id` int
+,`spc_category_sub` int
+,`spc_title` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -139,8 +139,8 @@ INSERT INTO `parent_category` (`parent_id`, `category_code`, `category_title`, `
 (5, 'smarthome', 'Nhà thông minh', 3, 0),
 (11, 'simthe', 'Sim Thẻ', 5, 1),
 (12, 'donghothongminh', 'Đồng hồ thông minh', 6, 1),
-(13, 'tablet', 'Máy tính bảng', 7, 1),
-(15, 'am-thanh', 'Âm thanh', 8, 0);
+(13, 'tablet', 'Máy tính bảng', 7, 0),
+(15, 'am-thanh', 'Âm thanh', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -171,19 +171,19 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `category_id`, `category_sub`, `ProductName`, `Stock`, `price`, `discount`, `description`, `sort_order`, `is_disabled`, `cart_description`, `img_link`, `img_list`, `created`, `view`) VALUES
-(1, 27, NULL, 'Khoá cửa vân tay Samsung SHP-DH538', 155, '5490000.0000', 5, '<h3>Khoá vân tay Samsung SHP-DH538 – Độ bảo mật cao giúp gia đình bạn luôn an toàn\r\n</h3>\r\n<p>Cùng với khóa cửa vân tay Samsung SHP-DP609 thì Samsung SHP-DH538 là dòng khóa điện tử thông minh của hãng Samsung sản xuất với nhiều tính năng thông minh. Nó cung cấp nhiều phương thức mở như: mở cửa bằng vân tay, mật khẩu và chìa khóa cơ. Khoá cửa vân tay Samsung SHP-DH538 phù hợp với các dòng cửa gỗ của những chung cư hay căn hộ cao cấp.\r\n</p>', 1, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-samsung-SHP-DH538.jpg', NULL, 0),
-(2, 24, NULL, 'Laptop ASUS ZenBook Duo UX481FL-BM049T', 1, '35190000.0000', 11, '<h3>Laptop Asus Zenbook UX481FL-BM049T–vẻ đẹp đổi mới và tốc độ nhanh đẳng cấp</h3> \r\n<p>là chiếc máy tính xách tay siêu mỏng nhỏ gọn được Asus tích hợp màn hình cảm ứng FHD 12.6 inch thiết kế đa nhiệm cực tốt được ra mắt trong thời gian gần đây. Chiếc laptop Asus sở hữu thiết kế thời trang, sang trọng và một cấu hình mạnh mẽ, sẵn sàng đáp ứng mọi nhu cầu làm việc.</p>', 2, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/_/0/_0000_asus-zenbook-duo-ux481fl-bm049t_1_.jpg', NULL, 0),
-(3, 30, NULL, 'Đèn bàn Pisen Led chargeable lamp(PKTM.024)', 2, '222000.0000', 0, '<h3>Đèn Pisen Led chargeable lamp: Đèn Led cảm ứng và thiết kế bắt mắt</h3>\r\n<p>Trong công việc hay cuộc sống học tập của học sinh, sinh viên thì một chiếc đèn bàn có lẽ là thứ gắn bó và quan trọng nhất ảnh hưởng đến sự hiệu quả. Một chiếc đèn bàn tốt có thể giúp dễ dàng hơn trong công việc, bảo vệ sức khỏe mắt cũng như là vật trang trí trên chiếc tủ, bàn thật đẹp. Nắm bắt được nhu cầu ấy, thương hiệu Pisen đã tạo ra dòng sản phẩm phụ kiện gia dụng thông minh mới đó chính là đèn Pisen Led chargeable lamp nhằm đáp ứng và cải thiện cuộc sống cho mọi người. Với lối thiết kế cực kỳ hiện đại, màu sắc và có khả năng uốn cong mọi góc sẽ khiến bạn trầm trồ. Đi kèm với đó là nút cảm ứng cho thấy công nghệ cực kỳ cao cấp mà nhà sản xuất trang bị cho nó. </p>', 3, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/i/pisenledchargeabledesklampwithusb_1923.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/i/pisenledchargeabledesklampwithusb_1923.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/h/t/htb1nrxmcprguurjy0feq6xcbfxaf.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/p/i/pisenledchargeabledesklampwithusb_1923.png', NULL, 0),
+(1, 27, NULL, 'Khoá cửa vân tay Samsung SHP-DH538', 155, '5490000.0000', 77, '<h3>Khoá vân tay Samsung SHP-DH538 – Độ bảo mật cao giúp gia đình bạn luôn an toàn\r\n</h3>\r\n<p>Cùng với khóa cửa vân tay Samsung SHP-DP609 thì Samsung SHP-DH538 là dòng khóa điện tử thông minh của hãng Samsung sản xuất với nhiều tính năng thông minh. Nó cung cấp nhiều phương thức mở như: mở cửa bằng vân tay, mật khẩu và chìa khóa cơ. Khoá cửa vân tay Samsung SHP-DH538 phù hợp với các dòng cửa gỗ của những chung cư hay căn hộ cao cấp.\r\n</p>', 1, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-samsung-SHP-DH538.jpg', NULL, 0),
+(2, 24, NULL, 'Laptop ASUS ZenBook Duo UX481FL-BM049T', 1, '35190000.0000', 56, '<h3>Laptop Asus Zenbook UX481FL-BM049T–vẻ đẹp đổi mới và tốc độ nhanh đẳng cấp</h3> \r\n<p>là chiếc máy tính xách tay siêu mỏng nhỏ gọn được Asus tích hợp màn hình cảm ứng FHD 12.6 inch thiết kế đa nhiệm cực tốt được ra mắt trong thời gian gần đây. Chiếc laptop Asus sở hữu thiết kế thời trang, sang trọng và một cấu hình mạnh mẽ, sẵn sàng đáp ứng mọi nhu cầu làm việc.</p>', 2, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/_/0/_0000_asus-zenbook-duo-ux481fl-bm049t_1_.jpg', NULL, 0),
+(3, 30, NULL, 'Đèn bàn Pisen Led chargeable lamp(PKTM.024)', 2, '222000.0000', 51, '<h3>Đèn Pisen Led chargeable lamp: Đèn Led cảm ứng và thiết kế bắt mắt</h3>\r\n<p>Trong công việc hay cuộc sống học tập của học sinh, sinh viên thì một chiếc đèn bàn có lẽ là thứ gắn bó và quan trọng nhất ảnh hưởng đến sự hiệu quả. Một chiếc đèn bàn tốt có thể giúp dễ dàng hơn trong công việc, bảo vệ sức khỏe mắt cũng như là vật trang trí trên chiếc tủ, bàn thật đẹp. Nắm bắt được nhu cầu ấy, thương hiệu Pisen đã tạo ra dòng sản phẩm phụ kiện gia dụng thông minh mới đó chính là đèn Pisen Led chargeable lamp nhằm đáp ứng và cải thiện cuộc sống cho mọi người. Với lối thiết kế cực kỳ hiện đại, màu sắc và có khả năng uốn cong mọi góc sẽ khiến bạn trầm trồ. Đi kèm với đó là nút cảm ứng cho thấy công nghệ cực kỳ cao cấp mà nhà sản xuất trang bị cho nó. </p>', 3, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/i/pisenledchargeabledesklampwithusb_1923.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/i/pisenledchargeabledesklampwithusb_1923.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/h/t/htb1nrxmcprguurjy0feq6xcbfxaf.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/p/i/pisenledchargeabledesklampwithusb_1923.png', NULL, 0),
 (4, 16, NULL, 'Vsmart Active 3 6GB Ram', 0, '3590000.0000', 0, '<h3>Vsmart Active 3 - Điện thoại giá rẻ thương hiệu Việt</h3>\r\n<p>Vsmart thuộc tập đoàn Vingroup là dòng điện thoại thương hiệu Việt đang ngày càng được đông đảo người dân quan tâm. Mới đây, hãng tiếp tục giới thiệu thêm nhiều mẫu smartphone mới như Vsmart  Live 3, Vsmart  Star 3... và Vsmart Active 3. Trong đó, Active 3 mang trong mình nhiều tính năng và cấu hình cao với mức giá vô cùng tốt.</p>', 4, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/s/vsmart-active-3_2_.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/s/vsmart-active-3_2_.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/v/s/vsmart-active-3_4_.png', NULL, 0),
 (5, 24, NULL, 'Laptop ASUS Gaming ROG Zephyrus GA502IV-AZ033T', 200, '34950000.0000', 50, '<h4>CHUẨN MỰC MỚI VỀ LAPTOP GAMING SIÊU MỎNG </h4>\r\n<p>Zephyrus G15 GA502IV-AZ033T định nghĩa lại khả năng chơi game với dòng Laptop siêu mỏng. Thiết kế mới giúp giải phóng tiềm năng thực sự của AMD® Ryzen™ 7 và GPU GeForce® RTX 2060 . Kết hợp với màn hình hỗ trợ tân số quét 144Hz / 3ms chuẩn mực PANTONE®.</p>', 5, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-zephyrus-g15-ram-16gb_2_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-zephyrus-g15-ram-16gb_2_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/l/a/laptop-asus-gaming-rog-zephyrus-g15-ram-16gb_1_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/l/a/laptop-asus-gaming-rog-zephyrus-g15-ram-16gb_2_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/thumbnail/115x/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-zephyrus-g15-ram-16gb_3_.jpg', NULL, 0),
 (6, 24, NULL, 'Laptop ASUS Gaming ROG Zephyrus GA401II-HE154T', 100, '32450000.0000', 30, '<h3>Laptop ASUS Gaming ROG Zephyrus GA401II - Cấu hình mạnh mẽ trong thiết kế gọn gàng</h3>\r\n<p>Không chỉ dừng lại ở các thế hệ laptop gaming đa dạng ở tầm trung, Asus còn cho ra mắt một thế hệ laptop cực kỳ mạnh mẽ đại diện cho phân khúc cao cấp. Laptop ASUS Gaming ROG Zephyrus GA401II là một trong những cái tên đáng được bạn cân nhắc trong quá trình sử dụng.</p>', 6, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-zephyrus-g14-ga401ii_1_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-zephyrus-g14-ga401ii_1_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/l/a/laptop-asus-gaming-rog-zephyrus-g14-ga401ii_5_.jpg', NULL, 0),
-(7, 24, NULL, 'Laptop ASUS TUF Gaming FA506IV-HN202T', 5, '30250000.0000', 0, '<h3>Laptop Asus TUF Gaming FA506IV mạnh mẽ vượt trội, chiến mọi tựa game</h3>\r\n<p>Khi nói tới laptop gaming mọi người sẽ hình dung ra ngay những cỗ máy siêu nặng, siêu to và vô cùng thô cứng. Nhưng với laptop Asus TUF Gaming FA506IV sẽ khiến bạn thay đổi hoàn toàn cách nhìn vào dòng laptop chơi game này. Được thiết kế gọn, cấu hình mạnh mẽ cùng những trang bị tối tân nhất, đây là một trong những chiếc laptop mà giới game thủ không thể bỏ qua.</p>', 7, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0000_asus-tuf-gaming-a15-fa506iv-hn202t_2b6b0be8584649ff9e2627629295d082_grande.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0000_asus-tuf-gaming-a15-fa506iv-hn202t_2b6b0be8584649ff9e2627629295d082_grande.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/_/0/_0002_asus-tuf-gaming-a15-fa506iv-hn202t-r7-4800h_3_18468113329a4f3889331337eea6d4ae_grande.jpg', NULL, 0),
+(7, 24, NULL, 'Laptop ASUS TUF Gaming FA506IV-HN202T', 5, '30250000.0000', 89, '<h3>Laptop Asus TUF Gaming FA506IV mạnh mẽ vượt trội, chiến mọi tựa game</h3>\r\n<p>Khi nói tới laptop gaming mọi người sẽ hình dung ra ngay những cỗ máy siêu nặng, siêu to và vô cùng thô cứng. Nhưng với laptop Asus TUF Gaming FA506IV sẽ khiến bạn thay đổi hoàn toàn cách nhìn vào dòng laptop chơi game này. Được thiết kế gọn, cấu hình mạnh mẽ cùng những trang bị tối tân nhất, đây là một trong những chiếc laptop mà giới game thủ không thể bỏ qua.</p>', 7, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0000_asus-tuf-gaming-a15-fa506iv-hn202t_2b6b0be8584649ff9e2627629295d082_grande.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0000_asus-tuf-gaming-a15-fa506iv-hn202t_2b6b0be8584649ff9e2627629295d082_grande.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/_/0/_0002_asus-tuf-gaming-a15-fa506iv-hn202t-r7-4800h_3_18468113329a4f3889331337eea6d4ae_grande.jpg', NULL, 0),
 (8, 24, NULL, 'Laptop ASUS Gaming ROG Strix G512L-UHN145T', -5, '29850000.0000', 22, '<span style=\"font-size: 12pt; color: #000000;\"><strong>Strix G15 G512L-UHN145T</strong>&nbsp;là hiện thân của phong cách thiết kế tối giản, mang đến trải nghiệm cốt lõi mãnh liệt nhất. Dư sức để chiến những tựa game nặng kí và xử lý đa nhiệm cùng&nbsp;<strong>Windows 10</strong>.&nbsp;</span>', 8, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-strix-g512-i7-vga-6gb_2_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-strix-g512-i7-vga-6gb_2_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/l/a/laptop-asus-gaming-rog-strix-g512-i7-vga-6gb_3_.jpg', NULL, 0),
 (9, 24, NULL, 'Laptop ASUS Gaming ROG Zephyrus GA502IU-AL007T', NULL, '27450000.0000', 0, 'SẮP VỀ HÀNG', 9, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/350x/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop_asus_gaming_rog_zephyrus_ga502iu-al007t_0003_layer_2.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/350x/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop_asus_gaming_rog_zephyrus_ga502iu-al007t_0003_layer_2.jpg', NULL, 0),
 (10, 24, NULL, 'Laptop ASUS ZenBook Duo UX481FL-BM048T', 1, '27190000.0000', 5, '<h3>Laptop Asus ZenBook UX481FL-BM048T - Chiếc máy tính xách tay của tương lai</h3>\r\n<p>ZenBook chính là dòng máy tính xách tay cao cấp nhà Asus, Asus ZenBook UX481FL BM048T đương nhiên không nằm ngoài thực tế đó. Với các thành phần mạnh mẽ đi kèm và thiết lập 2 màn hình độc đáo hứa hẹn sẽ tận dụng đầy đủ sức mạnh sáng tạo của bạn khi làm việc.</p>', 10, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/4/9/49030_asus_zenbook_ux481fl_bm048_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/4/9/49030_asus_zenbook_ux481fl_bm048_.jpg', NULL, 0),
 (11, 24, NULL, 'Laptop ASUS Gaming ROG Strix G512-IAL001T', NULL, '26450000.0000', 0, 'SẮP VỀ HÀNG', 11, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-strix-g512-i7_6_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-gaming-rog-strix-g512-i7_6_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/l/a/laptop-asus-gaming-rog-strix-g512-i7_3_.jpg', NULL, 0),
 (12, 24, NULL, 'Laptop ASUS TUF Gaming FA706IU-H7133T', 222, '25850000.0000', 0, '<h3>Laptop ASUS TUF Gaming FA706IU - Bước tiến mới trong dòng laptop gaming</h3>\r\n<p>Asus là một trong những hãng sản xuất laptop đi đầu trên thế giới với việc tối ưu hóa hiệu năng một chiếc laptop rất cao laptop ASUS TUF Gaming FA706IU là một trong những sản phẩm nổi bật của hãng khi thiết kế hiệu năng với dòng chip AMD cực kỳ mạnh mẽ phù hợp nhiều nhu cầu.</p>', 12, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-tuf-gaming-a17-fa706iu_1_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/a/laptop-asus-tuf-gaming-a17-fa706iu_1_.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/l/a/laptop-asus-tuf-gaming-a17-fa706iu_5_.jpg', NULL, 0),
-(13, 23, 15, 'Apple Macbook Pro 13 Touch Bar i5 1.4 256GB 2020 Chính Hãng Apple Việt Nam ', 22, '33990000.0000', 5, '<h3>Macbook Pro 13 Touch Bar 2020 chính hãng – Siêu phẩm tiếp theo sở hữu nhiều nâng cấp thú vị</h3>\r\n<p>Thế hệ Macbook Pro 13 2020 đã được ra mắt với nâng cấp mạnh mẽ về cấu hình. Máy vẫn giữ nguyên thừa hưởng những ưu điểm đặc trưng như màn hình siêu nét, thiết kế cao cấp cùng thanh Touch Bar cho khả năng tương tác tuyệt vời với các ứng dụng. Laptop hứa hẹn sẽ đem lại cho Apple những lời khen.</p>', 13, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp13touch-space-select-202005.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp13touch-space-select-202005.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/m/a/macbook_pro_13_2020_0001_4_1.jpg', NULL, 0),
+(13, 23, 15, 'Apple Macbook Pro 13 Touch Bar i5 1.4 256GB 2020 Chính Hãng Apple Việt Nam ', 22, '33990000.0000', 65, '<h3>Macbook Pro 13 Touch Bar 2020 chính hãng – Siêu phẩm tiếp theo sở hữu nhiều nâng cấp thú vị</h3>\r\n<p>Thế hệ Macbook Pro 13 2020 đã được ra mắt với nâng cấp mạnh mẽ về cấu hình. Máy vẫn giữ nguyên thừa hưởng những ưu điểm đặc trưng như màn hình siêu nét, thiết kế cao cấp cùng thanh Touch Bar cho khả năng tương tác tuyệt vời với các ứng dụng. Laptop hứa hẹn sẽ đem lại cho Apple những lời khen.</p>', 13, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp13touch-space-select-202005.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp13touch-space-select-202005.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/m/a/macbook_pro_13_2020_0001_4_1.jpg', NULL, 0),
 (14, 23, 15, 'Apple Macbook Pro 13 Touch Bar i5 2.0 512GB 2020 Chính Hãng Apple Việt Nam ', 33, '46500000.0000', 0, '<h3>Macbook Pro 13 inch 2020 (MXK32/ MXK62)</h3>\r\n<p>MXK32 và MXK62 có thể trở thành chiếc MacBook quốc dân trong tương lai, với cấu hình cơ bản đủ dùng, chiếc MacBook này sẽ đáp ứng được tất cả các nhu cầu văn phòng cơ bản như soạn thảo văn bản, trình chiếu các nội dung,… cho tới các tác vụ đồ họa cơ bản như: photoshop, lightroom,…</p>', 14, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp13touch-space-select-202005_2.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp13touch-space-select-202005_2.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/m/a/macbook_pro_13_2020_0003_2.jpg', NULL, 0),
 (15, 23, 14, 'Apple MacBook Air 13 256GB 2020 Chính Hãng Apple Việt Nam', 22, '24890000.0000', 0, '<h3>MacBook Air 13 2020 – Thiết kế nhỏ gọn, cấu hình mạnh mẽ</h3>\r\n<p>Macbook của Apple với cấu hình mạnh luôn được người dùng chào đón. Phiên bản MacBook Air năm 2020 cũng không ngoại lệ. MacBook Air 13 2020 sở hữu thiết kế đẹp mắt cùng cấu hình cực khỏe với nhiều tính năng hấp dẫn. Chiếc laptop mỏng nhẹ, cấu hình cao này hứa hẹn sẽ mang lại những trải nghiệm ấn tượng.</p>', 15, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/a/macbook-air-gold-select-201810.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/a/macbook-air-gold-select-201810.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/m/a/mac_air_13_2020_bac4.jpg', NULL, 0),
 (16, 10, 1, 'iPhone 11 Pro Max 256GB Chính hãng(VN/A)', 11, '31200000.0000', 15, '<h2>I. Đặc điểm nổi bật của iPhone 11 Pro Max</h2>\r\n<h3>1. Thiết kế đẳng cấp</h3>\r\n<p>iPhone 11 Pro Max đã được ra mắt vào ngày 11/09/2019 vừa qua. Với ngôn ngữ thiết kế không có nhiều thay đổi so với iPhone Xs và iPhone Xs Max. Duy chỉ có logo Apple thì được đặt ở chính giữa mặt sau của máy. Máy vẫn được bọc bởi lớp thép không gỉ. Mặt lưng là cả một tấm kính duy nhất là kính nhám chứ không phải bóng như trên iPhone Xs và Xs Max. iPhone 11 Pro có 4 màu sắc được Apple cho ra mắt: Midnight Green, Space Gray, Silver, Gold.\r\n</p>\r\n', 16, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max_1__2.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max_1__2.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-11-pro-max_4__2.jpg', NULL, 0),
@@ -192,7 +192,7 @@ INSERT INTO `product` (`product_id`, `category_id`, `category_sub`, `ProductName
 (21, 10, 7, 'iPhone 12 Chính Hãng (VN/A)', NULL, '22590000.0000', 1, '<h3>Điện thoại iPhone 12 - \"Siêu phẩm\" iPhone khẳng định đẳng cấp\r\n</h3>\r\n<p>Trong khi sức hút đến từ bộ ba iPhone 11 vẫn chưa nguội đi, hãng Apple vừa qua đã cho ra mắt \"siêu phẩm\" mới nhất 2020 mang tên iPhone 12. Với những nâng cấp đáng kể cho màn hình và hiệu năng, đây sẽ là smartphone thuộc phân khúc cao cấp đáng chú ý trong năm nay.\r\n</p>\r\n', 19, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-black-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-white-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-green-select-2020_1.png', NULL, 0),
 (22, 40, NULL, 'Apple Watch Series 3 38mm GPS viền nhôm dây cao su', NULL, '4890000.0000', 0, ' <h2>Apple Watch Series 3 38mm GPS - viền nhôm dây cao su bền bỉ</h2>\n<p>Đồng hồ thông minh Apple Watch ngày càng được sử dụng phổ biến. Tuy nhiên, Apple Watch Series 3 38mm GPS có rất nhiều phiên bản viền và dây đeo khác nhau. Phiên bản đồng hồ Apple Watch Series 3 38mm GPS viền nhôm dây cao su có điểm gì nổi bật?</p>\n\n<h3>Viền nhôm sang trọng – dây cao su bền bỉ</h3>\n<p>Apple Watch Series 3 38mm GPS được thiết kế với khung viền nhôm sang trọng. Khung nhôm cứng cáp, được làm nhám mờ hạn chế bám mồ hôi, vân tay giúp đồng hồ luôn sạch sẽ.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-05-27_17-20-431_1_1_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-05-27_17-20-431_1_1_.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-silver-sport-white-nc-s3-gallery2_2_1.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-silver-sport-white-nc-s3-gallery1_2_5.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-space-nike-anth-black-nc-gallery2_geo_us_2.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-space-nike-anth-black-nc-gallery1_geo_us_2.jpg', NULL, 0),
 (23, 41, NULL, 'Samsung Galaxy Watch Active 2', NULL, '5500000.0000', 0, '<h3>Đồng hồ thông minh Galaxy Watch Active 2: Thiết kế thời trang, giải pháp theo dõi sức khỏe tuyệt vời</h3>\n<p>Galaxy Watch Active 2 là thế hệ thứ 2 của dòng đồng hồ Active đến từ Samsung. Sản phẩm là một bản nâng cấp hoàn hảo so với người tiền nhiệm khi được trang bị và cải tiến nhiều công nghệ hiện đại, phục vụ tối ưu cho nhu cầu sử dụng của người dùng. Ngoài ra bạn cũng có thể tham khảo thêm đồng hồ thông minh Samsung Galaxy Watch 3 mới nhất, sắp được lên kệ tại Cellphones. \n</p>\n', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/5/1565204800_1491590.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/5/1565204800_1491590.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491588.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491589.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491590.jpg', NULL, 0),
-(25, 38, NULL, 'Apple iPad Pro 11 2020 Wi-Fi 128GB Chính Hãng Apple Việt Nam', NULL, '20490000.0000', 0, '<h3>iPad Pro 11  – Sự nâng cấp đáng giá sau hai năm</h3>\r\n<p>Bắt đầu được giới thiệu từ lần đầu vào năm 2015, iPad Pro là dòng tablet cao cấp nhất của Apple. Ở phiên bản 2018, iPad Pro đã sở hữu màn hình viền mỏng cùng hệ thống nhận diện khuôn mặt Face ID. Cho đến hai năm sau, Apple cho ra mắt iPad Pro 11 WiFi 2020 128gb được nâng cấp mạnh mẽ hơn về hiệu năng và camera.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/ipad-pro-11-select-cell-spacegray-202003-removebg-preview.png.jpg', NULL, 0);
+(25, 38, NULL, 'Apple iPad Pro 11 2020 Wi-Fi 128GB Chính Hãng Apple Việt Nam', 0, '20490000.0000', 0, '<h3>iPad Pro 11  – Sự nâng cấp đáng giá sau hai năm</h3>\r\n<p>Bắt đầu được giới thiệu từ lần đầu vào năm 2015, iPad Pro là dòng tablet cao cấp nhất của Apple. Ở phiên bản 2018, iPad Pro đã sở hữu màn hình viền mỏng cùng hệ thống nhận diện khuôn mặt Face ID. Cho đến hai năm sau, Apple cho ra mắt iPad Pro 11 WiFi 2020 128gb được nâng cấp mạnh mẽ hơn về hiệu năng và camera.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/ipad-pro-11-select-cell-spacegray-202003-removebg-preview.png.jpg', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -206,62 +206,63 @@ CREATE TABLE `product_category` (
   `sort_order` int NOT NULL,
   `parent_id` int NOT NULL,
   `code` text NOT NULL,
-  `is_disabled_brand` int NOT NULL DEFAULT '0'
+  `is_disabled_brand` int NOT NULL DEFAULT '0',
+  `img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `product_category`
 --
 
-INSERT INTO `product_category` (`category_id`, `title`, `sort_order`, `parent_id`, `code`, `is_disabled_brand`) VALUES
-(1, 'Apple accessories', 1, 1, 'accessories', 0),
-(2, 'Screen pasting', 2, 1, 'dan-man-hinh', 0),
-(3, 'Cases | Holster', 3, 1, 'op-lung-bao-da', 0),
-(4, 'Charging cable', 4, 1, 'cap-sac', 0),
-(5, 'Battery backup', 5, 1, 'pin-du-phong', 0),
-(6, 'Network equipment', 6, 1, 'thiet-bi-mang', 0),
-(7, 'Camera', 7, 1, 'camera', 0),
-(8, 'Mouse | Keyboard', 8, 1, 'chuot-ban-phim', 0),
-(9, 'Convenience accessories', 9, 1, 'phu-kien-tien-ich', 0),
-(10, 'Apple', 10, 2, 'telephone', 0),
-(11, 'Samsung', 11, 2, 'samsung', 0),
-(12, 'Xiaomi', 12, 2, 'xiaomi', 0),
-(13, 'OPPO', 13, 2, 'oppo', 0),
-(14, 'Nokia', 14, 2, 'nokia', 0),
-(15, 'Realme', 15, 2, 'realme', 0),
-(16, 'Vsmart', 16, 2, 'vsmart', 0),
-(17, 'Huawei', 17, 2, 'huawei', 0),
-(18, 'Hãng khác', 18, 2, 'hang-khac', 0),
-(19, 'Vivo', 19, 2, 'vivo', 0),
-(20, 'Điện thoại phổ thông', 20, 2, 'dien-thoai-pho-thong', 0),
-(21, 'Tin đồn - Mới ra', 21, 2, 'tin-don-moi-ra', 0),
-(22, 'Thu cũ - Đổi mới', 22, 2, 'thu-cu-doi-moi', 0),
-(23, 'MacBook', 23, 3, 'macbook', 0),
-(24, 'Asus', 24, 3, 'asus', 0),
-(25, 'Microsoft Surface', 25, 3, 'microsoft-surface', 0),
-(26, 'HP', 26, 3, 'hp', 0),
-(27, 'Smart lock', 27, 5, 'khoa-thong-minh', 0),
-(28, 'Vacuum cleaner', 28, 5, 'may-hut-bui', 0),
-(29, 'Air purifier', 29, 5, 'may-loc-khong-khi', 0),
-(30, 'Smart lights', 30, 5, 'den-thong-minh', 0),
-(31, 'Power socket', 31, 5, 'o-cam-dien', 0),
-(32, 'TV Box', 32, 5, 'tv-box', 0),
-(33, 'Healthy balance', 33, 5, 'can-suc-khoe', 0),
-(34, 'Projectors', 34, 5, 'may-chieu', 0),
-(35, 'Secondhand goods', 35, 5, 'hang-cu', 0),
-(38, 'iPad Pro', 36, 13, 'ipad-pro', 0),
-(40, 'Apple Watch', 37, 12, 'apple-watch', 0),
-(41, 'Samsung', 38, 12, 'samsung', 0),
-(43, 'Garmin', 39, 12, 'garmin', 0),
-(44, 'Xiaomi', 40, 12, 'xiaomi', 0),
-(45, 'Amazfit', 41, 12, 'amazfit', 0),
-(46, 'Huawei', 42, 12, 'huawei', 0),
-(47, 'Fitbit', 43, 12, 'fitbit', 0),
-(48, 'Vòng tay thông minh', 44, 12, 'vong-tay-thong-minh', 0),
-(49, 'Đồng hồ định vị trẻ em', 45, 12, 'dong-ho-dinh-vi-tre-em', 0),
-(50, 'Dây đeo đồng hồ', 46, 12, 'day-deo-dong-ho', 0),
-(51, 'Loa', 47, 15, 'loa', 0),
-(52, 'Tai nghe', 48, 15, 'tai-nghe', 0);
+INSERT INTO `product_category` (`category_id`, `title`, `sort_order`, `parent_id`, `code`, `is_disabled_brand`, `img`) VALUES
+(1, 'Apple accessories', 1, 1, 'accessories', 0, 'http://localhost/MVC_shop_test/src/views/pages/index/images/phukien.jpg'),
+(2, 'Screen pasting', 2, 1, 'dan-man-hinh', 0, 'http://localhost/MVC_shop_test/src/views/pages/index/images/danmanhinh.jpg'),
+(3, 'Cases | Holster', 3, 1, 'op-lung-bao-da', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/o/p/op-lung-chong-soc-cho-iphone-11-pro-max-gear4-d3o-2265.jpg'),
+(4, 'Charging cable', 4, 1, 'cap-sac', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/2/0/200914_114233_12345.png'),
+(5, 'Battery backup', 5, 1, 'pin-du-phong', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/3/1/3136d45580637b3d2272_copy.png'),
+(6, 'Network equipment', 6, 1, 'thiet-bi-mang', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/7/a720r-1-1000x1000.png'),
+(7, 'Camera', 7, 1, 'camera', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/a/camera-gopro-hero-9-anh-san-pham-5-500x500.jpg'),
+(8, 'Mouse | Keyboard', 8, 1, 'chuot-ban-phim', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/a/magic-keyboard-2-5.jpg'),
+(9, 'Convenience accessories', 9, 1, 'phu-kien-tien-ich', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/6/b/6b03aa32303f634163ce7967325b7429_2.jpg'),
+(10, 'Apple', 10, 2, 'telephone', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2020-10-13_22-12-24.jpg_1_2.png'),
+(11, 'Samsung', 11, 2, 'samsung', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_final.jpg'),
+(12, 'Xiaomi', 12, 2, 'xiaomi', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-mi-10t-pro_2_.jpg'),
+(13, 'OPPO', 13, 2, 'oppo', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0003_combo_-_reno4_-_blue_-_full_check.jpg'),
+(14, 'Nokia', 14, 2, 'nokia', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/o/nokia-2.4_1_.jpg'),
+(15, 'Realme', 15, 2, 'realme', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/637400868092278961_realme-c15-xanh-1_2.png'),
+(16, 'Vsmart', 16, 2, 'vsmart', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/v/s/vsmart-active-3_2_.png'),
+(17, 'Huawei', 17, 2, 'huawei', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/r/o/rog_3.jpg'),
+(18, 'Hãng khác', 18, 2, 'hang-khac', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/v/i/vivo-y30-_3.png'),
+(19, 'Vivo', 19, 2, 'vivo', 0, NULL),
+(20, 'Điện thoại phổ thông', 20, 2, 'dien-thoai-pho-thong', 0, NULL),
+(21, 'Tin đồn - Mới ra', 21, 2, 'tin-don-moi-ra', 0, NULL),
+(22, 'Thu cũ - Đổi mới', 22, 2, 'thu-cu-doi-moi', 0, NULL),
+(23, 'MacBook', 23, 3, 'macbook', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/m/a/macbook-air-gold-select-201810_4.jpg'),
+(24, 'Asus', 24, 3, 'asus', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/350x/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg'),
+(25, 'Microsoft Surface', 25, 3, 'microsoft-surface', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/thumbnail/115x/9df78eab33525d08d6e5fb8d27136e95/s/u/surface-pro-7__0000_16.jpg'),
+(26, 'HP', 26, 3, 'hp', 0, NULL),
+(27, 'Smart lock', 27, 5, 'khoa-thong-minh', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/350x/9df78eab33525d08d6e5fb8d27136e95/k/h/khoa-van-tay-samsung-shp-dh538.jpg'),
+(28, 'Vacuum cleaner', 28, 5, 'may-hut-bui', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-pro-styj02ym-mijia-mi-robot-vacuum-mop-p-sweeping-cleaner-2-lds-radar-app-control.jpg_q50.jpg'),
+(29, 'Air purifier', 29, 5, 'may-loc-khong-khi', 0, NULL),
+(30, 'Smart lights', 30, 5, 'den-thong-minh', 0, NULL),
+(31, 'Power socket', 31, 5, 'o-cam-dien', 0, NULL),
+(32, 'TV Box', 32, 5, 'tv-box', 0, NULL),
+(33, 'Healthy balance', 33, 5, 'can-suc-khoe', 0, NULL),
+(34, 'Projectors', 34, 5, 'may-chieu', 0, NULL),
+(35, 'Secondhand goods', 35, 5, 'hang-cu', 0, NULL),
+(38, 'iPad Pro', 36, 13, 'ipad-pro', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg'),
+(40, 'Apple Watch', 37, 12, 'apple-watch', 0, NULL),
+(41, 'Samsung', 38, 12, 'samsung', 0, NULL),
+(43, 'Garmin', 39, 12, 'garmin', 0, NULL),
+(44, 'Xiaomi', 40, 12, 'xiaomi', 0, NULL),
+(45, 'Amazfit', 41, 12, 'amazfit', 0, NULL),
+(46, 'Huawei', 42, 12, 'huawei', 0, NULL),
+(47, 'Fitbit', 43, 12, 'fitbit', 0, NULL),
+(48, 'Vòng tay thông minh', 44, 12, 'vong-tay-thong-minh', 0, NULL),
+(49, 'Đồng hồ định vị trẻ em', 45, 12, 'dong-ho-dinh-vi-tre-em', 0, NULL),
+(50, 'Dây đeo đồng hồ', 46, 12, 'day-deo-dong-ho', 0, NULL),
+(51, 'Loa', 47, 15, 'loa', 0, NULL),
+(52, 'Tai nghe', 48, 15, 'tai-nghe', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -351,7 +352,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `phone`, `remote_addr`, `reg_date`, `last_login`, `last_ip`, `last_session`, `user_agent`, `last_user_agent`, `is_admin`) VALUES
-(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'TAM LE', 'giaythuytinh176', '::1', '2020-11-19 06:28:20', NULL, '::1', '94ekrk6s28iv3fo0bpr1d4ifsk', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
+(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'TAM LE', 'giaythuytinh176', '::1', '2020-11-19 06:28:20', NULL, '::1', 'u5k4e68i5fnsqu9habb994ap82', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -360,25 +361,25 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `pho
 -- (See below for the actual view)
 --
 CREATE TABLE `view_parentproduct_productcategory_subcategory` (
-`product_id` int
-,`ProductName` varchar(255)
-,`category_id` int
+`category_id` int
 ,`category_parent` varchar(255)
-,`parent_title` varchar(255)
-,`category_title` varchar(255)
-,`parent_id` int
 ,`category_sub` int
-,`is_disabled` tinyint
-,`sort_order` int
-,`Stock` int
-,`price` decimal(15,4)
-,`discount` int
+,`category_title` varchar(255)
 ,`description` text
+,`discount` int
 ,`img_link` varchar(255)
 ,`img_list` text
+,`is_disabled` tinyint
+,`parent_id` int
+,`parent_title` varchar(255)
 ,`pc_code` text
+,`price` decimal(15,4)
+,`product_id` int
+,`ProductName` varchar(255)
+,`sort_order` int
 ,`spc_codeSUB` varchar(255)
 ,`spc_title` varchar(255)
+,`Stock` int
 );
 
 -- --------------------------------------------------------
@@ -388,17 +389,17 @@ CREATE TABLE `view_parentproduct_productcategory_subcategory` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_spc_pc_pac` (
-`spc_category_id` int
-,`spc_title` varchar(255)
-,`pc_category_id` int
-,`pc_title` varchar(255)
-,`pc_code` text
+`category_sub` int
+,`codeSUB` varchar(255)
+,`is_disabled_sub` int
 ,`p_category_code` varchar(255)
 ,`p_category_title` varchar(255)
 ,`parent_id` int
-,`codeSUB` varchar(255)
-,`is_disabled_sub` int
-,`category_sub` int
+,`pc_category_id` int
+,`pc_code` text
+,`pc_title` varchar(255)
+,`spc_category_id` int
+,`spc_title` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -442,14 +443,15 @@ ALTER TABLE `languages`
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
-  ADD PRIMARY KEY (`transaction_id`),
+  ADD PRIMARY KEY (`transaction_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `parent_category`
 --
 ALTER TABLE `parent_category`
-  ADD PRIMARY KEY (`parent_id`);
+  ADD PRIMARY KEY (`parent_id`),
+  ADD KEY `index_parent_category` (`parent_id`);
 
 --
 -- Indexes for table `product`
@@ -457,21 +459,24 @@ ALTER TABLE `parent_category`
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `category_id` (`category_id`),
-  ADD KEY `sub_product_category` (`category_sub`);
+  ADD KEY `sub_product_category` (`category_sub`),
+  ADD KEY `index_product_id` (`product_id`);
 
 --
 -- Indexes for table `product_category`
 --
 ALTER TABLE `product_category`
   ADD PRIMARY KEY (`category_id`),
-  ADD KEY `parent_id` (`parent_id`);
+  ADD KEY `parent_id` (`parent_id`),
+  ADD KEY `index_product_category` (`category_id`);
 
 --
 -- Indexes for table `sub_product_category`
 --
 ALTER TABLE `sub_product_category`
   ADD PRIMARY KEY (`category_sub`),
-  ADD KEY `category_id` (`category_id`);
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `index_sub_product_category` (`category_sub`);
 
 --
 -- Indexes for table `transaction`
@@ -484,7 +489,8 @@ ALTER TABLE `transaction`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `index_user` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -512,7 +518,7 @@ ALTER TABLE `parent_category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `product_category`
@@ -546,7 +552,8 @@ ALTER TABLE `user`
 -- Constraints for table `order`
 --
 ALTER TABLE `order`
-  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`
