@@ -426,17 +426,17 @@
 
                         <div class="row align-items-stretch gutter-20 h-100">
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
-                                <a href="#" class="grid-inner d-block h-100"
+                                <a href="http://localhost/MVC_shop_test/category/laptop/asus" class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg');"></a>
                             </div>
 
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
-                                <a href="#" class="grid-inner d-block h-100"
+                                <a href="http://localhost/MVC_shop_test/category/smarthome/may-hut-bui" class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/450x/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-pro-styj02ym-mijia-mi-robot-vacuum-mop-p-sweeping-cleaner-2-lds-radar-app-control.jpg_q50.jpg'); background-position: right center;"></a>
                             </div>
 
                             <div class="col-md-12 min-vh-25 min-vh-md-0 pb-md-0">
-                                <a href="#" class="grid-inner d-block h-100"
+                                <a href="http://localhost/MVC_shop_test/category/laptop/microsoft-surface" class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/u/surface-pro-7__0003_13.jpg');"></a>
                             </div>
                         </div>
@@ -444,7 +444,7 @@
                     </div>
 
                     <div class="col-md-4 min-vh-50">
-                        <a href="#" class="grid-inner d-block h-100"
+                        <a href="http://localhost/MVC_shop_test/category/tablet" class="grid-inner d-block h-100"
                            style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg'); background-position: center top;"></a>
                     </div>
                 </div>
@@ -495,16 +495,15 @@
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">';
-
-
                                         $sout .= '<form class="cart mb-0" action="' . \MVC\Controllers\UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
-                        <input type="hidden" name="qty" value="1"/>
-                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][qty]" value="1"/>
-                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][price]" value="' . ((!empty($val['discount']) && $val['discount'] > 0) ? ($val['price'] * (100 - $val['discount']) / 100) : $val['price']) . '"/>
-                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][product_id]" value="' . $val['product_id'] . '"/>
-                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][product_name]" value="' . urlencode($val['ProductName']) . '"/>
-                    <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
-                </form>';
+                                                    <input type="hidden" name="qty" value="1"/>
+                                                    <input type="hidden" name="cart_items[' . $val['product_id'] . '][qty]" value="1"/>
+                                                    <input type="hidden" name="cart_items[' . $val['product_id'] . '][price]" value="' . ((!empty($val['discount']) && $val['discount'] > 0) ? ($val['price'] * (100 - $val['discount']) / 100) : $val['price']) . '"/>
+                                                    <input type="hidden" name="cart_items[' . $val['product_id'] . '][product_id]" value="' . $val['product_id'] . '"/>
+                                                    <input type="hidden" name="cart_items[' . $val['product_id'] . '][product_name]" value="' . urlencode($val['ProductName']) . '"/>
+                                                      <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
+                                                   </form>';
+                                        $sout .= '<a href="' . \MVC\Controllers\UrlControllers::url("src/views/pages/index/include/ajax/shop-item.php?product_id=" . $val['product_id']) . '" class="btn btn-dark" data-lightbox="ajax"><i class="icon-line-expand"></i></a>';
 
                                         $sout .= '  
                                                 </div>
