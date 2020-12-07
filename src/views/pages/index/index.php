@@ -466,34 +466,58 @@
 
                             <div class="shop row gutter-30">
 
-                                <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
+                                <?php
+                                $sout = '';
+                                if (empty((new \MVC\Controllers\ProductControllers())->getAllProductbyViewLimitFour()['errors'])) {
+                                    foreach ((new \MVC\Controllers\ProductControllers())->getAllProductbyViewLimitFour() as $val) {
+                                        $sout .= '<div class="product col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img
-                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/1.jpg"
-                                                        alt="Checked Short Dress"></a>
-                                            <a href="#"><img
-                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/1-1.jpg"
-                                                        alt="Checked Short Dress"></a>
+                                          ';
+
+//                                        if (!empty($val['img_list'])) {
+//                                            foreach (explode(PHP_EOL, $val['img_list']) as $value) {
+//                                                $sout .= '
+//                                                <a href="#"><img
+//                                                        src="' . $value . '"
+//                                                        alt="Checked ' . $val['ProductName'] . '"></a>';
+//                                            }
+//                                        } else {
+//                                            $sout .= "Not Found.";
+//                                        }
+
+                                        if (!empty(explode(PHP_EOL, $val['img_list'])[0])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $val['img_list'])[0] . '" alt="Checked ' . $val['ProductName'] . '"></a>';
+                                        if (!empty(explode(PHP_EOL, $val['img_list'])[1])) $sout .= '<a href="#"><img src="' . explode(PHP_EOL, $val['img_list'])[1] . '" alt="Checked ' . $val['ProductName'] . '"></a>';
+                                        $product_price = (!empty($val['discount']) && $val['discount'] > 0) ? '<del>' . ((!empty($val['price'])) ? number_format($val['price']) : "0") . ' ₫ </del><ins>' . ((!empty($val['price'])) ? number_format(($val['price'] * (100 - $val['discount']) / 100)) : "0") . '₫ </ins>' : '<ins>' . ((!empty($val['price'])) ? number_format($val['price']) : "0") . ' ₫ </ins>';
+                                        $NameProductToString = \MVC\Controllers\ToolControllers::ConvertName($val);
+
+                                        $sout .= '                
                                             <div class="sale-flash badge badge-success p-2">50% Off*</div>
                                             <div class="bg-overlay">
                                                 <div class="bg-overlay-content align-items-end justify-content-between"
-                                                     data-hover-animate="fadeIn" data-hover-speed="400">
-                                                    <a href="#" class="btn btn-dark mr-2"><i
-                                                                class="icon-shopping-basket"></i></a>
-                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
-                                                       class="btn btn-dark" data-lightbox="ajax"><i
-                                                                class="icon-line-expand"></i></a>
+                                                     data-hover-animate="fadeIn" data-hover-speed="400">';
+
+
+                                        $sout .= '<form class="cart mb-0" action="' . \MVC\Controllers\UrlControllers::url("shop/cart") . '" method="post" enctype=\'multipart/form-data\'>
+                        <input type="hidden" name="qty" value="1"/>
+                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][qty]" value="1"/>
+                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][price]" value="' . ((!empty($val['discount']) && $val['discount'] > 0) ? ($val['price'] * (100 - $val['discount']) / 100) : $val['price']) . '"/>
+                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][product_id]" value="' . $val['product_id'] . '"/>
+                        <input type="hidden" name="cart_items[' . $val['product_id'] . '][product_name]" value="' . urlencode($val['ProductName']) . '"/>
+                    <button type="submit" name="btn" value="submit" class="btn btn-dark mr-2"><i class="icon-shopping-basket"></i></button>
+                </form>';
+
+                                        $sout .= '  
                                                 </div>
                                                 <div class="bg-overlay-bg bg-transparent"></div>
                                             </div>
                                         </div>
                                         <div class="product-desc">
-                                            <div class="product-title"><h3><a href="#">Checked Short Dress</a></h3>
+                                            <div class="product-title">
+                                                <h3><a href="' . \MVC\Controllers\UrlControllers::url("category/" . $val['category_parent'] . "/" . $val['pc_code'] . "/" . $val['product_id'] . "-$NameProductToString.html") . '">' . $val['ProductName'] . '</a></h3>
                                             </div>
                                             <div class="product-price">
-                                                <del>$24.99</del>
-                                                <ins>$12.49</ins>
+                                                ' . $product_price . '
                                             </div>
                                             <div class="product-rating">
                                                 <i class="icon-star3"></i>
@@ -504,122 +528,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>';
 
-                                <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="grid-inner">
-                                        <div class="product-image">
-                                            <a href="#"><img
-                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/pants/1-1.jpg"
-                                                        alt="Slim Fit Chinos"></a>
-                                            <a href="#"><img
-                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/pants/1.jpg"
-                                                        alt="Slim Fit Chinos"></a>
-                                            <div class="bg-overlay">
-                                                <div class="bg-overlay-content align-items-end justify-content-between"
-                                                     data-hover-animate="fadeIn" data-hover-speed="400">
-                                                    <a href="#" class="btn btn-dark mr-2"><i
-                                                                class="icon-shopping-basket"></i></a>
-                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
-                                                       class="btn btn-dark" data-lightbox="ajax"><i
-                                                                class="icon-line-expand"></i></a>
-                                                </div>
-                                                <div class="bg-overlay-bg bg-transparent"></div>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <div class="product-title"><h3><a href="#">Slim Fit Chinos</a></h3></div>
-                                            <div class="product-price">$39.99</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    }
+                                }
+                                echo $sout;
+                                ?>
 
-                                <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="grid-inner">
-                                        <div class="product-image">
-                                            <div class="fslider" data-arrows="false">
-                                                <div class="flexslider">
-                                                    <div class="slider-wrap">
-                                                        <div class="slide"><a href="#"><img
-                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/1.jpg"
-                                                                        alt="Dark Brown Boots"></a></div>
-                                                        <div class="slide"><a href="#"><img
-                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/1-1.jpg"
-                                                                        alt="Dark Brown Boots"></a></div>
-                                                        <div class="slide"><a href="#"><img
-                                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/shoes/1-2.jpg"
-                                                                        alt="Dark Brown Boots"></a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="bg-overlay">
-                                                <div class="bg-overlay-content align-items-end justify-content-between"
-                                                     data-hover-animate="fadeIn" data-hover-speed="400">
-                                                    <a href="#" class="btn btn-dark mr-2"><i
-                                                                class="icon-shopping-basket"></i></a>
-                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
-                                                       class="btn btn-dark" data-lightbox="ajax"><i
-                                                                class="icon-line-expand"></i></a>
-                                                </div>
-                                                <div class="bg-overlay-bg bg-transparent"></div>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <div class="product-title"><h3><a href="#">Dark Brown Boots</a></h3></div>
-                                            <div class="product-price">$49</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="grid-inner">
-                                        <div class="product-image">
-                                            <a href="#"><img
-                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/2.jpg"
-                                                        alt="Light Blue Denim Dress"></a>
-                                            <a href="#"><img
-                                                        src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/dress/2-2.jpg"
-                                                        alt="Light Blue Denim Dress"></a>
-                                            <div class="bg-overlay">
-                                                <div class="bg-overlay-content align-items-end justify-content-between"
-                                                     data-hover-animate="fadeIn" data-hover-speed="400">
-                                                    <a href="#" class="btn btn-dark mr-2"><i
-                                                                class="icon-shopping-basket"></i></a>
-                                                    <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/ajax/shop-item.html"
-                                                       class="btn btn-dark" data-lightbox="ajax"><i
-                                                                class="icon-line-expand"></i></a>
-                                                </div>
-                                                <div class="bg-overlay-bg bg-transparent"></div>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <div class="product-title"><h3><a href="#">Light Blue Denim Dress</a></h3>
-                                            </div>
-                                            <div class="product-price">$19.95</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div>
 

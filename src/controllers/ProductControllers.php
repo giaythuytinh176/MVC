@@ -17,6 +17,16 @@ class ProductControllers
         $this->render = new RenderControllers();
     }
 
+    public function getAllProductbyViewLimitFour()
+    {
+        $data = $this->productmodels->getAllProductbyViewLimitFour();
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public function getDetailElementbyID($params)
     {
         $product_id = current(explode("-", $params[1]));

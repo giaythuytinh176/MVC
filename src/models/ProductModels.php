@@ -19,6 +19,11 @@ class ProductModels
         return $this->CRUDmodels->select2("SELECT * FROM product_category JOIN product as p on product_category.category_id = p.category_id", $data);
     }
 
+    public function getAllProductbyViewLimitFour()
+    {
+        return $this->CRUDmodels->select2("SELECT * FROM view_parentproduct_productcategory_subcategory WHERE discount > 49 AND Stock > 0 LIMIT 4", [], 'All');
+    }
+
     public function getProductDetailbyID($data)
     {
         return $this->CRUDmodels->select2("SELECT * FROM product p JOIN product_category pc on pc.category_id = p.category_id JOIN parent_category c on c.parent_id = pc.parent_id", $data);
