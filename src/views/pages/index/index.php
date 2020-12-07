@@ -240,8 +240,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"><img
-                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/slider/rev/shop/girl1.jpg"
-                                    alt="Girl"></div>
+                                    src="https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp-silver-select-202011_2.jpg"
+                                    alt="Macbook M1 2020"></div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-caps-text text-uppercase"
                              data-x="570"
@@ -255,7 +255,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn" style=" color: #333;">Get your Shopping Bags Ready
+                             data-endeasing="Power4.easeIn" style=" color: #333;">Get your Shopping Laptop Ready
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-emphasis-text p-0 border-0"
@@ -287,8 +287,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"
-                             style=" color: #333; max-width: 550px; white-space: normal;">We have created a Design that
-                            looks Awesome, performs Brilliantly &amp; senses Orientations.
+                             style=" color: #333; max-width: 550px; white-space: normal;">MacBook Pro 13 Touch Bar M1 512GB 2020
+                            &amp; mạnh mẽ, ấn tượng.
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme"
@@ -303,7 +303,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn"><a href="#"
+                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/laptop/macbook"
                                                                class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
                                 <i class="icon-angle-right"></i></a></div>
 
@@ -326,8 +326,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"><img
-                                    src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/slider/rev/shop/bag.png"
-                                    alt="Bag"></div>
+                                    src="https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2020-10-13_22-12-24.jpg_1_2.png"
+                                    alt="iPhone 12 Pro Max Chính Hãng (VN/A)"></div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption ltl tp-resizeme revo-slider-caps-text text-uppercase"
@@ -342,7 +342,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn" style=" color: #333;">Buy Stylish Bags at Discounted Prices
+                             data-endeasing="Power4.easeIn" style=" color: #333;">Điện thoại iPhone 12 Pro Max: Nâng tầm đẳng cấp sử dụng
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-emphasis-text p-0 border-0"
@@ -357,7 +357,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">Messenger Bags
+                             data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">Điện thoại iPhone 12 Pro Max
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-desc-text text-left"
@@ -373,8 +373,7 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"
-                             style=" color: #333; max-width: 550px; white-space: normal;">Grantees insurmountable
-                            challenges invest protect, growth improving quality social entrepreneurship.
+                             style=" color: #333; max-width: 550px; white-space: normal;">Màn hình 6.7 inches Super Retina XDR .
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme"
@@ -389,7 +388,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn"><a href="#"
+                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/telephone/telephone/iphone12"
                                                                class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
                                 <i class="icon-angle-right"></i></a></div>
 
@@ -428,17 +427,17 @@
                         <div class="row align-items-stretch gutter-20 h-100">
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
                                 <a href="#" class="grid-inner d-block h-100"
-                                   style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/2.jpg');"></a>
+                                   style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg');"></a>
                             </div>
 
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
                                 <a href="#" class="grid-inner d-block h-100"
-                                   style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/8.jpg'); background-position: right center;"></a>
+                                   style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/450x/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-pro-styj02ym-mijia-mi-robot-vacuum-mop-p-sweeping-cleaner-2-lds-radar-app-control.jpg_q50.jpg'); background-position: right center;"></a>
                             </div>
 
                             <div class="col-md-12 min-vh-25 min-vh-md-0 pb-md-0">
                                 <a href="#" class="grid-inner d-block h-100"
-                                   style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/4.jpg');"></a>
+                                   style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/u/surface-pro-7__0003_13.jpg');"></a>
                             </div>
                         </div>
 
@@ -446,13 +445,13 @@
 
                     <div class="col-md-4 min-vh-50">
                         <a href="#" class="grid-inner d-block h-100"
-                           style="background-image: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/banners/9.jpg'); background-position: center top;"></a>
+                           style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg'); background-position: center top;"></a>
                     </div>
                 </div>
 
                 <div class="clear"></div>
 
-                <div class="tabs topmargin-lg clearfix" id="tab-3">
+                <div class="tabs topmargin-lg clearfix" id="tab-3"rs/8.jpg>
 
                     <ul class="tab-nav clearfix">
                         <li><a href="#tabs-9">New Arrivals</a></li>
