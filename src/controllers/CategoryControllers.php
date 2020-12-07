@@ -15,14 +15,14 @@ class CategoryControllers
         $this->cm = new CategoryModels();
     }
 
-//    public function getCategorybyID($categoryName, $category_id)
-//    {
-//        $dataSQL = $this->cm->getCategorybyID(['code' => $category_id[0], 'category_code' => $categoryName]);
-//        if (empty($dataSQL)) {
-//            $dataSQL = ["errors" => "Category not found."];
-//        }
-//        return $dataSQL;
-//    }
+    public function getAllListCategoryByCode($code)
+    {
+        $dataSQL = $this->cm->getAllListCategoryByCode(['code' => $code, 'is_disabled_brand' => '0']);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have any Product Category."];
+        }
+        return $dataSQL;
+    }
 
     public function getAllListcategory()
     {
@@ -38,6 +38,15 @@ class CategoryControllers
         $dataSQL = $this->cm->getAllSubCategory(['code' => $code, 'is_disabled_sub' => '0']);
         if (empty($dataSQL)) {
             $dataSQL = ["errors" => "Doesn't have any sub Category."];
+        }
+        return $dataSQL;
+    }
+
+    public function getParentCategoryByCode($code)
+    {
+        $dataSQL = $this->cm->getParentCategoryByCode(['category_code' => $code, 'is_disabled' => '0']);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have any Parent Category."];
         }
         return $dataSQL;
     }
@@ -61,6 +70,24 @@ class CategoryControllers
         return $dataSQL;
     }
 
+    public function PrintListProductCategory($data)
+    {
+
+        $sout = "";
+        if (!empty($data[0])) {
+            foreach ($data[0] as $value) {
+                if (!empty($value['img'])) {
+                    $sout .= '<a title="' . $value['title'] . '" href="' . \MVC\Controllers\UrlControllers::url("category/{$data[1]}/{$value['code']}") . '"><div class="entry-image mb-0"
+                                      style="background: url(' . $value['img'] . ') no-repeat center center / cover; height:600px;"
+                                      data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;">
+                                  </div></a>';
+                }
+            }
+        }
+        return $sout;
+
+    }
+
     public function getDetailElementbyCodeSub($code)
     {
         $dataSQL = $this->cm->getDetailElementbyCodeSub(['codeSUB' => $code]);
@@ -70,10 +97,12 @@ class CategoryControllers
         return $dataSQL;
     }
 
-    public function getAllCategoryView($parentID)
+    public function getAllCategoryView($code)
     {
-        $data = $this->getAllCategorybyParentID($parentID);
-        (new RenderControllers())->view("category/shop-category-parallax", $data);
+        $ParentCategory = $this->getParentCategoryByCode($code);
+        if (!empty($ParentCategory['parent_id'])) $ListParentCategory = $this->getAllCategorybyParentID($ParentCategory['parent_id']);
+        else $ListParentCategory = [];
+        (new RenderControllers())->view("category/shop-category-parallax", [$ListParentCategory, $code]);
     }
 
     public static function printListCategoryIncludeSub()

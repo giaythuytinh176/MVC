@@ -20,7 +20,7 @@ $fullheader = ($currentpage !== \MVC\config\config::BASE_FOLDER) ? ' class="full
                     <a href="<?php echo \MVC\controllers\UrlControllers::url(); ?>" class="retina-logo"><img
                                 src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/logo@2x.png"
                                 alt="Tam Le Logo"></a>
-                    <p><sub>Những thứ chúng tôi không có nghĩa là bạn không cần!</sub></p>
+                   <p><sub>Những thứ chúng tôi không có nghĩa là bạn không cần!</sub></p>
                 </div><!-- #logo end -->
 
                 <?php

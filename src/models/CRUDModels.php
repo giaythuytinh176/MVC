@@ -6,25 +6,29 @@ use MVC\controllers\ToolControllers;
 use PDO;
 use MVC\libs\Database;
 
+/**
+ * Class CRUDModels
+ * @package MVC\models
+ */
 class CRUDModels extends Database
 {
     private $crud;
 
+    /**
+     * CRUDModels constructor.
+     */
     public function __construct()
     {
         $this->crud = parent::getInstance();
     }
 
     /**
-     * SELECT
-     *
      * @param string $table
      * @param array $where
      * @param string $like
      * @param string $fetchType
      * @param int $fetchMode
-     * @return array
-     * Join 2 table, use [table_name1, table_name2, join_type, join_condition]
+     * @return mixed
      */
     public function select(string $table, $where = array(), string $like = "", string $fetchType = "", int $fetchMode = PDO::FETCH_ASSOC)
     {
@@ -47,6 +51,11 @@ class CRUDModels extends Database
         return $stmt->$fetch($fetchMode);
     }
 
+    /**
+     * @param array $data
+     * @param string $like
+     * @return string/**
+     */
     public function conditionToString(array $data = array(), string $like = '')
     {
         $condition = '';
@@ -60,6 +69,13 @@ class CRUDModels extends Database
         return $condition;
     }
 
+    /**
+     * @param string $sql
+     * @param array $where
+     * @param string $fetchType
+     * @param int $fetchMode
+     * @return mixed
+     */
     public function select2(string $sql, $where = array(), string $fetchType = "", int $fetchMode = PDO::FETCH_ASSOC)
     {
         if (empty($where)) {
@@ -76,11 +92,9 @@ class CRUDModels extends Database
     }
 
     /**
-     * INSERT
-     *
-     * @param string $table for insert
-     * @param array $data data for bindvalue
-     * @return integer
+     * @param string $table
+     * @param array $data
+     * @return bool
      */
     public function insert(string $table, array $data)
     {// ko can insert field auto-increment
@@ -127,12 +141,10 @@ class CRUDModels extends Database
     }
 
     /**
-     * UPDATE
-     *
      * @param string $table
      * @param array $data
      * @param array $where
-     * @return integer
+     * @return bool
      */
     public function update(string $table, array $data, array $where)
     {
@@ -153,6 +165,12 @@ class CRUDModels extends Database
         return $stmt->execute();
     }
 
+    /**
+     * @param string $table
+     * @param array $where
+     * @param int $limit
+     * @return bool
+     */
     public function delete(string $table, array $where, int $limit = 1)
     {
         $fieldWhere = $this->conditionToString($where);

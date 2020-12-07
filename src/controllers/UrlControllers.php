@@ -6,6 +6,10 @@ use \MVC\libs\Languages;
 use \MVC\config\config;
 use \MVC\controllers\APIControllers;
 
+/**
+ * Class UrlControllers
+ * @package MVC\controllers
+ */
 class UrlControllers
 {
     protected $controllers = "homepage";
@@ -18,6 +22,9 @@ class UrlControllers
         static::parseController();
     }
 
+    /**
+     *
+     */
     public function parseController()
     {
         switch ($this->controllers) {
@@ -97,6 +104,10 @@ class UrlControllers
         }
     }
 
+    /**
+     * @param $number
+     * @return bool
+     */
     public static function isNumberofProductBeforeMinus($number)// kiem tra chu dau tien co phai so ko
     {
         $NumberBeforeMinus = current(explode("-", $number));
@@ -106,6 +117,11 @@ class UrlControllers
         return false;
     }
 
+    /**
+     * @param $codeSUB
+     * @return bool
+     *
+     */
     public function isSubCategory($codeSUB)
     {
         $isSubCate = (new CategoryControllers)->getDetailElementbyCodeSub($codeSUB);
@@ -115,6 +131,9 @@ class UrlControllers
         return false;
     }
 
+    /**
+     * @return false|string[]
+     */
     public static function parseURL()
     {
         if (!empty($_GET['url'])) {
@@ -122,6 +141,11 @@ class UrlControllers
         }
     }
 
+    /**
+     * @param string $q
+     * @param string $p
+     * @return string
+     */
     public static function url($q = "", $p = config::BASE_FOLDER)
     {
         return sprintf(
@@ -131,6 +155,9 @@ class UrlControllers
         );
     }
 
+    /**
+     * @param $parseurl
+     */
     public function ParseActionsParams($parseurl): void
     {
         if (!empty($parseurl[0])) {

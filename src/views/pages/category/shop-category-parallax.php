@@ -55,8 +55,8 @@
     <section id="page-title">
 
         <div class="container clearfix">
-            <h1>Shop Categories - Parallax</h1>
-            <span>Showcase of Our Shop Categories in Parallax Mode</span>
+            <h1>Shop Categories</h1>
+            <span><?php echo $data[1]; ?> -  Our Shop Categories</span>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Shop</a></li>
@@ -73,37 +73,9 @@
 
             <div id="shop-categories" class="header-stick footer-stick clearfix">
 
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/15.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/17.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/6.jpg') no-repeat center center / cover;height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/10.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/14.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/19.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/21.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
-
-                <div class="entry-image mb-0"
-                     style="background: url('<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/category/23.jpg') no-repeat center center / cover; height:600px;"
-                     data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;"></div>
+                <?php
+                echo (new \MVC\Controllers\CategoryControllers)->PrintListProductCategory($data);
+                ?>
 
             </div>
         </div>
