@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 07, 2020 at 10:51 AM
+-- Generation Time: Dec 07, 2020 at 12:39 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -72,7 +72,7 @@ INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`)
 (12, 'Forgot Password?', 'Quên mật khẩu?', 'Mot de passe oublié?'),
 (13, 'Register', 'Đăng ký', 'S\'inscrire'),
 (14, 'accessories', 'Phụ kiện', 'Accessoires'),
-(15, 'Latest Fashion<br>Collections', 'Bộ sưu tập <br> Thời trang Mới nhất', 'Dernières collections de mode <br>'),
+(15, 'Latest Laptop models', 'Các mẫu Laptop mới nhất', 'Derniers modèles d\'ordinateurs portables'),
 (16, 'Apple accessories', 'Phụ kiện Apple', 'Accessoires Apple'),
 (17, 'Screen pasting', 'Dán màn hình', 'Collage d\'écran'),
 (18, 'Cases | Holster', 'Ốp lưng | Bao da', 'Cas | Étui'),
@@ -352,7 +352,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `phone`, `remote_addr`, `reg_date`, `last_login`, `last_ip`, `last_session`, `user_agent`, `last_user_agent`, `is_admin`) VALUES
-(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'TAM LE', 'giaythuytinh176', '::1', '2020-11-19 06:28:20', NULL, '::1', 'u5k4e68i5fnsqu9habb994ap82', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
+(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'TAM LE', 'giaythuytinh176', '::1', '2020-11-19 06:28:20', NULL, '::1', 'n23c73dc1f3broq0l86b2u075c', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
 
 -- --------------------------------------------------------
 

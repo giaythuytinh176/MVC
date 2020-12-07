@@ -271,7 +271,7 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn" style=" color: #333; max-width: 430px; line-height: 1.15;">
-                            <?php echo \MVC\libs\Languages::getLangData("Latest Fashion<br>Collections"); ?>
+                            <?php echo \MVC\libs\Languages::getLangData("Latest Laptop models"); ?>
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-desc-text text-left"
