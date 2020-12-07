@@ -86,9 +86,16 @@ Các chứng năng đã hoàn thành:
 - Thêm xoá product
 
 
+/* Hoàn thành date 07/12/2020 */
+
+- Tạm hoàn thành case study, còn nhiều chức năng cần phát triển như checkout.
+- API
+- Chỉnh sửa front page tuỳ chỉnh theo DB
+- Quản lý tải khoản user
+- QUản lý đơn hàng, thêm sửa xoá đơn hàng.
 
 
-
+/* MVC Shop by Tâm Lê - Codegym C0920K1 */
 
 
 *** Cần hoàn thiện:
