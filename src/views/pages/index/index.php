@@ -451,7 +451,7 @@
 
                 <div class="clear"></div>
 
-                <div class="tabs topmargin-lg clearfix" id="tab-3"rs/8.jpg>
+                <div class="tabs topmargin-lg clearfix" id="tab-3">
 
                     <ul class="tab-nav clearfix">
                         <li><a href="#tabs-9">New Arrivals</a></li>
