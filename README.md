@@ -95,6 +95,13 @@ Các chứng năng đã hoàn thành:
 - QUản lý đơn hàng, thêm sửa xoá đơn hàng.
 
 
+
+
+/* Hoàn thành date 08/12/2020 */
+
+- Hoàn thiện chức năng search.
+
+
 /* MVC Shop by Tâm Lê - Codegym C0920K1 */
 
 

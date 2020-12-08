@@ -91,7 +91,7 @@ $fullheader = ($currentpage !== \MVC\config\config::BASE_FOLDER) ? ' class="full
 
                 </nav><!-- #primary-menu end -->
 
-                <form class="top-search-form" action="search.html" method="get">
+                <form class="top-search-form" action="<?php echo \MVC\controllers\UrlControllers::url("search"); ?>" method="post">
                     <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.."
                            autocomplete="off">
                 </form>

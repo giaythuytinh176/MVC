@@ -31,6 +31,9 @@ class UrlControllers
             case "admin":
                 (new \MVC\admin\controllers\UrlControllers)->index();
                 break;
+            case "search":
+                (new RenderControllers)->view("index/search");
+                break;
 
             case "shop":
                 switch ($this->action) {

@@ -62,9 +62,9 @@ class CRUDModels extends Database
         if (!empty($data)) {
             $list_condition = [];
             foreach (array_keys($data) as $val) {
-                $list_condition[] = "{$val}" . (($like == 'LIKE') ? "LIKE" : "=") . ":{$val}";
+                $list_condition[] = "{$val}" . (($like == 'LIKE') ? " LIKE" : " =") . " :{$val}";
             }
-            $condition .= (sizeof($data) == 1) ? $list_condition[0] : implode(" AND ", $list_condition);
+            $condition .= (sizeof($data) == 1) ? $list_condition[0] : implode(" ".(($like == 'LIKE') ? " OR " : " AND ")." ", $list_condition);
         }
         return $condition;
     }

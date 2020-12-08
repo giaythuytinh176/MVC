@@ -506,7 +506,7 @@ class ProductControllers
         return $sout;
     }
 
-    public static function printListItems($data)
+    public static function printListItems($data, $search = '')
     {
         $parseURL = UrlControllers::parseURL($_GET['url']);
         $sout = '';
@@ -540,9 +540,17 @@ class ProductControllers
                     $sout .= '</div><div class="bg-overlay-bg bg-transparent"></div></div>';
                 }
                 $sout .= '     </div>
-                            <div class="product-desc">
+                            <div class="product-desc">';
+
+                if (!empty($search)) $sout .= '
+                                <div class="product-title"><h3><a href="' . \MVC\Controllers\UrlControllers::url("category/" . $value['category_parent'] . "/" . $value['pc_code'] . "/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $value['ProductName'] . '</a></h3>
+                                ';
+                else $sout .= '
                                 <div class="product-title"><h3><a href="' . UrlControllers::url("$parseURL[0]/$parseURL[1]/$parseURL[2]/" . $value['product_id'] . "-$NameProductToString.html") . '">' . $value['ProductName'] . '</a></h3>
-                            </div>
+                                ';
+
+
+                $sout .= '  </div>
                                 <div class="product-price">';
 
                 $sout .= (!empty($value['discount']) && $value['discount'] > 0) ? '<del>' . number_format($value['price']) . ' ₫ </del><ins>' . number_format(($value['price'] * (100 - $value['discount']) / 100)) . '₫ </ins>' : '<ins>' . number_format($value['price']) . ' ₫ </ins>';
