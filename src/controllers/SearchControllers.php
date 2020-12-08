@@ -32,6 +32,4 @@ class SearchControllers
         }
         return $dataSQL;
     }
-
-
 }

@@ -56,6 +56,9 @@
 
         <div class="container clearfix">
             <h1>Search Results</h1>
+            <h4 style="margin-left: 20%">:
+                Found <?php if (empty((new \MVC\controllers\SearchControllers)->search()['errors'])) {
+                    echo count((new \MVC\controllers\SearchControllers)->search());} ?> items.</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Search</li>
