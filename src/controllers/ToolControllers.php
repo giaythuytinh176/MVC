@@ -41,6 +41,7 @@ class ToolControllers
         $NameProductToString = preg_replace("/^[\W]+$/", "-", $valFromDB['ProductName']);
         $NameProductToString = str_replace(array("\r", "\n", "\s", "\t", " "), "-", $NameProductToString);
         $NameProductToString = strtolower($NameProductToString);
+        $NameProductToString = rtrim($NameProductToString, "-");
         $NameProductToString = html_entity_decode($NameProductToString, ENT_QUOTES, "utf-8");// xoa cac ki tu dac biet trong chuoi
         $NameProductToString = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $NameProductToString);//convert chu co dau sang ko dau
         return $NameProductToString;

@@ -11,15 +11,7 @@ $(document).ready(function () {
         var img_link = $('#img_link').val();
         var img_list = $('#img_list').val();
         var description = $('#description').val();
-        // console.log(product_name);
-        // console.log(parent_id);
-        // console.log(category_id);
-        // console.log(category_sub);
-        // console.log(price);
-        // console.log(discount);
-        // console.log(img_link);
-        // console.log(img_list);
-        // console.log(description);
+        var stock = $('#stock').val();
         if (!(product_name) || !(parent_id) || !(category_id)) {
             if (!(product_name) && !(parent_id) && !(category_id)) {
                 $('#AddProDuctResults').html('<div class="alert alert-danger" role="alert">Product Name, Parent Category, Category Product, Category Sub is required field.</div>');
@@ -46,6 +38,7 @@ $(document).ready(function () {
                 form_data.append('img_link', img_link);
                 form_data.append('img_list', img_list);
                 form_data.append('description', description);
+                form_data.append('stock', stock);
                 $.ajax({
                     type: "POST",
                     url: base_url + "/admin/Ajax/AddProduct",

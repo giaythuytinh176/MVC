@@ -102,7 +102,7 @@ class CategoryControllers
         $ParentCategory = $this->getParentCategoryByCode($code);
         if (!empty($ParentCategory['parent_id'])) $ListParentCategory = $this->getAllCategorybyParentID($ParentCategory['parent_id']);
         else $ListParentCategory = [];
-        (new RenderControllers())->view("category/shop-category-parallax", [$ListParentCategory, $code]);
+        (new RenderControllers())->view("category/shop-category-parallax", [$ListParentCategory, $ParentCategory['category_title']]);
     }
 
     public static function printListCategoryIncludeSub()
@@ -111,7 +111,7 @@ class CategoryControllers
         if (empty((new self)->getAllListcategory()['errors'])) {
             foreach ((new self)->getAllListcategory() as $value) {
                 $sout .= '<li class="menu-item">';
-                $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . '><div>' . Languages::getLangData($value['category_code']) . '</div></a>';
+                $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . '><div>' . Languages::getLangData($value['category_title']) . '</div></a>';
                 $sout .= '<ul class="sub-menu-container">';
                 foreach ((new self)->getAllCategorybyParentID($value['parent_id']) as $v) {
                     $sout .= '<li class="menu-item">';

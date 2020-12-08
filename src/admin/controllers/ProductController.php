@@ -78,6 +78,7 @@ class ProductController
         $img_link = $post['img_link'];
         $img_list = $post['img_list'];
         $description = $post['description'];
+        $stock = $post['stock'];
         $stmt1 = $this->productmodels->getProductbyNameID($product_name, $category_id);
         if (!empty($stmt1)) {
             return "Product Name is existed.";
@@ -89,7 +90,7 @@ class ProductController
             'discount' => $discount,
             'img_link' => $img_link,
             'img_list' => $img_list,
-            'description' => $description,
+            'Stock' => $stock,
         ];
         $this->productmodels->AddProduct($data);
         return "Added Product {$product_name}.";
@@ -277,7 +278,7 @@ class ProductController
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Stock</th>
-                                <th style="width: 30%" class="warning"><input type="number" class="form-control" name="Stock" value="0"></th>
+                                <th style="width: 30%" class="warning"><input type="number" class="form-control" id="stock" value="0"></th>
                                 <th></th>
                             </tr>  
                             <tr>

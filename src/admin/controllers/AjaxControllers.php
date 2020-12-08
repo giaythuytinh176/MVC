@@ -136,7 +136,9 @@ class AjaxControllers
             if ($check == false) {
                 echo $this->OnlyAllow($category_id, $parent_id);
             } else {
-                move_uploaded_file($_FILES['file']['tmp_name'], "uploads/" . ($_FILES['file']['name']));
+                if (!file_exists("uploads/" . ($_FILES['file']['name']))) {
+                    move_uploaded_file($_FILES['file']['tmp_name'], "uploads/" . ($_FILES['file']['name']));
+                }
                 if (empty($_POST['img_link'])) {
                     $_POST['img_link'] = "http://localhost/" . \MVC\config\config::BASE_FOLDER . "/uploads/" . ($_FILES['file']['name']);
                 }

@@ -9,7 +9,7 @@ class CheckoutControllers
 {
     public function checkoutView()
     {
-        (new RenderControllers())->view("order/checkout");
+        (new RenderControllers())->view("checkout/checkout");
     }
 
     public static function CalculateTotalCheckOut()
