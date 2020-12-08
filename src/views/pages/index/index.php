@@ -591,7 +591,7 @@
                                                         src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/shop/tshirts/1-1.jpg"
                                                         alt="Blue Round-Neck Tshirt"></a>
                                             <div class="bg-overlay">
-                                                <div class="bg-overlay-ontent align-items-end justify-content-between"
+                                                <div class="bg-overlay-content align-items-end justify-content-between"
                                                      data-hover-animate="fadeIn" data-hover-speed="400">
                                                     <a href="#" class="btn btn-dark mr-2"><i
                                                                 class="icon-shopping-basket"></i></a>
