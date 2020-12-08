@@ -68,10 +68,6 @@ $(document).ready(function () {
         var brand_code = $('#brand_code').val();
         var parent_id = $('#parent_id').val();
         var category_id = $('#category_id').val();
-        // console.log(brand_title);
-        // console.log(brand_code);
-        // console.log(parent_id);
-        // console.log(parent_id);
         if (!(brand_title) || !(brand_code) || !(parent_id) || !(category_id)) {
             if (!(brand_title) && !(brand_code) && !(parent_id) && !(category_id)) {
                 $('#EditResult').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');
@@ -107,8 +103,6 @@ $(document).ready(function () {
     $("#submitAdd").on('click', function (e) {
         var category_title = $('#category_title').val();
         var category_code = $('#category_code').val();
-        //console.log(category_title);
-        //console.log(category_code);
         if (!(category_title) || !(category_code)) {
             if (!(category_title) && !(category_code)) {
                 $('#AddResult').html('<div class="alert alert-danger" role="alert">Category Title, Category Code is required field.</div>');
@@ -144,10 +138,6 @@ $(document).ready(function () {
         var brand_code = $('#brand_code').val();
         var parent_id = $('#parent_id').val();
         var category_id = $('#category_id').val();
-        // console.log(brand_title);
-        // console.log(brand_code);
-        // console.log(parent_id);
-        // console.log(parent_id);
         if (!(brand_title) || !(brand_code) || !(parent_id) || !(category_id)) {
             if (!(brand_title) && !(brand_code) && !(parent_id) && !(category_id)) {
                 $('#EditResult').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');
@@ -186,11 +176,6 @@ $(document).ready(function () {
         var sub_cate_id = $('#sub_cate_id').val();
         var category_id = $('#category_id').val();
         var sub_parent_id = $('#sub_parent_id').val();
-        // console.log(sub_title);
-        // console.log(sub_code);
-        // console.log(sub_cate_id);
-        // console.log(category_id);
-        // console.log(sub_parent_id);
         if (!(sub_title) || !(sub_code) || !(sub_cate_id) || !(category_id) || !(sub_parent_id)) {
             if (!(sub_title) && !(sub_code) && !(sub_cate_id) && !(category_id) && !(sub_parent_id)) {
                 $('#SubCateResult').html('<div class="alert alert-danger" role="alert">Sub Category Title, Sub Category Code, Sub Category ID, Category Product ID, Parent Category ID is required field.</div>');
@@ -235,10 +220,6 @@ $(document).ready(function () {
         var sub_code = $('#sub_code').val();
         var category_id = $('#category_id').val();
         var parent_id = $('#parent_id').val();
-        // console.log(sub_title);
-        // console.log(sub_code);
-        // console.log(category_id);
-        // console.log(parent_id);
         if (!(sub_title) || !(sub_code) || !(category_id) || !(parent_id)) {
             if (!(sub_title) && !(sub_code) && !(category_id) && !(parent_id)) {
                 $('#AddSubCateResult').html('<div class="alert alert-danger" role="alert">Sub Cate Title, Sub Cate Code, Cate Product, Parent Category is required field.</div>');
@@ -279,9 +260,6 @@ $(document).ready(function () {
         var brand_title = $('#brand_title').val();
         var brand_code = $('#brand_code').val();
         var parent_id = $('#parent_id').val();
-        // console.log(brand_title);
-        // console.log(brand_code);
-        // console.log(parent_id);
         if (!(brand_title) || !(brand_code) || !(parent_id)) {
             if (!(brand_title) && !(brand_code) && !(parent_id)) {
                 $('#AddResultBrand').html('<div class="alert alert-danger" role="alert">Brand Title, Brand Code, Parent Category is required field.</div>');
@@ -318,8 +296,6 @@ $(document).ready(function () {
     $('.mystatusbrand').on('click', function () {
         var id_bid = this.id;
         var bid = id_bid.slice(11, id_bid.length);//11 = statusbrand
-        // console.log(id_bid);
-        // console.log(bid);
         $.ajax({
             type: "POST",
             url: base_url + "/admin/Ajax/StatusBrand",
@@ -328,10 +304,7 @@ $(document).ready(function () {
             },
             cache: false,
             success: function (response) {
-                //console.log(response);
-                //$('#scu' + parent_id).html(response);
                 $('#bu' + bid).html(response.replace(" Brand", ""));
-                //alert(response);
             }
         });
     });
@@ -361,8 +334,6 @@ $(document).ready(function () {
     $('.mytrash').on('click', function () {
         var id_trash = this.id;
         var product_id = id_trash.slice(5, id_trash.length);//5 = trash
-        // console.log(id_trash);
-        // console.log(product_id);
         $.ajax({
             type: "POST",
             url: base_url + "/admin/Ajax/TrashProduct",
@@ -371,17 +342,10 @@ $(document).ready(function () {
             },
             cache: false,
             success: function (response) {
-                //console.log(response);
-                //$('#sp' + product_id).html(response);
                 $('#DelRowMessage').html('<div id="DelRowMessage" class="card-header py-3 d-flex flex-row align-items-center justify-content-between alert alert-success" role="alert">\n' +
                     '                                <h5 class="m-0 font-weight-bold text-primary">Deleted Product Successfully.</h5>\n' +
                     '                        </div>');
-                //$('#hide' + product_id).hide();
-                //$('#trash' + product_id).hide();
                 $('#tr_' + product_id).remove();
-
-                //confirm("Do you want to delete it?");
-                //alert(response);
             }
         });
     });
@@ -391,8 +355,6 @@ $(document).ready(function () {
     $('.mystatusproduct').on('click', function () {
         var id_sp = this.id;
         var product_id = id_sp.slice(13, id_sp.length);//13 = statusproduct
-        // console.log(id_sp);
-        // console.log(product_id);
         $.ajax({
             type: "POST",
             url: base_url + "/admin/Ajax/StatusProduct",
@@ -401,10 +363,7 @@ $(document).ready(function () {
             },
             cache: false,
             success: function (response) {
-                //console.log(response);
-                //$('#sp' + product_id).html(response);
                 $('#spu' + product_id).html(response.replace(" Product", ""));
-                //alert(response);
             }
         });
     });
@@ -414,8 +373,6 @@ $(document).ready(function () {
     $('.mystatuscategory').on('click', function () {
         var id_sc = this.id;
         var parent_id = id_sc.slice(14, id_sc.length);//14 = statuscategory
-        // console.log(id_sc);
-        // console.log(parent_id);
         $.ajax({
             type: "POST",
             url: base_url + "/admin/Ajax/StatusCategory",
@@ -424,10 +381,7 @@ $(document).ready(function () {
             },
             cache: false,
             success: function (response) {
-                //console.log(response);
-                //$('#scu' + parent_id).html(response);
                 $('#scu' + parent_id).html(response.replace(" Category", ""));
-                //alert(response);
             }
         });
     });

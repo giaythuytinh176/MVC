@@ -90,6 +90,7 @@ class ProductController
             'discount' => $discount,
             'img_link' => $img_link,
             'img_list' => $img_list,
+            'description' => $description,
             'Stock' => $stock,
         ];
         $this->productmodels->AddProduct($data);
