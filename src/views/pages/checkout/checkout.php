@@ -44,6 +44,9 @@
                             You must register to checkout. Returning customer?
                             <a href="' . \MVC\controllers\UrlControllers::url("shop/login/checkout") . '">Click here to login.</a>
                           </div>';
+                } elseif (!empty($_POST['btnSM']) && empty($_SESSION['cart_items'])) {
+                    echo '<div class="col-12 alert-danger">
+                            Your cart is empty.';
                 } elseif (!empty($_POST['btnSM']) && !empty($_POST['shipping-form-address']) && !empty($_POST['shipping-form-phone'])) {
                     (new \MVC\controllers\CheckoutControllers)->InsertCart($_POST, $dataUser);
 
@@ -75,80 +78,75 @@
                     </div>
 
                     <div class="row col-mb-50 gutter-50">
-                        <!--                        <div class="col-lg-6">-->
-                        <!--                            <h3>Billing Address</h3>-->
-                        <!---->
-                        <!--                            <p>Billing Address là địa chỉ thanh toán. Thường được kết nối với thẻ ngân hàng. Được dùng-->
-                        <!--                                để-->
-                        <!--                                thanh toán các khoản mua sắm trên internet. Bạn sẽ được yêu cầu hoàn tất các thông tin-->
-                        <!--                                trong-->
-                        <!--                                billing address. Để ngân hàng có thể gửi hóa đơn sử dụng tiền trong tài khoản ngân hàng.-->
-                        <!--                                Đó-->
-                        <!--                                cũng là địa chỉ mà ngân hàng sử dụng để gửi tất cả các thông báo khác. </p>-->
-                        <!---->
-                        <!--                            <form id="billing-form" name="billing-form" class="row mb-0" action="" method="post">-->
-                        <!---->
-                        <!--                                <div class="col-md-6 form-group">-->
-                        <!--                                    <label for="billing-form-name">Name:</label>-->
-                        <!--                                    <input type="text" id="billing-form-name" name="billing-form-name" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="col-md-6 form-group">-->
-                        <!--                                    <label for="billing-form-lname">Last Name:</label>-->
-                        <!--                                    <input type="text" id="billing-form-lname" name="billing-form-lname" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="w-100"></div>-->
-                        <!---->
-                        <!--                                <div class="col-12 form-group">-->
-                        <!--                                    <label for="billing-form-companyname">Company Name:</label>-->
-                        <!--                                    <input type="text" id="billing-form-companyname" name="billing-form-companyname"-->
-                        <!--                                           value="" class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="col-12 form-group">-->
-                        <!--                                    <label for="billing-form-address">Address:</label>-->
-                        <!--                                    <input type="text" id="billing-form-address" name="billing-form-address" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="col-12 form-group">-->
-                        <!--                                    <input type="text" id="billing-form-address2" name="billing-form-adress" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="col-12 form-group">-->
-                        <!--                                    <label for="billing-form-city">City / Town</label>-->
-                        <!--                                    <input type="text" id="billing-form-city" name="billing-form-city" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="col-md-6 form-group">-->
-                        <!--                                    <label for="billing-form-email">Email Address:</label>-->
-                        <!--                                    <input type="email" id="billing-form-email" name="billing-form-email" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                                <div class="col-md-6 form-group">-->
-                        <!--                                    <label for="billing-form-phone">Phone:</label>-->
-                        <!--                                    <input type="text" id="billing-form-phone" name="billing-form-phone" value=""-->
-                        <!--                                           class="sm-form-control"/>-->
-                        <!--                                </div>-->
-                        <!---->
-                        <!--                            </form>-->
-                        <!--                        </div>-->
+                        <div class="col-lg-6">
+                            <h3>Địa chỉ cửa hàng:</h3>
+
+                            <p>Văn Phòng CodeGym – Nhà số 23, TT-01, Khu đô thị MonCity – Đường, Hàm Nghi, Mỹ Đình 1,
+                                Nam Từ Liêm, Hà Nội. </p>
+
+                            <!--                                                    <form id="billing-form" name="billing-form" class="row mb-0" action="" method="post">-->
+                            <!---->
+                            <!--                                                        <div class="col-md-6 form-group">-->
+                            <!--                                                            <label for="billing-form-name">Name:</label>-->
+                            <!--                                                            <input type="text" id="billing-form-name" name="billing-form-name" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="col-md-6 form-group">-->
+                            <!--                                                            <label for="billing-form-lname">Last Name:</label>-->
+                            <!--                                                            <input type="text" id="billing-form-lname" name="billing-form-lname" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="w-100"></div>-->
+                            <!---->
+                            <!--                                                        <div class="col-12 form-group">-->
+                            <!--                                                            <label for="billing-form-companyname">Company Name:</label>-->
+                            <!--                                                            <input type="text" id="billing-form-companyname" name="billing-form-companyname"-->
+                            <!--                                                                   value="" class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="col-12 form-group">-->
+                            <!--                                                            <label for="billing-form-address">Address:</label>-->
+                            <!--                                                            <input type="text" id="billing-form-address" name="billing-form-address" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="col-12 form-group">-->
+                            <!--                                                            <input type="text" id="billing-form-address2" name="billing-form-adress" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="col-12 form-group">-->
+                            <!--                                                            <label for="billing-form-city">City / Town</label>-->
+                            <!--                                                            <input type="text" id="billing-form-city" name="billing-form-city" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="col-md-6 form-group">-->
+                            <!--                                                            <label for="billing-form-email">Email Address:</label>-->
+                            <!--                                                            <input type="email" id="billing-form-email" name="billing-form-email" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                        <div class="col-md-6 form-group">-->
+                            <!--                                                            <label for="billing-form-phone">Phone:</label>-->
+                            <!--                                                            <input type="text" id="billing-form-phone" name="billing-form-phone" value=""-->
+                            <!--                                                                   class="sm-form-control"/>-->
+                            <!--                                                        </div>-->
+                            <!---->
+                            <!--                                                    </form>-->
+                        </div>
                         <?php
                         if ($dataUser['fullname'] == trim($dataUser['fullname']) && strpos($dataUser['fullname'], ' ') !== false) $arr = explode(" ", $dataUser['fullname']);
                         ?>
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <h3>Shipping Address</h3>
 
                             <form id="shipping-form" name="shipping-form" class="row mb-0" action="" method="post">
 
-                                <div class="col-md-2 form-group">
+                                <div class="col-md-6 form-group">
                                     <label for="shipping-form-name">Name:</label>
                                     <input type="text" id="shipping-form-name" name="shipping-form-name"
                                            value="<?php echo(!empty($arr) ? current($arr) : ''); ?>"
@@ -156,7 +154,7 @@
                                            placeholder="<?php echo(!empty($arr) ? current($arr) : ''); ?>"/>
                                 </div>
 
-                                <div class="col-md-2 form-group">
+                                <div class="col-md-6 form-group">
                                     <label for="shipping-form-lname">Last Name:</label>
                                     <input type="text" id="shipping-form-lname" name="shipping-form-lname"
                                            value="<?php echo(!empty($arr) ? end($arr) : ''); ?>"
@@ -164,7 +162,7 @@
                                            placeholder="<?php echo(!empty($arr) ? end($arr) : ''); ?>"/>
                                 </div>
 
-                                <div class="col-8 form-group">
+                                <div class="col-12 form-group">
                                     <label for="shipping-form-address">Address:</label>
                                     <input type="text" id="shipping-form-address" name="shipping-form-address" value=""
                                            class="sm-form-control" required/>
