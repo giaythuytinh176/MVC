@@ -72,12 +72,11 @@ class CategoryControllers
 
     public function PrintListProductCategory($data)
     {
-
         $sout = "";
         if (!empty($data[0])) {
             foreach ($data[0] as $value) {
                 if (!empty($value['img'])) {
-                    $sout .= '<a title="' . $value['title'] . '" href="' . \MVC\Controllers\UrlControllers::url("category/{$data[1]}/{$value['code']}") . '"><div class="entry-image mb-0"
+                    $sout .= '<a title="' . $value['title'] . '" href="' . \MVC\Controllers\UrlControllers::url("category/{$data[2]}/{$value['code']}") . '"><div class="entry-image mb-0"
                                       style="background: url(' . $value['img'] . ') no-repeat center center / cover; height:600px;"
                                       data-center="background-position: 50% 0px;" data-top-bottom="background-position:50% 200px;">
                                   </div></a>';
@@ -102,7 +101,7 @@ class CategoryControllers
         $ParentCategory = $this->getParentCategoryByCode($code);
         if (!empty($ParentCategory['parent_id'])) $ListParentCategory = $this->getAllCategorybyParentID($ParentCategory['parent_id']);
         else $ListParentCategory = [];
-        (new RenderControllers())->view("category/shop-category-parallax", [$ListParentCategory, $ParentCategory['category_title']]);
+        (new RenderControllers())->view("category/shop-category-parallax", [$ListParentCategory, $ParentCategory['category_title'], $ParentCategory['category_code']]);
     }
 
     public static function printListCategoryIncludeSub()

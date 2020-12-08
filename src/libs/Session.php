@@ -54,6 +54,6 @@ class Session
         if (isset($_COOKIE['password'])) {
             \MVC\libs\Cookie::unset_cookie("password");
         }
-        session_destroy();
+        //session_destroy();
     }
 }

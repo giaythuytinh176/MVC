@@ -4,9 +4,17 @@ namespace MVC\controllers;
 
 use \MVC\controllers\ProductControllers;
 use \MVC\controllers\UrlControllers;
+use MVC\models\CheckoutModels;
 
 class CheckoutControllers
 {
+    protected $cm;
+
+    public function __construct()
+    {
+        $this->cm = new CheckoutModels();
+    }
+
     public function checkoutView()
     {
         (new RenderControllers())->view("checkout/checkout");
@@ -51,6 +59,34 @@ class CheckoutControllers
                             </table>
                         </div>';
         return $sout;
+    }
+
+    public function InsertCart($post, $userData)
+    {
+        $fname = $post['shipping-form-name'];
+        $lname = $post['shipping-form-lname'];
+        $address = $post['shipping-form-address'];
+        $city = $post['shipping-form-city'];
+        $phone = $post['shipping-form-phone'];
+        $message = $post['shipping-form-message'];
+        $datetime = date("Y-m-d H:i:s");
+
+        $dataInsert = [
+            'user_id' => $userData['user_id'],
+            'orderDate' => $datetime,
+        ];
+        $this->cm->InsertOrders($dataInsert);
+        $last_orderNumber = $this->cm->SelectLastOrderNumber();
+        foreach ($_SESSION['cart_items'] as $key => $value) {
+            $orders = [
+                'orderNumber' => $last_orderNumber['LastOrderNumber'],
+                'product_id' => $value['product_id'],
+                'qty' => $value['qty'],
+                'amount' => $value['price'],
+            ];
+            $this->cm->InsertOrderDetails($orders);
+        }
+        unset($_SESSION['cart_items']);
     }
 
     public function getListItemCheckout()
@@ -98,6 +134,6 @@ class CheckoutControllers
                      </tr>';
         }
         $sout .= '</tbody></table>';
-        echo $sout;
+        return $sout;
     }
 }

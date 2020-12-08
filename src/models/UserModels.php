@@ -24,6 +24,16 @@ class UserModels
         }
     }
 
+    public function getAllInfoOfOneUserbyUserName($username)
+    {
+        $data = $this->CRUDmodels->select("user", ['username' => $username]);
+        if (empty($data)) {
+            return ["errors" => ["Username not found."]];
+        } else {
+            return $data;
+        }
+    }
+
     public function getPasswordHashFromUsername($username)
     {
         $data = $this->CRUDmodels->select("user", ['username' => $username]);

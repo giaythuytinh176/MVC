@@ -78,19 +78,23 @@ class UrlControllers
                     foreach ((new CategoryControllers)->getAllListcategory() as $value) {
                         $list_parent_category[] = $value['category_code'];
                     }
-                    foreach ($list_parent_category as $val) {
-                        if ($val == $this->action) {
-                            if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
-                                (new ProductControllers)->getDetailElementbyID($this->params);
-                            } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
-                                (new ProductControllers)->getAllElementbySubCateID($this->action, $this->params);
-                            } elseif (!empty($this->params[0])) {
-                                (new ProductControllers)->getListProductinMainCategory($this->action, $this->params);
-                            } else {
-                                (new CategoryControllers)->getAllCategoryView($this->action);
+                    if (in_array($this->action, $list_parent_category) == true) {
+                        foreach ($list_parent_category as $val) {
+                            if ($val == $this->action) {
+                                if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
+                                    (new ProductControllers)->getDetailElementbyID($this->params);
+                                } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
+                                    (new ProductControllers)->getAllElementbySubCateID($this->action, $this->params);
+                                } elseif (!empty($this->params[0])) {
+                                    (new ProductControllers)->getListProductinMainCategory($this->action, $this->params);
+                                } else {
+                                    (new CategoryControllers)->getAllCategoryView($this->action);
+                                }
+                                break;
                             }
-                            break;
                         }
+                    } else {
+                        (new RenderControllers)->errorPage();
                     }
                 }
                 break;
@@ -140,7 +144,8 @@ class UrlControllers
     public static function parseURL()
     {
         if (!empty($_GET['url'])) {
-            return explode("/", filter_var(trim(strtolower($_GET['url']), "/")));
+            //return explode("/", filter_var(trim(strtolower($_GET['url']), "/")));
+            return explode('/', filter_var(rtrim(strtolower($_GET['url']), '/'), FILTER_SANITIZE_URL));
         }
     }
 

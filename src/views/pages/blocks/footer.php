@@ -17,7 +17,7 @@
 
                                 <img src="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/images/footer-widget-logo.png"
                                      alt="Image"
-                                     class="footer-logo">
+                                     class="img-thumbnail footer-logo">
 
                                 <p><?php echo \MVC\libs\Languages::getLangData("We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp; <strong>Good price</strong>."); ?></p>
 
