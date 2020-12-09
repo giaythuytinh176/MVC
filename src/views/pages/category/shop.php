@@ -18,17 +18,18 @@
     ============================================= -->
     <section id="page-title">
         <div class="container clearfix"><?php
-            echo '<h1>' . $data[1] . '</h1>';
             $DataTitle = (new \MVC\controllers\CategoryControllers())->getDetaiElementbyCode($data[2][0]);
             $DataTitleSub = (new \MVC\controllers\CategoryControllers())->getDetailElementbyCodeSub($data[2][0]);
             $title = (!empty($DataTitle['title']) ? $DataTitle['title'] : ((!empty($DataTitleSub['title'])) ? $DataTitleSub['title'] : "Not found."));
+            $ParentTitle = (!empty($data[0][0]['parent_title'])) ? $data[0][0]['parent_title'] : $data[1];
+            echo '<h1>' . $ParentTitle . '</h1>';
             ?>
             <span><?php echo $title; ?></span>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Category</a></li>
                 <li class="breadcrumb-item"><a
-                            href="<?php str_replace("/" . $DataTitle['code'], "", \MVC\controllers\UrlControllers::url($data[1])) ?>"><?php echo ucfirst($data[1]); ?></a>
+                            href="<?php str_replace("/" . $DataTitle['code'], "", \MVC\controllers\UrlControllers::url($ParentTitle)) ?>"><?php echo ucfirst($ParentTitle); ?></a>
                 </li>
                 <li class="breadcrumb-item active"
                     aria-current="page"><?php echo $title; ?></li>

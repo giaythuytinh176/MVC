@@ -220,7 +220,7 @@ class CategoryControllers
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Brand Code</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="brand_code" value="' . $BrandDetail['category_code'] . '"></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="brand_code" value="' . $BrandDetail['code'] . '"></th>
                                 <th></th> 
                             </tr>
                             <tr>
@@ -473,7 +473,7 @@ class CategoryControllers
                                 <th></th>
                                 <th style="width: 30%" class="success">Category Product</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="category_id" required>';
+                                    <select id="category_id" disabled>';
             if (!empty((new self)->getALlCategoryProduct())) {
                 foreach ((new self)->getALlCategoryProduct() as $cate) {
                     $sout .= '<option value="' . $cate['category_id'] . '"'.(($cate['category_id'] == $SubCategoryDetail['spc_category_id']) ? "selected" : '').'>' . $cate['title'] . '</option>';
@@ -488,7 +488,7 @@ class CategoryControllers
                                 <th></th>
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="sub_parent_id" required>';
+                                    <select id="sub_parent_id" disabled>';
             if (empty((new self)->getALlCategoryParent()['errors'])) {
                 foreach ((new self)->getALlCategoryParent() as $cate) {
                     $sout .= '<option value="' . $cate['parent_id'] . '" ' . (($SubCategoryDetail['parent_id'] == $cate['parent_id']) ? 'selected' : '') . '>' . $cate['category_title'] . '</option>';

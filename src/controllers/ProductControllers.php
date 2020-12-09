@@ -27,10 +27,10 @@ class ProductControllers
         }
     }
 
-    public function getDetailElementbyID($params)
+    public function getProductCategorybyID($params)
     {
         $product_id = current(explode("-", $params[1]));
-        $dataSQL = $this->productmodels->getDetailElementbyID(['code' => $params[0], 'product_id' => $product_id]);
+        $dataSQL = $this->productmodels->getProductCategorybyID(['code' => $params[0], 'product_id' => $product_id]);
         if (!empty($dataSQL)) {
             $this->render->view("order/shop-single", [$dataSQL, $params[0], $product_id]);
         } else {
@@ -49,7 +49,8 @@ class ProductControllers
 
     public function getListProductinMainCategory($action, $params)
     {
-        $dataSQL = $this->productmodels->getListProductinMainCategory(['code' => $params[0], 'is_disabled' => '0']);
+        //$dataSQL = $this->productmodels->getListProductinMainCategory(['code' => $params[0], 'is_disabled' => '0']);
+        $dataSQL = $this->productmodels->getAllProductbyView(['pc_code' => $params[0], 'is_disabled' => '0']);
         if (empty($dataSQL)) {
             $dataSQL = ["errors" => "Doesn't have any this Category."];
         }
@@ -58,7 +59,8 @@ class ProductControllers
 
     public function getAllElementbySubCateID($action, $category)
     {
-        $dataSQL = $this->productmodels->getAllElementbySubCateID(['codeSUB' => $category[1], 'is_disabled_sub' => '0', 'is_disabled' => '0']);
+        //$dataSQL = $this->productmodels->getAllElementbySubCateID(['codeSUB' => $category[1], 'is_disabled_sub' => '0', 'is_disabled' => '0']);
+        $dataSQL = $this->productmodels->getAllProductbyView(['spc_codeSUB' => $category[1], 'is_disabled' => '0']);
         if (empty($dataSQL)) {
             $dataSQL = ["errors" => "Doesn't have this product."];
         }

@@ -14,9 +14,14 @@ class ProductModels
         $this->CRUDmodels = new CRUDModels();
     }
 
-    public function getDetailElementbyID($data)
+    public function getProductCategorybyID($data)
     {
         return $this->CRUDmodels->select2("SELECT * FROM product_category JOIN product as p on product_category.category_id = p.category_id", $data);
+    }
+
+    public function getAllProductbyView($data)
+    {
+        return (new \MVC\admin\models\ProductModels)->getAllProductbyView($data);
     }
 
     public function getAllProductbyViewLimitFour()

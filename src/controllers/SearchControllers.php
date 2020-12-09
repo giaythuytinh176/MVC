@@ -16,20 +16,22 @@ class SearchControllers
 
     public function search()
     {
-        $arr = ['ProductName' => $_POST['q']
-            , 'category_parent' => $_POST['q']
-            , 'parent_title' => $_POST['q']
-            , 'category_title' => $_POST['q']
-            , 'price' => $_POST['q']
-            , 'description' => $_POST['q']
-            , 'pc_code' => $_POST['q']
-            , 'spc_codeSUB' => $_POST['q']
-            , 'spc_title' => $_POST['q']
-        ];
-        $dataSQL = $this->sm->search($arr);
-        if (empty($dataSQL)) {
-            $dataSQL = ["errors" => "Search not found."];
+        if (!empty($_POST['q'])) {
+            $arr = ['ProductName' => $_POST['q']
+                , 'category_parent' => $_POST['q']
+                , 'parent_title' => $_POST['q']
+                , 'category_title' => $_POST['q']
+                , 'price' => $_POST['q']
+                , 'description' => $_POST['q']
+                , 'pc_code' => $_POST['q']
+                , 'spc_codeSUB' => $_POST['q']
+                , 'spc_title' => $_POST['q']
+            ];
+            $dataSQL = $this->sm->search($arr);
+            if (empty($dataSQL)) {
+                $dataSQL = ["errors" => "Search not found."];
+            }
+            return $dataSQL;
         }
-        return $dataSQL;
     }
 }

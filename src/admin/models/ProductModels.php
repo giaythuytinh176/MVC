@@ -20,9 +20,9 @@ class ProductModels
         $this->CRUDmodels->delete("product", ['product_id' => $id]);
     }
 
-    public function getAllProductbyView()
+    public function getAllProductbyView($data = [])
     {
-        return $this->CRUDmodels->select("view_parentproduct_productcategory_subcategory", [], '', 'All');
+        return $this->CRUDmodels->select("view_parentproduct_productcategory_subcategory", $data, '', 'All');
     }
 
     public function getAllProduct()

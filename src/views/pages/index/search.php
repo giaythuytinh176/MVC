@@ -1,8 +1,8 @@
 <?php require_once "./src/views/pages/blocks/css.php"; ?>
 
-    <!-- Document Title
-    ============================================= -->
-    <title>Search | Tam Le</title>
+<!-- Document Title
+============================================= -->
+<title>Search | Tam Le</title>
 
 </head>
 
@@ -20,9 +20,12 @@
 
         <div class="container clearfix">
             <h1>Search Results</h1>
-            <h4 style="margin-left: 20%">:
-                Found <?php if (empty((new \MVC\controllers\SearchControllers)->search()['errors'])) {
-                    echo count((new \MVC\controllers\SearchControllers)->search());} ?> items.</h4>
+            <h4 style="margin-left: 20%">
+                <?php
+                if (!empty($_POST['q']) && empty((new \MVC\controllers\SearchControllers)->search()['errors'])) {
+                    echo "Found: " . count((new \MVC\controllers\SearchControllers)->search()) . " items.";
+                } ?>
+            </h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Search</li>
@@ -48,7 +51,7 @@
                             echo \MVC\controllers\ProductControllers::printListItems($search, "search");
                         }
                     } else {
-                        echo '<div class="alert alert-danger" role="alert">Item Not Found.</div>';
+                        echo '<div class="alert alert-danger" role="alert">Request Not Found.</div>';
                     }
                     ?>
                 </div><!-- #shop end -->

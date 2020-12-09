@@ -82,7 +82,7 @@ class UrlControllers
                         foreach ($list_parent_category as $val) {
                             if ($val == $this->action) {
                                 if (!empty($this->params[1]) && self::isNumberofProductBeforeMinus($this->params[1]) == true) {
-                                    (new ProductControllers)->getDetailElementbyID($this->params);
+                                    (new ProductControllers)->getProductCategorybyID($this->params);
                                 } elseif (!empty($this->params[1]) && $this->isSubCategory($this->params[1]) == true) {
                                     (new ProductControllers)->getAllElementbySubCateID($this->action, $this->params);
                                 } elseif (!empty($this->params[0])) {
