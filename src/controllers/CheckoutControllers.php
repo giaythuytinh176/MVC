@@ -76,10 +76,11 @@ class CheckoutControllers
             'orderDate' => $datetime,
         ];
         $this->cm->InsertOrders($dataInsert);
-        $last_orderNumber = $this->cm->SelectLastOrderNumber();
+        //$last_orderNumber = $this->cm->SelectLastOrderNumber();
+        $lastInsertNumber = $this->cm->lastInsertId();
         foreach ($_SESSION['cart_items'] as $key => $value) {
             $orders = [
-                'orderNumber' => $last_orderNumber['LastOrderNumber'],
+                'orderNumber' => $lastInsertNumber,//$last_orderNumber['LastOrderNumber'],
                 'product_id' => $value['product_id'],
                 'qty' => $value['qty'],
                 'amount' => $value['price'],

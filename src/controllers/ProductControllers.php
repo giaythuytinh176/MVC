@@ -153,7 +153,21 @@ class ProductControllers
                                         <input type="hidden" name="cart_items[' . $data[0]['product_id'] . '][product_name]" value="' . urlencode($data[0]['ProductName']) . '">
                                         <input type="button" value="+" class="plus">
                                     </div>
+                                    ';
+
+            if ((!empty($data[0]['Stock']) && ($data[0]['Stock'] < 1)) || empty($data[0]['Stock'])) {
+                $sout .= '
+                                    <button type="submit" name="btn" value="submit" class="add-to-cart button m-0" disabled>Hết hàng</button>
+                                    
+                                    ';
+            } else {
+                $sout .= '
                                     <button type="submit" name="btn" value="submit" class="add-to-cart button m-0">Add to cart</button>
+                                    ';
+            }
+
+
+            $sout .= '
                                 </form><!-- Product Single - Quantity & Cart Button End -->
                                 <div class="line"></div>';
         }

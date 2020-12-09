@@ -22,6 +22,10 @@ class CRUDModels extends Database
         $this->crud = parent::getInstance();
     }
 
+    public function lastInsertId(){
+        return $this->crud->lastInsertId();
+    }
+
     /**
      * @param string $table
      * @param array $where

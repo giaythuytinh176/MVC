@@ -29,4 +29,9 @@ class CheckoutModels
         return $this->CRUDmodels->select2("SELECT MAX(orderNumber) as LastOrderNumber FROM orders");
     }
 
+    public function lastInsertId()
+    {
+        return $this->CRUDmodels->lastInsertId();
+    }
+
 }
