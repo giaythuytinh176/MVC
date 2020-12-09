@@ -101,7 +101,7 @@ class ProductController
     {
         if (!empty($_POST['btn'])) {
             $errors = [];
-            $required_fields = ['product_name', 'price', 'description', 'img_link', 'img_list'];//, 'discount', 'Stock' 'category_parent', 'category_title', 'category_sub',
+            $required_fields = ['ProductName', 'price', 'description', 'img_link', 'img_list'];//, 'discount', 'Stock' 'category_parent', 'category_title', 'category_sub',
             foreach ($_POST as $key => $value) {
                 if (empty($value) && in_array($key, $required_fields) == true) {
                     $errors[] = ucwords(str_replace("_", " ", $key)) . " is a required field.";
@@ -150,19 +150,19 @@ class ProductController
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Parent</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_parent" value="' . $ProductDetail['parent_title'] . '"></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_parent" value="' . $ProductDetail['parent_title'] . '" disabled></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Category</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_title" value="' . $ProductDetail['category_title'] . '"></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_title" value="' . $ProductDetail['category_title'] . '" disabled></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product SubCategory</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_sub" value="' . (empty($ProductDetail['spc_title']) ? "Don't have" : $ProductDetail['spc_title']) . '"></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_sub" value="' . (empty($ProductDetail['spc_title']) ? "Don't have" : $ProductDetail['spc_title']) . '" disabled></th>
                                 <th></th>
                             </tr>
                             <tr>
