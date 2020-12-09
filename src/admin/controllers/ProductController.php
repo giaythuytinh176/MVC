@@ -101,7 +101,7 @@ class ProductController
     {
         if (!empty($_POST['btn'])) {
             $errors = [];
-            $required_fields = ['product_name', 'price', 'description', 'img_link', 'img_list'];//, 'discount', 'Stock'
+            $required_fields = ['product_name', 'price', 'description', 'img_link', 'img_list'];//, 'discount', 'Stock' 'category_parent', 'category_title', 'category_sub',
             foreach ($_POST as $key => $value) {
                 if (empty($value) && in_array($key, $required_fields) == true) {
                     $errors[] = ucwords(str_replace("_", " ", $key)) . " is a required field.";
@@ -150,19 +150,19 @@ class ProductController
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Parent</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_parent" value="' . $ProductDetail['parent_title'] . '" disabled></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_parent" value="' . $ProductDetail['parent_title'] . '"></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Category</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_title" value="' . $ProductDetail['category_title'] . '" disabled></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_title" value="' . $ProductDetail['category_title'] . '"></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Product SubCategory</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_sub" value="' . (empty($ProductDetail['spc_title']) ? "Don't have" : $ProductDetail['spc_title']) . '" disabled></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" name="category_sub" value="' . (empty($ProductDetail['spc_title']) ? "Don't have" : $ProductDetail['spc_title']) . '"></th>
                                 <th></th>
                             </tr>
                             <tr>
@@ -232,7 +232,7 @@ class ProductController
                                 <th></th>
                                 <th style="width: 30%" class="success">Product Parent</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="parent_id" required="1">';
+                                    <select id="parent_id" required>';
         if (empty((new CategoryControllers())->getALlCategoryParent()['errors'])) {
             foreach ((new CategoryControllers())->getALlCategoryParent() as $parent) {
                 $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
@@ -249,7 +249,7 @@ class ProductController
                                 <th style="width: 30%" class="warning">';
 
         $sout .= '
-                                    <select id="category_id" required="1">';
+                                    <select id="category_id" required>';
         if (empty((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct()['errors'])) {
             foreach ((new \MVC\admin\controllers\CategoryControllers())->getALlCategoryProduct() as $category) {
                 $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . ' [' . (new \MVC\admin\controllers\CategoryControllers())->getBrandByID($category['category_id'])['category_title'] . '] </option>';
@@ -264,7 +264,7 @@ class ProductController
                                 <th></th>
                                 <th style="width: 30%" class="success">Product SubCategory</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="category_sub" required="1">';
+                                    <select id="category_sub" required>';
         if (empty((new CategoryControllers())->getAllSubCate()['errors'])) {
             $sout .= '<option value="null">Not in these list below</option>';
             foreach ((new CategoryControllers())->getAllSubCate() as $sub) {

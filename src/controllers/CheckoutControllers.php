@@ -71,6 +71,16 @@ class CheckoutControllers
         $message = $post['shipping-form-message'];
         $datetime = date("Y-m-d H:i:s");
 
+        $updateAddress = [
+            'fullname' => $fname . ' ' . $lname,
+            'address' => $address . ' ' . $city,
+            'phone' => $phone,
+        ];
+        $updateWhere = [
+            'username' => $_SESSION['username'],
+        ];
+        $this->cm->UpdateAddress($updateAddress, $updateWhere);
+
         $dataInsert = [
             'user_id' => $userData['user_id'],
             'orderDate' => $datetime,

@@ -14,6 +14,11 @@ class CheckoutModels
         $this->CRUDmodels = new CRUDModels();
     }
 
+    public function UpdateAddress($data, $where)
+    {
+        return $this->CRUDmodels->update('user', $data, $where);
+    }
+
     public function InsertOrders($data)
     {
         return $this->CRUDmodels->insert("orders", $data);

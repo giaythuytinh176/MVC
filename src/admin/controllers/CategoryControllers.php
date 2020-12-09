@@ -226,10 +226,20 @@ class CategoryControllers
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Parent Category</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="parent_name" value="' . $BrandDetail['category_title'] . '" disabled></th>
+                                <th style="width: 30%" class="warning">
+                                    <select id="parent_id" required>';
+            if (empty((new self)->getALlCategoryParent()['errors'])) {
+                foreach ((new self)->getALlCategoryParent() as $cate) {
+                    $sout .= '<option value="' . $cate['parent_id'] . '" ' . (($BrandDetail['parent_id'] == $cate['parent_id']) ? 'selected' : '') . '>' . $cate['category_title'] . '</option>';
+                }
+            }
+            $sout .= '
+                                    </select>
+                                 
+                                
+                                </th>
                                 <th></th> 
                             </tr>
-                            <input type="hidden" id="parent_id" value="' . $BrandDetail['parent_id'] . '">
                             <input type="hidden" id="category_id" value="' . $BrandDetail['category_id'] . '">
                              <tr><th style="text-align: center" colspan="4"><input class="btn btn-primary" type="submit" id="submitUpdate" value="Submit"></th></tr>
                             </tbody>
@@ -253,20 +263,20 @@ class CategoryControllers
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Brand Title</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" required="1" id="brand_title" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" required id="brand_title" value=""></th>
                                 <th></th> 
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Brand Code</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" required="1" id="brand_code" value=""></th>
+                                <th style="width: 30%" class="warning"><input type="text" class="form-control" required id="brand_code" value=""></th>
                                 <th></th> 
                             </tr>
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="parent_id" required="1">';
+                                    <select id="parent_id" required>';
         if (empty((new self)->getALlCategoryParent()['errors'])) {
             foreach ((new self)->getALlCategoryParent() as $cate) {
                 $sout .= '<option value="' . $cate['parent_id'] . '">' . $cate['category_title'] . '</option>';
@@ -314,7 +324,7 @@ class CategoryControllers
                                 <th style="width: 30%" class="warning">';
 
         $sout .= '
-                                    <select id="category_id" required="1">';
+                                    <select id="category_id" required>';
         if (empty((new self)->getALlCategoryProduct()['errors'])) {
             foreach ((new self)->getALlCategoryProduct() as $category) {
                 $sout .= '<option value="' . $category['category_id'] . '">' . $category['title'] . ' [' . (new self())->getBrandByID($category['category_id'])['category_title'] . '] </option>';
@@ -329,7 +339,7 @@ class CategoryControllers
                                 <th></th>
                                 <th style="width: 30%" class="success">Parent Category</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="parent_id" required="1">';
+                                    <select id="parent_id" required>';
         if (empty((new self)->getALlCategoryParent()['errors'])) {
             foreach ((new self)->getALlCategoryParent() as $parent) {
                 $sout .= '<option value="' . $parent['parent_id'] . '">' . $parent['category_title'] . '</option>';
@@ -463,10 +473,10 @@ class CategoryControllers
                                 <th></th>
                                 <th style="width: 30%" class="success">Category Product</th>
                                 <th style="width: 30%" class="warning">
-                                    <select id="category_id" required="1">';
+                                    <select id="category_id" required>';
             if (!empty((new self)->getALlCategoryProduct())) {
                 foreach ((new self)->getALlCategoryProduct() as $cate) {
-                    $sout .= '<option value="' . $cate['category_id'] . '">' . $cate['title'] . '</option>';
+                    $sout .= '<option value="' . $cate['category_id'] . '"'.(($cate['category_id'] == $SubCategoryDetail['spc_category_id']) ? "selected" : '').'>' . $cate['title'] . '</option>';
                 }
             }
             $sout .= '
@@ -477,7 +487,16 @@ class CategoryControllers
                             <tr>
                                 <th></th>
                                 <th style="width: 30%" class="success">Parent Category</th>
-                                <th style="width: 30%" class="warning"><input type="text" class="form-control" id="sub_parrent" value="' . $SubCategoryDetail['p_category_title'] . '" disabled></th>
+                                <th style="width: 30%" class="warning">
+                                    <select id="sub_parent_id" required>';
+            if (empty((new self)->getALlCategoryParent()['errors'])) {
+                foreach ((new self)->getALlCategoryParent() as $cate) {
+                    $sout .= '<option value="' . $cate['parent_id'] . '" ' . (($SubCategoryDetail['parent_id'] == $cate['parent_id']) ? 'selected' : '') . '>' . $cate['category_title'] . '</option>';
+                }
+            }
+            $sout .= '
+                                    </select>
+                                </th>
                                 <th></th> 
                             </tr>
                             <input type="hidden" id="sub_cate_id" value="' . $SubCategoryDetail['spc_category_sub'] . '">

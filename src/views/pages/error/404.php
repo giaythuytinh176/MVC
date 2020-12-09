@@ -50,9 +50,9 @@
                             <span>Try searching for the best match or browse the links below:</span>
                         </div>
 
-                        <form action="#" method="get" class="mb-5">
+                        <form action="<?php echo \MVC\controllers\UrlControllers::url("search"); ?>" method="post" class="mb-5">
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="Search for Pages...">
+                                <input type="text" class="form-control" name="q" placeholder="Search for Pages...">
                                 <div class="input-group-append">
                                     <button class="btn btn-danger" type="button">Search</button>
                                 </div>
