@@ -84,7 +84,7 @@ class BillsControllers
                 $sout .= implode("</br>\n", $amount_list);
 
             } else {
-                $sout .= $detail['ListAmount'];
+                $sout .= number_format($detail['ListAmount']) . " đ";
             }
             $sout .= '                     
                                 </td>   
