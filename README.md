@@ -1,5 +1,17 @@
 # MVC
 
+# Các chức năng chính:
+- Đăng ký người dùng, phân chia tài khoản admin, user thường.
+- Thêm sản phẩm vào giỏ hàng, cập nhật giỏ hàng.
+- Hiển thị phân chia danh sách thư mục.
+- Hiển thị số tiền, sản phẩm tới trang thanh toán (checkout).
+- Xem chi tiết sản phẩm.
+- Thêm sửa xoá sản phẩm, chỉnh sửa tiêu đề thư mục, tắt hiển thị thư mục, sản phẩm trong admin.
+- Hiển thị các đơn hàng và chi tiết đơn hàng trong admin. 
+- 
+
+
+
 /* Bắt đầu date 16/11/2020 */
 Các chứng năng đã hoàn thành:
 - Tạo website theo mô hình MVC
@@ -70,13 +82,6 @@ Các chứng năng đã hoàn thành:
 /* Hoàn thành date 10/12/2020 */
 - Hoàn thiện chức năng xem đơn hàng, chi tiết đơn hàng.
 - Chỉ user admin mới vào được trang admin.
-
-
-Chức năng chưa có:
-- API
-- Chỉnh sửa front page tuỳ chỉnh theo DB
-- Quản lý tải khoản user
-- Chức năng apply coupon để trừ giá vào sản phẩm.
 
 
 

@@ -267,7 +267,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/laptop/macbook"
+                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/macbook"
                                                                class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
                                 <i class="icon-angle-right"></i></a></div>
 
@@ -352,7 +352,7 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/telephone/telephone/iphone12"
+                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/dien-thoai/apple/iphone12"
                                                                class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
                                 <i class="icon-angle-right"></i></a></div>
 
@@ -390,17 +390,17 @@
 
                         <div class="row align-items-stretch gutter-20 h-100">
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
-                                <a href="http://localhost/MVC_shop_test/category/laptop/asus" class="grid-inner d-block h-100"
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/asus" class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg');"></a>
                             </div>
 
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
-                                <a href="http://localhost/MVC_shop_test/category/smarthome/may-hut-bui" class="grid-inner d-block h-100"
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/nha-thong-minh/may-hut-bui" class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/450x/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-pro-styj02ym-mijia-mi-robot-vacuum-mop-p-sweeping-cleaner-2-lds-radar-app-control.jpg_q50.jpg'); background-position: right center;"></a>
                             </div>
 
                             <div class="col-md-12 min-vh-25 min-vh-md-0 pb-md-0">
-                                <a href="http://localhost/MVC_shop_test/category/laptop/microsoft-surface" class="grid-inner d-block h-100"
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/microsoft-surface" class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/u/surface-pro-7__0003_13.jpg');"></a>
                             </div>
                         </div>
@@ -408,7 +408,7 @@
                     </div>
 
                     <div class="col-md-4 min-vh-50">
-                        <a href="http://localhost/MVC_shop_test/category/tablet" class="grid-inner d-block h-100"
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-bang" class="grid-inner d-block h-100"
                            style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg'); background-position: center top;"></a>
                     </div>
                 </div>
