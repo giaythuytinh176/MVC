@@ -8,7 +8,17 @@
 - Xem chi tiết sản phẩm.
 - Thêm sửa xoá sản phẩm, chỉnh sửa tiêu đề thư mục, tắt hiển thị thư mục, sản phẩm trong admin.
 - Hiển thị các đơn hàng và chi tiết đơn hàng trong admin. 
-- 
+- Chức năng tìm kiếm front page, admin page sản phẩm.
+
+
+
+# Chức năng chưa hoàn thiện:
+- Rate sản phẩm.
+- Email thông báo đã mua hàng.s  
+- API.
+- Chỉnh sửa front page tuỳ chỉnh theo DB
+- Quản lý tải khoản user
+- Chức năng apply coupon để trừ giá vào sản phẩm.
 
 
 
