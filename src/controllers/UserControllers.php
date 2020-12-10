@@ -17,4 +17,9 @@ class UserControllers
     {
         return $this->uc->getAllInfoOfOneUserbyUserName($user);
     }
+
+    public function getAllInfoUserbyID($user_id)
+    {
+        return $this->uc->getAllInfoUserbyID($user_id);
+    }
 }

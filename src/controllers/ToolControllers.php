@@ -36,6 +36,14 @@ class ToolControllers
         if ($stop) exit;
     }
 
+    public static function cut_str($str, $left, $right) {
+        $str = substr(stristr($str, $left), strlen($left));
+        $leftLen = strlen(stristr($str, $right));
+        $leftLen = $leftLen ? -($leftLen) : strlen($str);
+        $str = substr($str, 0, $leftLen);
+        return $str;
+    }
+
     public static function ConvertName($valFromDB)
     {
         $NameProductToString = preg_replace("/^[\W]+$/", "-", $valFromDB['ProductName']);

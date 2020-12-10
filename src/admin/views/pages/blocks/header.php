@@ -159,7 +159,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Các thao tác:</h6>
                     <a class="collapse-item"
-                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/orders") ?>">Manage Orders</a>
+                       href="<?php echo \MVC\controllers\UrlControllers::url("admin/bills") ?>">Manage Orders</a>
                 </div>
             </div>
         </li>

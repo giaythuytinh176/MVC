@@ -68,6 +68,9 @@ Các chứng năng đã hoàn thành:
 - Hoàn thiện chức năng search.
 
 /* Hoàn thành date 10/12/2020 */
+- Hoàn thiện chức năng xem đơn hàng, chi tiết đơn hàng.
+
+
 Chức năng chưa có:
 - API
 - Chỉnh sửa front page tuỳ chỉnh theo DB

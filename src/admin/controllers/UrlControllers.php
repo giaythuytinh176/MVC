@@ -79,6 +79,17 @@ class UrlControllers
                                 }
                         }
                         break;
+                    case "bills":
+                        $params = !empty($this->params[0]) ? $this->params[0] : null;
+                        switch ($params) {
+                            default:
+                                if (file_exists("./src/admin/views/pages/bills/$params.php") == true) {
+                                    $this->render->view("bills/$params", [$this->params], "./src/admin/views/pages/");
+                                } else {
+                                    $this->render->view("bills/bills", [], "./src/admin/views/pages/");
+                                }
+                        }
+                        break;
                     default :
                         $this->render->view("index/index", [], "./src/admin/views/pages/");
                 }

@@ -388,6 +388,32 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
+    $('#ListOrders').DataTable({
+        "pagingType": "full_numbers",
+        'order': [],
+        'columnDefs': [{
+            "targets": [0, 6],
+            "orderable": false
+        }]
+    });
+
+    $('.dataTables_length').addClass('bs-select');
+});
+
+$(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
+    $('#OrderDetail').DataTable({
+        "pagingType": "full_numbers",
+        'order': [],
+        'columnDefs': [{
+            "targets": [0, 6],
+            "orderable": false
+        }]
+    });
+
+    $('.dataTables_length').addClass('bs-select');
+});
+
+$(document).ready(function () {//https://datatables.net/examples/styling/bootstrap4
     $('#ListProduct').DataTable({
         "pagingType": "full_numbers",
         'order': [],
@@ -431,7 +457,7 @@ $(document).ready(function () {//https://datatables.net/examples/styling/bootstr
         "pagingType": "full_numbers",
         'order': [],
         'columnDefs': [{
-            "targets": [0, 7],
+            "targets": [0, 6],
             "orderable": false
         }]
     });

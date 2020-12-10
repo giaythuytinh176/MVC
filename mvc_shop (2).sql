@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 07, 2020 at 12:39 PM
+-- Generation Time: Dec 10, 2020 at 05:11 AM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -28,16 +28,16 @@ SET time_zone = "+00:00";
 -- (See below for the actual view)
 --
 CREATE TABLE `allcatesubparent` (
-`codeSUB` varchar(255)
+`spc_category_id` int
+,`spc_category_sub` int
+,`spc_title` varchar(255)
+,`pc_category_id` int
+,`pc_title` varchar(255)
+,`pc_code` text
 ,`p_category_code` varchar(255)
 ,`p_category_title` varchar(255)
 ,`parent_id` int
-,`pc_category_id` int
-,`pc_code` text
-,`pc_title` varchar(255)
-,`spc_category_id` int
-,`spc_category_sub` int
-,`spc_title` varchar(255)
+,`codeSUB` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -79,7 +79,7 @@ INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`)
 (19, 'Charging cable', 'Cáp sạc', 'Câble de charge'),
 (20, 'Battery backup', 'Pin dự phòng', 'Batterie de secours'),
 (21, 'telephone', 'Điện thoại', 'Téléphone'),
-(22, 'laptop', 'Máy tính xách tay', 'Portable'),
+(22, 'laptop', 'Laptop', 'Portable'),
 (23, 'Mouse | Keyboard', 'Chuột | Bàn phím', 'Souris | Clavier'),
 (24, 'Convenience accessories', 'Phụ kiện tiện ích', 'Accessoires pratiques'),
 (25, 'Network equipment', 'Thiết bị mạng', 'Équipement réseau'),
@@ -95,24 +95,77 @@ INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`)
 (35, 'Smart lock', 'Khoá thông minh', 'Serrure intelligente'),
 (36, 'Air filter core', 'Lõi lọc không khí', 'noyau de filtre à air'),
 (37, 'No products.', 'Không có sản phẩm nào.', 'Aucun produit.'),
-(38, 'Out of Stock', 'Hết hàng', 'En rupture de stock');
+(38, 'Out of Stock', 'Hết hàng', 'En rupture de stock'),
+(39, 'Fashion', 'Thời trang', 'Mode');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `orderdetails`
 --
 
-CREATE TABLE `order` (
-  `transaction_id` int NOT NULL,
-  `id` int DEFAULT NULL,
+CREATE TABLE `orderdetails` (
+  `orderNumber` int NOT NULL,
   `product_id` int NOT NULL,
   `qty` int DEFAULT NULL,
   `amount` decimal(15,4) DEFAULT NULL,
+  `id` int DEFAULT NULL,
   `data` text,
   `status` int DEFAULT NULL,
   `public_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`orderNumber`, `product_id`, `qty`, `amount`, `id`, `data`, `status`, `public_id`) VALUES
+(24, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
+(25, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
+(25, 35, 2, '220000.0000', NULL, NULL, NULL, NULL),
+(25, 38, 3, '1000000.0000', NULL, NULL, NULL, NULL),
+(26, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
+(26, 35, 1, '220000.0000', NULL, NULL, NULL, NULL),
+(27, 13, 1, '33990000.0000', NULL, NULL, NULL, NULL),
+(27, 14, 1, '46500000.0000', NULL, NULL, NULL, NULL),
+(28, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
+(29, 1, 1, '5490000.0000', NULL, NULL, NULL, NULL),
+(29, 13, 1, '11896500.0000', NULL, NULL, NULL, NULL),
+(29, 14, 1, '46500000.0000', NULL, NULL, NULL, NULL),
+(29, 15, 1, '24890000.0000', NULL, NULL, NULL, NULL),
+(29, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
+(29, 35, 1, '220000.0000', NULL, NULL, NULL, NULL),
+(29, 38, 1, '1000000.0000', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `orderNumber` int NOT NULL,
+  `user_id` int NOT NULL,
+  `orderDate` datetime NOT NULL,
+  `shippedDate` date DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `public_id` int DEFAULT NULL,
+  `amount` decimal(15,4) DEFAULT NULL,
+  `payment` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `payment_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderNumber`, `user_id`, `orderDate`, `shippedDate`, `status`, `public_id`, `amount`, `payment`, `payment_info`) VALUES
+(24, 1, '2020-12-09 11:55:04', NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 1, '2020-12-09 11:56:15', NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 1, '2020-12-09 15:46:05', NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 1, '2020-12-09 16:18:16', NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 1, '2020-12-10 04:31:11', NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 1, '2020-12-10 12:11:03', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -133,14 +186,15 @@ CREATE TABLE `parent_category` (
 --
 
 INSERT INTO `parent_category` (`parent_id`, `category_code`, `category_title`, `orderParent`, `is_disabled`) VALUES
-(1, 'accessories', 'Phụ kiện', 4, 0),
-(2, 'telephone', 'Điện thoại', 2, 0),
-(3, 'laptop', 'Máy tính xách tay', 1, 0),
-(5, 'smarthome', 'Nhà thông minh', 3, 0),
-(11, 'simthe', 'Sim Thẻ', 5, 1),
-(12, 'donghothongminh', 'Đồng hồ thông minh', 6, 1),
-(13, 'tablet', 'Máy tính bảng', 7, 0),
-(15, 'am-thanh', 'Âm thanh', 8, 1);
+(1, 'phu-kien', 'Accessories', 4, 1),
+(2, 'dien-thoai', 'Telephone', 2, 0),
+(3, 'may-tinh-xach-tay', 'Laptop', 1, 0),
+(5, 'nha-thong-minh', 'SmartHome', 3, 0),
+(11, 'sim-the', 'Sim card', 5, 1),
+(12, 'dong-ho-thong-minh', 'SmartWatch', 6, 1),
+(13, 'may-tinh-bang', 'Tablet', 7, 0),
+(15, 'am-thanh', 'Sound', 8, 1),
+(18, 'thoi-trang', 'Fashion', 9, 0);
 
 -- --------------------------------------------------------
 
@@ -171,7 +225,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `category_id`, `category_sub`, `ProductName`, `Stock`, `price`, `discount`, `description`, `sort_order`, `is_disabled`, `cart_description`, `img_link`, `img_list`, `created`, `view`) VALUES
-(1, 27, NULL, 'Khoá cửa vân tay Samsung SHP-DH538', 155, '5490000.0000', 77, '<h3>Khoá vân tay Samsung SHP-DH538 – Độ bảo mật cao giúp gia đình bạn luôn an toàn\r\n</h3>\r\n<p>Cùng với khóa cửa vân tay Samsung SHP-DP609 thì Samsung SHP-DH538 là dòng khóa điện tử thông minh của hãng Samsung sản xuất với nhiều tính năng thông minh. Nó cung cấp nhiều phương thức mở như: mở cửa bằng vân tay, mật khẩu và chìa khóa cơ. Khoá cửa vân tay Samsung SHP-DH538 phù hợp với các dòng cửa gỗ của những chung cư hay căn hộ cao cấp.\r\n</p>', 1, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-samsung-SHP-DH538.jpg', NULL, 0),
+(1, 27, NULL, 'Khoá cửa vân tay Samsung SHP-DH53812', 5555, '5490000.0000', 77, '<h3>Khoá vân tay Samsung SHP-DH538 – Độ bảo mật cao giúp gia đình bạn luôn an toàn\r\n</h3>\r\n<p>Cùng với khóa cửa vân tay Samsung SHP-DP609 thì Samsung SHP-DH538 là dòng khóa điện tử thông minh của hãng Samsung sản xuất với nhiều tính năng thông minh. Nó cung cấp nhiều phương thức mở như: mở cửa bằng vân tay, mật khẩu và chìa khóa cơ. Khoá cửa vân tay Samsung SHP-DH538 phù hợp với các dòng cửa gỗ của những chung cư hay căn hộ cao cấp.\r\n</p>', 1, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg', 'https://lionlock.vn/wp-content/uploads/2019/06/khoa-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-SHP-DH538.jpg\r\nhttps://lionlock.vn/wp-content/uploads/2019/06/khoa-van-tay-samsung-SHP-DH538.jpg', NULL, 0),
 (2, 24, NULL, 'Laptop ASUS ZenBook Duo UX481FL-BM049T', 1, '35190000.0000', 56, '<h3>Laptop Asus Zenbook UX481FL-BM049T–vẻ đẹp đổi mới và tốc độ nhanh đẳng cấp</h3> \r\n<p>là chiếc máy tính xách tay siêu mỏng nhỏ gọn được Asus tích hợp màn hình cảm ứng FHD 12.6 inch thiết kế đa nhiệm cực tốt được ra mắt trong thời gian gần đây. Chiếc laptop Asus sở hữu thiết kế thời trang, sang trọng và một cấu hình mạnh mẽ, sẵn sàng đáp ứng mọi nhu cầu làm việc.</p>', 2, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/_/0/_0000_asus-zenbook-duo-ux481fl-bm049t_1_.jpg', NULL, 0),
 (3, 30, NULL, 'Đèn bàn Pisen Led chargeable lamp(PKTM.024)', 2, '222000.0000', 51, '<h3>Đèn Pisen Led chargeable lamp: Đèn Led cảm ứng và thiết kế bắt mắt</h3>\r\n<p>Trong công việc hay cuộc sống học tập của học sinh, sinh viên thì một chiếc đèn bàn có lẽ là thứ gắn bó và quan trọng nhất ảnh hưởng đến sự hiệu quả. Một chiếc đèn bàn tốt có thể giúp dễ dàng hơn trong công việc, bảo vệ sức khỏe mắt cũng như là vật trang trí trên chiếc tủ, bàn thật đẹp. Nắm bắt được nhu cầu ấy, thương hiệu Pisen đã tạo ra dòng sản phẩm phụ kiện gia dụng thông minh mới đó chính là đèn Pisen Led chargeable lamp nhằm đáp ứng và cải thiện cuộc sống cho mọi người. Với lối thiết kế cực kỳ hiện đại, màu sắc và có khả năng uốn cong mọi góc sẽ khiến bạn trầm trồ. Đi kèm với đó là nút cảm ứng cho thấy công nghệ cực kỳ cao cấp mà nhà sản xuất trang bị cho nó. </p>', 3, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/i/pisenledchargeabledesklampwithusb_1923.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/i/pisenledchargeabledesklampwithusb_1923.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/h/t/htb1nrxmcprguurjy0feq6xcbfxaf.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/p/i/pisenledchargeabledesklampwithusb_1923.png', NULL, 0),
 (4, 16, NULL, 'Vsmart Active 3 6GB Ram', 0, '3590000.0000', 0, '<h3>Vsmart Active 3 - Điện thoại giá rẻ thương hiệu Việt</h3>\r\n<p>Vsmart thuộc tập đoàn Vingroup là dòng điện thoại thương hiệu Việt đang ngày càng được đông đảo người dân quan tâm. Mới đây, hãng tiếp tục giới thiệu thêm nhiều mẫu smartphone mới như Vsmart  Live 3, Vsmart  Star 3... và Vsmart Active 3. Trong đó, Active 3 mang trong mình nhiều tính năng và cấu hình cao với mức giá vô cùng tốt.</p>', 4, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/s/vsmart-active-3_2_.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/s/vsmart-active-3_2_.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/v/s/vsmart-active-3_4_.png', NULL, 0),
@@ -192,7 +246,9 @@ INSERT INTO `product` (`product_id`, `category_id`, `category_sub`, `ProductName
 (21, 10, 7, 'iPhone 12 Chính Hãng (VN/A)', NULL, '22590000.0000', 1, '<h3>Điện thoại iPhone 12 - \"Siêu phẩm\" iPhone khẳng định đẳng cấp\r\n</h3>\r\n<p>Trong khi sức hút đến từ bộ ba iPhone 11 vẫn chưa nguội đi, hãng Apple vừa qua đã cho ra mắt \"siêu phẩm\" mới nhất 2020 mang tên iPhone 12. Với những nâng cấp đáng kể cho màn hình và hiệu năng, đây sẽ là smartphone thuộc phân khúc cao cấp đáng chú ý trong năm nay.\r\n</p>\r\n', 19, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-black-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-white-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-green-select-2020_1.png', NULL, 0),
 (22, 40, NULL, 'Apple Watch Series 3 38mm GPS viền nhôm dây cao su', NULL, '4890000.0000', 0, ' <h2>Apple Watch Series 3 38mm GPS - viền nhôm dây cao su bền bỉ</h2>\n<p>Đồng hồ thông minh Apple Watch ngày càng được sử dụng phổ biến. Tuy nhiên, Apple Watch Series 3 38mm GPS có rất nhiều phiên bản viền và dây đeo khác nhau. Phiên bản đồng hồ Apple Watch Series 3 38mm GPS viền nhôm dây cao su có điểm gì nổi bật?</p>\n\n<h3>Viền nhôm sang trọng – dây cao su bền bỉ</h3>\n<p>Apple Watch Series 3 38mm GPS được thiết kế với khung viền nhôm sang trọng. Khung nhôm cứng cáp, được làm nhám mờ hạn chế bám mồ hôi, vân tay giúp đồng hồ luôn sạch sẽ.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-05-27_17-20-431_1_1_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-05-27_17-20-431_1_1_.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-silver-sport-white-nc-s3-gallery2_2_1.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-silver-sport-white-nc-s3-gallery1_2_5.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-space-nike-anth-black-nc-gallery2_geo_us_2.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-space-nike-anth-black-nc-gallery1_geo_us_2.jpg', NULL, 0),
 (23, 41, NULL, 'Samsung Galaxy Watch Active 2', NULL, '5500000.0000', 0, '<h3>Đồng hồ thông minh Galaxy Watch Active 2: Thiết kế thời trang, giải pháp theo dõi sức khỏe tuyệt vời</h3>\n<p>Galaxy Watch Active 2 là thế hệ thứ 2 của dòng đồng hồ Active đến từ Samsung. Sản phẩm là một bản nâng cấp hoàn hảo so với người tiền nhiệm khi được trang bị và cải tiến nhiều công nghệ hiện đại, phục vụ tối ưu cho nhu cầu sử dụng của người dùng. Ngoài ra bạn cũng có thể tham khảo thêm đồng hồ thông minh Samsung Galaxy Watch 3 mới nhất, sắp được lên kệ tại Cellphones. \n</p>\n', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/5/1565204800_1491590.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/5/1565204800_1491590.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491588.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491589.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491590.jpg', NULL, 0),
-(25, 38, NULL, 'Apple iPad Pro 11 2020 Wi-Fi 128GB Chính Hãng Apple Việt Nam', 0, '20490000.0000', 0, '<h3>iPad Pro 11  – Sự nâng cấp đáng giá sau hai năm</h3>\r\n<p>Bắt đầu được giới thiệu từ lần đầu vào năm 2015, iPad Pro là dòng tablet cao cấp nhất của Apple. Ở phiên bản 2018, iPad Pro đã sở hữu màn hình viền mỏng cùng hệ thống nhận diện khuôn mặt Face ID. Cho đến hai năm sau, Apple cho ra mắt iPad Pro 11 WiFi 2020 128gb được nâng cấp mạnh mẽ hơn về hiệu năng và camera.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/ipad-pro-11-select-cell-spacegray-202003-removebg-preview.png.jpg', NULL, 0);
+(25, 38, NULL, 'Apple iPad Pro 11 2020 Wi-Fi 128GB Chính Hãng Apple Việt Nam', 0, '20490000.0000', 0, '<h3>iPad Pro 11  – Sự nâng cấp đáng giá sau hai năm</h3>\r\n<p>Bắt đầu được giới thiệu từ lần đầu vào năm 2015, iPad Pro là dòng tablet cao cấp nhất của Apple. Ở phiên bản 2018, iPad Pro đã sở hữu màn hình viền mỏng cùng hệ thống nhận diện khuôn mặt Face ID. Cho đến hai năm sau, Apple cho ra mắt iPad Pro 11 WiFi 2020 128gb được nâng cấp mạnh mẽ hơn về hiệu năng và camera.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/ipad-pro-11-select-cell-spacegray-202003-removebg-preview.png.jpg', NULL, 0),
+(35, 58, NULL, 'Blue Round-Neck Tshirt', 55, '220000.0000', 0, 'Being one of the trusted firms in the industry, we are highly engaged in providing a unique range of Mens Sky Blue Round Neck T Shirt.', NULL, 0, NULL, 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/tshirts/1.jpg', 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/tshirts/1.jpg\r\nhttp://localhost/MVC_shop_test/src/views/pages/index/images/shop/tshirts/1-1.jpg\r\nhttp://localhost/MVC_shop_test/uploads/61GvePNJfnL._UX679_.jpg', NULL, 0),
+(38, 59, NULL, 'Men Grey Casual Shoes', 33, '1000000.0000', 0, 'xxx', NULL, 0, NULL, 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/shoes/2.jpg', 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/shoes/2.jpg\r\nhttp://localhost/MVC_shop_test/src/views/pages/index/images/shop/shoes/2-1.jpg\r\nhttp://localhost/MVC_shop_test/uploads/6fedef2921836883a4216a777f47f5b5.jpg', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -215,16 +271,16 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`category_id`, `title`, `sort_order`, `parent_id`, `code`, `is_disabled_brand`, `img`) VALUES
-(1, 'Apple accessories', 1, 1, 'accessories', 0, 'http://localhost/MVC_shop_test/src/views/pages/index/images/phukien.jpg'),
+(1, 'Apple accessories', 1, 1, 'phu-kien-apple', 0, 'http://localhost/MVC_shop_test/src/views/pages/index/images/phukien.jpg'),
 (2, 'Screen pasting', 2, 1, 'dan-man-hinh', 0, 'http://localhost/MVC_shop_test/src/views/pages/index/images/danmanhinh.jpg'),
 (3, 'Cases | Holster', 3, 1, 'op-lung-bao-da', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/o/p/op-lung-chong-soc-cho-iphone-11-pro-max-gear4-d3o-2265.jpg'),
 (4, 'Charging cable', 4, 1, 'cap-sac', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/2/0/200914_114233_12345.png'),
 (5, 'Battery backup', 5, 1, 'pin-du-phong', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/3/1/3136d45580637b3d2272_copy.png'),
 (6, 'Network equipment', 6, 1, 'thiet-bi-mang', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/7/a720r-1-1000x1000.png'),
-(7, 'Camera', 7, 1, 'camera', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/a/camera-gopro-hero-9-anh-san-pham-5-500x500.jpg'),
+(7, 'Camera', 7, 1, 'may-anh', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/a/camera-gopro-hero-9-anh-san-pham-5-500x500.jpg'),
 (8, 'Mouse | Keyboard', 8, 1, 'chuot-ban-phim', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/a/magic-keyboard-2-5.jpg'),
 (9, 'Convenience accessories', 9, 1, 'phu-kien-tien-ich', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/6/b/6b03aa32303f634163ce7967325b7429_2.jpg'),
-(10, 'Apple', 10, 2, 'telephone', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2020-10-13_22-12-24.jpg_1_2.png'),
+(10, 'Apple', 10, 2, 'apple', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2020-10-13_22-12-24.jpg_1_2.png'),
 (11, 'Samsung', 11, 2, 'samsung', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_final.jpg'),
 (12, 'Xiaomi', 12, 2, 'xiaomi', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-mi-10t-pro_2_.jpg'),
 (13, 'OPPO', 13, 2, 'oppo', 0, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0003_combo_-_reno4_-_blue_-_full_check.jpg'),
@@ -262,7 +318,9 @@ INSERT INTO `product_category` (`category_id`, `title`, `sort_order`, `parent_id
 (49, 'Đồng hồ định vị trẻ em', 45, 12, 'dong-ho-dinh-vi-tre-em', 0, NULL),
 (50, 'Dây đeo đồng hồ', 46, 12, 'day-deo-dong-ho', 0, NULL),
 (51, 'Loa', 47, 15, 'loa', 0, NULL),
-(52, 'Tai nghe', 48, 15, 'tai-nghe', 0, NULL);
+(52, 'Tai nghe', 48, 15, 'am-thanh', 0, NULL),
+(58, 'Áo', 49, 18, 'ao', 0, 'https://3.imimg.com/data3/YF/ID/GLADMIN-136167/mens-round-neck-t-shirt-250x250.jpg'),
+(59, 'Shoes', 50, 18, 'shoes', 0, 'https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/11352136/2020/3/3/c024d2cc-30e5-4ac9-8de5-72a8824bdeb21583225192893-ADIDAS-Men-Blue--Black-Throb-Woven-Design-Running-Shoes-4601-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -310,23 +368,6 @@ INSERT INTO `sub_product_category` (`category_sub`, `category_id`, `title`, `des
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaction`
---
-
-CREATE TABLE `transaction` (
-  `transaction_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `public_id` int DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `amount` decimal(15,4) DEFAULT NULL,
-  `payment` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `payment_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `created` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -337,6 +378,7 @@ CREATE TABLE `user` (
   `email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fullname` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `remote_addr` varchar(39) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `reg_date` datetime DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
@@ -351,8 +393,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `phone`, `remote_addr`, `reg_date`, `last_login`, `last_ip`, `last_session`, `user_agent`, `last_user_agent`, `is_admin`) VALUES
-(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'TAM LE', 'giaythuytinh176', '::1', '2020-11-19 06:28:20', NULL, '::1', 'n23c73dc1f3broq0l86b2u075c', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
+INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `remote_addr`, `reg_date`, `last_login`, `last_ip`, `last_session`, `user_agent`, `last_user_agent`, `is_admin`) VALUES
+(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'Tam LE', '0979029556', 'Tay Ho Ha Noi Ha Noi', '::1', '2020-11-19 06:28:20', NULL, '::1', '3162mfgftq8gtgtsbkk3vu5vsi', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -361,25 +403,25 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `pho
 -- (See below for the actual view)
 --
 CREATE TABLE `view_parentproduct_productcategory_subcategory` (
-`category_id` int
+`product_id` int
+,`ProductName` varchar(255)
+,`category_id` int
 ,`category_parent` varchar(255)
-,`category_sub` int
+,`parent_title` varchar(255)
 ,`category_title` varchar(255)
-,`description` text
+,`parent_id` int
+,`category_sub` int
+,`is_disabled` tinyint
+,`sort_order` int
+,`Stock` int
+,`price` decimal(15,4)
 ,`discount` int
+,`description` text
 ,`img_link` varchar(255)
 ,`img_list` text
-,`is_disabled` tinyint
-,`parent_id` int
-,`parent_title` varchar(255)
 ,`pc_code` text
-,`price` decimal(15,4)
-,`product_id` int
-,`ProductName` varchar(255)
-,`sort_order` int
 ,`spc_codeSUB` varchar(255)
 ,`spc_title` varchar(255)
-,`Stock` int
 );
 
 -- --------------------------------------------------------
@@ -389,17 +431,17 @@ CREATE TABLE `view_parentproduct_productcategory_subcategory` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_spc_pc_pac` (
-`category_sub` int
-,`codeSUB` varchar(255)
-,`is_disabled_sub` int
+`spc_category_id` int
+,`spc_title` varchar(255)
+,`pc_category_id` int
+,`pc_title` varchar(255)
+,`pc_code` text
 ,`p_category_code` varchar(255)
 ,`p_category_title` varchar(255)
 ,`parent_id` int
-,`pc_category_id` int
-,`pc_code` text
-,`pc_title` varchar(255)
-,`spc_category_id` int
-,`spc_title` varchar(255)
+,`codeSUB` varchar(255)
+,`is_disabled_sub` int
+,`category_sub` int
 );
 
 -- --------------------------------------------------------
@@ -440,11 +482,18 @@ ALTER TABLE `languages`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `order`
+-- Indexes for table `orderdetails`
 --
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`transaction_id`,`product_id`),
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`orderNumber`,`product_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`orderNumber`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `parent_category`
@@ -479,13 +528,6 @@ ALTER TABLE `sub_product_category`
   ADD KEY `index_sub_product_category` (`category_sub`);
 
 --
--- Indexes for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`transaction_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -500,43 +542,43 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT for table `orderdetails`
 --
-ALTER TABLE `order`
-  MODIFY `transaction_id` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `orderdetails`
+  MODIFY `orderNumber` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `orderNumber` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `parent_category`
 --
 ALTER TABLE `parent_category`
-  MODIFY `parent_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `parent_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `sub_product_category`
 --
 ALTER TABLE `sub_product_category`
-  MODIFY `category_sub` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `transaction_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `category_sub` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -549,11 +591,17 @@ ALTER TABLE `user`
 --
 
 --
--- Constraints for table `order`
+-- Constraints for table `orderdetails`
 --
-ALTER TABLE `order`
-  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `orderdetails`
+  ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`
@@ -573,13 +621,6 @@ ALTER TABLE `product_category`
 --
 ALTER TABLE `sub_product_category`
   ADD CONSTRAINT `sub_product_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`transaction_id`) REFERENCES `order` (`transaction_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
