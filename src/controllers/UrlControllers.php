@@ -29,7 +29,11 @@ class UrlControllers
     {
         switch ($this->controllers) {
             case "admin":
-                (new \MVC\admin\controllers\UrlControllers)->index();
+                if (\MVC\libs\UserAccess::isAdmin() == true) {
+                    (new \MVC\admin\controllers\UrlControllers)->index();
+                } else {
+                    (new RenderControllers)->errorPage();
+                }
                 break;
             case "search":
                 (new RenderControllers)->view("index/search");

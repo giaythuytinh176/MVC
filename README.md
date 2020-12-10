@@ -69,6 +69,7 @@ Các chứng năng đã hoàn thành:
 
 /* Hoàn thành date 10/12/2020 */
 - Hoàn thiện chức năng xem đơn hàng, chi tiết đơn hàng.
+- Chỉ user admin mới vào được trang admin.
 
 
 Chức năng chưa có:

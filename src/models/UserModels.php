@@ -115,7 +115,7 @@ class UserModels
         $arr['last_session'] = null;
         $arr['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         $arr['last_user_agent'] = null;
-        $arr['is_admin'] = 0;
+        $arr['is_admin'] = '0';
 
         $userExist = $this->checkUserExist($arr['username']);
         if (!empty($userExist['errors'])) return $userExist;
