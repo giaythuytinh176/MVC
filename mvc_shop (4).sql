@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2020 at 05:11 AM
+-- Generation Time: Dec 10, 2020 at 11:04 AM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -122,10 +122,7 @@ CREATE TABLE `orderdetails` (
 INSERT INTO `orderdetails` (`orderNumber`, `product_id`, `qty`, `amount`, `id`, `data`, `status`, `public_id`) VALUES
 (24, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
 (25, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
-(25, 35, 2, '220000.0000', NULL, NULL, NULL, NULL),
-(25, 38, 3, '1000000.0000', NULL, NULL, NULL, NULL),
 (26, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
-(26, 35, 1, '220000.0000', NULL, NULL, NULL, NULL),
 (27, 13, 1, '33990000.0000', NULL, NULL, NULL, NULL),
 (27, 14, 1, '46500000.0000', NULL, NULL, NULL, NULL),
 (28, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
@@ -134,8 +131,13 @@ INSERT INTO `orderdetails` (`orderNumber`, `product_id`, `qty`, `amount`, `id`, 
 (29, 14, 1, '46500000.0000', NULL, NULL, NULL, NULL),
 (29, 15, 1, '24890000.0000', NULL, NULL, NULL, NULL),
 (29, 16, 1, '31200000.0000', NULL, NULL, NULL, NULL),
-(29, 35, 1, '220000.0000', NULL, NULL, NULL, NULL),
-(29, 38, 1, '1000000.0000', NULL, NULL, NULL, NULL);
+(30, 1, 7, '5490000.0000', NULL, NULL, NULL, NULL),
+(31, 16, 5, '31200000.0000', NULL, NULL, NULL, NULL),
+(32, 16, 11, '31200000.0000', NULL, NULL, NULL, NULL),
+(33, 1, 7, '5490000.0000', NULL, NULL, NULL, NULL),
+(34, 1, 6, '5490000.0000', NULL, NULL, NULL, NULL),
+(34, 14, 9, '46500000.0000', NULL, NULL, NULL, NULL),
+(34, 16, 5, '31200000.0000', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -165,7 +167,12 @@ INSERT INTO `orders` (`orderNumber`, `user_id`, `orderDate`, `shippedDate`, `sta
 (26, 1, '2020-12-09 15:46:05', NULL, NULL, NULL, NULL, NULL, NULL),
 (27, 1, '2020-12-09 16:18:16', NULL, NULL, NULL, NULL, NULL, NULL),
 (28, 1, '2020-12-10 04:31:11', NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 1, '2020-12-10 12:11:03', NULL, NULL, NULL, NULL, NULL, NULL);
+(29, 1, '2020-12-10 12:11:03', NULL, NULL, NULL, NULL, NULL, NULL),
+(30, 1, '2020-12-10 12:23:26', NULL, NULL, NULL, NULL, NULL, NULL),
+(31, 4, '2020-12-10 12:36:42', NULL, NULL, NULL, NULL, NULL, NULL),
+(32, 1, '2020-12-10 16:46:16', NULL, NULL, NULL, NULL, NULL, NULL),
+(33, 1, '2020-12-10 16:47:16', NULL, NULL, NULL, NULL, NULL, NULL),
+(34, 1, '2020-12-10 17:44:53', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -246,9 +253,7 @@ INSERT INTO `product` (`product_id`, `category_id`, `category_sub`, `ProductName
 (21, 10, 7, 'iPhone 12 Chính Hãng (VN/A)', NULL, '22590000.0000', 1, '<h3>Điện thoại iPhone 12 - \"Siêu phẩm\" iPhone khẳng định đẳng cấp\r\n</h3>\r\n<p>Trong khi sức hút đến từ bộ ba iPhone 11 vẫn chưa nguội đi, hãng Apple vừa qua đã cho ra mắt \"siêu phẩm\" mới nhất 2020 mang tên iPhone 12. Với những nâng cấp đáng kể cho màn hình và hiệu năng, đây sẽ là smartphone thuộc phân khúc cao cấp đáng chú ý trong năm nay.\r\n</p>\r\n', 19, 0, '<div>* Giảm thêm tới 1% cho thành viên Smember</div>\r\n<div>* Thu cũ đổi mới -  Trợ giá tốt nhất</div>\r\n <div>Mua Balo - Túi chống sốc Laptop giá chỉ từ 200K</div>', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-mini-blue-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-black-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-white-select-2020_2.png\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/iphone-12-mini-green-select-2020_1.png', NULL, 0),
 (22, 40, NULL, 'Apple Watch Series 3 38mm GPS viền nhôm dây cao su', NULL, '4890000.0000', 0, ' <h2>Apple Watch Series 3 38mm GPS - viền nhôm dây cao su bền bỉ</h2>\n<p>Đồng hồ thông minh Apple Watch ngày càng được sử dụng phổ biến. Tuy nhiên, Apple Watch Series 3 38mm GPS có rất nhiều phiên bản viền và dây đeo khác nhau. Phiên bản đồng hồ Apple Watch Series 3 38mm GPS viền nhôm dây cao su có điểm gì nổi bật?</p>\n\n<h3>Viền nhôm sang trọng – dây cao su bền bỉ</h3>\n<p>Apple Watch Series 3 38mm GPS được thiết kế với khung viền nhôm sang trọng. Khung nhôm cứng cáp, được làm nhám mờ hạn chế bám mồ hôi, vân tay giúp đồng hồ luôn sạch sẽ.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-05-27_17-20-431_1_1_.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-05-27_17-20-431_1_1_.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-silver-sport-white-nc-s3-gallery2_2_1.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-silver-sport-white-nc-s3-gallery1_2_5.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-space-nike-anth-black-nc-gallery2_geo_us_2.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/4/2/42-alu-space-nike-anth-black-nc-gallery1_geo_us_2.jpg', NULL, 0),
 (23, 41, NULL, 'Samsung Galaxy Watch Active 2', NULL, '5500000.0000', 0, '<h3>Đồng hồ thông minh Galaxy Watch Active 2: Thiết kế thời trang, giải pháp theo dõi sức khỏe tuyệt vời</h3>\n<p>Galaxy Watch Active 2 là thế hệ thứ 2 của dòng đồng hồ Active đến từ Samsung. Sản phẩm là một bản nâng cấp hoàn hảo so với người tiền nhiệm khi được trang bị và cải tiến nhiều công nghệ hiện đại, phục vụ tối ưu cho nhu cầu sử dụng của người dùng. Ngoài ra bạn cũng có thể tham khảo thêm đồng hồ thông minh Samsung Galaxy Watch 3 mới nhất, sắp được lên kệ tại Cellphones. \n</p>\n', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/5/1565204800_1491590.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/5/1565204800_1491590.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491588.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491589.jpg\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/1/5/1565204800_1491590.jpg', NULL, 0),
-(25, 38, NULL, 'Apple iPad Pro 11 2020 Wi-Fi 128GB Chính Hãng Apple Việt Nam', 0, '20490000.0000', 0, '<h3>iPad Pro 11  – Sự nâng cấp đáng giá sau hai năm</h3>\r\n<p>Bắt đầu được giới thiệu từ lần đầu vào năm 2015, iPad Pro là dòng tablet cao cấp nhất của Apple. Ở phiên bản 2018, iPad Pro đã sở hữu màn hình viền mỏng cùng hệ thống nhận diện khuôn mặt Face ID. Cho đến hai năm sau, Apple cho ra mắt iPad Pro 11 WiFi 2020 128gb được nâng cấp mạnh mẽ hơn về hiệu năng và camera.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/ipad-pro-11-select-cell-spacegray-202003-removebg-preview.png.jpg', NULL, 0),
-(35, 58, NULL, 'Blue Round-Neck Tshirt', 55, '220000.0000', 0, 'Being one of the trusted firms in the industry, we are highly engaged in providing a unique range of Mens Sky Blue Round Neck T Shirt.', NULL, 0, NULL, 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/tshirts/1.jpg', 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/tshirts/1.jpg\r\nhttp://localhost/MVC_shop_test/src/views/pages/index/images/shop/tshirts/1-1.jpg\r\nhttp://localhost/MVC_shop_test/uploads/61GvePNJfnL._UX679_.jpg', NULL, 0),
-(38, 59, NULL, 'Men Grey Casual Shoes', 33, '1000000.0000', 0, 'xxx', NULL, 0, NULL, 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/shoes/2.jpg', 'http://localhost/MVC_shop_test/src/views/pages/index/images/shop/shoes/2.jpg\r\nhttp://localhost/MVC_shop_test/src/views/pages/index/images/shop/shoes/2-1.jpg\r\nhttp://localhost/MVC_shop_test/uploads/6fedef2921836883a4216a777f47f5b5.jpg', NULL, 0);
+(25, 38, NULL, 'Apple iPad Pro 11 2020 Wi-Fi 128GB Chính Hãng Apple Việt Nam', 0, '20490000.0000', 0, '<h3>iPad Pro 11  – Sự nâng cấp đáng giá sau hai năm</h3>\r\n<p>Bắt đầu được giới thiệu từ lần đầu vào năm 2015, iPad Pro là dòng tablet cao cấp nhất của Apple. Ở phiên bản 2018, iPad Pro đã sở hữu màn hình viền mỏng cùng hệ thống nhận diện khuôn mặt Face ID. Cho đến hai năm sau, Apple cho ra mắt iPad Pro 11 WiFi 2020 128gb được nâng cấp mạnh mẽ hơn về hiệu năng và camera.</p>', NULL, 0, NULL, 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg', 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg\r\nhttps://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/1000x/040ec09b1e35df139433887a97daa66f/i/p/ipad-pro-11-select-cell-spacegray-202003-removebg-preview.png.jpg', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -394,7 +399,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `remote_addr`, `reg_date`, `last_login`, `last_ip`, `last_session`, `user_agent`, `last_user_agent`, `is_admin`) VALUES
-(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'Tam LE', '0979029556', 'Tay Ho Ha Noi Ha Noi', '::1', '2020-11-19 06:28:20', NULL, '::1', '3162mfgftq8gtgtsbkk3vu5vsi', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1');
+(1, 'giaythuytinh176', '$2y$10$xYIH7FhbOZ.mZBXrQ4VycOVt4ajBMO8B.EWRQL3zZRO4ShtKugVKy', 'giaythuytinh176@gmail.com', 'Tam LE', '0979029556', 'hn ', '::1', '2020-11-19 06:28:20', NULL, '::1', 'chon631lt72f3acakqb25oe7o4', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36', NULL, '1'),
+(4, 'gtt176', '$2y$10$9v.KBpM.zE3nApPDgwFfLej8PAyA9S8xSpCo4FiiVvNudZ1sAMUju', 'giaythuytinh176@hotmail.com', 'Tam LE', '0979029556', 'HN ', '::1', '2020-12-10 12:36:12', NULL, '::1', 'chon631lt72f3acakqb25oe7o4', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', NULL, '0'),
+(5, 'abcde', '$2y$10$W5Hvb6njhGx/Z7IorPVtDenfHEXyvviYCejPGtVyglISNZZOT68pm', 'giaythuytinh176@live.com', 'tam le', '0979029556', NULL, '::1', '2020-12-10 16:41:08', NULL, '::1', 'chon631lt72f3acakqb25oe7o4', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', NULL, '0');
 
 -- --------------------------------------------------------
 
@@ -548,13 +555,13 @@ ALTER TABLE `languages`
 -- AUTO_INCREMENT for table `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `orderNumber` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `orderNumber` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderNumber` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `orderNumber` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `parent_category`
@@ -566,13 +573,13 @@ ALTER TABLE `parent_category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `sub_product_category`
@@ -584,7 +591,7 @@ ALTER TABLE `sub_product_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
