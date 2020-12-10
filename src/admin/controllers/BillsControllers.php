@@ -20,6 +20,15 @@ class BillsControllers
         return $this->billsmodels->getListOrders();
     }
 
+
+    public function getPriceDiscountByID($product_id, $ordernumber)
+    {
+        $qty = $this->billsmodels->getOrderDetailByOrderNumber($product_id, $ordernumber)['qty'];
+        $discount = $this->billsmodels->getPriceDiscountByID($product_id)['discount'];
+        $price = $this->billsmodels->getPriceDiscountByID($product_id)['price'];
+        return ((100 - $discount) * $price * $qty) / 100;
+    }
+
     public function getOrderDetail($ordernumber)
     {
         return $this->billsmodels->getOrderDetail($ordernumber);
@@ -48,14 +57,17 @@ class BillsControllers
             $sout .= '   <tr>
                                 <td class="success">DH-' . $ordernumber . '</td>
                                 <td class="success">';
+            $product_id_list = [];
             if (strpos($detail['ListProductEachOrder'], ',') !== false) {
                 $product_list = [];
                 foreach (explode(",", $detail['ListProductEachOrder']) as $val) {
                     $product_list[] = (new \MVC\controllers\ProductControllers)->getProductDetailbyID($val)['ProductName'];
+                    $product_id_list[] = $val;
                 }
                 $sout .= implode("</br>\n", $product_list);
 
             } else {
+                $product_id_list[] = $detail['ListProductEachOrder'];
                 $sout .= (new \MVC\controllers\ProductControllers)->getProductDetailbyID($detail['ListProductEachOrder'])['ProductName'];
             }
             $sout .= '                     
@@ -76,20 +88,23 @@ class BillsControllers
             $sout .= '                     
                                 </td> 
                                 <td class="success">';
-            if (strpos($detail['ListAmount'], ',') !== false) {
+            if (strpos($detail['ListProductEachOrder'], ',') !== false) {
                 $amount_list = [];
-                foreach (explode(",", $detail['ListAmount']) as $val) {
-                    $amount_list[] = number_format($val) . " đ";
+                $TotalPrice = [];
+                foreach (explode(",", $detail['ListProductEachOrder']) as $val) {
+                    $TotalPrice[] = $this->getPriceDiscountByID($val, $ordernumber);
+                    $amount_list[] = number_format($this->getPriceDiscountByID($val, $ordernumber)) . " đ";
                 }
+                $TotalPrice = array_sum($TotalPrice);
                 $sout .= implode("</br>\n", $amount_list);
-
             } else {
-                $sout .= number_format($detail['ListAmount']) . " đ";
+                $TotalPrice = $this->getPriceDiscountByID($detail['ListProductEachOrder'], $ordernumber);
+                $sout .= number_format($TotalPrice) . " đ";
             }
             $sout .= '                     
                                 </td>   
                                 <td>
-                                    ' . number_format($detail['TotalEachOrder']) . ' đ 
+                                    ' . number_format($TotalPrice) . ' đ 
                                 </td>
                             </tr>';
             $sout .= '</tbody>
@@ -114,7 +129,7 @@ class BillsControllers
                                 <th style="width: 7%" class="success">Order Number</th>
                                 <th style="width: 10%" class="success">Username</th>
                                 <th style="width: 15%" class="success">Order Date</th>
-                                <th style="width: 15%" class="warning">Shipped Date</th>
+                                <th style="width: 15%" class="danger">Shipped Date</th>
                                 <th style="width: 5%" class="warning"></th>
                             </tr>
                             </thead>
