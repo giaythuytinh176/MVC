@@ -31,7 +31,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class='table-responsive'>
-                        <?php echo \MVC\admin\controllers\BillsControllers::PrintListOrders();?>
+                        <?php echo \MVC\admin\controllers\BillsControllers::PrintListOrders(); ?>
                     </div>
                 </div>
             </div>

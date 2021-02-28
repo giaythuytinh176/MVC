@@ -1,8 +1,8 @@
 <?php require_once "./src/views/pages/blocks/css.php"; ?>
 
-    <!-- Document Title
-    ============================================= -->
-    <title>Shop | Shop by Tam Le</title>
+<!-- Document Title
+============================================= -->
+<title>Shop | Shop by Tam Le</title>
 
 </head>
 

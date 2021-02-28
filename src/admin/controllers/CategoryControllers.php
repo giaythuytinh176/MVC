@@ -476,7 +476,7 @@ class CategoryControllers
                                     <select id="category_id" disabled>';
             if (!empty((new self)->getALlCategoryProduct())) {
                 foreach ((new self)->getALlCategoryProduct() as $cate) {
-                    $sout .= '<option value="' . $cate['category_id'] . '"'.(($cate['category_id'] == $SubCategoryDetail['spc_category_id']) ? "selected" : '').'>' . $cate['title'] . '</option>';
+                    $sout .= '<option value="' . $cate['category_id'] . '"' . (($cate['category_id'] == $SubCategoryDetail['spc_category_id']) ? "selected" : '') . '>' . $cate['title'] . '</option>';
                 }
             }
             $sout .= '

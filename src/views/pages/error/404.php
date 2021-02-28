@@ -1,8 +1,8 @@
 <?php require_once "./src/views/pages/blocks/css.php"; ?>
 
-    <!-- Document Title
-    ============================================= -->
-    <title>404 | Tam Le</title>
+<!-- Document Title
+============================================= -->
+<title>404 | Tam Le</title>
 
 </head>
 
@@ -50,7 +50,8 @@
                             <span>Try searching for the best match or browse the links below:</span>
                         </div>
 
-                        <form action="<?php echo \MVC\controllers\UrlControllers::url("search"); ?>" method="post" class="mb-5">
+                        <form action="<?php echo \MVC\controllers\UrlControllers::url("search"); ?>" method="post"
+                              class="mb-5">
                             <div class="input-group input-group-lg">
                                 <input type="text" class="form-control" name="q" placeholder="Search for Pages...">
                                 <div class="input-group-append">

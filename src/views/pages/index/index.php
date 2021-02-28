@@ -1,54 +1,54 @@
 <?php require_once "./src/views/pages/blocks/css.php"; ?>
 
-    <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/settings.css"
-          media="screen"/>
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/layers.css">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/navigation.css">
+<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+<link rel="stylesheet" type="text/css"
+      href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/settings.css"
+      media="screen"/>
+<link rel="stylesheet" type="text/css"
+      href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/layers.css">
+<link rel="stylesheet" type="text/css"
+      href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/src/views/pages/index/include/rs-plugin/css/navigation.css">
 
-    <!-- Document Title
-    ============================================= -->
-    <title>Home - Shop | Tam Le</title>
+<!-- Document Title
+============================================= -->
+<title>Home - Shop | Tam Le</title>
 
-    <style>
+<style>
 
-        .revo-slider-emphasis-text {
-            font-size: 58px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            font-family: 'Poppins', sans-serif;
-            padding: 15px 20px;
-            border-top: 2px solid #FFF;
-            border-bottom: 2px solid #FFF;
-        }
+    .revo-slider-emphasis-text {
+        font-size: 58px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-family: 'Poppins', sans-serif;
+        padding: 15px 20px;
+        border-top: 2px solid #FFF;
+        border-bottom: 2px solid #FFF;
+    }
 
-        .revo-slider-desc-text {
-            font-size: 20px;
-            font-family: 'Lato', sans-serif;
-            width: 650px;
-            text-align: center;
-            line-height: 1.5;
-        }
+    .revo-slider-desc-text {
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        width: 650px;
+        text-align: center;
+        line-height: 1.5;
+    }
 
-        .revo-slider-caps-text {
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            font-family: 'Poppins', sans-serif;
-        }
+    .revo-slider-caps-text {
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .tp-video-play-button {
-            display: none !important;
-        }
+    .tp-video-play-button {
+        display: none !important;
+    }
 
-        .tp-caption {
-            white-space: nowrap;
-        }
+    .tp-caption {
+        white-space: nowrap;
+    }
 
-    </style>
+</style>
 
 </head>
 
@@ -251,7 +251,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"
-                             style=" color: #333; max-width: 550px; white-space: normal;">MacBook Pro 13 Touch Bar M1 512GB 2020
+                             style=" color: #333; max-width: 550px; white-space: normal;">MacBook Pro 13 Touch Bar M1
+                            512GB 2020
                             &amp; mạnh mẽ, ấn tượng.
                         </div>
 
@@ -267,8 +268,9 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/macbook"
-                                                               class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
+                             data-endeasing="Power4.easeIn"><a
+                                    href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/macbook"
+                                    class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
                                 <i class="icon-angle-right"></i></a></div>
 
                     </li>
@@ -306,7 +308,8 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn" style=" color: #333;">Điện thoại iPhone 12 Pro Max: Nâng tầm đẳng cấp sử dụng
+                             data-endeasing="Power4.easeIn" style=" color: #333;">Điện thoại iPhone 12 Pro Max: Nâng tầm
+                            đẳng cấp sử dụng
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-emphasis-text p-0 border-0"
@@ -321,7 +324,8 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">Điện thoại iPhone 12 Pro Max
+                             data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">Điện thoại iPhone
+                            12 Pro Max
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme revo-slider-desc-text text-left"
@@ -337,7 +341,8 @@
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
                              data-endeasing="Power4.easeIn"
-                             style=" color: #333; max-width: 550px; white-space: normal;">Màn hình 6.7 inches Super Retina XDR .
+                             style=" color: #333; max-width: 550px; white-space: normal;">Màn hình 6.7 inches Super
+                            Retina XDR .
                         </div>
 
                         <div class="tp-caption ltl tp-resizeme"
@@ -352,8 +357,9 @@
                              data-elementdelay="0.01"
                              data-endelementdelay="0.1"
                              data-endspeed="1000"
-                             data-endeasing="Power4.easeIn"><a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/dien-thoai/apple/iphone12"
-                                                               class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
+                             data-endeasing="Power4.easeIn"><a
+                                    href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/dien-thoai/apple/iphone12"
+                                    class="button button-border button-large button-rounded text-right m-0"><span>Start Shopping</span>
                                 <i class="icon-angle-right"></i></a></div>
 
                         <div class="tp-caption utb tp-resizeme revo-slider-caps-text text-uppercase"
@@ -390,17 +396,20 @@
 
                         <div class="row align-items-stretch gutter-20 h-100">
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
-                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/asus" class="grid-inner d-block h-100"
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/asus"
+                                   class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_asus-zenbook-duo-ux481fl-bm049t.jpg');"></a>
                             </div>
 
                             <div class="col-md-6 min-vh-25 min-vh-md-0">
-                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/nha-thong-minh/may-hut-bui" class="grid-inner d-block h-100"
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/nha-thong-minh/may-hut-bui"
+                                   class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/450x/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-pro-styj02ym-mijia-mi-robot-vacuum-mop-p-sweeping-cleaner-2-lds-radar-app-control.jpg_q50.jpg'); background-position: right center;"></a>
                             </div>
 
                             <div class="col-md-12 min-vh-25 min-vh-md-0 pb-md-0">
-                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/microsoft-surface" class="grid-inner d-block h-100"
+                                <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-xach-tay/microsoft-surface"
+                                   class="grid-inner d-block h-100"
                                    style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/u/surface-pro-7__0003_13.jpg');"></a>
                             </div>
                         </div>
@@ -408,7 +417,8 @@
                     </div>
 
                     <div class="col-md-4 min-vh-50">
-                        <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-bang" class="grid-inner d-block h-100"
+                        <a href="<?php echo \MVC\controllers\UrlControllers::url("") ?>/category/may-tinh-bang"
+                           class="grid-inner d-block h-100"
                            style="background-image: url('https://cdn.cellphones.com.vn/media/catalog/product/cache/1/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-silver-202003-removebg-preview.png.jpg'); background-position: center top;"></a>
                     </div>
                 </div>

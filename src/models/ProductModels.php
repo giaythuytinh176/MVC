@@ -36,7 +36,7 @@ class ProductModels
 
     public function getListProductinMainCategory($data)
     {
-        return $this->CRUDmodels->select2("SELECT * FROM product LEFT JOIN product_category pc on product.category_id = pc.category_id", $data, "All", );
+        return $this->CRUDmodels->select2("SELECT * FROM product LEFT JOIN product_category pc on product.category_id = pc.category_id", $data, "All",);
     }
 
     public function getAllElementbySubCateID($data)

@@ -1,8 +1,8 @@
 <?php require_once "./src/views/pages/blocks/css.php"; ?>
 
-    <!-- Document Title
-    ============================================= -->
-    <title>Login- Register | Tam Le</title>
+<!-- Document Title
+============================================= -->
+<title>Login- Register | Tam Le</title>
 
 </head>
 
@@ -87,7 +87,8 @@
 
                                     <div class="col-12 form-group">
                                         <label for="register-form-phone">Phone:</label>
-                                        <input type="number" id="register-form-phone" name="register-form-phone" value=""
+                                        <input type="number" id="register-form-phone" name="register-form-phone"
+                                               value=""
                                                class="form-control"/>
                                     </div>
 

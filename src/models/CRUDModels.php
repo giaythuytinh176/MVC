@@ -22,7 +22,8 @@ class CRUDModels extends Database
         $this->crud = parent::getInstance();
     }
 
-    public function lastInsertId(){
+    public function lastInsertId()
+    {
         return $this->crud->lastInsertId();
     }
 
@@ -68,7 +69,7 @@ class CRUDModels extends Database
             foreach (array_keys($data) as $val) {
                 $list_condition[] = "{$val}" . (($like == 'LIKE') ? " LIKE" : " =") . " :{$val}";
             }
-            $condition .= (sizeof($data) == 1) ? $list_condition[0] : implode(" ".(($like == 'LIKE') ? " OR " : " AND ")." ", $list_condition);
+            $condition .= (sizeof($data) == 1) ? $list_condition[0] : implode(" " . (($like == 'LIKE') ? " OR " : " AND ") . " ", $list_condition);
         }
         return $condition;
     }

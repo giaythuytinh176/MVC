@@ -7,9 +7,11 @@
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET
+SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET
+time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,17 +29,18 @@ SET time_zone = "+00:00";
 -- Stand-in structure for view `allcatesubparent`
 -- (See below for the actual view)
 --
-CREATE TABLE `allcatesubparent` (
-`spc_category_id` int
-,`spc_category_sub` int
-,`spc_title` varchar(255)
-,`pc_category_id` int
-,`pc_title` varchar(255)
-,`pc_code` text
-,`p_category_code` varchar(255)
-,`p_category_title` varchar(255)
-,`parent_id` int
-,`codeSUB` varchar(255)
+CREATE TABLE `allcatesubparent`
+(
+    `spc_category_id`  int,
+    `spc_category_sub` int,
+    `spc_title`        varchar(255),
+    `pc_category_id`   int,
+    `pc_title`         varchar(255),
+    `pc_code`          text,
+    `p_category_code`  varchar(255),
+    `p_category_title` varchar(255),
+    `parent_id`        int,
+    `codeSUB`          varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -46,23 +49,27 @@ CREATE TABLE `allcatesubparent` (
 -- Table structure for table `languages`
 --
 
-CREATE TABLE `languages` (
-  `ID` int NOT NULL,
-  `english_Lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `vietnamese_lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `french_lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+CREATE TABLE `languages`
+(
+    `ID`              int NOT NULL,
+    `english_Lang`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+    `vietnamese_lang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+    `french_lang`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `languages`
 --
 
-INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`) VALUES
-(1, 'Headquarters', 'Trụ sở chính', 'Quartier général'),
-(2, 'Phone', 'Số điện thoại', 'Téléphone'),
-(3, 'RECENT POSTS', 'Bài viết gần đây', 'MESSAGES RÉCENTS'),
-(4, 'Home', 'Trang chủ', 'Page d\'accueil'),
-(5, 'We believe in <strong>cheapest</strong>, <strong>Beautiful</strong> &amp; <strong>Good price</strong>.', 'Chúng tôi tin rằng <strong>rẻ nhất</strong>, <strong>đẹp</strong> &amp; <strong>giá tốt</strong>.', 'Nous croyons au <strong>prix le moins</strong>, <strong>cher</strong> &amp; <strong>beau et bon</strong>.'),
+INSERT INTO `languages` (`ID`, `english_Lang`, `vietnamese_lang`, `french_lang`)
+VALUES (1, 'Headquarters', 'Trụ sở chính', 'Quartier général'),
+       (2, 'Phone', 'Số điện thoại', 'Téléphone'),
+       (3, 'RECENT POSTS', 'Bài viết gần đây', 'MESSAGES RÉCENTS'),
+       (4, 'Home', 'Trang chủ', 'Page d\'accueil'),
+(5, 'We believe in <strong>cheapest</strong>, <strong>Beautiful</ strong> & amp;
+<strong>Good price</strong>.', 'Chúng tôi tin rằng <strong>rẻ nhất</strong>, <strong>đẹp</strong> &amp;
+<strong>giá tốt</strong>.', 'Nous croyons au <strong>prix le moins</strong>, <strong>cher</strong> &amp;
+<strong>beau et bon</strong>.'),
 (6, 'Welcome', 'Xin chào', 'Bienvenue'),
 (7, 'Logout', 'Thoát', 'Se déconnecter'),
 (8, 'Username', 'Tài khoản', 'Nom d\'utilisateur'),

@@ -71,7 +71,7 @@ class CategoryModels
 
     public function UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id)
     {
-        $this->CRUDmodels->update('product_category', ['title' => $brand_title, 'code' => $brand_code,'parent_id' => $parent_id, ], ['category_id' => $category_id]);
+        $this->CRUDmodels->update('product_category', ['title' => $brand_title, 'code' => $brand_code, 'parent_id' => $parent_id,], ['category_id' => $category_id]);
         return "Updated Brand {$brand_title}.";
     }
 
