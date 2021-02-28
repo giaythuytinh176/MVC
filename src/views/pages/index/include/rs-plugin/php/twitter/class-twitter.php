@@ -64,31 +64,6 @@ class TP_twitter
     }
 
     /**
-     * Get Tweets
-     *
-     * @param string $twitter_account Twitter account without trailing @ char
-     * @since    1.0.0
-     */
-    public function get_public_photos($twitter_account)
-    {
-        $twitter = new \TwitterPhp\RestApi($this->consumer_key, $this->consumer_secret, $this->access_token, $this->access_token_secret);
-        /*
-         * Connect as application
-         * https://dev.twitter.com/docs/auth/application-only-auth
-         */
-        $connection = $twitter->connectAsApplication();
-
-        /*
-         * Collection of the most recent Tweets posted by the user indicated by the screen_name, without replies
-         * https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
-         */
-        $tweets = $connection->get('/statuses/user_timeline', array('screen_name' => $twitter_account, 'entities' => 1, 'trim_user' => 0, 'exclude_replies' => 'true'));
-        //var_dump($tweets);
-        return $tweets;
-    }
-
-
-    /**
      * Find Key in array and return value (multidim array possible)
      *
      * @param string $key Needle
@@ -121,6 +96,30 @@ class TP_twitter
     public static function makeClickableLinks($s)
     {
         return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $s);
+    }
+
+    /**
+     * Get Tweets
+     *
+     * @param string $twitter_account Twitter account without trailing @ char
+     * @since    1.0.0
+     */
+    public function get_public_photos($twitter_account)
+    {
+        $twitter = new \TwitterPhp\RestApi($this->consumer_key, $this->consumer_secret, $this->access_token, $this->access_token_secret);
+        /*
+         * Connect as application
+         * https://dev.twitter.com/docs/auth/application-only-auth
+         */
+        $connection = $twitter->connectAsApplication();
+
+        /*
+         * Collection of the most recent Tweets posted by the user indicated by the screen_name, without replies
+         * https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
+         */
+        $tweets = $connection->get('/statuses/user_timeline', array('screen_name' => $twitter_account, 'entities' => 1, 'trim_user' => 0, 'exclude_replies' => 'true'));
+        //var_dump($tweets);
+        return $tweets;
     }
 
 }

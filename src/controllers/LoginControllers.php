@@ -22,18 +22,13 @@ class LoginControllers extends RenderControllers
         }
     }
 
-    public function logAcc($params): void
+    /**
+     * @param $params
+     */
+    public function logOut($params): void
     {
-        $loginUser = \MVC\libs\LoginUser::checkLoginUser();
-        if (!empty($loginUser['errors'])) {
-            $this->view("login/login-register", [$loginUser]);
-        } else {
-            $loginUser = (new UserModels())->validateUser();
-            if (empty($loginUser['errors'])) {
-                \MVC\libs\Cookie::setRememberMe();
-                \MVC\libs\Cookie::saveSession();
-                $this->view("login/login-register", [$loginUser, (!empty($params[0]) ? $params[0] : [])]);
-            } else $this->view("login/login-register", [$loginUser]);
+        if (!empty($params[0]) && $params[0] == "logout") {
+            $this->view("login/logout");
         }
     }
 
@@ -48,13 +43,18 @@ class LoginControllers extends RenderControllers
         }
     }
 
-    /**
-     * @param $params
-     */
-    public function logOut($params): void
+    public function logAcc($params): void
     {
-        if (!empty($params[0]) && $params[0] == "logout") {
-            $this->view("login/logout");
+        $loginUser = \MVC\libs\LoginUser::checkLoginUser();
+        if (!empty($loginUser['errors'])) {
+            $this->view("login/login-register", [$loginUser]);
+        } else {
+            $loginUser = (new UserModels())->validateUser();
+            if (empty($loginUser['errors'])) {
+                \MVC\libs\Cookie::setRememberMe();
+                \MVC\libs\Cookie::saveSession();
+                $this->view("login/login-register", [$loginUser, (!empty($params[0]) ? $params[0] : [])]);
+            } else $this->view("login/login-register", [$loginUser]);
         }
     }
 }

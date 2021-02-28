@@ -177,6 +177,15 @@ class CS_REST_Wrapper_Base
     }
 
     /**
+     * @return boolean True if the wrapper is using SSL.
+     * @access public
+     */
+    function is_secure()
+    {
+        return $this->_protocol === 'https';
+    }
+
+    /**
      * Refresh the current OAuth token using the current refresh token.
      * @access public
      */
@@ -214,59 +223,9 @@ class CS_REST_Wrapper_Base
         }
     }
 
-    /**
-     * @return boolean True if the wrapper is using SSL.
-     * @access public
-     */
-    function is_secure()
-    {
-        return $this->_protocol === 'https';
-    }
-
-    function put_request($route, $data, $call_options = array())
-    {
-        return $this->_call($call_options, CS_REST_PUT, $route, $data);
-    }
-
     function post_request($route, $data, $call_options = array())
     {
         return $this->_call($call_options, CS_REST_POST, $route, $data);
-    }
-
-    function delete_request($route, $call_options = array())
-    {
-        return $this->_call($call_options, CS_REST_DELETE, $route);
-    }
-
-    function get_request($route, $call_options = array())
-    {
-        return $this->_call($call_options, CS_REST_GET, $route);
-    }
-
-    function get_request_paged($route, $page_number, $page_size, $order_field, $order_direction,
-                               $join_char = '&')
-    {
-        if (!is_null($page_number)) {
-            $route .= $join_char . 'page=' . $page_number;
-            $join_char = '&';
-        }
-
-        if (!is_null($page_size)) {
-            $route .= $join_char . 'pageSize=' . $page_size;
-            $join_char = '&';
-        }
-
-        if (!is_null($order_field)) {
-            $route .= $join_char . 'orderField=' . $order_field;
-            $join_char = '&';
-        }
-
-        if (!is_null($order_direction)) {
-            $route .= $join_char . 'orderDirection=' . $order_direction;
-            $join_char = '&';
-        }
-
-        return $this->get_request($route);
     }
 
     /**
@@ -296,5 +255,46 @@ class CS_REST_Wrapper_Base
         }
 
         return new CS_REST_Wrapper_Result($call_result['response'], $call_result['code']);
+    }
+
+    function put_request($route, $data, $call_options = array())
+    {
+        return $this->_call($call_options, CS_REST_PUT, $route, $data);
+    }
+
+    function delete_request($route, $call_options = array())
+    {
+        return $this->_call($call_options, CS_REST_DELETE, $route);
+    }
+
+    function get_request_paged($route, $page_number, $page_size, $order_field, $order_direction,
+                               $join_char = '&')
+    {
+        if (!is_null($page_number)) {
+            $route .= $join_char . 'page=' . $page_number;
+            $join_char = '&';
+        }
+
+        if (!is_null($page_size)) {
+            $route .= $join_char . 'pageSize=' . $page_size;
+            $join_char = '&';
+        }
+
+        if (!is_null($order_field)) {
+            $route .= $join_char . 'orderField=' . $order_field;
+            $join_char = '&';
+        }
+
+        if (!is_null($order_direction)) {
+            $route .= $join_char . 'orderDirection=' . $order_direction;
+            $join_char = '&';
+        }
+
+        return $this->get_request($route);
+    }
+
+    function get_request($route, $call_options = array())
+    {
+        return $this->_call($call_options, CS_REST_GET, $route);
     }
 }

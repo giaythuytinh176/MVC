@@ -35,11 +35,6 @@ class ProductModels
         return $this->CRUDmodels->select("product", ['ProductName' => $product_name, 'category_id' => $category_id]);
     }
 
-    public function getAllCateOfProductbyID($id)
-    {
-        return $this->CRUDmodels->select("view_parentproduct_productcategory_subcategory", ['product_id' => $id]);
-    }
-
     public function ActiveOrDisableProduct($id)
     {
         if ($this->getAllCateOfProductbyID($id)['is_disabled'] == 0) {
@@ -49,6 +44,11 @@ class ProductModels
             $this->CRUDmodels->update('product', ['is_disabled' => '0'], ['product_id' => $id]);
             return "Enabled Product.";
         }
+    }
+
+    public function getAllCateOfProductbyID($id)
+    {
+        return $this->CRUDmodels->select("view_parentproduct_productcategory_subcategory", ['product_id' => $id]);
     }
 
     public function AddProduct($data)

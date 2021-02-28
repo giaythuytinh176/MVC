@@ -40,15 +40,6 @@ abstract class Base
     const METHOD_POST = 'POST';
 
     /**
-     * @param string $url
-     * @param array $parameters
-     * @param $method
-     * @return array
-     */
-    abstract protected function _buildHeaders($url, array $parameters = null, $method);
-
-
-    /**
      * Do GET request to Twitter api
      *
      * @link https://dev.twitter.com/docs/api/1.1
@@ -68,6 +59,40 @@ abstract class Base
         );
 
         return $this->_callApi($curlParams);
+    }
+
+    /**
+     * @param string $resource
+     * @return string
+     */
+    private function _prepareUrl($resource)
+    {
+        return self::TWITTER_API_URL . '/' . self::TWITTER_API_VERSION . '/' . ltrim($resource, '/') . '.json';
+    }
+
+    /**
+     * @param string $url
+     * @param array $parameters
+     * @param $method
+     * @return array
+     */
+    abstract protected function _buildHeaders($url, array $parameters = null, $method);
+
+    /**
+     * Call Twitter api
+     *
+     * @param array $params
+     * @return array
+     */
+    protected function _callApi(array $params)
+    {
+        $curl = curl_init();
+        curl_setopt_array($curl, $params);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, self::DEFAULT_TIMEOUT);
+        $response = curl_exec($curl);
+        return json_decode($response, true);
     }
 
     /**
@@ -91,31 +116,5 @@ abstract class Base
         );
 
         return $this->_callApi($curlParams);
-    }
-
-    /**
-     * Call Twitter api
-     *
-     * @param array $params
-     * @return array
-     */
-    protected function _callApi(array $params)
-    {
-        $curl = curl_init();
-        curl_setopt_array($curl, $params);
-        curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, self::DEFAULT_TIMEOUT);
-        $response = curl_exec($curl);
-        return json_decode($response, true);
-    }
-
-    /**
-     * @param string $resource
-     * @return string
-     */
-    private function _prepareUrl($resource)
-    {
-        return self::TWITTER_API_URL . '/' . self::TWITTER_API_VERSION . '/' . ltrim($resource, '/') . '.json';
     }
 }

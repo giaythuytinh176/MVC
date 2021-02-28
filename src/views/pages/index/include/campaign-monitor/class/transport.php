@@ -301,19 +301,6 @@ class CS_REST_SocketTransport extends CS_REST_BaseTransport
         }
     }
 
-    function _get_status_code($headers)
-    {
-        if (preg_match('%^\s*HTTP/1\.1 (?P<code>\d{3})%', $headers, $regs)) {
-            $this->_log->log_message('Got HTTP Status Code: ' . $regs['code'],
-                get_class($this), CS_REST_LOG_VERBOSE);
-            return $regs['code'];
-        }
-
-        $this->_log->log_message('Failed to get HTTP status code from request headers <pre>' . $headers . '</pre>',
-            get_class($this), CS_REST_LOG_ERROR);
-        trigger_error('Failed to get HTTP status code from request', E_USER_ERROR);
-    }
-
     function _build_request($call_options, $host, $path, $accept_gzip)
     {
         $request_auth_details = '';
@@ -354,5 +341,18 @@ class CS_REST_SocketTransport extends CS_REST_BaseTransport
         }
 
         return $request . "\n\n";
+    }
+
+    function _get_status_code($headers)
+    {
+        if (preg_match('%^\s*HTTP/1\.1 (?P<code>\d{3})%', $headers, $regs)) {
+            $this->_log->log_message('Got HTTP Status Code: ' . $regs['code'],
+                get_class($this), CS_REST_LOG_VERBOSE);
+            return $regs['code'];
+        }
+
+        $this->_log->log_message('Failed to get HTTP status code from request headers <pre>' . $headers . '</pre>',
+            get_class($this), CS_REST_LOG_ERROR);
+        trigger_error('Failed to get HTTP status code from request', E_USER_ERROR);
     }
 }

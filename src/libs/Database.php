@@ -8,11 +8,11 @@ use PDOException;
 
 class Database
 {
-    private static $instance = null;
     const HOST_DB = "localhost";
     const USER_DB = "root";
     const DBNAME_DB = "mvc_shop";
     const PASSWORD_DB = "0979029556";
+    private static $instance = null;
 
     public static function getInstance()
     {

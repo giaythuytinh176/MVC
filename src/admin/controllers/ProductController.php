@@ -18,85 +18,6 @@ class ProductController
         $this->productmodels = new ProductModels();
     }
 
-    public function DeleteProduct($id)
-    {
-        $ProductIdData = $this->productmodels->getAllCateOfProductbyID($id);
-        unlink(str_replace("http://localhost/MVC_shop_test/", "", $ProductIdData['img_link']));
-        $this->productmodels->DeleteProduct($id);
-    }
-
-    public function getAllProductbyView()
-    {
-        $data = $this->productmodels->getAllProductbyView();
-        if (empty($data)) {
-            return ["errors" => "Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getAllCateOfProductbyID($id)
-    {
-        $data = $this->productmodels->getAllCateOfProductbyID($id);
-        if (empty($data)) {
-            return ["errors" => "Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function UpdateProductbyID($id, $data)
-    {
-        $this->productmodels->UpdateProductbyID($id, $data);
-    }
-
-    public function ActiveOrDisableProduct($id)
-    {
-        return $this->productmodels->ActiveOrDisableProduct($id);
-    }
-
-    public function getAllProduct()
-    {
-        $data = $this->productmodels->getAllProduct();
-        if (empty($data)) {
-            return ["errors" => "Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function InsertProduct($post)
-    {
-        $product_name = $post['product_name'];
-        $parent_id = $post['parent_id'];
-        $category_id = $post['category_id'];
-        $category_sub = $post['category_sub'] ? $post['category_sub'] : NULL;
-        $category_sub = (strtolower($category_sub) === 'null') ? NULL : $category_sub;
-        $category_sub = (empty($category_sub)) ? NULL : $category_sub;
-        $price = $post['price'];
-        $discount = $post['discount'];
-        $img_link = $post['img_link'];
-        $img_list = $post['img_list'];
-        $description = $post['description'];
-        $stock = $post['stock'];
-        $stmt1 = $this->productmodels->getProductbyNameID($product_name, $category_id);
-        if (!empty($stmt1)) {
-            return "Product Name is existed.";
-        }
-        $data = ['ProductName' => $product_name,
-            'category_id' => $category_id,
-            'category_sub' => $category_sub,
-            'price' => $price,
-            'discount' => $discount,
-            'img_link' => $img_link,
-            'img_list' => $img_list,
-            'description' => $description,
-            'Stock' => $stock,
-        ];
-        $this->productmodels->AddProduct($data);
-        return "Added Product {$product_name}.";
-    }
-
     public static function PrintSubmitEditProduct($data)
     {
         if (!empty($_POST['btn'])) {
@@ -125,6 +46,11 @@ class ProductController
                 (new \MVC\controllers\RenderControllers())->redirectAfterSecondPage("admin/products", 3);
             }
         }
+    }
+
+    public function UpdateProductbyID($id, $data)
+    {
+        $this->productmodels->UpdateProductbyID($id, $data);
     }
 
     public static function PrintEditProduct($data)
@@ -209,6 +135,16 @@ class ProductController
             $sout .= '<div class="alert alert-danger" role="alert">Product ID not found.</div>';
         }
         return $sout;
+    }
+
+    public function getAllCateOfProductbyID($id)
+    {
+        $data = $this->productmodels->getAllCateOfProductbyID($id);
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
     }
 
     public static function PrintAddProduct()
@@ -380,6 +316,70 @@ class ProductController
 //                                                <button id="select-invert" class="btn button-default">Invert</button>
 //                                                <button id="selected" class="btn button-default">GetSelected</button>
         return $sout;
+    }
+
+    public function getAllProductbyView()
+    {
+        $data = $this->productmodels->getAllProductbyView();
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function DeleteProduct($id)
+    {
+        $ProductIdData = $this->productmodels->getAllCateOfProductbyID($id);
+        unlink(str_replace("http://localhost/MVC_shop_test/", "", $ProductIdData['img_link']));
+        $this->productmodels->DeleteProduct($id);
+    }
+
+    public function ActiveOrDisableProduct($id)
+    {
+        return $this->productmodels->ActiveOrDisableProduct($id);
+    }
+
+    public function getAllProduct()
+    {
+        $data = $this->productmodels->getAllProduct();
+        if (empty($data)) {
+            return ["errors" => "Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function InsertProduct($post)
+    {
+        $product_name = $post['product_name'];
+        $parent_id = $post['parent_id'];
+        $category_id = $post['category_id'];
+        $category_sub = $post['category_sub'] ? $post['category_sub'] : NULL;
+        $category_sub = (strtolower($category_sub) === 'null') ? NULL : $category_sub;
+        $category_sub = (empty($category_sub)) ? NULL : $category_sub;
+        $price = $post['price'];
+        $discount = $post['discount'];
+        $img_link = $post['img_link'];
+        $img_list = $post['img_list'];
+        $description = $post['description'];
+        $stock = $post['stock'];
+        $stmt1 = $this->productmodels->getProductbyNameID($product_name, $category_id);
+        if (!empty($stmt1)) {
+            return "Product Name is existed.";
+        }
+        $data = ['ProductName' => $product_name,
+            'category_id' => $category_id,
+            'category_sub' => $category_sub,
+            'price' => $price,
+            'discount' => $discount,
+            'img_link' => $img_link,
+            'img_list' => $img_list,
+            'description' => $description,
+            'Stock' => $stock,
+        ];
+        $this->productmodels->AddProduct($data);
+        return "Added Product {$product_name}.";
     }
 
 }

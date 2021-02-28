@@ -14,16 +14,6 @@ class CategoryModels
         $this->CRUDmodels = new CRUDModels();
     }
 
-    public function getALlCategoryParent()
-    {
-        return $this->CRUDmodels->select2("SELECT * FROM parent_category ORDER BY OrderParent", "", 'All');
-    }
-
-    public function getBrandByID($id)
-    {
-        return $this->CRUDmodels->select2("SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id", ['category_id' => $id]);
-    }
-
     public function getAllBrand()
     {
         return $this->CRUDmodels->select2("SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id ORDER BY pc.sort_order", "", "All");
@@ -44,19 +34,9 @@ class CategoryModels
         return $this->CRUDmodels->select("allcatesubparent", ['spc_category_sub' => $ID]);
     }
 
-    public function getALlCategoryProduct()
-    {
-        return $this->CRUDmodels->select2("SELECT * FROM product_category ORDER BY sort_order", "", "All");
-    }
-
     public function ActiveOrDisableCategory($id, int $status)
     {
         $this->CRUDmodels->update('parent_category', ['is_disabled' => $status], ['parent_id' => $id]);
-    }
-
-    public function getAllCateParentbyID($id)
-    {
-        return $this->CRUDmodels->select("parent_category", ['parent_id' => $id]);
     }
 
     public function getALlCategoryProductFromParentID($parent_id)
@@ -108,6 +88,16 @@ class CategoryModels
         return "Added Brand {$title}.";
     }
 
+    public function getAllCateParentbyID($id)
+    {
+        return $this->CRUDmodels->select("parent_category", ['parent_id' => $id]);
+    }
+
+    public function getALlCategoryProduct()
+    {
+        return $this->CRUDmodels->select2("SELECT * FROM product_category ORDER BY sort_order", "", "All");
+    }
+
     public function AddSubCate($title, $code, $cate_id, $parent_id)
     {
         $stmt1 = $this->CRUDmodels->select("sub_product_category", ['title' => $title, 'category_id' => $cate_id]);
@@ -136,14 +126,9 @@ class CategoryModels
         return "Added Category {$title}.";
     }
 
-    public function getSubByID($id)
+    public function getALlCategoryParent()
     {
-        $data = $this->CRUDmodels->select("sub_product_category", ['category_sub' => $id]);
-        if (empty($data)) {
-            return ["errors" => "Sub Category not found."];
-        } else {
-            return $data;
-        }
+        return $this->CRUDmodels->select2("SELECT * FROM parent_category ORDER BY OrderParent", "", 'All');
     }
 
     public function ActiveOrDisableBrand($id)
@@ -157,6 +142,11 @@ class CategoryModels
         }
     }
 
+    public function getBrandByID($id)
+    {
+        return $this->CRUDmodels->select2("SELECT * FROM product_category pc LEFT JOIN parent_category pac on pc.parent_id = pac.parent_id", ['category_id' => $id]);
+    }
+
     public function ActiveOrDisableSubCate($id)
     {
         if ($this->getSubByID($id)['is_disabled_sub'] == 0) {
@@ -165,6 +155,16 @@ class CategoryModels
         } else {
             $this->CRUDmodels->update('sub_product_category', ['is_disabled_sub' => '0'], ['category_sub' => $id]);
             return "Enabled Sub Category.";
+        }
+    }
+
+    public function getSubByID($id)
+    {
+        $data = $this->CRUDmodels->select("sub_product_category", ['category_sub' => $id]);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
         }
     }
 

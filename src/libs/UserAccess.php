@@ -56,17 +56,6 @@ class UserAccess extends UserModels
         }
     }
 
-    public static function isLogin()
-    {
-        $isLogined = Session::get('loggedIn');
-        $isLoginU = Session::get('username');
-        $isLoginP = Session::get('password');
-        if (!empty($isLogined) && !empty($isLoginU) && !empty($isLoginP)) {
-            return true;
-        }
-        return false;
-    }
-
     public static function reSetSession()
     {
         if ((self::isLogin() == false) && !empty($_COOKIE['username']) && !empty($_COOKIE['password'])) {
@@ -79,6 +68,17 @@ class UserAccess extends UserModels
                 Session::destroy();
             }
         }
+    }
+
+    public static function isLogin()
+    {
+        $isLogined = Session::get('loggedIn');
+        $isLoginU = Session::get('username');
+        $isLoginP = Session::get('password');
+        if (!empty($isLogined) && !empty($isLoginU) && !empty($isLoginP)) {
+            return true;
+        }
+        return false;
     }
 
     public static function admin_controller()

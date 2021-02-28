@@ -84,22 +84,6 @@ class UserModels
         }
     }
 
-    public function checkUserExist($user)
-    {
-        $data = $this->CRUDmodels->select("user", ['username' => $user]);
-        if (!empty($data)) {
-            return ["errors" => ["Username existed."]];
-        }
-    }
-
-    public function checkEmailExist($email)
-    {
-        $data = $this->CRUDmodels->select("user", ['email' => $email]);
-        if (!empty($data)) {
-            return ["errors" => ["Email existed."]];
-        }
-    }
-
     public function addUser()
     {
         $arr = [];
@@ -124,5 +108,21 @@ class UserModels
 
         $this->CRUDmodels->insert("user", $arr);
         return ["Added successfully."];
+    }
+
+    public function checkUserExist($user)
+    {
+        $data = $this->CRUDmodels->select("user", ['username' => $user]);
+        if (!empty($data)) {
+            return ["errors" => ["Username existed."]];
+        }
+    }
+
+    public function checkEmailExist($email)
+    {
+        $data = $this->CRUDmodels->select("user", ['email' => $email]);
+        if (!empty($data)) {
+            return ["errors" => ["Email existed."]];
+        }
     }
 }

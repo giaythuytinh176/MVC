@@ -15,11 +15,6 @@ class CheckoutControllers
         $this->cm = new CheckoutModels();
     }
 
-    public function checkoutView()
-    {
-        (new RenderControllers())->view("checkout/checkout");
-    }
-
     public static function CalculateTotalCheckOut()
     {
         if (!empty($_SESSION['cart_items'])) $totalPriceCart = ProductControllers::CalculateTotalCart();
@@ -59,6 +54,11 @@ class CheckoutControllers
                             </table>
                         </div>';
         return $sout;
+    }
+
+    public function checkoutView()
+    {
+        (new RenderControllers())->view("checkout/checkout");
     }
 
     public function InsertCart($post, $userData)

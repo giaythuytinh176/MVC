@@ -1,5 +1,5 @@
-<svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512" viewBox="0 0 512 512"
+     xmlns="http://www.w3.org/2000/svg">
     <linearGradient id="a">
         <stop offset="0" stop-color="#ffc107"/>
         <stop offset=".507" stop-color="#f44336"/>

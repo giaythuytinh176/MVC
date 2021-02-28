@@ -15,23 +15,54 @@ class BillsControllers
         $this->billsmodels = new BillsModels();
     }
 
+    public static function PrintListOrders()
+    {
+        $sout = '';
+        $sout .= '      
+                        <table id="ListOrders" class="table table-bordered table-hover" cellspacing="0"
+                               width="100%">
+                            <thead class="text-white thead-dark">
+                            <tr>
+                                <th style="width: 1%">
+                                    <input type="checkbox" class="select-all checkbox" name="select-all"/>
+                                </th>
+                                <th style="width: 2%">#</th>
+                                <th style="width: 7%" class="success">Order Number</th>
+                                <th style="width: 10%" class="success">Username</th>
+                                <th style="width: 15%" class="success">Order Date</th>
+                                <th style="width: 15%" class="danger">Shipped Date</th>
+                                <th style="width: 5%" class="warning"></th>
+                            </tr>
+                            </thead>
+                            <tbody>';
+        if (empty((new self)->getListOrders()['errors'])) {
+            foreach ((new self)->getListOrders() as $key => $value) {
+                $sout .= '   <tr>
+                                <td class="active">
+                                    <input type="checkbox" class="select-item checkbox" name="select-item"
+                                           value="' . $value['orderNumber'] . '"/>
+                                </td>
+                                <td>' . ($key + 1) . '</td>
+                                <td class="success"><a href="' . UrlControllers::url("admin/bills/detail/" . $value['orderNumber']) . '">DH-' . $value['orderNumber'] . '</a></td>
+                                <td class="success">' . (new \MVC\controllers\UserControllers)->getAllInfoUserbyID($value['user_id'])['username'] . '</td>
+                                <td class="success">' . $value['orderDate'] . '</td>
+                                <td class="warning">' . $value['shippedDate'] . '</td>
+                                <td class="danger">
+                                       <button id="trashbills' . $value['orderNumber'] . '" class="fas fa-trash-alt mytrashbills" title="Delete Bills ' . $value['orderNumber'] . '" value="' . $value['orderNumber'] . '"></button>
+                                </td>
+                            </tr>';
+            }
+            $sout .= '</tbody>
+                        </table>';
+        } else {
+            $sout .= "No Bills.";
+        }
+        return $sout;
+    }
+
     public function getListOrders()
     {
         return $this->billsmodels->getListOrders();
-    }
-
-
-    public function getPriceDiscountByID($product_id, $ordernumber)
-    {
-        $qty = $this->billsmodels->getOrderDetailByOrderNumber($product_id, $ordernumber)['qty'];
-        $discount = $this->billsmodels->getPriceDiscountByID($product_id)['discount'];
-        $price = $this->billsmodels->getPriceDiscountByID($product_id)['price'];
-        return ((100 - $discount) * $price * $qty) / 100;
-    }
-
-    public function getOrderDetail($ordernumber)
-    {
-        return $this->billsmodels->getOrderDetail($ordernumber);
     }
 
     public function PrintOrderDetail($ordernumber)
@@ -114,49 +145,17 @@ class BillsControllers
         return $sout;
     }
 
-    public static function PrintListOrders()
+    public function getOrderDetail($ordernumber)
     {
-        $sout = '';
-        $sout .= '      
-                        <table id="ListOrders" class="table table-bordered table-hover" cellspacing="0"
-                               width="100%">
-                            <thead class="text-white thead-dark">
-                            <tr>
-                                <th style="width: 1%">
-                                    <input type="checkbox" class="select-all checkbox" name="select-all"/>
-                                </th>
-                                <th style="width: 2%">#</th>
-                                <th style="width: 7%" class="success">Order Number</th>
-                                <th style="width: 10%" class="success">Username</th>
-                                <th style="width: 15%" class="success">Order Date</th>
-                                <th style="width: 15%" class="danger">Shipped Date</th>
-                                <th style="width: 5%" class="warning"></th>
-                            </tr>
-                            </thead>
-                            <tbody>';
-        if (empty((new self)->getListOrders()['errors'])) {
-            foreach ((new self)->getListOrders() as $key => $value) {
-                $sout .= '   <tr>
-                                <td class="active">
-                                    <input type="checkbox" class="select-item checkbox" name="select-item"
-                                           value="' . $value['orderNumber'] . '"/>
-                                </td>
-                                <td>' . ($key + 1) . '</td>
-                                <td class="success"><a href="' . UrlControllers::url("admin/bills/detail/" . $value['orderNumber']) . '">DH-' . $value['orderNumber'] . '</a></td>
-                                <td class="success">' . (new \MVC\controllers\UserControllers)->getAllInfoUserbyID($value['user_id'])['username'] . '</td>
-                                <td class="success">' . $value['orderDate'] . '</td>
-                                <td class="warning">' . $value['shippedDate'] . '</td>
-                                <td class="danger">
-                                       <button id="trashbills' . $value['orderNumber'] . '" class="fas fa-trash-alt mytrashbills" title="Delete Bills ' . $value['orderNumber'] . '" value="' . $value['orderNumber'] . '"></button>
-                                </td>
-                            </tr>';
-            }
-            $sout .= '</tbody>
-                        </table>';
-        } else {
-            $sout .= "No Bills.";
-        }
-        return $sout;
+        return $this->billsmodels->getOrderDetail($ordernumber);
+    }
+
+    public function getPriceDiscountByID($product_id, $ordernumber)
+    {
+        $qty = $this->billsmodels->getOrderDetailByOrderNumber($product_id, $ordernumber)['qty'];
+        $discount = $this->billsmodels->getPriceDiscountByID($product_id)['discount'];
+        $price = $this->billsmodels->getPriceDiscountByID($product_id)['price'];
+        return ((100 - $discount) * $price * $qty) / 100;
     }
 
 }

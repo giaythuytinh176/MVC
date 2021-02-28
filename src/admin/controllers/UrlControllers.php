@@ -22,6 +22,21 @@ class UrlControllers
         $this->parseController();
     }
 
+    public function ParseActionsParams($parseurl): void
+    {
+        if (!empty($parseurl[0])) {
+            $this->controllers = $parseurl[0];
+        }
+        if (!empty($parseurl[1])) {
+            $this->action = $parseurl[1];
+        }
+        if (!empty($parseurl[0]) && !empty($parseurl[1]) && !empty($parseurl[2])) {
+            unset($parseurl[0]);
+            unset($parseurl[1]);
+            $this->params = array_values($parseurl);
+        }
+    }
+
     public function parseController()
     {
         switch ($this->controllers) {
@@ -97,21 +112,6 @@ class UrlControllers
 
             default:
                 $this->render->errorPage();
-        }
-    }
-
-    public function ParseActionsParams($parseurl): void
-    {
-        if (!empty($parseurl[0])) {
-            $this->controllers = $parseurl[0];
-        }
-        if (!empty($parseurl[1])) {
-            $this->action = $parseurl[1];
-        }
-        if (!empty($parseurl[0]) && !empty($parseurl[1]) && !empty($parseurl[2])) {
-            unset($parseurl[0]);
-            unset($parseurl[1]);
-            $this->params = array_values($parseurl);
         }
     }
 }

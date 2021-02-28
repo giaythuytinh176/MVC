@@ -15,13 +15,35 @@ class CategoryControllers
         $this->cm = new CategoryModels();
     }
 
-    public function getAllListCategoryByCode($code)
+    public static function printListCategoryIncludeSub()
     {
-        $dataSQL = $this->cm->getAllListCategoryByCode(['code' => $code, 'is_disabled_brand' => '0']);
-        if (empty($dataSQL)) {
-            $dataSQL = ["errors" => "Doesn't have any Product Category."];
+        $sout = '';
+        if (empty((new self)->getAllListcategory()['errors'])) {
+            foreach ((new self)->getAllListcategory() as $value) {
+                $sout .= '<li class="menu-item">';
+                $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . '><div>' . Languages::getLangData($value['category_title']) . '</div></a>';
+                $sout .= '<ul class="sub-menu-container">';
+                foreach ((new self)->getAllCategorybyParentID($value['parent_id']) as $v) {
+                    $sout .= '<li class="menu-item">';
+                    if (empty($v['code'])) {
+                        $sout .= '<a class="menu-link" href=""><div>You need add a Product Category.</div></a>';
+                    } else {
+                        $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/{$value['category_code']}/{$v['code']}") . '><div>' . Languages::getLangData($v['title']) . '</div></a>';
+                        if (empty((new self)->getAllSubCategory($v['code'])['errors'])) {
+                            $sout .= '<ul class="sub-menu-container">';
+                            foreach ((new self)->getAllSubCategory($v['code']) as $val) {
+                                $sout .= ' <li class="menu-item"><a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . "/{$v['code']}/" . $val['codeSUB'] . '><div>' . Languages::getLangData($val['title']) . '</div></a></li>';
+                            }
+                            $sout .= '</ul>';
+                        }
+                    }
+                    $sout .= '</li>';
+                }
+                $sout .= '</ul>';
+                $sout .= '</li>';
+            }
         }
-        return $dataSQL;
+        return $sout;
     }
 
     public function getAllListcategory()
@@ -42,20 +64,11 @@ class CategoryControllers
         return $dataSQL;
     }
 
-    public function getParentCategoryByCode($code)
+    public function getAllListCategoryByCode($code)
     {
-        $dataSQL = $this->cm->getParentCategoryByCode(['category_code' => $code, 'is_disabled' => '0']);
+        $dataSQL = $this->cm->getAllListCategoryByCode(['code' => $code, 'is_disabled_brand' => '0']);
         if (empty($dataSQL)) {
-            $dataSQL = ["errors" => "Doesn't have any Parent Category."];
-        }
-        return $dataSQL;
-    }
-
-    public function getAllCategorybyParentID($parentID)
-    {
-        $dataSQL = $this->cm->getAllCategorybyParentID(['parent_id' => $parentID, 'is_disabled_brand' => '0']);
-        if (empty($dataSQL)) {
-            $dataSQL = ["errors" => "Doesn't have any Category."];
+            $dataSQL = ["errors" => "Doesn't have any Product Category."];
         }
         return $dataSQL;
     }
@@ -104,34 +117,21 @@ class CategoryControllers
         (new RenderControllers())->view("category/shop-category-parallax", [$ListParentCategory, $ParentCategory['category_title'], $ParentCategory['category_code']]);
     }
 
-    public static function printListCategoryIncludeSub()
+    public function getParentCategoryByCode($code)
     {
-        $sout = '';
-        if (empty((new self)->getAllListcategory()['errors'])) {
-            foreach ((new self)->getAllListcategory() as $value) {
-                $sout .= '<li class="menu-item">';
-                $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . '><div>' . Languages::getLangData($value['category_title']) . '</div></a>';
-                $sout .= '<ul class="sub-menu-container">';
-                foreach ((new self)->getAllCategorybyParentID($value['parent_id']) as $v) {
-                    $sout .= '<li class="menu-item">';
-                    if (empty($v['code'])) {
-                        $sout .= '<a class="menu-link" href=""><div>You need add a Product Category.</div></a>';
-                    } else {
-                        $sout .= '<a class="menu-link" href=' . UrlControllers::url("category/{$value['category_code']}/{$v['code']}") . '><div>' . Languages::getLangData($v['title']) . '</div></a>';
-                        if (empty((new self)->getAllSubCategory($v['code'])['errors'])) {
-                            $sout .= '<ul class="sub-menu-container">';
-                            foreach ((new self)->getAllSubCategory($v['code']) as $val) {
-                                $sout .= ' <li class="menu-item"><a class="menu-link" href=' . UrlControllers::url("category/" . $value['category_code']) . "/{$v['code']}/" . $val['codeSUB'] . '><div>' . Languages::getLangData($val['title']) . '</div></a></li>';
-                            }
-                            $sout .= '</ul>';
-                        }
-                    }
-                    $sout .= '</li>';
-                }
-                $sout .= '</ul>';
-                $sout .= '</li>';
-            }
+        $dataSQL = $this->cm->getParentCategoryByCode(['category_code' => $code, 'is_disabled' => '0']);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have any Parent Category."];
         }
-        return $sout;
+        return $dataSQL;
+    }
+
+    public function getAllCategorybyParentID($parentID)
+    {
+        $dataSQL = $this->cm->getAllCategorybyParentID(['parent_id' => $parentID, 'is_disabled_brand' => '0']);
+        if (empty($dataSQL)) {
+            $dataSQL = ["errors" => "Doesn't have any Category."];
+        }
+        return $dataSQL;
     }
 }

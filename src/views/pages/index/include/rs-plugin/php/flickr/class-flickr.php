@@ -57,23 +57,23 @@ class TP_flickr
     }
 
     /**
-     * Calls Flicker API with set of params, returns json
+     * Encode the flickr ID for URL (base58)
      *
-     * @param array $params Parameter build for API request
+     * @param string $num flickr photo id
      * @since    1.0.0
      */
-    private function call_flickr_api($params)
+    public static function base_encode($num, $alphabet = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ')
     {
-        //build url
-        $encoded_params = array();
-        foreach ($params as $k => $v) {
-            $encoded_params[] = urlencode($k) . '=' . urlencode($v);
+        $base_count = strlen($alphabet);
+        $encoded = '';
+        while ($num >= $base_count) {
+            $div = $num / $base_count;
+            $mod = ($num - ($base_count * intval($div)));
+            $encoded = $alphabet[$mod] . $encoded;
+            $num = intval($div);
         }
-
-        //call the API and decode the response
-        $url = "https://api.flickr.com/services/rest/?" . implode('&', $encoded_params);
-        $rsp = json_decode(file_get_contents($url));
-        return $rsp;
+        if ($num) $encoded = $alphabet[$num] . $encoded;
+        return $encoded;
     }
 
     /**
@@ -96,6 +96,26 @@ class TP_flickr
         //get gallery info
         $user_info = $this->call_flickr_api($user_params);
         return $user_info->user->id;
+    }
+
+    /**
+     * Calls Flicker API with set of params, returns json
+     *
+     * @param array $params Parameter build for API request
+     * @since    1.0.0
+     */
+    private function call_flickr_api($params)
+    {
+        //build url
+        $encoded_params = array();
+        foreach ($params as $k => $v) {
+            $encoded_params[] = urlencode($k) . '=' . urlencode($v);
+        }
+
+        //call the API and decode the response
+        $url = "https://api.flickr.com/services/rest/?" . implode('&', $encoded_params);
+        $rsp = json_decode(file_get_contents($url));
+        return $rsp;
     }
 
     /**
@@ -252,26 +272,6 @@ class TP_flickr
         //get photo list
         $gallery_photos_list = $this->call_flickr_api($gallery_photo_params);
         return $gallery_photos_list->photos->photo;
-    }
-
-    /**
-     * Encode the flickr ID for URL (base58)
-     *
-     * @param string $num flickr photo id
-     * @since    1.0.0
-     */
-    public static function base_encode($num, $alphabet = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ')
-    {
-        $base_count = strlen($alphabet);
-        $encoded = '';
-        while ($num >= $base_count) {
-            $div = $num / $base_count;
-            $mod = ($num - ($base_count * intval($div)));
-            $encoded = $alphabet[$mod] . $encoded;
-            $num = intval($div);
-        }
-        if ($num) $encoded = $alphabet[$num] . $encoded;
-        return $encoded;
     }
 }
 

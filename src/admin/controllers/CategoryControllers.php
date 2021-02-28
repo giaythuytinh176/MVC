@@ -16,172 +16,6 @@ class CategoryControllers
         $this->categorymodels = new CategoryModels();
     }
 
-    public function getALlCategoryParent()
-    {
-        $data = $this->categorymodels->getALlCategoryParent();
-        if (empty($data)) {
-            return ["errors" => "Parent Category not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getBrandByID($id)
-    {
-        $data = $this->categorymodels->getBrandByID($id);
-        if (empty($data)) {
-            return ["errors" => "Brand not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getAllBrand()
-    {
-        $data = $this->categorymodels->getAllBrand();
-        if (empty($data)) {
-            return ["errors" => "Brand not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getAllSubCate()
-    {
-        $data = $this->categorymodels->getAllSubCate();
-        if (empty($data)) {
-            return ["errors" => "Sub Category not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getOnlySubCateIncludeCateParent()
-    {
-        $data = $this->categorymodels->getOnlySubCateIncludeCateParent();
-        if (empty($data)) {
-            return ["errors" => "Sub Category not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getOnlySubCateParentbyID($ID)
-    {
-        $data = $this->categorymodels->getOnlySubCateParentbyID($ID);
-        if (empty($data)) {
-            return ["errors" => "Sub Category not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getALlCategoryProduct()
-    {
-        $data = $this->categorymodels->getALlCategoryProduct();
-        if (empty($data)) {
-            return ["errors" => "Category Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function ActiveOrDisableCategory($id)
-    {
-        if ($this->getAllCateParentbyID($id)['is_disabled'] == 0) {
-            $this->categorymodels->ActiveOrDisableCategory($id, 1);
-            return "Disabled Category.";
-        } else {
-            $this->categorymodels->ActiveOrDisableCategory($id, 0);
-            return "Enabled Category.";
-        }
-    }
-
-    public function getAllCateParentbyID($id)
-    {
-        $data = $this->categorymodels->getAllCateParentbyID($id);
-        if (empty($data)) {
-            return ["errors" => "Category not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getALlCategoryProductFromParentID($parent_id)
-    {
-        $data = $this->categorymodels->getALlCategoryProductFromParentID($parent_id);
-        if (empty($data)) {
-            return ["errors" => "Category Product not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function getAllCateSubParent()
-    {
-        $data = $this->categorymodels->getAllCateSubParent();
-        if (empty($data)) {
-            return ["errors" => "Cate-Sub-Parent not found."];
-        } else {
-            return $data;
-        }
-    }
-
-    public function UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id)
-    {
-        return $this->categorymodels->UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id);
-    }
-
-    public function UpdateSubCatebyID($data)
-    {
-        return $this->categorymodels->UpdateSubCatebyID($data);
-    }
-
-    public function AddBrand($title, $code, $parent_id)
-    {
-        return $this->categorymodels->AddBrand($title, $code, $parent_id);
-    }
-
-    public function AddSubCate($title, $code, $cate_id, $parent_id)
-    {
-        return $this->categorymodels->AddSubCate($title, $code, $cate_id, $parent_id);
-    }
-
-    public function AddCategoryParrent($title, $code)
-    {
-        return $this->categorymodels->AddCategoryParrent($title, $code);
-    }
-
-    public function getSubByID($id)
-    {
-        return $this->categorymodels->getSubByID($id);
-    }
-
-    public function ActiveOrDisableBrand($id)
-    {
-        return $this->categorymodels->ActiveOrDisableBrand($id);
-    }
-
-    public function ActiveOrDisableSubCate($id)
-    {
-        return $this->categorymodels->ActiveOrDisableSubCate($id);
-    }
-
-    public function getParrentFromParentID($parent_id)
-    {
-        return $this->categorymodels->getParrentFromParentID($parent_id);
-    }
-
-    public function getCategoryProductFromCateID($category_id)
-    {
-        return $this->categorymodels->getCategoryProductFromCateID($category_id);
-    }
-
-    public function UpdateCategorybyID($id, $data)
-    {
-        $this->categorymodels->UpdateCategorybyID($id, $data);
-    }
-
     public static function AllowSelectSubCateFromCateProductParent()
     {
         $parent_category_product = [];
@@ -196,6 +30,26 @@ class CategoryControllers
         }
         ksort($parent_category_product['parent_id']);
         return $parent_category_product;
+    }
+
+    public function getALlCategoryParent()
+    {
+        $data = $this->categorymodels->getALlCategoryParent();
+        if (empty($data)) {
+            return ["errors" => "Parent Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getALlCategoryProductFromParentID($parent_id)
+    {
+        $data = $this->categorymodels->getALlCategoryProductFromParentID($parent_id);
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
+        } else {
+            return $data;
+        }
     }
 
     public static function PrintEditBrand($data)
@@ -248,6 +102,16 @@ class CategoryControllers
             $sout .= '<div class="alert alert-danger" role="alert">Brand ID not found.</div>';
         }
         return $sout;
+    }
+
+    public function getBrandByID($id)
+    {
+        $data = $this->categorymodels->getBrandByID($id);
+        if (empty($data)) {
+            return ["errors" => "Brand not found."];
+        } else {
+            return $data;
+        }
     }
 
     public static function PrintAddBrand()
@@ -356,6 +220,16 @@ class CategoryControllers
         return $sout;
     }
 
+    public function getALlCategoryProduct()
+    {
+        $data = $this->categorymodels->getALlCategoryProduct();
+        if (empty($data)) {
+            return ["errors" => "Category Product not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public static function PrintAddCategory()
     {
         $sout = '';
@@ -406,6 +280,11 @@ class CategoryControllers
                 (new RenderControllers())->redirectAfterSecondPage("admin/category", 3);
             }
         }
+    }
+
+    public function UpdateCategorybyID($id, $data)
+    {
+        $this->categorymodels->UpdateCategorybyID($id, $data);
     }
 
     public static function PrintEditCategory($data)
@@ -510,6 +389,16 @@ class CategoryControllers
         return $sout;
     }
 
+    public function getOnlySubCateParentbyID($ID)
+    {
+        $data = $this->categorymodels->getOnlySubCateParentbyID($ID);
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public static function PrintListBrandes()
     {
         $sout = '';
@@ -552,6 +441,16 @@ class CategoryControllers
             $sout .= "No brand.";
         }
         return $sout;
+    }
+
+    public function getAllBrand()
+    {
+        $data = $this->categorymodels->getAllBrand();
+        if (empty($data)) {
+            return ["errors" => "Brand not found."];
+        } else {
+            return $data;
+        }
     }
 
     public static function PrintListSubCategories()
@@ -603,6 +502,16 @@ class CategoryControllers
         return $sout;
     }
 
+    public function getOnlySubCateIncludeCateParent()
+    {
+        $data = $this->categorymodels->getOnlySubCateIncludeCateParent();
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
     public static function PrintListCategories()
     {
         $sout = '';
@@ -646,5 +555,96 @@ class CategoryControllers
             $sout .= "No category.";
         }
         return $sout;
+    }
+
+    public function getAllSubCate()
+    {
+        $data = $this->categorymodels->getAllSubCate();
+        if (empty($data)) {
+            return ["errors" => "Sub Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function ActiveOrDisableCategory($id)
+    {
+        if ($this->getAllCateParentbyID($id)['is_disabled'] == 0) {
+            $this->categorymodels->ActiveOrDisableCategory($id, 1);
+            return "Disabled Category.";
+        } else {
+            $this->categorymodels->ActiveOrDisableCategory($id, 0);
+            return "Enabled Category.";
+        }
+    }
+
+    public function getAllCateParentbyID($id)
+    {
+        $data = $this->categorymodels->getAllCateParentbyID($id);
+        if (empty($data)) {
+            return ["errors" => "Category not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllCateSubParent()
+    {
+        $data = $this->categorymodels->getAllCateSubParent();
+        if (empty($data)) {
+            return ["errors" => "Cate-Sub-Parent not found."];
+        } else {
+            return $data;
+        }
+    }
+
+    public function UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id)
+    {
+        return $this->categorymodels->UpdateBrandbyID($brand_title, $brand_code, $parent_id, $category_id);
+    }
+
+    public function UpdateSubCatebyID($data)
+    {
+        return $this->categorymodels->UpdateSubCatebyID($data);
+    }
+
+    public function AddBrand($title, $code, $parent_id)
+    {
+        return $this->categorymodels->AddBrand($title, $code, $parent_id);
+    }
+
+    public function AddSubCate($title, $code, $cate_id, $parent_id)
+    {
+        return $this->categorymodels->AddSubCate($title, $code, $cate_id, $parent_id);
+    }
+
+    public function AddCategoryParrent($title, $code)
+    {
+        return $this->categorymodels->AddCategoryParrent($title, $code);
+    }
+
+    public function getSubByID($id)
+    {
+        return $this->categorymodels->getSubByID($id);
+    }
+
+    public function ActiveOrDisableBrand($id)
+    {
+        return $this->categorymodels->ActiveOrDisableBrand($id);
+    }
+
+    public function ActiveOrDisableSubCate($id)
+    {
+        return $this->categorymodels->ActiveOrDisableSubCate($id);
+    }
+
+    public function getParrentFromParentID($parent_id)
+    {
+        return $this->categorymodels->getParrentFromParentID($parent_id);
+    }
+
+    public function getCategoryProductFromCateID($category_id)
+    {
+        return $this->categorymodels->getCategoryProductFromCateID($category_id);
     }
 }

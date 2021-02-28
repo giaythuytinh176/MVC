@@ -6,14 +6,6 @@ use MVC\controllers\UrlControllers;
 
 class Languages
 {
-    public function setLang($lang)
-    {
-        if (isset($lang)) {
-            $_SESSION['lang'] = $lang;
-            header('Location:' . UrlControllers::url());
-        }
-    }
-
     public static function getLangData($lang)
     {
         return (new \MVC\models\LangModels())->getLangDB($lang);
@@ -36,5 +28,13 @@ class Languages
                 $lang = "vietnamese";
         }
         return $lang;
+    }
+
+    public function setLang($lang)
+    {
+        if (isset($lang)) {
+            $_SESSION['lang'] = $lang;
+            header('Location:' . UrlControllers::url());
+        }
     }
 }

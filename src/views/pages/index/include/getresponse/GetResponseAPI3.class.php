@@ -12,11 +12,10 @@
 class GetResponse
 {
 
+    public $http_status;
     private $api_key;
     private $api_url = 'https://api.getresponse.com/v3';
     private $timeout = 8;
-    public $http_status;
-
     /**
      * X-Domain header value if empty header will be not provided
      * @var string|null
@@ -54,6 +53,14 @@ class GetResponse
     }
 
     /**
+     * @return mixed
+     */
+    public function ping()
+    {
+        return $this->accounts();
+    }
+
+    /**
      * get account details
      *
      * @return mixed
@@ -64,11 +71,63 @@ class GetResponse
     }
 
     /**
+     * Curl run request
+     *
+     * @param null $api_method
+     * @param string $http_method
+     * @param array $params
      * @return mixed
+     * @throws Exception
      */
-    public function ping()
+    private function call($api_method = null, $http_method = 'GET', $params = array())
     {
-        return $this->accounts();
+        if (empty($api_method)) {
+            return (object)array(
+                'httpStatus' => '400',
+                'code' => '1010',
+                'codeDescription' => 'Error in external resources',
+                'message' => 'Invalid api method'
+            );
+        }
+
+        $params = json_encode($params);
+        $url = $this->api_url . '/' . $api_method;
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_ENCODING => 'gzip,deflate',
+            CURLOPT_FRESH_CONNECT => 1,
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_TIMEOUT => $this->timeout,
+            CURLOPT_HEADER => false,
+            CURLOPT_USERAGENT => 'PHP GetResponse client 0.0.2',
+            CURLOPT_HTTPHEADER => array('X-Auth-Token: api-key ' . $this->api_key, 'Content-Type: application/json')
+        );
+
+        if (!empty($this->enterprise_domain)) {
+            $options[CURLOPT_HTTPHEADER][] = 'X-Domain: ' . $this->enterprise_domain;
+        }
+
+        if (!empty($this->app_id)) {
+            $options[CURLOPT_HTTPHEADER][] = 'X-APP-ID: ' . $this->app_id;
+        }
+
+        if ($http_method == 'POST') {
+            $options[CURLOPT_POST] = 1;
+            $options[CURLOPT_POSTFIELDS] = $params;
+        } else if ($http_method == 'DELETE') {
+            $options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
+        }
+
+        $curl = curl_init();
+        curl_setopt_array($curl, $options);
+
+        $response = json_decode(curl_exec($curl));
+
+        $this->http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+        return (object)$response;
     }
 
     /**
@@ -151,7 +210,6 @@ class GetResponse
         return $this->call('contacts/' . $contact_id);
     }
 
-
     /**
      * search contacts
      *
@@ -161,6 +219,22 @@ class GetResponse
     public function searchContacts($params = null)
     {
         return $this->call('search-contacts?' . $this->setParams($params));
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return string
+     */
+    private function setParams($params = array())
+    {
+        $result = array();
+        if (is_array($params)) {
+            foreach ($params as $key => $value) {
+                $result[$key] = $value;
+            }
+        }
+        return http_build_query($result);
     }
 
     /**
@@ -325,82 +399,6 @@ class GetResponse
     public function getForms($params = array())
     {
         return $this->call('forms?' . $this->setParams($params));
-    }
-
-    /**
-     * Curl run request
-     *
-     * @param null $api_method
-     * @param string $http_method
-     * @param array $params
-     * @return mixed
-     * @throws Exception
-     */
-    private function call($api_method = null, $http_method = 'GET', $params = array())
-    {
-        if (empty($api_method)) {
-            return (object)array(
-                'httpStatus' => '400',
-                'code' => '1010',
-                'codeDescription' => 'Error in external resources',
-                'message' => 'Invalid api method'
-            );
-        }
-
-        $params = json_encode($params);
-        $url = $this->api_url . '/' . $api_method;
-
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_ENCODING => 'gzip,deflate',
-            CURLOPT_FRESH_CONNECT => 1,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_TIMEOUT => $this->timeout,
-            CURLOPT_HEADER => false,
-            CURLOPT_USERAGENT => 'PHP GetResponse client 0.0.2',
-            CURLOPT_HTTPHEADER => array('X-Auth-Token: api-key ' . $this->api_key, 'Content-Type: application/json')
-        );
-
-        if (!empty($this->enterprise_domain)) {
-            $options[CURLOPT_HTTPHEADER][] = 'X-Domain: ' . $this->enterprise_domain;
-        }
-
-        if (!empty($this->app_id)) {
-            $options[CURLOPT_HTTPHEADER][] = 'X-APP-ID: ' . $this->app_id;
-        }
-
-        if ($http_method == 'POST') {
-            $options[CURLOPT_POST] = 1;
-            $options[CURLOPT_POSTFIELDS] = $params;
-        } else if ($http_method == 'DELETE') {
-            $options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
-        }
-
-        $curl = curl_init();
-        curl_setopt_array($curl, $options);
-
-        $response = json_decode(curl_exec($curl));
-
-        $this->http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        curl_close($curl);
-        return (object)$response;
-    }
-
-    /**
-     * @param array $params
-     *
-     * @return string
-     */
-    private function setParams($params = array())
-    {
-        $result = array();
-        if (is_array($params)) {
-            foreach ($params as $key => $value) {
-                $result[$key] = $value;
-            }
-        }
-        return http_build_query($result);
     }
 
 }

@@ -13,6 +13,23 @@
 class TP_facebook
 {
     /**
+     * Decode URL from feed
+     *
+     * @param string $url facebook Output Data
+     * @since    1.0.0
+     */
+    public static function decode_facebook_url($url)
+    {
+        $url = str_replace('u00253A', ':', $url);
+        $url = str_replace('\u00255C\u00252F', '/', $url);
+        $url = str_replace('u00252F', '/', $url);
+        $url = str_replace('u00253F', '?', $url);
+        $url = str_replace('u00253D', '=', $url);
+        $url = str_replace('u002526', '&', $url);
+        return $url;
+    }
+
+    /**
      * Get User ID from its URL
      *
      * @param string $user_url URL of the Page
@@ -73,23 +90,6 @@ class TP_facebook
         $url = "https://graph.facebook.com/$user/feed?" . $oauth . "&fields=id,from,message,picture,link,name,icon,privacy,type,status_type,object_id,application,created_time,updated_time,is_hidden,is_expired,likes,comments";
         $feed = json_decode(file_get_contents($url));
         return $feed->data;
-    }
-
-    /**
-     * Decode URL from feed
-     *
-     * @param string $url facebook Output Data
-     * @since    1.0.0
-     */
-    public static function decode_facebook_url($url)
-    {
-        $url = str_replace('u00253A', ':', $url);
-        $url = str_replace('\u00255C\u00252F', '/', $url);
-        $url = str_replace('u00252F', '/', $url);
-        $url = str_replace('u00253F', '?', $url);
-        $url = str_replace('u00253D', '=', $url);
-        $url = str_replace('u002526', '&', $url);
-        return $url;
     }
 }
 
