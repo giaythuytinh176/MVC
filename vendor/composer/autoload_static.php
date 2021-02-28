@@ -6,26 +6,28 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
 {
-    public static $prefixLengthsPsr4 = array(
-        'M' =>
-            array(
-                'MVC\\' => 4,
-            ),
+    public static $prefixLengthsPsr4 = array (
+        'M' => 
+        array (
+            'MVC\\' => 4,
+        ),
     );
 
-    public static $prefixDirsPsr4 = array(
-        'MVC\\' =>
-            array(
-                0 => __DIR__ . '/../..' . '/src',
-            ),
+    public static $prefixDirsPsr4 = array (
+        'MVC\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
-    public static $classMap = array(
+    public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'MVC\\admin\\controllers\\AjaxControllers' => __DIR__ . '/../..' . '/src/admin/controllers/AjaxControllers.php',
+        'MVC\\admin\\controllers\\BillsControllers' => __DIR__ . '/../..' . '/src/admin/controllers/BillsControllers.php',
         'MVC\\admin\\controllers\\CategoryControllers' => __DIR__ . '/../..' . '/src/admin/controllers/CategoryControllers.php',
         'MVC\\admin\\controllers\\ProductController' => __DIR__ . '/../..' . '/src/admin/controllers/ProductController.php',
         'MVC\\admin\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/admin/controllers/UrlControllers.php',
+        'MVC\\admin\\models\\BillsModels' => __DIR__ . '/../..' . '/src/admin/models/BillsModels.php',
         'MVC\\admin\\models\\CategoryModels' => __DIR__ . '/../..' . '/src/admin/models/CategoryModels.php',
         'MVC\\admin\\models\\ProductModels' => __DIR__ . '/../..' . '/src/admin/models/ProductModels.php',
         'MVC\\config\\config' => __DIR__ . '/../..' . '/src/config/config.php',
@@ -36,8 +38,10 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
         'MVC\\controllers\\LoginControllers' => __DIR__ . '/../..' . '/src/controllers/LoginControllers.php',
         'MVC\\controllers\\ProductControllers' => __DIR__ . '/../..' . '/src/controllers/ProductControllers.php',
         'MVC\\controllers\\RenderControllers' => __DIR__ . '/../..' . '/src/controllers/RenderControllers.php',
+        'MVC\\controllers\\SearchControllers' => __DIR__ . '/../..' . '/src/controllers/SearchControllers.php',
         'MVC\\controllers\\ToolControllers' => __DIR__ . '/../..' . '/src/controllers/ToolControllers.php',
         'MVC\\controllers\\UrlControllers' => __DIR__ . '/../..' . '/src/controllers/UrlControllers.php',
+        'MVC\\controllers\\UserControllers' => __DIR__ . '/../..' . '/src/controllers/UserControllers.php',
         'MVC\\libs\\Cookie' => __DIR__ . '/../..' . '/src/libs/Cookie.php',
         'MVC\\libs\\CreateUser' => __DIR__ . '/../..' . '/src/libs/CreateUser.php',
         'MVC\\libs\\Database' => __DIR__ . '/../..' . '/src/libs/Database.php',
@@ -50,8 +54,10 @@ class ComposerStaticInitd40a27bb5274f2bc49f43c13a5a141c4
         'MVC\\libs\\init' => __DIR__ . '/../..' . '/src/libs/init.php',
         'MVC\\models\\CRUDModels' => __DIR__ . '/../..' . '/src/models/CRUDModels.php',
         'MVC\\models\\CategoryModels' => __DIR__ . '/../..' . '/src/models/CategoryModels.php',
+        'MVC\\models\\CheckoutModels' => __DIR__ . '/../..' . '/src/models/CheckoutModels.php',
         'MVC\\models\\LangModels' => __DIR__ . '/../..' . '/src/models/LangModels.php',
         'MVC\\models\\ProductModels' => __DIR__ . '/../..' . '/src/models/ProductModels.php',
+        'MVC\\models\\SearchModels' => __DIR__ . '/../..' . '/src/models/SearchModels.php',
         'MVC\\models\\UserModels' => __DIR__ . '/../..' . '/src/models/UserModels.php',
     );
 
